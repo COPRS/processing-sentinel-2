@@ -1,0 +1,12 @@
+jobOrderName: GSE
+nbjobs: 1
+patterns:
+  - dt_number: <global.dt_number>   
+  - start_time: <global.start_time>
+  - stop_time: <global.stop_time>
+  - granule_begin: 001  
+  - granule_end: <global.count_l0ugr>
+  - wpdir: <automatic>
+  - jobnumber: <automatic>
+  - l0u_dsname: <automatic>
+  - gipp_spamod:   S2A_OPER_GIP_SPAMOD_MPC__20210413T000000_V20210408T020000_20210409T030000_B00.xml

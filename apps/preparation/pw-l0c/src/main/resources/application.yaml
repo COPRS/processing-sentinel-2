@@ -1,0 +1,48 @@
+logging:
+  level:
+    eu:
+      csgroup:
+        coprs: INFO
+
+spring:
+  application:
+    name: pw-l0c
+  profiles:
+    default: dev
+  cloud:
+    stream:
+      function:
+        bindings:
+          process-in-0: input
+          process-out-0: output
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  main:
+    banner-mode: off
+
+logging:
+  config: classpath:log4j2-config.yaml
+  level:
+    eu:
+      csgroup:
+        coprs: INFO
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  main:
+    banner-mode: console
+
+logging:
+  level:
+    eu:
+      csgroup:
+        coprs: DEBUG

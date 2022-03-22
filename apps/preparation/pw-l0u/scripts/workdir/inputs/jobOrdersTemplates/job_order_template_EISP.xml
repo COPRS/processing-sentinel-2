@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ipf_Job_Order xsi:noNamespaceSchemaLocation="JobOrder.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Ipf_Conf>
+		<Processor_Name>EISP_PROC</Processor_Name>
+		<Version>01.00</Version>
+		<Stdout_Log_Level>INFO</Stdout_Log_Level>
+		<Stderr_Log_Level>WARNING</Stderr_Log_Level>
+		<Test>true</Test>
+		<Breakpoint_Enable>false</Breakpoint_Enable>
+		<Processing_Station>Matera</Processing_Station>
+		<Config_Files>
+			<Conf_File_Name>@confdir@/EISPProcessor.xml</Conf_File_Name>
+			<Conf_File_Name>@confdir@/EISPProcessorS1Data.xml</Conf_File_Name>
+			<Conf_File_Name>@confdir@/Sentinel1CCSDSTelemetry.xml</Conf_File_Name>
+			<Conf_File_Name>@confdir@/ExplorerWrapper.xml</Conf_File_Name>
+			<Conf_File_Name>@confdir@/S1A_MPL_ORBSCT_Reference</Conf_File_Name>
+			<Conf_File_Name>@confdir@/S1B_MPL_ORBSCT_Reference</Conf_File_Name>
+			<Conf_File_Name>@confdir@/S2A_MPL_ORBSCT_Reference</Conf_File_Name>
+			<Conf_File_Name>@confdir@/S2B_MPL_ORBSCT_Reference</Conf_File_Name>
+		</Config_Files>
+		<Sensing_Time>
+			<Start>20150612_053936000000</Start>
+			<Stop>20150612_054921000000</Stop>
+		</Sensing_Time>
+		<Dynamic_Processing_Parameters>
+			<Processing_Parameter>
+				<Name>MissionID</Name>
+				<Value>@satellite@</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>DownlinkTime</Name>
+				<Value>@downlink_time@</Value>
+			</Processing_Parameter>
+		</Dynamic_Processing_Parameters>
+	</Ipf_Conf>
+	<List_of_Ipf_Procs count="1">
+		<Ipf_Proc>
+			<Task_Name>EISP_PROC_APP</Task_Name>
+			<Task_Version>01.00</Task_Version>
+			<BreakPoint />
+			<List_of_Inputs count="1">
+				<Input>
+					<File_Type>STO_CADU_S</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<List_of_File_Names count="@count_raw_by_channel@">
+						<File_Name>@eisp_input_folder@/@eisp_channel@/@list_raw_items_by_channel@</File_Name>
+
+					</List_of_File_Names>
+				</Input>
+			</List_of_Inputs>
+			<List_of_Outputs count="2">
+				<!--SAR Products -->
+				<Output>
+					<File_Type>STO_ISP__S</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<File_Name>@wpdir@/@data_output_folder@/</File_Name>
+				</Output>
+				<Output>
+					<File_Type>STO_VCDU_S</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<File_Name>@wpdir@/@data_output_folder@/</File_Name>
+				</Output>
+			</List_of_Outputs>
+		</Ipf_Proc>
+	</List_of_Ipf_Procs>
+</Ipf_Job_Order>

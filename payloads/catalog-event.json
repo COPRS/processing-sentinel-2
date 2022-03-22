@@ -1,0 +1,106 @@
+{
+  "uid": "622729a9-bb27-46b4-9802-b1a544cb86b9",
+  "creationDate": "2022-06-02T12:31:48.969Z",
+  "missionId": "S2",
+  "satelliteId": "A",
+  "keyObjectStorage": "DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSDB_00005.raw",
+  "storagePath": "s3://rs-session-files/DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSDB_00005.raw",
+  "productFamily": "EDRS_SESSION",
+  "podName": "metadata-part1-metadata-extraction-v3-7d6c756546-rm7qh",
+  "allowedActions": [
+    "RESUBMIT"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {},
+  "metadata": {
+    "productFamily": "EDRS_SESSION",
+    "stationCode": "SGS_",
+    "missionId": "S2",
+    "insertionTime": "2022-06-02T12:31:48.926836Z",
+    "satelliteId": "A",
+    "sessionId": "L20191003131732787001008",
+    "channelId": 2,
+    "productName": "DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSDB_00005.raw",
+    "productType": "RAW",
+    "url": "DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSDB_00005.raw"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": null
+}
+
+{
+  "uid": "7dd2e00b-7588-4d62-884c-9f7c4e0be3d6",
+  "creationDate": "2022-06-02T12:31:49.099Z",
+  "missionId": "S2",
+  "satelliteId": "A",
+  "keyObjectStorage": "DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSIB.xml",
+  "storagePath": "s3://rs-session-files/DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSIB.xml",
+  "productFamily": "EDRS_SESSION",
+  "podName": "metadata-part1-metadata-extraction-v3-7d6c756546-rm7qh",
+  "allowedActions": [
+    "RESUBMIT"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {},
+  "metadata": {
+    "productFamily": "EDRS_SESSION",
+    "stationCode": "SGS_",
+    "missionId": "S2",
+    "insertionTime": "2022-06-02T12:31:49.057170Z",
+    "satelliteId": "A",
+    "sessionId": "L20191003131732787001008",
+    "rawNames": [
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00001.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00002.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00003.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00004.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00005.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00006.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00007.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00008.raw",
+      "DCS_02_L20191003131732787001008_ch2_DSDB_00009.raw"
+    ],
+    "productName": "DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSIB.xml",
+    "url": "DCS_02_L20191003131732787001008_dat/ch_2/DCS_02_L20191003131732787001008_ch2_DSIB.xml",
+    "startTime": "2019-12-08T05:08:15.000000Z",
+    "stopTime": "2019-12-08T05:12:55.000000Z",
+    "channelId": 2,
+    "productType": "SESSION"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": null
+}
+
+{
+  "uid": "2de3aa26-8ec6-452e-ab5e-17c2a7dd4eff",
+  "creationDate": "2022-06-03T09:41:55.379Z",
+  "missionId": "S2",
+  "satelliteId": "B",
+  "keyObjectStorage": "DCS_05_S2B_20220413132241026648_dat/ch_2/DCS_05_S2B_20220413132241026648_ch2_DSDB_00004.raw",
+  "storagePath": "s3://rs-session-files/DCS_05_S2B_20220413132241026648_dat/ch_2/DCS_05_S2B_20220413132241026648_ch2_DSDB_00004.raw",
+  "productFamily": "EDRS_SESSION",
+  "podName": "metadata-part1-metadata-extraction-v3-7d6c756546-g5m8z",
+  "allowedActions": [
+    "RESUBMIT"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {},
+  "metadata": {
+    "productFamily": "EDRS_SESSION",
+    "stationCode": "SGS_",
+    "missionId": "S2",
+    "insertionTime": "2022-06-03T09:41:55.336027Z",
+    "satelliteId": "B",
+    "sessionId": "S2B_20220413132241026648",
+    "channelId": 2,
+    "productName": "DCS_05_S2B_20220413132241026648_dat/ch_2/DCS_05_S2B_20220413132241026648_ch2_DSDB_00004.raw",
+    "productType": "RAW",
+    "url": "DCS_05_S2B_20220413132241026648_dat/ch_2/DCS_05_S2B_20220413132241026648_ch2_DSDB_00004.raw"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": null
+}
+

@@ -1,0 +1,9 @@
+obs:
+  endpoint: "https://oss.eu-west-0.prod-cloud-ocb.orange-business.com"
+  region: "eu-west-0"
+  access-key: CHANGEME
+  secret-key: CHANGEME
+  maxConcurrency: 20
+  maxThroughput: 10
+  minimumPartSize: 5
+  max-retries: 3

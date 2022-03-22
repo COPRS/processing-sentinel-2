@@ -1,0 +1,86 @@
+---
+  - name: "L0_ deploy"
+    hosts: localhost
+    connection: local 
+    vars:
+# delivery_path transmit by args --extra-vars "delivery_path=$L0-PACKAGE_HOME user=$USER" 
+      rpm_path: "{{delivery_path}}/rpms"
+
+      RPM_L0:
+# ======= for EISP ==================
+      - "{{rpm_path}}/S1PD-COTS-xerces-3.1.1-1.x86_64.rpm"
+      - "{{rpm_path}}/S1PD-EISP-4.4-4.4.0-0.x86_64.rpm"
+      - "{{rpm_path}}/S1PD-EISP-CFG-4.4-4.4.0-00.00.noarch.rpm"
+# ======= for ING-TELEMTRY ==================
+      - "{{rpm_path}}/DPC-CORE-l0pack-ing-typ3.0.3-3.0.3-0.x86_64.rpm"
+# ======= for INV-MTD ==================
+      - "{{rpm_path}}/DPC-CORE-l0pack-inv-mtd3.0.3-3.0.3-0.x86_64.rpm"
+# ======= for S2IPF_INIT_LOC_L0 ==================
+      - "{{rpm_path}}/S2IPF_Schemas_04.04.00-04.04.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_OTB_cots_01.06.04-01.06.04-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_libcommon2_04.04.00-04.04.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_libcommon2_04.04.01-04.04.01-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_Conf_04.04.00-04.04.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_Conf_04.04.04-04.04.04-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_S2GEO_COTS_04.04.00-04.04.00-1.noarch.rpm"
+      - "{{rpm_path}}/S2IPF_INIT_LOC_L0_04.04.04-04.04.04-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_INIT_LOC_L0_04.04.04-conf-04.04.04-1.x86_64.rpm"
+# ======= for S2IPF_FORMAT_ISP ==================
+      - "{{rpm_path}}/S2IPF_FORMAT_ISP_04.04.00-conf-04.04.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_FORMAT_ISP_04.04.00-04.04.00-1.x86_64.rpm"
+# ======= for S2IPF_QL_GEO ==================
+      - "{{rpm_path}}/S2IPF_QL_GEO_04.04.00-conf-04.04.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_QL_GEO_04.04.00-04.04.00-1.x86_64.rpm"
+# ======= for S2IPF_QL_CLOUD_MASK ==================
+      - "{{rpm_path}}/S2IPF_QL_CLOUD_MASK_04.04.00-conf-04.04.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_QL_CLOUD_MASK_04.04.00-04.04.00-1.x86_64.rpm"
+# ======= for S2IPF_FORMAT_METADATA_GR_LOC ==================
+      - "{{rpm_path}}/S2IPF_FORMAT_METADATA_GR_L0C_04.04.01-conf-04.04.01-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_FORMAT_METADATA_GR_L0C_04.04.01-04.04.01-1.x86_64.rpm"
+# ======= for S2IPF_FORMAT_IMG_QL_L0 ==================
+      - "{{rpm_path}}/S2IPF_FORMAT_IMG_QL_L0_04.04.00-conf-04.04.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_FORMAT_IMG_QL_L0_04.04.00-04.04.00-1.x86_64.rpm"
+# (new) added to avoid missing kdu_compress command message during execution
+#      - "{{rpm_path}}/S2IPF_QL_DECOMP_02.14.00-02.14.00-1.x86_64.rpm"
+#      - "{{rpm_path}}/S2IPF_QL_DECOMP_02.14.00-conf-02.14.00-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_OLQC_04.04.00-04.04.00-1.noarch.rpm"
+# ======= for S2IPF_FORMAT_METADATA_DS_L0C ==================
+      - "{{rpm_path}}/S2IPF_FORMAT_METADATA_DS_L0C_04.04.01-conf-04.04.01-1.x86_64.rpm"
+      - "{{rpm_path}}/S2IPF_FORMAT_METADATA_DS_L0C_04.04.01-04.04.01-1.x86_64.rpm"
+
+    tasks:
+    - name: "List of L0_ to deploy"
+      debug: 
+        var: RPM_L0
+
+    - name: "install S2IPF_L0 rpms from local file delivery"
+      yum:
+        name: "{{ RPM_L0 }}"
+        state:
+          present
+      register: find_output
+
+    - name: "Install GSE IPF"
+      shell: rpm -i --nodeps "{{rpm_path}}/S2IPF_GSE-04.04.00-0.noarch.rpm"
+      register: result
+      args:
+        warn: no
+
+    - debug:
+        var: find_output.results 
+
+    - name: "Checking list of updated packages after L0_ install"
+      shell: rpm -qa --last | grep "$(date +%a\ %d\ %b\ %Y)" |cut -f 1 -d " "
+      register: result
+      args:
+        warn: no
+
+    - name: "List of L0_ packages installed"
+      debug: msg="{{ result.stdout_lines }}"
+
+    - debug:
+       msg: the name of the user is {{user}}
+
+    - name: "Change rights on Ingestion/telemtry package"
+      file: dest=/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ owner={{user}} group={{user}} mode=u=rwX,g=rX,o=rX recurse=yes
+

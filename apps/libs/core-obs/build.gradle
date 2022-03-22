@@ -1,0 +1,9 @@
+dependencies {
+
+    implementation project(':apps:libs:core-common')
+
+    implementation platform("software.amazon.awssdk:bom:${amazonSDKVersion}")
+    implementation "software.amazon.awssdk:s3"
+    implementation "software.amazon.awssdk:s3-transfer-manager:${amazonSDKS3Version}"
+
+}

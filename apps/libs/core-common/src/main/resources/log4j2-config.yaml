@@ -1,0 +1,85 @@
+Configuration:
+
+  name: LogConfig
+
+  Properties:
+    Property:
+      name: path
+      value: "/tmp/log-rs"
+
+  status: WARN
+
+  thresholdFilter:
+    level: DEBUG
+
+  Appenders:
+
+    Console:
+      - name: STDOUT
+        target: SYSTEM_OUT
+        PatternLayout:
+          alwaysWriteExceptions: true
+          Pattern: "{\"header\":{\"type\":\"LOG\",\"timestamp\":\"%d{yyyy-MM-dd'T'HH:mm:ss.nnnnnn}Z\",\"level\":\"%level\",\"line\":%L,\"file\":\"%.255F\",\"thread\":\"%.255t\"},\"message\":{\"content\":\"%enc{%m%xEx}{JSON}\"},\"custom\":{\"logger_string\":\"%logger\"}}%n"
+
+      - name: PLAIN
+        target: SYSTEM_OUT
+        PatternLayout:
+          Pattern: "%msg%n"
+
+    RollingFile:
+      - name: FILE
+        fileName: "${path}/logfile.log"
+        filePattern: "${path}/logfile.log.%d{yyyy-MM-dd-hh-mm}.gz"
+        PatternLayout:
+          pattern: "%d{yyyy-MM-dd'T'HH:mm:ss.SSS} | %-5level | %logger{1.} [%thread]: %msg %n"
+        Policies:
+          SizeBasedTriggeringPolicy:
+            size: 10 MB
+        DefaultRollOverStrategy:
+          max: 30
+
+  Loggers:
+
+    Logger:
+      - name: eu.csgroup.coprs
+        level: DEBUG
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+          - ref: FILE
+      - name: org.springframework
+        level: INFO
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+          - ref: FILE
+      - name: org.apache
+        level: WARN
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+          - ref: FILE
+      - name: com.amazonaws
+        level: WARN
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+          - ref: FILE
+      - name: org
+        level: WARN
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+          - ref: FILE
+      - name: com
+        level: WARN
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+          - ref: FILE
+
+    Root:
+      level: INFO
+      AppenderRef:
+        - ref: STDOUT
+        - ref: FILE

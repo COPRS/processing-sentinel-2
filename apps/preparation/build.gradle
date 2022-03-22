@@ -1,0 +1,21 @@
+subprojects {
+
+    dependencies {
+        implementation project(':apps:libs:core-common')
+        implementation project(':apps:libs:core-catalog')
+        implementation project(':apps:libs:core-obs')
+        implementation project(':apps:libs:core-mongo')
+    }
+
+    bootBuildImage {
+        enabled = true
+//        environment = [
+//                "BPE_DELIM_JAVA_TOOL_OPTIONS" : " ",
+//                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-Xms512M -Xmx512M"
+//        ]
+    }
+
+    bootJar.enabled = true
+    bootJarMainClassName.enabled = true
+
+}

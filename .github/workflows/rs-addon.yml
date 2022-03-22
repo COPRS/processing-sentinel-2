@@ -1,0 +1,39 @@
+name: PS2 RS-ADDON build
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch: {}
+
+env:
+  REGISTRY_USER: ${{ secrets.ARTIFACTORY_USER }}
+  REGISTRY_PWD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+  REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
+  REGISTRY_PROJECT: rs-zip-private
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all history so multiple commits can be scanned
+
+      - name: Set up env
+        run: |
+          # Artifactory
+          echo "REGISTRY_USER=${{ env.REGISTRY_USER }}" >> $GITHUB_ENV
+          echo "REGISTRY_PWD=${{ env.REGISTRY_PWD }}" >> $GITHUB_ENV
+          echo "REGISTRY_BASE=${{ env.REGISTRY_BASE }}" >> $GITHUB_ENV
+          echo "REGISTRY_PROJECT=${{ env.REGISTRY_PROJECT }}" >> $GITHUB_ENV
+
+      - name: Build rs-addons and push
+        run: |
+          cd rs-addons
+          ./build_addons.sh push

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><Ipf_Job_Order>
+                                <Ipf_Conf>
+                                        <Processor_Name>l0c</Processor_Name>
+                                        <Version>3.0.3</Version>
+                                        <Stdout_Log_Level>INFO</Stdout_Log_Level>
+                                        <Stderr_Log_Level>INFO</Stderr_Log_Level>
+                                        <Test>false</Test>
+                                        <Breakpoint_Enable>true</Breakpoint_Enable>
+                                        <Config_Files>
+                                                <Conf_File_Name/>
+                                        </Config_Files>
+                                                                                <Dynamic_Processing_Parameters>
+                                                                                        <Processing_Parameter>
+                                                                            <Name>MissionID</Name>
+                                                                            <Value>S2A</Value>
+                                                                        </Processing_Parameter>
+                                                                        <Processing_Parameter>
+                                                                            <Name>DownlinkTime</Name>
+                                                                            <Value>20191208T050815</Value>
+                                                                        </Processing_Parameter>
+                                                                        <Processing_Parameter>
+                                                                            <Name>AcquisitionStart</Name>
+                                                                            <Value>20191208T050815</Value>
+                                                                        </Processing_Parameter>
+                                                                        <Processing_Parameter>
+                                                                            <Name>Processing_Station</Name>
+                                                                            <Value>CGS2</Value>
+                                                                        </Processing_Parameter>
+                                                                        <Processing_Parameter>
+                                                                            <Name>Acquisition_Station</Name>
+                                                                            <Value>SGS_</Value>
+                                                                        </Processing_Parameter>
+                                                                        <Processing_Parameter>
+                                                                                <Name>CADUAnnotations</Name>
+                                                                                 <Value>false</Value>
+                                                                        </Processing_Parameter>
+
+                                                                                         <Processing_Parameter>
+                                                <Name>theoretical_line_period</Name>
+                                                <Value>1.565873622</Value>
+                                                                                        </Processing_Parameter>
+                                                                                        <Processing_Parameter>
+                                                <Name>ql_bands</Name>
+                                                <Value>02,03,04,10,11</Value>
+                                                                                        </Processing_Parameter>
+                                                                                        <Processing_Parameter>
+                                                <Name>minimum_packet_length</Name>
+                                                <Value>0</Value>
+                                                                                        </Processing_Parameter>
+                                                                                        <Processing_Parameter>
+                                                <Name>gps_to_tai</Name>
+                                                <Value>19</Value>
+                                                                                        </Processing_Parameter>
+                                                                                        <Processing_Parameter>
+                                                <Name>tai_to_utc</Name>
+                                                <Value>-37</Value>
+                                                                                        </Processing_Parameter>
+                                                                                        <Processing_Parameter>
+                                                <Name>orbit_offset</Name>
+                                                <Value>141</Value>
+                                                                                        </Processing_Parameter>
+                                                                                        <Processing_Parameter>
+                                                <Name>cyclic_orbit_offset</Name>
+                                                <Value>143</Value>
+                                                                                        </Processing_Parameter>
+                                                                                </Dynamic_Processing_Parameters>
+
+                                                                </Ipf_Conf>
+                                <List_of_Ipf_Procs count="1">
+                                        <Ipf_Proc>
+                                                <Task_Name>EISP_ING_TYP</Task_Name>
+                                                <Task_Version>3.0.3</Task_Version>
+                                                <List_of_Inputs count="2">
+                                                      <Input>
+                                                        <File_Type>STO_CADU_S</File_Type>
+                                                        <File_Name_Type>Physical</File_Name_Type>
+                                                        <List_of_File_Names count="9">
+                                                                <File_Name>/dpc/data/data_set/S2A/DCS_02_L20191003131732787001008_dat/</File_Name>
+                                                        </List_of_File_Names>
+                                                      </Input>
+                                                      <Input>
+                                                                <File_Type>WORKING</File_Type>
+                                                                <File_Name_Type>Directory</File_Name_Type>
+                                                                <List_of_File_Names count="1">
+                                                                        <File_Name>/dpc/data/working/scenarioV2/steps_data/L0U_DUMP/</File_Name>
+                                                                </List_of_File_Names>
+                                                        </Input>
+                                                </List_of_Inputs>
+                                                <List_of_Outputs count="1">
+                                                        <Output mandatory="true">
+                                                                <File_Type>HKTM_FOLDER</File_Type>
+                                                                <File_Name_Type>Directory</File_Name_Type>
+                                                                        <File_Name>/dpc/data/working/scenarioV2/steps_data/L0U_DUMP/</File_Name>
+                                                        </Output>
+                                                                                                                        <Output mandatory="true">
+                                                                <File_Type>SAD_FOLDER</File_Type>
+                                                                <File_Name_Type>Directory</File_Name_Type>
+                                                                        <File_Name>/dpc/data/working/scenarioV2/steps_data/L0U_DUMP/</File_Name>
+                                                                                                                        </Output>
+                                                                                                                        <Output mandatory="true">
+                                                                <File_Type>DS_GR_FOLDER</File_Type>
+                                                                <File_Name_Type>Directory</File_Name_Type>
+                                                                        <File_Name>/dpc/data/working/scenarioV2/steps_data/L0U_DUMP/</File_Name>
+                                                                                                                        </Output>
+                                                </List_of_Outputs>
+                                        </Ipf_Proc>
+                                </List_of_Ipf_Procs>
+                        </Ipf_Job_Order>
+

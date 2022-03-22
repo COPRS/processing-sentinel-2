@@ -1,0 +1,22 @@
+{
+  "uid": "1c4c21ec-a308-45dc-8834-f979c8c3f8a6",
+  "creationDate": "2021-02-26T11:30:09.445Z",
+  "productMission": "S1",
+  "keyObjectStorage": "S1A_IW_OCN__2SDV_20210225T111815_20210225T111840_036746_0451BD_37EF.SAFE",
+  "storagePath": "s3://my-path/my-bucket/",
+  "productFamily": "L2_SLICE",
+  "podname": "s1pro-l2-ipf-execution-worker-19",
+  "allowedActions": [
+    "RESUBMIT",
+    "RESTART"
+  ],
+  "retryCounter": 2,
+  "additionalFields": {
+    "parameter_1": "value1",
+    "parameter_2": "value2"
+  },
+  "demandType": "EXTERNAL_DEMAND",
+  "debug": false,
+  "oqcFlag": "CHECKED_OK",
+  "timeliness": "OPERATOR-DEMAND"
+}

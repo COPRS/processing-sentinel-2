@@ -1,0 +1,11 @@
+jobOrderName: FORMAT_IMG_QL_L0
+nbjobs: 7
+patterns:
+  - dt_number: <global.dt_number>   
+  - wpdir: <automatic>
+  - jobnumber: <automatic>
+  - l0_dsname: <global.l0_dsname>
+  - detector:  [B01,B02,B03,B07,B04-B05-B06,B08-B11-B12,B00-B09-B10]
+  - gipp_jp2kpa: S2A_OPER_GIP_JP2KPA_MPC__20160222T110000_V20150622T000000_21000101T000000_B00.xml
+
+

@@ -1,0 +1,13 @@
+jobOrderName: FORMAT_ISP
+nbjobs: 12
+patterns:
+  - dt_number: <global.dt_number>   
+  - start_time: <global.start_time>
+  - stop_time: <global.stop_time>
+  - gps_utc: <global.gps_utc>
+  - granule_begin: 001  
+  - granule_end: <global.count_l0ugr>
+  - wpdir: <automatic>
+  - jobnumber: <automatic>
+  - l0u_dsname: <automatic>
+  - detector: [01,02,03,04,05,06,07,08,09,10,11,12]

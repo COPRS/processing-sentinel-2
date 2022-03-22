@@ -1,0 +1,65 @@
+---
+  - name: "L0_ prerequisite install"
+    hosts: localhost
+    connection: local 
+    vars:
+# delivery_path transmit by args --extra-vars "delivery_path=$L0-PACKAGE_HOME" 
+      rpm_path: "{{delivery_path}}/rpms"
+      L0_RPM_PREREQ:
+        - "{{rpm_path}}/gdal-libs-1.9.2-4.el6.x86_64.rpm"
+        - "{{rpm_path}}/libgeotiff-1.4.0-1.el6.x86_64.rpm"
+        - "{{rpm_path}}/armadillo-3.800.2-1.el6.x86_64.rpm"
+        - "{{rpm_path}}/gdal-1.9.2-4.el6.x86_64.rpm"
+        - "{{rpm_path}}/gdal-devel-1.9.2-4.el6.x86_64.rpm"
+        - "{{rpm_path}}/gdal-java-1.9.2-4.el6.x86_64.rpm"
+        - "{{rpm_path}}/kakadu7.4-7.4-0.x86_64.rpm"
+        - "{{rpm_path}}/perl-XML-Twig-3.34-1.el6.noarch.rpm"
+        - "{{rpm_path}}/cryptopp-8.2.0-0.x86_64.rpm"
+        - "{{rpm_path}}/cryptopp-devel-8.2.0-0.x86_64.rpm"
+        - "{{rpm_path}}/snmp++-3.2.14-1.el6.x86_64.rpm"
+
+    tasks:
+
+    - name: "Ensure a prerequisite list of CentOs6.10 epel packages are installed" 
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+          - xerces-c
+          - xerces-c-devel
+          - numpy
+          - python34
+#          - libgeotiff
+
+    - name: "Ensure a prerequisite list of provided S2IPF_L0 rpms are installed"
+      yum:
+        name: "{{ L0_RPM_PREREQ }}"
+        state:
+          present
+      register: find_output
+
+    - debug:
+        var: find_output.results 
+
+    - name: "Create components directory"
+      file:
+        path: /usr/local/components
+        state: directory
+        mode: "u=rwX,g=rX,o=rX"
+        recurse: yes
+
+    - name: "Ensure GSE python scripts are installed" 
+      unarchive:
+        src: "{{rpm_path}}/GSE-2.5.tar"
+        dest: /usr/local/components
+
+
+    - name: "Checking list of updated packages after L0_ prerequisite install"
+      shell: rpm -qa --last | grep "$(date +%a\ %d\ %b\ %Y)" |cut -f 1 -d " "
+      register: result
+      args:
+        warn: no
+
+    - name: "List of L0_ prerequisite packages installed"
+      debug: msg="{{ result.stdout_lines }}"
+

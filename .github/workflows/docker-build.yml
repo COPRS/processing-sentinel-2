@@ -1,0 +1,61 @@
+name: PS2 Docker build
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch: {}
+
+env:
+  REGISTRY_USER: ${{ secrets.ARTIFACTORY_USER }}
+  REGISTRY_PWD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+  REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
+  REGISTRY_PROJECT: s2-docker
+  SONARQUBE_HOST: ${{ secrets.SONARQUBE_HOST }}
+  SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all history so multiple commits can be scanned
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up env
+        run: |
+          # Artifactory
+          echo "REGISTRY_USER=${{ env.REGISTRY_USER }}" >> $GITHUB_ENV
+          echo "REGISTRY_PWD=${{ env.REGISTRY_PWD }}" >> $GITHUB_ENV
+          echo "REGISTRY_BASE=${{ env.REGISTRY_BASE }}" >> $GITHUB_ENV
+          echo "REGISTRY_PROJECT=${{ env.REGISTRY_PROJECT }}" >> $GITHUB_ENV
+          # Sonar
+          echo "SONARQUBE_HOST=${{ env.SONARQUBE_HOST }}" >> $GITHUB_ENV
+          echo "SONARQUBE_TOKEN=${{ env.SONARQUBE_TOKEN }}" >> $GITHUB_ENV
+          # Git
+          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
+          echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+
+      - name: Log into registry ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PWD }}
+
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: clean build jacocoTestReport sonarqube bootBuildImage docker dockerPush

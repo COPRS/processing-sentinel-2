@@ -1,0 +1,11 @@
+subprojects {
+
+    dependencies {
+        implementation project(':apps:libs:core-common')
+        implementation project(':apps:libs:core-obs')
+    }
+
+    bootJar.enabled = true
+    bootJarMainClassName.enabled = true
+
+}

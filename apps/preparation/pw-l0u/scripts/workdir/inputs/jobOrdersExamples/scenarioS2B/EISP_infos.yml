@@ -1,0 +1,13 @@
+jobOrderName: EISP
+nbjobs: 2
+patterns:
+  - wpdir:      <automatic>
+  - jobnumber:   <automatic>
+  - satellite:  S2B
+  - confdir:    /usr/local/conf/EISP/
+  - downlink_time:  20191003T131732
+  - eisp_input_folder: /home/user/workplans/scenarioS2B/steps_data/RAW/S2B/DCS_02_tobedefined_dat
+  - eisp_channel: [ch_1,ch_2]
+  - count_raw_by_channel: <automatic>
+  - list_raw_items_by_channel: <automatic>
+  - data_output_folder: [steps_data/CADU/, steps_data/CADU/]

@@ -1,0 +1,43 @@
+spring:
+  #  kafka:
+  #    bootstrap-servers: localhost:9092
+  cloud:
+    stream:
+      #      function:
+      #        bindings: # TO BE SET
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+        bindings:
+          input:
+            consumer:
+              enable-dlq: true
+              dlq-name: error-warning
+              poll-timeout: 10
+              ack-mode: record
+      bindings:
+        input:
+          group: ${spring.application.name}
+          consumer:
+            max-attempts: 3
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessState:
+      enabled: true
+    readinessState:
+      enabled: true
+  metrics:
+    export:
+      cloudwatch:
+        enabled: false
+

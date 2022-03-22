@@ -1,0 +1,12 @@
+jobOrderName: OLQC-L0cDs
+nbjobs: 1
+patterns:
+  - dt_number: <global.dt_number>    
+  - l0_dsname:  <global.l0_dsname>
+  - wpdir: <automatic>
+  - jobnumber: <automatic>
+  - gipp_olqcpa: S2B_OPER_GIP_OLQCPA_MPC__20191004T000021_V20191021T003000_21000101T000000_B00.zip       
+  - gipp_probas: S2B_OPER_GIP_PROBAS_MPC__20200221T000209_V20200225T013000_21000101T000000_B00.xml
+.xml
+
+ 

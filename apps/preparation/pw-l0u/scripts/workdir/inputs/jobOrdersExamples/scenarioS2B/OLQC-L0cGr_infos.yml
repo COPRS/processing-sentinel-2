@@ -1,0 +1,14 @@
+jobOrderName: OLQC-L0cGr
+nbjobs: 12
+patterns:
+  - dt_number: <global.dt_number>
+  - count_l0gr: <global.count_l0gr>
+  - list_l0gr_items: <global.list_l0gr_items>
+  - gr_postfix:  N02.08    
+  - wpdir: <automatic>
+  - jobnumber: <automatic>  
+  - detector: [D01,D02,D03,D04,D05,D06,D07,D08,D09,D10,D11,D12]      
+  - gipp_olqcpa: S2B_OPER_GIP_OLQCPA_MPC__20191004T000021_V20191021T003000_21000101T000000_B00.zip
+  - gipp_probas: S2B_OPER_GIP_PROBAS_MPC__20200221T000209_V20200225T013000_21000101T000000_B00.xml
+.xml
+ 

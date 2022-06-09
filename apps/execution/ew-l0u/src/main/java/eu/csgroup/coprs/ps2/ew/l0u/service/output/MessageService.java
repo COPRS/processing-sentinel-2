@@ -1,53 +1,42 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.preparation.PreparationInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
+import eu.csgroup.coprs.ps2.core.common.service.ew.AbstractEWMessageService;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 
 @Slf4j
 @Component
-public class MessageService {
+public class MessageService extends AbstractEWMessageService<L0uExecutionInput> {
 
-    public Set<ProcessingMessage> build(String outputFolder, L0uExecutionInput l0uExecutionInput, Map<ProductFamily, Set<FileInfo>> auxFileInfosByFamily) {
+    public Set<ProcessingMessage> build(L0uExecutionInput l0uExecutionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
 
         log.info("Building outgoing messages");
 
-        Set<ProcessingMessage> messages = new HashSet<>();
-
-        // Building messages for Catalog - one for each AUX file produced
-        auxFileInfosByFamily.forEach((productFamily, fileInfoSet) ->
-                fileInfoSet.forEach(fileInfo -> {
-                    ProcessingMessage processingMessage = ProcessingMessageUtils.create()
-                            .setProductFamily(productFamily)
-                            .setStoragePath(StringUtils.substringBeforeLast(fileInfo.getObsURL(), "/"))
-                            .setKeyObjectStorage(fileInfo.getObsName())
-                            .setSatelliteId(l0uExecutionInput.getSatellite());
-                    messages.add(processingMessage);
-                })
-        );
+        Set<ProcessingMessage> messages = buildMessages(fileInfosByFamily, l0uExecutionInput);
 
         // Building a single message for L0C preparation
+        final String outputFolder = options[0];
         ProcessingMessage preparationMessage = ProcessingMessageUtils.create();
         preparationMessage
                 .getAdditionalFields()
                 .put(
                         MessageParameters.PREPARATION_INPUT_FIELD,
-                        new PreparationInput()
+                        new L0cPreparationInput()
                                 .setSession(l0uExecutionInput.getSession())
-                                .setInputFolder(outputFolder)
                                 .setSatellite(l0uExecutionInput.getSatellite())
+                                .setStation(l0uExecutionInput.getStation())
+                                .setInputFolder(outputFolder)
                 );
         messages.add(preparationMessage);
 

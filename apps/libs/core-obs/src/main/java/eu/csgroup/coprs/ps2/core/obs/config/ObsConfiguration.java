@@ -1,7 +1,6 @@
 package eu.csgroup.coprs.ps2.core.obs.config;
 
 
-import eu.csgroup.coprs.ps2.core.obs.settings.ObsProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

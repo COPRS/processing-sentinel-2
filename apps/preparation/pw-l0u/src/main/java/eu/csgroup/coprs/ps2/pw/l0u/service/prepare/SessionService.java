@@ -88,6 +88,16 @@ public class SessionService {
     }
 
     @Transactional
+    public List<Session> readAll(boolean failed, boolean jobOrderCreated) {
+        final List<Session> sessions = sessionEntityRepository.findAllByFailedAndJobOrderCreated(failed, jobOrderCreated)
+                .stream()
+                .map(sessionMapper::toSession)
+                .toList();
+        log.debug("Retrieving multiple sessions ({})", sessions.size());
+        return sessions;
+    }
+
+    @Transactional
     public Session update(Session session) {
 
         log.info("Updating session: {}", session.getName());
@@ -134,6 +144,7 @@ public class SessionService {
         sessionEntity.setRawComplete(updatedSessionEntity.isRawComplete())
                 .setAvailableByAux(updatedSessionEntity.getAvailableByAux())
                 .setReady(updatedSessionEntity.isReady())
+                .setFailed(updatedSessionEntity.isFailed())
                 .setJobOrderCreated(updatedSessionEntity.isJobOrderCreated());
     }
 

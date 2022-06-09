@@ -1,6 +1,6 @@
 dependencies {
 
-    implementation project(':apps:libs:core-common')
+    api project(':apps:libs:core-common')
 
     implementation platform("software.amazon.awssdk:bom:${amazonSDKVersion}")
     implementation "software.amazon.awssdk:s3"

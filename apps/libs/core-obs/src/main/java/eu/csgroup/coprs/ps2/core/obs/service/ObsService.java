@@ -1,8 +1,8 @@
 package eu.csgroup.coprs.ps2.core.obs.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
-import eu.csgroup.coprs.ps2.core.obs.settings.ObsProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,6 @@ import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.core.exception.SdkServiceException;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
-import software.amazon.awssdk.services.s3.model.S3Object;
 import software.amazon.awssdk.transfer.s3.*;
 
 import javax.annotation.PostConstruct;
@@ -67,7 +66,7 @@ public class ObsService {
      * @param key      Key to download from
      * @param destFile Path to the destination file
      */
-    public void download(String bucket, String key, String destFile) {
+    public void downloadFile(String bucket, String key, String destFile) {
         doFileDownload(key, bucket, Paths.get(destFile))
                 .block();
     }
@@ -91,7 +90,7 @@ public class ObsService {
      * @param keyList  List of keys to download
      * @param destRoot Path to the local directory under which to store the downloaded files
      */
-    public void downloadBatch(String bucket, List<String> keyList, String destRoot) {
+    public void downloadFileBatch(String bucket, List<String> keyList, String destRoot) {
         Mono.when(keyList.stream()
                         .map(key -> doFileDownload(key, bucket, Paths.get(destRoot, filename(key))))
                         .toList())
@@ -140,7 +139,7 @@ public class ObsService {
      * @param sourceFile Path to the source file
      * @param key        Key to upload to
      */
-    public void upload(String bucket, String sourceFile, String key) {
+    public void uploadFile(String bucket, String sourceFile, String key) {
         doFileUpload(Paths.get(sourceFile), bucket, key)
                 .block();
     }
@@ -164,9 +163,9 @@ public class ObsService {
      * @param pathList List of Path to files to upload
      * @param rootKey  Root key under which to upload files
      */
-    public void uploadBatch(String bucket, List<Path> pathList, String rootKey) {
+    public void uploadFileBatch(String bucket, List<Path> pathList, String rootKey) {
         Mono.when(pathList.stream()
-                        .map(path -> doFileUpload(path, bucket, destinationPath(rootKey,  path)))
+                        .map(path -> doFileUpload(path, bucket, destinationPath(rootKey, path)))
                         .toList())
                 .block();
     }
@@ -180,7 +179,7 @@ public class ObsService {
      */
     public void uploadDirBatch(String bucket, List<Path> pathList, String rootKey) {
         Mono.when(pathList.stream()
-                        .map(path -> doDirUpload(path, bucket, destinationPath(rootKey,  path)))
+                        .map(path -> doDirUpload(path, bucket, destinationPath(rootKey, path)))
                         .toList())
                 .block();
     }
@@ -285,19 +284,9 @@ public class ObsService {
     }
 
     private boolean isFolder(String bucket, String key) {
-        return s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).maxKeys(1).build())
+        return !s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key + DELIMITER).maxKeys(1).build())
                 .contents()
-                .stream()
-                .anyMatch(s3Object -> s3Object.key().equals(key + DELIMITER));
-    }
-
-    private List<String> listFiles(String bucket, String key) {
-        return s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).build())
-                .contents()
-                .stream()
-                .map(S3Object::key)
-                .filter(s -> !s.equals(key + DELIMITER))
-                .toList();
+                .isEmpty();
     }
 
     private String filename(String path) {

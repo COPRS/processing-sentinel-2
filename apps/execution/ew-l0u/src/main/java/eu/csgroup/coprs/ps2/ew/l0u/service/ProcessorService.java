@@ -1,7 +1,8 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service;
 
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
+import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.ew.l0u.service.exec.ExecutionService;
 import eu.csgroup.coprs.ps2.ew.l0u.service.output.OutputService;
 import eu.csgroup.coprs.ps2.ew.l0u.service.setup.SetupService;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
@@ -37,6 +39,7 @@ public class ProcessorService {
 
         return processingMessage -> {
 
+            final Instant start = Instant.now();
             log.info("Received message: {}", processingMessage);
 
             Set<ProcessingMessage> outputMessageSet;
@@ -45,8 +48,7 @@ public class ProcessorService {
 
                 final L0uExecutionInput l0uExecutionInput = setupService.setup(processingMessage);
 
-                String jobOrderName = l0uExecutionInput.getJobOrders().keySet().iterator().next();
-                executionService.execute(jobOrderName);
+                executionService.execute(l0uExecutionInput);
 
                 outputMessageSet = outputService.output(l0uExecutionInput);
 
@@ -55,7 +57,7 @@ public class ProcessorService {
                 throw e;
             }
 
-            log.info("Completed execution for message: {}", processingMessage);
+            log.info("Completed execution for message: {} in {}", processingMessage, DateUtils.elapsed(start));
 
             return outputMessageSet.stream().map(outputMessage -> MessageBuilder.withPayload(outputMessage).build()).toList();
         };

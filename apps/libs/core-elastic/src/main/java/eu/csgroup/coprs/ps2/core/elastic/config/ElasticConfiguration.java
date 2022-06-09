@@ -1,6 +1,5 @@
 package eu.csgroup.coprs.ps2.core.elastic.config;
 
-import eu.csgroup.coprs.ps2.core.elastic.settings.ElasticProperties;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +28,7 @@ public class ElasticConfiguration {
                 .connectedTo(elasticProperties.getHost() + ":" + elasticProperties.getPort())
                 .build();
 
-        return RestClients.create(clientConfiguration).rest();
+        return RestClients.create(clientConfiguration).rest(); // NOSONAR
     }
 
     @Bean

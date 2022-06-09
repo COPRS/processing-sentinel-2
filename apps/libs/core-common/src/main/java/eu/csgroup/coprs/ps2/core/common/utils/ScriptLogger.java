@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.function.Consumer;
 
 @Slf4j
@@ -16,6 +17,8 @@ import java.util.function.Consumer;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScriptLogger implements Runnable {
+
+    private static final List<String> INFO_LEVEL_MARKERS = List.of("[W]", "[E]", "[WARNING]", "[ERROR]");
 
     private InputStream standardStream;
 
@@ -29,8 +32,15 @@ public class ScriptLogger implements Runnable {
     }
 
     private Consumer<String> logger() {
-        // TODO parse log to compute log level (at least error/info)
-        return log::info;
+        return string -> {
+            for (String marker : INFO_LEVEL_MARKERS) {
+                if (string.contains(marker)) {
+                    log.info(string);
+                    return;
+                }
+            }
+            log.debug(string);
+        };
     }
 
 }

@@ -1,10 +1,10 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
-import eu.csgroup.coprs.ps2.core.common.settings.FileParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
-import eu.csgroup.coprs.ps2.ew.l0u.settings.FolderParameters;
-import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uExecutionProperties;
+import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
+import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
@@ -32,9 +32,9 @@ public class CopyService {
 
         final String uuid = UUID.randomUUID().toString();
         final Path destPath = Paths.get(l0uExecutionProperties.getOutputFolderRoot(), uuid);
-        final Path rootPath = Paths.get(FolderParameters.L0U_DUMP_PATH);
+        final Path rootPath = Paths.get(L0uFolderParameters.L0U_DUMP_PATH);
 
-        final List<Path> dtFolders = FileOperationUtils.findFolders(rootPath, FileParameters.DT_REGEX);
+        final List<Path> dtFolders = FileOperationUtils.findFolders(rootPath, S2FileParameters.DT_REGEX);
         log.info("Found {} DT folders", dtFolders.size());
 
         dtFolders.forEach(path -> {

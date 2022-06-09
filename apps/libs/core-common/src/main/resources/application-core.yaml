@@ -43,3 +43,9 @@ management:
     export:
       cloudwatch:
         enabled: false
+
+logging:
+  level:
+    eu:
+      csgroup:
+        coprs: INFO

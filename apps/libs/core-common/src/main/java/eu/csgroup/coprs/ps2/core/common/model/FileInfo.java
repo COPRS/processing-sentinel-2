@@ -21,6 +21,8 @@ public class FileInfo {
     private String obsPath;
     private String localName;
     private String localPath;
+    // Used for AuxProductType
+    private String type;
     private String md5;
     private Long size;
 

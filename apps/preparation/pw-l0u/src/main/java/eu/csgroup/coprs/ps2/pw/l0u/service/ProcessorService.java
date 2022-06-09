@@ -1,8 +1,9 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service;
 
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.preparation.FileType;
+import eu.csgroup.coprs.ps2.core.common.model.l0.FileType;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
+import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.SessionUtils;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
@@ -18,6 +19,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.CollectionUtils;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,6 +50,7 @@ public class ProcessorService {
 
         return processingMessage -> {
 
+            final Instant start = Instant.now();
             log.info("Received message : {}", processingMessage);
 
             Set<ProcessingMessage> outputMessageSet = new HashSet<>();
@@ -67,6 +70,7 @@ public class ProcessorService {
                         sessionManagementService.updateRawComplete(SessionUtils.sessionFromFilename(fileName));
                     }
 
+                    sessionManagementService.updateFailed();
                     sessionManagementService.updateAvailableAux();
                     sessionManagementService.updateNotReady();
 
@@ -88,7 +92,7 @@ public class ProcessorService {
                 throw e;
             }
 
-            log.info("Completed preparation for message: {}", processingMessage);
+            log.info("Completed preparation for message: {} in {}", processingMessage, DateUtils.elapsed(start));
 
             return outputMessageSet.stream().map(outputMessage -> MessageBuilder.withPayload(outputMessage).build()).toList();
         };

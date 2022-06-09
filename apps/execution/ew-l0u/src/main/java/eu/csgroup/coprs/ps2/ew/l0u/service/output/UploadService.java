@@ -3,11 +3,12 @@ package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.common.settings.FileParameters;
+import eu.csgroup.coprs.ps2.core.common.service.ew.AbstractEWUploadService;
+import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.ew.l0u.settings.FolderParameters;
-import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uExecutionProperties;
+import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
+import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Component
-public class UploadService {
+public class UploadService extends AbstractEWUploadService {
 
     private final L0uExecutionProperties l0uExecutionProperties;
     private final ObsService obsService;
@@ -33,14 +34,14 @@ public class UploadService {
 
         log.info("Uploading AUX files to OBS");
 
-        final Path rootPath = Paths.get(FolderParameters.L0U_DUMP_PATH);
-
         final Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = new EnumMap<>(ProductFamily.class);
+
+        final Path rootPath = Paths.get(L0uFolderParameters.L0U_DUMP_PATH);
 
         try {
 
-            final List<Path> sadFolders = FileOperationUtils.findFolders(rootPath, FileParameters.SAD_REGEX);
-            final List<Path> hktmFolders = FileOperationUtils.findFolders(rootPath, FileParameters.HKTM_REGEX);
+            final List<Path> sadFolders = FileOperationUtils.findFolders(rootPath, S2FileParameters.SAD_REGEX);
+            final List<Path> hktmFolders = FileOperationUtils.findFoldersInTree(rootPath, S2FileParameters.HKTM_REGEX);
 
             log.info("Found {} SAD files", sadFolders.size());
             log.info("Found {} HKTM files", hktmFolders.size());
@@ -57,16 +58,6 @@ public class UploadService {
         log.info("Uploaded AUX files to OBS");
 
         return fileInfosByFamily;
-    }
-
-    private Set<FileInfo> getFileInfoSet(List<Path> folderPathList, String bucket) {
-        return folderPathList
-                .stream()
-                .map(path -> new FileInfo()
-                        .setFullLocalPath(path.toString())
-                        .setBucket(bucket)
-                        .setObsName(path.getFileName().toString()))
-                .collect(Collectors.toSet());
     }
 
 }

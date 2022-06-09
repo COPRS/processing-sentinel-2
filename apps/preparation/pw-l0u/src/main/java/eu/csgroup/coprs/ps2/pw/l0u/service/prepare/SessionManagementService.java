@@ -1,11 +1,12 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.catalog.model.AuxProductType;
 import eu.csgroup.coprs.ps2.core.catalog.model.ProductType;
 import eu.csgroup.coprs.ps2.core.catalog.model.SessionCatalogData;
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.SessionParameters;
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
+import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
+import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,10 +26,17 @@ public class SessionManagementService {
 
     private final SessionService sessionService;
     private final CatalogService catalogService;
+    private final L0uPreparationProperties l0uPreparationProperties;
 
-    public SessionManagementService(SessionService sessionService, CatalogService catalogService) {
+    public SessionManagementService(SessionService sessionService, CatalogService catalogService, L0uPreparationProperties l0uPreparationProperties) {
         this.sessionService = sessionService;
         this.catalogService = catalogService;
+        this.l0uPreparationProperties = l0uPreparationProperties;
+    }
+
+    @Transactional
+    public List<Session> getWaiting() {
+        return sessionService.readAll(false, false);
     }
 
     @Transactional
@@ -48,6 +56,7 @@ public class SessionManagementService {
 
     @Transactional
     public void create(String sessionName) {
+
         if (!sessionService.exists(sessionName)) {
             catalogService.retrieveSessionData(sessionName)
                     .stream()
@@ -59,6 +68,7 @@ public class SessionManagementService {
                         sessionService.create(sessionName, start, stop, sessionCatalogData.getSatelliteId(), sessionCatalogData.getStationCode());
                     });
         }
+
         updateRawComplete(sessionName);
     }
 
@@ -101,9 +111,32 @@ public class SessionManagementService {
     }
 
     @Transactional
+    public void updateFailed() {
+
+        log.info("Updating failed status for all waiting sessions");
+
+        final List<Session> waitingSessions = getWaiting();
+
+        log.debug("Found {} waiting sessions", waitingSessions.size());
+
+        if (!CollectionUtils.isEmpty(waitingSessions)) {
+            waitingSessions.forEach(session -> {
+                final Instant creationDate = session.getCreationDate();
+                if (Duration.between(creationDate, Instant.now()).toHours() > l0uPreparationProperties.getFailedDelay()) {
+                    log.info("Failing session {}", session.getName());
+                    session.setFailed(true);
+                }
+            });
+            sessionService.updateAll(waitingSessions);
+        }
+
+        log.info("Finished updating failed status for all waiting sessions");
+    }
+
+    @Transactional
     public void updateAvailableAux() {
 
-        log.info("Updating AUX availability for all sessions");
+        log.info("Updating AUX availability for all waiting sessions");
 
         final List<Session> missingAux = getMissingAux();
 
@@ -114,13 +147,13 @@ public class SessionManagementService {
             sessionService.updateAll(missingAux);
         }
 
-        log.info("Finished updating AUX availability for all sessions");
+        log.info("Finished updating AUX availability for all waiting sessions");
     }
 
     @Transactional
     public void updateNotReady() {
 
-        log.info("Updating ready and failed status for all sessions not yet ready");
+        log.info("Updating ready status for all waiting sessions");
 
         final List<Session> sessions = getNotReady();
 
@@ -128,33 +161,22 @@ public class SessionManagementService {
 
         if (!CollectionUtils.isEmpty(sessions)) {
             sessions.forEach(session -> {
-                updateReadyStatus(session);
-                updateFailedStatus(session);
+                boolean ready = session.isRawComplete() && session.allAuxAvailable();
+                session.setReady(ready);
+                if (ready) {
+                    log.info("Session {} is now ready", session.getName());
+                }
             });
             sessionService.updateAll(sessions);
         }
 
-        log.info("Finished updating ready and failed status for all sessions not yet ready");
+        log.info("Finished updating ready status for all waiting sessions");
     }
 
     @Transactional
     public void setJobOrderCreated(List<Session> sessionList) {
         sessionList.forEach(session -> session.setJobOrderCreated(true));
         sessionService.updateAll(sessionList);
-    }
-
-    private void updateReadyStatus(Session session) {
-        boolean ready = session.isRawComplete() && session.allAuxAvailable();
-        session.setReady(ready);
-    }
-
-    private void updateFailedStatus(Session session) {
-        if (!session.isReady()) {
-            final Instant creationDate = session.getCreationDate();
-            if (Duration.between(creationDate, Instant.now()).toHours() > SessionParameters.FAILED_DELAY) {
-                session.setFailed(true);
-            }
-        }
     }
 
     private void updateAvailableAux(Session session) {

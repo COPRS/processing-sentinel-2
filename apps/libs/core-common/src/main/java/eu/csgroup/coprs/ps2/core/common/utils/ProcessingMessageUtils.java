@@ -16,7 +16,7 @@ public final class ProcessingMessageUtils {
                 .setMissionId(Mission.S2.getValue())
                 .setPodName(System.getenv("HOSTNAME"))
                 .setRetryCounter(0)
-                .setAllowedActions(new EventAction[]{EventAction.RESUBMIT, EventAction.RESTART});
+                .setAllowedActions(new EventAction[]{EventAction.NO_ACTION, EventAction.RESTART});
     }
 
     private ProcessingMessageUtils() {

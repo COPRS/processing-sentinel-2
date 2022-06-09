@@ -26,9 +26,10 @@ USER root
 ## Wrapper configuration
 ARG JDK_VERSION
 ARG INV_INSTALL
-RUN adduser -p '*' -d /wrapper wrapper
-RUN usermod -a -G wrapper ops2pdgs
-RUN chmod -R 777 $INV_INSTALL  ## Barbaric but quick fix
+RUN groupadd -g 1001 wrapper
+RUN adduser -p '*' -d /wrapper -u 1001 -g 1001 wrapper
+RUN usermod -a -G ops2pdgs wrapper
+RUN chmod -R 775 $INV_INSTALL
 RUN chmod 755 /wrapper
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
@@ -49,7 +50,6 @@ RUN mkdir -p /workspace
 RUN chmod -R 755 /workspace
 RUN chown -R wrapper:wrapper /workspace
 
-## TODO For test purpose only - remove later
 ## Setup OUTPUT folder (on shared volume)
 RUN mkdir -p /output
 RUN chmod -R 755 /output

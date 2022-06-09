@@ -1,0 +1,20 @@
+{
+  "uid": "0e979831-2bcb-4ec9-bbd3-7b787b7af6e5",
+  "creationDate": "2022-06-21T15:30:46.948743Z",
+  "missionId": "S2",
+  "podName": "ps2-l0u-21-ew-l0u-v2-9495d4c5-rx6dd",
+  "allowedActions": [
+    "RESUBMIT",
+    "RESTART"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {
+    "preparationInput": {
+      "session": "S2B_20220413132241026648",
+      "satellite": "B",
+      "station": "SGS_",
+      "inputFolder": "fb7ee5ee-837b-4d11-a0f8-8ca8306bfff2"
+    }
+  },
+  "metadata": {}
+}

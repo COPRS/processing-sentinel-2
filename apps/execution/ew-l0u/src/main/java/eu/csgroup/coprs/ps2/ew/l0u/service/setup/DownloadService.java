@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.ew.l0u.settings.FolderParameters;
+import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ public class DownloadService {
 
             fileInfo.setLocalName(fileInfo.getObsName());
 
-            String localPath = FolderParameters.INPUT_PATH;
+            String localPath = L0uFolderParameters.INPUT_PATH;
             if (fileInfo.getObsName().contains("ch1")) {
                 localPath += "/ch_1";
             } else if (fileInfo.getObsName().contains("ch2")) {

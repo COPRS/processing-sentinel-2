@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessUtils;
-import eu.csgroup.coprs.ps2.ew.l0u.settings.FolderParameters;
+import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -15,31 +15,54 @@ import java.util.Set;
 @Component
 public class CleanupService {
 
-    public void clean() {
+    private static final Set<String> PROCESSES = Set.of(
+            "EISPProcessor",
+            "launch_eisp_ing_typ.bash",
+            "launch_eisp.bash",
+            "launch_merge.bash",
+            "launch_telemetry.bash"
+    );
+
+    public void cleanAndPrepare() {
 
         log.info("Cleaning and setting up workspace");
 
-        FileOperationUtils.deleteFiles(FolderParameters.INSTALL_CONF_PATH, "Generic_Archive_Request.xml*");
-        FileOperationUtils.deleteFiles(FolderParameters.INSTALL_CONF_PATH, "Production_Request_L0u.xml*");
-        FileOperationUtils.deleteFiles(FolderParameters.INSTALL_CONF_PATH, "EISPProcTime2Orbit.log.*.gz");
+        deleteFolders();
+        killProcesses();
 
-        if (Files.exists(Paths.get(FolderParameters.INSTALL_ARCHIVE_PATH))) {
-            FileOperationUtils.deleteFolderContent(FolderParameters.INSTALL_ARCHIVE_PATH);
-        }
-        if (Files.exists(Paths.get(FolderParameters.INSTALL_OUTPUT_FILES_PATH))) {
-            FileOperationUtils.deleteFolderContent(FolderParameters.INSTALL_OUTPUT_FILES_PATH);
-        }
-
-        FileOperationUtils.deleteFolders(Set.of(FolderParameters.INPUT_PATH, FolderParameters.WORKPLANS_PATH));
-        FileOperationUtils.createFolders(FolderParameters.WORKSPACE_FOLDERS);
-
-        ProcessUtils.kill("EISPProcessor");
-        ProcessUtils.kill("launch_eisp_ing_typ.bash");
-        ProcessUtils.kill("launch_eisp.bash");
-        ProcessUtils.kill("launch_merge.bash");
-        ProcessUtils.kill("launch_telemetry.bash");
+        FileOperationUtils.createFolders(L0uFolderParameters.WORKSPACE_FOLDERS);
 
         log.info("Finished cleaning and setting up workspace");
+    }
+
+    public void clean() {
+
+        log.info("Cleaning up workspace");
+
+        deleteFolders();
+        killProcesses();
+
+        log.info("Finished cleaning up workspace");
+    }
+
+    private void deleteFolders() {
+
+        FileOperationUtils.deleteFiles(L0uFolderParameters.INSTALL_CONF_PATH, "Generic_Archive_Request.xml*");
+        FileOperationUtils.deleteFiles(L0uFolderParameters.INSTALL_CONF_PATH, "Production_Request_L0u.xml*");
+        FileOperationUtils.deleteFiles(L0uFolderParameters.INSTALL_CONF_PATH, "EISPProcTime2Orbit.log.*.gz");
+
+        if (Files.exists(Paths.get(L0uFolderParameters.INSTALL_ARCHIVE_PATH))) {
+            FileOperationUtils.deleteFolderContent(L0uFolderParameters.INSTALL_ARCHIVE_PATH);
+        }
+        if (Files.exists(Paths.get(L0uFolderParameters.INSTALL_OUTPUT_FILES_PATH))) {
+            FileOperationUtils.deleteFolderContent(L0uFolderParameters.INSTALL_OUTPUT_FILES_PATH);
+        }
+
+        FileOperationUtils.deleteFolderContent(L0uFolderParameters.WORKSPACE_PATH);
+    }
+
+    private void killProcesses() {
+        PROCESSES.forEach(ProcessUtils::kill);
     }
 
 }

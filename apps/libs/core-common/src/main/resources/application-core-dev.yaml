@@ -41,3 +41,8 @@ management:
       cloudwatch:
         enabled: false
 
+logging:
+  level:
+    eu:
+      csgroup:
+        coprs: DEBUG

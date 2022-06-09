@@ -10,7 +10,7 @@ env:
   REGISTRY_USER: ${{ secrets.ARTIFACTORY_USER }}
   REGISTRY_PWD: ${{ secrets.ARTIFACTORY_PASSWORD }}
   REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
-  REGISTRY_PROJECT: s2-docker
+  REGISTRY_PROJECT: rs-docker-private
   SONARQUBE_HOST: ${{ secrets.SONARQUBE_HOST }}
   SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
 
@@ -58,4 +58,4 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean build jacocoTestReport sonarqube bootBuildImage docker dockerPush
+          arguments: clean build sonarqube bootBuildImage docker dockerPush

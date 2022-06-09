@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface SessionEntityRepository extends MongoRepository<SessionEntity, String> {
 
+    List<SessionEntity> findAllByFailedAndJobOrderCreated(boolean failed, boolean jobOrderCreated);
+
     List<SessionEntity> findAllByReadyAndFailedAndJobOrderCreated(boolean ready, boolean failed, boolean jobOrderCreated);
 
     List<SessionEntity> findAllByRawCompleteAndReadyAndFailedAndJobOrderCreated(boolean rawComplete, boolean ready, boolean failed, boolean jobOrderCreated);

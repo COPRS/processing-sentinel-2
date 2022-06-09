@@ -1,9 +1,11 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
+import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
+import eu.csgroup.coprs.ps2.ew.l0u.service.setup.CleanupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -18,11 +20,17 @@ public class OutputService {
     private final UploadService uploadService;
     private final CopyService copyService;
     private final MessageService messageService;
+    private final CleanupService cleanupService;
+    private final L0uExecutionProperties l0uExecutionProperties;
 
-    public OutputService(UploadService uploadService, CopyService copyService, MessageService messageService) {
+    public OutputService(UploadService uploadService, CopyService copyService, MessageService messageService, CleanupService cleanupService,
+            L0uExecutionProperties l0uExecutionProperties
+    ) {
         this.uploadService = uploadService;
         this.copyService = copyService;
         this.messageService = messageService;
+        this.cleanupService = cleanupService;
+        this.l0uExecutionProperties = l0uExecutionProperties;
     }
 
     public Set<ProcessingMessage> output(L0uExecutionInput l0uExecutionInput) {
@@ -33,7 +41,11 @@ public class OutputService {
 
         final String outputFolder = copyService.copy();
 
-        final Set<ProcessingMessage> messages = messageService.build(outputFolder, l0uExecutionInput, auxFileInfosByFamily);
+        final Set<ProcessingMessage> messages = messageService.build(l0uExecutionInput, auxFileInfosByFamily, outputFolder);
+
+        if (l0uExecutionProperties.isCleanup()) {
+            cleanupService.clean();
+        }
 
         log.info("Finished post execution tasks");
 

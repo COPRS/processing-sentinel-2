@@ -2,9 +2,9 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
-import eu.csgroup.coprs.ps2.pw.l0u.settings.L0uPreparationProperties;
+import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -45,11 +45,12 @@ public class ExecutionInputService {
 
         log.info("Creating output payload for session {}", sessionName);
 
-        final L0uExecutionInput l0uExecutionInput = new L0uExecutionInput()
-                .setSession(sessionName)
+        final L0uExecutionInput l0uExecutionInput = new L0uExecutionInput();
+        l0uExecutionInput.setSession(sessionName)
+                .setJobOrders(jobOrderService.create(session))
                 .setSatellite(session.getSatellite())
-                .setFiles(getFileInfos(sessionName))
-                .setJobOrders(jobOrderService.create(session));
+                .setStation(session.getStationCode())
+                .setFiles(getFileInfos(sessionName));
 
         log.info("Finished creating output payload for session {}", sessionName);
 

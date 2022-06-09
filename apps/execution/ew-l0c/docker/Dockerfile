@@ -20,12 +20,10 @@ FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2level0:5.1.0
 
 USER root
 
-# Required ? ot not, doesn't hurt anyway
-RUN mkdir -p /data/S2L0IPF
-
 ## Wrapper configuration
 ARG JDK_VERSION
-RUN adduser -p '*' -d /wrapper wrapper
+RUN groupadd -g 1001 wrapper
+RUN adduser -p '*' -d /wrapper -u 1001 -g 1001 wrapper
 RUN chmod 755 /wrapper
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
@@ -39,6 +37,11 @@ RUN chown -R wrapper:wrapper /wrapper
 RUN mkdir -p /workspace
 RUN chmod -R 755 /workspace
 RUN chown -R wrapper:wrapper /workspace
+
+## Setup INPUT folder (on shared volume)
+RUN mkdir -p /input
+RUN chmod -R 755 /input
+RUN chown -R wrapper:wrapper /input
 
 WORKDIR /wrapper
 USER wrapper

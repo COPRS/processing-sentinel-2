@@ -60,7 +60,7 @@ subprojects {
     apply plugin: 'io.freefair.lombok'
 
     group = 'eu.csgroup.coprs.ps2'
-    version = '0.0.3-SNAPSHOT'
+    version = '0.0.4-SNAPSHOT'
     sourceCompatibility = '17'
 
     ext {

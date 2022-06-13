@@ -149,6 +149,7 @@ public class SessionManagementService {
     }
 
     private void updateFailedStatus(Session session) {
+        // TODO check this
         if (!session.isReady()) {
             final Instant creationDate = session.getCreationDate();
             if (Duration.between(creationDate, Instant.now()).toHours() > SessionParameters.FAILED_DELAY) {

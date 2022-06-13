@@ -1,4 +1,4 @@
-package eu.csgroup.coprs.ps2.core.common.model.execution;
+package eu.csgroup.coprs.ps2.core.common.model.l0;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import lombok.EqualsAndHashCode;

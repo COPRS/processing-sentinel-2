@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service.setup;
 
-import eu.csgroup.coprs.ps2.core.common.model.preparation.FileType;
+import eu.csgroup.coprs.ps2.core.common.model.l0.FileType;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import org.springframework.stereotype.Component;

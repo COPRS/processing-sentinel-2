@@ -1,8 +1,8 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.preparation.PreparationInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
@@ -44,7 +44,7 @@ public class MessageService {
                 .getAdditionalFields()
                 .put(
                         MessageParameters.PREPARATION_INPUT_FIELD,
-                        new PreparationInput()
+                        new L0cPreparationInput()
                                 .setSession(l0uExecutionInput.getSession())
                                 .setInputFolder(outputFolder)
                                 .setSatellite(l0uExecutionInput.getSatellite())

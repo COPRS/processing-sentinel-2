@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import lombok.extern.slf4j.Slf4j;

@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import eu.csgroup.coprs.ps2.pw.l0u.settings.L0uPreparationProperties;
 import lombok.extern.slf4j.Slf4j;

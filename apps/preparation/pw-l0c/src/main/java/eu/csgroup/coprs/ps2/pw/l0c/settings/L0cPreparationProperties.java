@@ -1,15 +1,15 @@
-package eu.csgroup.coprs.ps2.pw.l0c.config;
+package eu.csgroup.coprs.ps2.pw.l0c.settings;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Setter
-@Component
+@Configuration
 @ConfigurationProperties("pw.l0c")
-public class Parameters {
+public class L0cPreparationProperties {
 
     /**
      * Some parameter

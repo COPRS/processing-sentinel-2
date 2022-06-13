@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service.output;
 
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;

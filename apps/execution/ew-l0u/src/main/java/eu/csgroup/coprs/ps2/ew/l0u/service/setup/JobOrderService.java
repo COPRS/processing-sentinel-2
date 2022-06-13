@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
-import eu.csgroup.coprs.ps2.core.common.model.execution.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.ew.l0u.settings.FolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

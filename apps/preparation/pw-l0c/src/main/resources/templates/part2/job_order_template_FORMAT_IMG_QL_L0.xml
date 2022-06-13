@@ -2,13 +2,13 @@
 <Ipf_Job_Order>
     <Ipf_Conf>
         <Processor_Name>l0c</Processor_Name>
-        <Version>2.3.6</Version>
-        <Stdout_Log_Level>DEBUG</Stdout_Log_Level>
-        <Stderr_Log_Level>DEBUG</Stderr_Log_Level>
+        <Version>3.0.3</Version>
+        <Stdout_Log_Level>INFO</Stdout_Log_Level>
+        <Stderr_Log_Level>INFO</Stderr_Log_Level>
         <Test>false</Test>
         <Breakpoint_Enable>true</Breakpoint_Enable>
-        <Acquisition_Station>SGS_</Acquisition_Station>
-        <Processing_Station>SGS_</Processing_Station>
+        <Acquisition_Station>@acquisitionStation@</Acquisition_Station>
+        <Processing_Station>@processingStation@</Processing_Station>
         <Config_Files>
             <Conf_File_Name/>
         </Config_Files>
@@ -38,7 +38,7 @@
     <List_of_Ipf_Procs count="1">
         <Ipf_Proc>
             <Task_Name>FORMAT_IMG_QL_L0</Task_Name>
-            <Task_Version>02.16.00</Task_Version>
+            <Task_Version>05.01.00</Task_Version>
             <List_of_Inputs count="6">
                 <Input>
                     <File_Type>PDI_DS</File_Type>

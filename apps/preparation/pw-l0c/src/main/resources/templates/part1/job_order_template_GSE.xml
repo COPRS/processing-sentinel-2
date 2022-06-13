@@ -2,13 +2,13 @@
 <Ipf_Job_Order>
     <Ipf_Conf>
         <Processor_Name>l0c</Processor_Name>
-        <Version>2.3.6</Version>
+        <Version>3.0.3</Version>
         <Stdout_Log_Level>INFO</Stdout_Log_Level>
         <Stderr_Log_Level>INFO</Stderr_Log_Level>
         <Test>false</Test>
         <Breakpoint_Enable>false</Breakpoint_Enable>
-        <Acquisition_Station>SGS_</Acquisition_Station>
-        <Processing_Station>SGS_</Processing_Station>
+        <Acquisition_Station>@acquisitionStation@</Acquisition_Station>
+        <Processing_Station>@processingStation@</Processing_Station>
         <Config_Files/>
         <Sensing_Time>
             <Start>@start_time@</Start>
@@ -24,7 +24,7 @@
     <List_of_Ipf_Procs count="1">
         <Ipf_Proc>
             <Task_Name>GSE</Task_Name>
-            <Task_Version>04.04.00</Task_Version>
+            <Task_Version>05.01.00</Task_Version>
             <List_of_Inputs count="2">
                 <Input>
                     <File_Type>PDI_L0U</File_Type>

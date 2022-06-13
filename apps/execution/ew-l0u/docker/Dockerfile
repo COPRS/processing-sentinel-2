@@ -49,7 +49,6 @@ RUN mkdir -p /workspace
 RUN chmod -R 755 /workspace
 RUN chown -R wrapper:wrapper /workspace
 
-## TODO For test purpose only - remove later
 ## Setup OUTPUT folder (on shared volume)
 RUN mkdir -p /output
 RUN chmod -R 755 /output

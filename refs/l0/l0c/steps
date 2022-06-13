@@ -1,8 +1,11 @@
 # Pour chaque DT :
+
+
 ## PART1
-- GSE (S2A) 1 1
+- GSE 1 1  # ONLY on A
 - INIT_L0C_L0 1 1
 - FORMAT_ISP 1 12
+
 ## PART2
 - QL_GEO 1 12
 - QL_CLOUD_MASK 1 1

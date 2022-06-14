@@ -5,6 +5,7 @@ import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
+import eu.csgroup.coprs.ps2.pw.l0c.settings.L0cPreparationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +17,11 @@ import java.util.Map;
 public class InputService {
 
     private final ObjectMapper objectMapper;
+    private final L0cPreparationProperties l0cPreparationProperties;
 
-    public InputService(ObjectMapper objectMapper) {
+    public InputService(ObjectMapper objectMapper, L0cPreparationProperties l0cPreparationProperties) {
         this.objectMapper = objectMapper;
+        this.l0cPreparationProperties = l0cPreparationProperties;
     }
 
     public L0cPreparationInput extract(ProcessingMessage processingMessage) {
@@ -38,6 +41,11 @@ public class InputService {
         }
 
         return l0cPreparationInput;
+    }
+
+    public Map<String, String> listDS(String folder) {
+        // TODO list DS by DT or DT by DS
+        return null;
     }
 
 }

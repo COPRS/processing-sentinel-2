@@ -48,6 +48,7 @@ public class ExecutionInputService {
         final L0uExecutionInput l0uExecutionInput = new L0uExecutionInput()
                 .setSession(sessionName)
                 .setSatellite(session.getSatellite())
+                .setStation(session.getStationCode())
                 .setFiles(getFileInfos(sessionName))
                 .setJobOrders(jobOrderService.create(session));
 

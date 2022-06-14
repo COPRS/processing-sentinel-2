@@ -16,6 +16,8 @@ public class L0cExecutionInput {
 
     private String session;
     private String satellite;
+    private String station;
+
     private Set<FileInfo> files;
     private String inputFolder;
 

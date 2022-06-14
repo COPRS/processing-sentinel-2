@@ -40,7 +40,7 @@ public class UploadService {
         try {
 
             final List<Path> sadFolders = FileOperationUtils.findFolders(rootPath, FileParameters.SAD_REGEX);
-            final List<Path> hktmFolders = FileOperationUtils.findFolders(rootPath, FileParameters.HKTM_REGEX);
+            final List<Path> hktmFolders = FileOperationUtils.findFoldersInTree(rootPath, FileParameters.HKTM_REGEX);
 
             log.info("Found {} SAD files", sadFolders.size());
             log.info("Found {} HKTM files", hktmFolders.size());

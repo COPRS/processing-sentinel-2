@@ -32,7 +32,7 @@ public class CatalogProperties {
     private String mode = "LatestValCover";
 
     /**
-     * Maximun retry count for Metadata Catalog queries
+     * Maximum retry count for Metadata Catalog queries
      */
     private int maxRetry = 3;
 

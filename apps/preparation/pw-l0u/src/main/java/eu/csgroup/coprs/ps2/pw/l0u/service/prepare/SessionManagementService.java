@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.catalog.model.AuxProductType;
 import eu.csgroup.coprs.ps2.core.catalog.model.ProductType;
 import eu.csgroup.coprs.ps2.core.catalog.model.SessionCatalogData;
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.SessionParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import lombok.extern.slf4j.Slf4j;
@@ -128,6 +128,7 @@ public class SessionManagementService {
 
         if (!CollectionUtils.isEmpty(sessions)) {
             sessions.forEach(session -> {
+                // TODO maybe reverse order
                 updateReadyStatus(session);
                 updateFailedStatus(session);
             });
@@ -152,7 +153,7 @@ public class SessionManagementService {
         // TODO check this
         if (!session.isReady()) {
             final Instant creationDate = session.getCreationDate();
-            if (Duration.between(creationDate, Instant.now()).toHours() > SessionParameters.FAILED_DELAY) {
+            if (Duration.between(creationDate, Instant.now()).toHours() > PreparationParameters.FAILED_DELAY) {
                 session.setFailed(true);
             }
         }

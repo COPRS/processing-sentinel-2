@@ -67,8 +67,7 @@ public class CatalogService {
 
         final List<AuxCatalogData> auxCatalogData = retrieveAuxData(productType, satellite, from, to);
 
-        // TODO how to get the one ?
-        // TODO bandIndexId ???
+        // TODO Need catalog update for Band management
 
         return auxCatalogData.stream().findAny();
 
@@ -84,6 +83,7 @@ public class CatalogService {
                 uriBuilder -> uriBuilder
                         .path(AUX_ROUTE)
                         .queryParam("productType", productType.name())
+                        // TODO Need catalog update for Band management -> check wheter mode needs to be modified
                         .queryParam("mode", catalogProperties.getMode())
                         .queryParam("satellite", satellite)
                         .queryParam("t0", DateUtils.toLongDate(from))

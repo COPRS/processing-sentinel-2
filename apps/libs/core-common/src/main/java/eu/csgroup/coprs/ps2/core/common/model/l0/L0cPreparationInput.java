@@ -11,6 +11,8 @@ public class L0cPreparationInput {
 
     private String session;
     private String satellite;
+    private String station;
+
     private String inputFolder;
 
 }

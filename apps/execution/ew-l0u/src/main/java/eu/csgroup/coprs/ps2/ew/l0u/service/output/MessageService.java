@@ -46,8 +46,9 @@ public class MessageService {
                         MessageParameters.PREPARATION_INPUT_FIELD,
                         new L0cPreparationInput()
                                 .setSession(l0uExecutionInput.getSession())
-                                .setInputFolder(outputFolder)
                                 .setSatellite(l0uExecutionInput.getSatellite())
+                                .setStation(l0uExecutionInput.getStation())
+                                .setInputFolder(outputFolder)
                 );
         messages.add(preparationMessage);
 

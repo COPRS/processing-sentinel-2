@@ -12,13 +12,8 @@ import org.springframework.context.annotation.Configuration;
 public class L0cPreparationProperties {
 
     /**
-     * Some parameter
+     * Folder where L0U input files (DS/GR in DT folders) are stored. Mount-point to shared disk.
      */
-    private String foo;
-
-    /**
-     * Another parameter
-     */
-    private String bar;
+    private String inputFolderRoot;
 
 }

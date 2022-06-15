@@ -2,13 +2,17 @@ package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.catalog.model.AuxProductType;
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
+import eu.csgroup.coprs.ps2.core.common.settings.FileParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
+import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.nio.file.Path;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
@@ -18,6 +22,8 @@ import java.util.List;
 @Service
 public class DatastripManagementService {
 
+    private static final String START_TIME_TAG = "DATASTRIP_SENSING_START";
+    private static final String STOP_TIME_TAG = "DATASTRIP_SENSING_STOP";
 
     private final DatastripService datastripService;
     private final CatalogService catalogService;
@@ -39,21 +45,25 @@ public class DatastripManagementService {
     }
 
     @Transactional
-    public void create(String datastripName, String dtFolder, String satellite, String stationCode) {
+    public void create(Path datastripPath, String satellite, String stationCode) {
+
+        final String datastripName = datastripPath.getFileName().toString();
 
         if (!datastripService.exists(datastripName)) {
 
-            // TODO create datastrip
-            // TODO extract DS name
-            // extract dates from xml
+            log.info("Creating Datastrip {}", datastripName);
 
-            Instant startTime = null;
-            Instant stopTime = null;
+            final String datastripFolder = datastripPath.getParent().toString();
+            final String datastripXmlName = datastripName.replace(FileParameters.DS_SUFFIX, ".xml");
+            final Path datastripXmlPath = datastripPath.resolve(datastripXmlName);
 
-            final Datastrip datastrip = datastripService.create(datastripName, startTime, stopTime, satellite, stationCode);
+            Instant startTime = DateUtils.toInstant(FileContentUtils.extractXmlTagValue(datastripXmlPath, START_TIME_TAG));
+            Instant stopTime = DateUtils.toInstant(FileContentUtils.extractXmlTagValue(datastripXmlPath, STOP_TIME_TAG));
+
+            final Datastrip datastrip = datastripService.create(datastripName, datastripFolder, startTime, stopTime, satellite, stationCode);
+
             updateAvailableAux(datastrip);
         }
-
     }
 
     @Transactional
@@ -105,7 +115,7 @@ public class DatastripManagementService {
     }
 
     private void updateFailedStatus(Datastrip datastrip) {
-        // TODO maybe reverse order
+        // TODO test and check
         if (!datastrip.isReady()) {
             final Instant creationDate = datastrip.getCreationDate();
             if (Duration.between(creationDate, Instant.now()).toHours() > PreparationParameters.FAILED_DELAY) {

@@ -44,42 +44,42 @@
                     <File_Type>PDI_DS</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>@wpdir@/steps_data/DS/</File_Name>
+                        <File_Name>/workspace/steps_data/DS/</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
                     <File_Type>PDI_DS_GR_LIST</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>@wpdir@/steps_data/GR/</File_Name>
+                        <File_Name>/workspace/steps_data/GR/</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
                     <File_Type>QUICKLOOK_CM</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>@wpdir@/steps_data/DS/QL_DATA/QL_DATA_CM/</File_Name>
+                        <File_Name>/workspace/steps_data/DS/QL_DATA/QL_DATA_CM/</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
                     <File_Type>GIP_JP2KPA</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>@wpdir@/steps_data/GIPP/GIP_JP2KPA/@gipp_jp2kpa@</File_Name>
+                        <File_Name>/workspace/steps_data/GIPP/GIP_JP2KPA/@gipp_jp2kpa@</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
                     <File_Type>IDP_INFOS</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>@wpdir@/app_data/wp_data/file_idp_infos.xml</File_Name>
+                        <File_Name>/workspace/app_data/wp_data/file_idp_infos.xml</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
                     <File_Type>WORKING</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>@wpdir@/steps_data/WORKING</File_Name>
+                        <File_Name>/workspace/steps_data/WORKING</File_Name>
                     </List_of_File_Names>
                 </Input>
             </List_of_Inputs>
@@ -87,12 +87,12 @@
                 <Output mandatory="true">
                     <File_Type>QUICKLOOK</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
-                    <File_Name>@wpdir@/steps_data/DS/@l0_dsname@/QI_DATA/</File_Name>
+                    <File_Name>/workspace/steps_data/DS/@l0_dsname@/QI_DATA/</File_Name>
                 </Output>
                 <Output mandatory="true">
                     <File_Type>REPORT</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
-                    <File_Name>@wpdir@/app_data/step_@jobOrderName@/launch_@jobnumber@/ipf_report_file.xml</File_Name>
+                    <File_Name>/workspace/app_data/step_@jobOrderName@/launch_@jobnumber@/ipf_report_file.xml</File_Name>
                 </Output>
             </List_of_Outputs>
         </Ipf_Proc>

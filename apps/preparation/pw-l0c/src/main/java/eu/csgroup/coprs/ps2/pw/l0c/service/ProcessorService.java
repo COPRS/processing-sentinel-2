@@ -52,9 +52,10 @@ public class ProcessorService {
 
             try {
 
-                final L0cPreparationInput l0cPreparationInput = inputService.extract(processingMessage);
-                inputService.listDS(l0cPreparationInput.getInputFolder()).forEach((datastrip, dtFolder) ->
-                        datastripManagementService.create(datastrip, dtFolder, l0cPreparationInput.getSatellite(), l0cPreparationInput.getStation()));
+                final L0cPreparationInput l0cPreparationInput = inputService.extractInput(processingMessage);
+
+                inputService.getDatastrips(l0cPreparationInput.getInputFolder())
+                        .forEach(datastripPath -> datastripManagementService.create(datastripPath, l0cPreparationInput.getSatellite(), l0cPreparationInput.getStation()));
 
                 datastripManagementService.updateAvailableAux();
                 datastripManagementService.updateNotReady();
@@ -64,8 +65,6 @@ public class ProcessorService {
                 final List<Datastrip> readyDatastrips = datastripManagementService.getReady();
 
                 log.info("Found {} ready datastrips", readyDatastrips.size());
-
-                // TODO check
 
                 if (!CollectionUtils.isEmpty(readyDatastrips)) {
                     List<L0cExecutionInput> l0uExecutionInputList = executionInputService.create(readyDatastrips);

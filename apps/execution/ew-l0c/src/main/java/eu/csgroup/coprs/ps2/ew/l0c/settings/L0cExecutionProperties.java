@@ -12,8 +12,13 @@ import org.springframework.context.annotation.Configuration;
 public class L0cExecutionProperties {
 
     /**
-     * Folder where input L0u files are stored. Mount-point to shared disk.
+     * Folder where L0U input files (DS/GR in DT folders) are stored. Mount-point to shared disk.
      */
-    private String outputFolderRoot;
+    private String inputFolderRoot = "/input";
+
+    /**
+     * Folder where DEM files are stored. Mount-point to shared disk.
+     */
+    private String demFolderRoot = "/dem";
 
 }

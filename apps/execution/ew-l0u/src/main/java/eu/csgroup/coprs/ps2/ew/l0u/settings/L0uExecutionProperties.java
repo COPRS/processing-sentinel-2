@@ -24,6 +24,6 @@ public class L0uExecutionProperties {
     /**
      * Folder to store produced DS/GR. Mount-point to shared disk.
      */
-    private String outputFolderRoot;
+    private String outputFolderRoot = "/output";
 
 }

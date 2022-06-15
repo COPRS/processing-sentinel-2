@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 import eu.csgroup.coprs.ps2.core.common.exception.JobOrderException;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
-import eu.csgroup.coprs.ps2.core.common.utils.XmlUtils;
+import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.pw.l0u.model.AuxValue;
 import eu.csgroup.coprs.ps2.pw.l0u.model.JobOrderFields;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
@@ -60,7 +60,7 @@ public class JobOrderService {
             values.put(JobOrderFields.ORBIT_OFFSET.getPlaceholder(), infoByAuxValue.get(AuxValue.ORBIT_OFFSET));
             values.put(JobOrderFields.CYCLIC_ORBIT_OFFSET.getPlaceholder(), infoByAuxValue.get(AuxValue.TOTAL_ORBIT));
 
-            jobOrder = XmlUtils.replaceAll(jobOrder, values);
+            jobOrder = FileContentUtils.replaceAll(jobOrder, values);
 
             jobOrders.put(l0uPreparationProperties.getJobOrderName(), jobOrder);
 

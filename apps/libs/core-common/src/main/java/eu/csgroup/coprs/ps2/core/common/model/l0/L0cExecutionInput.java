@@ -19,9 +19,7 @@ public class L0cExecutionInput {
     private String station;
 
     private Set<FileInfo> files;
-    private String inputFolder;
 
-    // TODO need JO by name by step
-    private Map<String, String> jobOrders;
+    private Map<String, Map<String, String>> jobOrders;
 
 }

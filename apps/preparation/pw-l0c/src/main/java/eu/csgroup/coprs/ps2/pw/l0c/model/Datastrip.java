@@ -13,7 +13,6 @@ public class Datastrip {
 
     private String name;
 
-    private String dt;
     private String folder;
 
     private String satellite;

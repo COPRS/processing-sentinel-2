@@ -14,6 +14,16 @@ public class L0cPreparationProperties {
     /**
      * Folder where L0U input files (DS/GR in DT folders) are stored. Mount-point to shared disk.
      */
-    private String inputFolderRoot;
+    private String inputFolderRoot = "/input";
+
+    /**
+     * Folder where DEM files are stored. Mount-point to shared disk.
+     */
+    private String demFolderRoot = "/dem";
+
+    /**
+     * Bucket where AUX files are stored
+     */
+    private String auxBucket;
 
 }

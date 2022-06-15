@@ -7,7 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum L0cAuxFolders {
 
-    DEM("/workspace/steps_data/DEM"),
     GIPP("/workspace/steps_data/GIPP"),
     IERS("/workspace/steps_data/IERS");
 

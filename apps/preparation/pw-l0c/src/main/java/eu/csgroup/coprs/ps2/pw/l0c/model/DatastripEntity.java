@@ -17,7 +17,6 @@ public class DatastripEntity {
     @Id
     private String name;
 
-    private String dt;
     private String folder;
 
     private String satellite;
@@ -33,9 +32,5 @@ public class DatastripEntity {
     private boolean ready;
     private boolean failed;
     private boolean jobOrderCreated;
-
-    public boolean allAuxAvailable() {
-        return availableByAux.values().stream().allMatch(Boolean::booleanValue);
-    }
 
 }

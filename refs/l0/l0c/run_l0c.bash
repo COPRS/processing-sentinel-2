@@ -24,6 +24,7 @@ sed 's#<Version>2.3.6</Version>#<Version>3.0.3</Version>#g' -i job_order_templat
 sed 's#2020-04-20T20:58:28.099Z#2022-04-26T11:50:29.024Z#g' -i job_order_template_${TASK}.xml ;
 
 sed 's#@gps_utc@#-18#g' -i job_order_template_${TASK}.xml ;
+
 CMD_SED="sed 's#@start_time@#${START_TIME_DS}#g' -i job_order_template_${TASK}.xml" ;
 eval $CMD_SED ;
 CMD_SED="sed 's#@stop_time@#${STOP_TIME_DS}#g' -i job_order_template_${TASK}.xml" ;

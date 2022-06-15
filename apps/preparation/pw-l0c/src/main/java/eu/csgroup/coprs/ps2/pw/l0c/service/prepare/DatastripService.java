@@ -29,7 +29,7 @@ public class DatastripService {
     }
 
     @Transactional
-    public Datastrip create(String datastripName, Instant startTime, Instant stopTime, String satellite, String stationCode) {
+    public Datastrip create(String datastripName, String folder, Instant startTime, Instant stopTime, String satellite, String stationCode) {
 
         log.info("Creating Datastrip: {}", datastripName);
 
@@ -39,6 +39,7 @@ public class DatastripService {
 
         DatastripEntity sessionEntity = new DatastripEntity()
                 .setName(datastripName)
+                .setFolder(folder)
                 .setCreationDate(Instant.now())
                 .setStartTime(startTime)
                 .setStopTime(stopTime)

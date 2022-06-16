@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum AuxProductType {
 
-    AUX_UT1UTC(".xml"),
+    AUX_UT1UTC(".txt"),
     DEM_GLOBEF(null),
     GIP_ATMIMA(".xml"),
     GIP_ATMSAD(".xml"),

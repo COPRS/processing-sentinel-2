@@ -14,10 +14,6 @@ STOP_TIME_DS=$(awk -F '[<>]' '/DATASTRIP_SENSING_STOP/{print $3}' /data/S2L0IPF/
 PARALLEL_DETECTOR="false" ;
 PARALLEL_BAND="false" ;
 
-# Retrieve L0c DS name for PART2
-L0_DS_NAME="$(ls DS/S2B_OPER_MSI_L0__DS* -d | awk -F/ '{print $NF}')" ;
-
-
 sed 's#<Version>2.3.6</Version>#<Version>3.0.3</Version>#g' -i job_order_template_${TASK}.xml ;
 
 # Date de génération des JobOrders
@@ -69,8 +65,14 @@ CMD_SED="sed 's#@dt_number@#DT${DT_NUMBER}#g' -i job_order_template_${TASK}.xml"
 eval $CMD_SED ;
 CMD_SED="sed 's#@l0u_dsname@#${L0U_DS_NAME}#g' -i job_order_template_${TASK}.xml" ;
 eval $CMD_SED ;
+
+
+# Retrieve L0c DS name for PART2
+L0_DS_NAME="$(ls DS/S2B_OPER_MSI_L0__DS* -d | awk -F/ '{print $NF}')" ;
 CMD_SED="sed 's#@l0_dsname@#${L0_DS_NAME}#g' -i job_order_template_${TASK}.xml" ;
 eval $CMD_SED ;
+
+
 sed 's#@gipp_lrextr@#S2B_OPER_GIP_LREXTR_MPC__20210608T000001_V20150622T000000_21000101T000000_B00.xml#g' -i job_order_template_${TASK}.xml ;
 sed 's#@gipp_invloc@#S2B_OPER_GIP_INVLOC_MPC__20170523T080300_V20170322T000000_21000101T000000_B00.xml#g' -i job_order_template_${TASK}.xml ;
 sed 's#@gipp_r2abca@#S2B_OPER_GIP_R2ABCA_MPC__20220315T151100_V20220317T000000_21000101T000000_B00.xml#g' -i job_order_template_${TASK}.xml ;
@@ -105,14 +107,16 @@ sed 's#@wpdir@/app_data/wp_data/file_idp_infos.xml#/data/S2L0IPF/file_idp_infos.
 if [ ${PARALLEL_DETECTOR} == "true" ] ; then
   for DETECTOR_TMP in $(seq 01 $(ls L0U_DUMP/DT${DT_NUMBER}/GR/DB1/ | awk -F '_' '{print $10}' | sort -u | wc -l));
   do
+
       DETECTOR=$(printf "%02d" ${DETECTOR_TMP});
       echo "detector : D${DETECTOR}";
+
       TOTAL_GR_L0U_TMP=$(ls L0U_DUMP/DT${DT_NUMBER}/GR/DB1/S2B_OPER_MSI_L0U_GR_*_D${DETECTOR}_* -d | wc -l) ;
       TOTAL_GR_L0U=$(printf "%03d" ${TOTAL_GR_L0U_TMP}) ;
       echo "total gr l0u : ${TOTAL_GR_L0U}" ;
-      TOTAL_GR_L0C=$(ls GR/DB1/S2B_OPER_MSI_L0__GR_*_D${DETECTOR}_* -d | wc -l) ;
-      echo "total gr l0c : ${TOTAL_GR_L0C}" ;
+
       cp job_order_template_${TASK}.xml job_order_template_${TASK}_${DETECTOR}.xml ;
+
       CMD_SED="sed 's#@granule_begin@#001#' -i job_order_template_${TASK}_${DETECTOR}.xml" ;
       eval $CMD_SED ;
       CMD_SED="sed 's#@granule_end@#${TOTAL_GR_L0U}#' -i job_order_template_${TASK}_${DETECTOR}.xml" ;
@@ -121,8 +125,11 @@ if [ ${PARALLEL_DETECTOR} == "true" ] ; then
       eval $CMD_SED ;
       CMD_SED="sed 's#@detector@#${DETECTOR}#' -i job_order_template_${TASK}_${DETECTOR}.xml" ;
       eval $CMD_SED ;
+
+
       # put the list of all granules in the joborder from the same detector DXX
       if [ ${TASK} == "OLQC-L0cGr" ] ; then
+
         TOTAL_GR_L0C=$(ls GR/DB1/S2B_OPER_MSI_L0__GR_*_D${DETECTOR}_* -d | wc -l) ;
         echo "total gr l0c : ${TOTAL_GR_L0C}" ;
         CMD_SED="sed 's#@count_l0gr@#${TOTAL_GR_L0C}#' -i job_order_template_${TASK}_${DETECTOR}.xml" ;
@@ -141,6 +148,9 @@ if [ ${PARALLEL_DETECTOR} == "true" ] ; then
           LAST_SED=${GR} ;
         done ;
       fi ;
+
+
+
   done ;
 
 

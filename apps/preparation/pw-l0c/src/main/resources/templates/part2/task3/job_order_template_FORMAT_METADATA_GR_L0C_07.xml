@@ -18,20 +18,36 @@
         </Sensing_Time>
         <Dynamic_Processing_Parameters>
             <Processing_Parameter>
-                <Name>NOMINAL_SCENARIO</Name>
-                <Value>true</Value>
+                <Name>ARCHIVING_CENTER</Name>
+                <Value>@processingStation@</Value>
             </Processing_Parameter>
             <Processing_Parameter>
-                <Name>REPROCESSING_SCENARIO</Name>
+                <Name>PROCESSING_BASELINE</Name>
+                <Value>02.08</Value>
+            </Processing_Parameter>
+            <Processing_Parameter>
+                <Name>PROCESSING_CENTER</Name>
+                <Value>@processingStation@</Value>
+            </Processing_Parameter>
+            <Processing_Parameter>
+                <Name>FAKE_MODE</Name>
                 <Value>false</Value>
             </Processing_Parameter>
             <Processing_Parameter>
-                <Name>DATABLOCK_NUMBER</Name>
-                <Value>1</Value>
+                <Name>PARALLEL_GRANULE</Name>
+                <Value>true</Value>
             </Processing_Parameter>
             <Processing_Parameter>
-                <Name>PARALLEL_DATABLOCK</Name>
-                <Value>true</Value>
+                <Name>PARALLEL_GRANULE_BEGIN</Name>
+                <Value>001</Value>
+            </Processing_Parameter>
+            <Processing_Parameter>
+                <Name>PARALLEL_GRANULE_END</Name>
+                <Value>@granule_end@</Value>
+            </Processing_Parameter>
+            <Processing_Parameter>
+                <Name>PARALLEL_DETECTOR_IDENT</Name>
+                <Value>07</Value>
             </Processing_Parameter>
             <Processing_Parameter>
                 <Name>VALIDATE_SCHEMA</Name>
@@ -45,49 +61,28 @@
     </Ipf_Conf>
     <List_of_Ipf_Procs count="1">
         <Ipf_Proc>
-            <Task_Name>QL_CLOUD_MASK</Task_Name>
+            <Task_Name>FORMAT_METADATA_GR_L0C</Task_Name>
             <Task_Version>05.01.00</Task_Version>
-            <List_of_Inputs count="8">
+            <List_of_Inputs count="5">
                 <Input>
-                    <File_Type>QUICKLOOK_GEO</File_Type>
+                    <File_Type>PDI_DS_GR_LIST</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>/workspace/steps_data/DS/QL_DATA/QL_DATA_GEO/</File_Name>
+                        <File_Name>/workspace/steps_data/GR/</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
-                    <File_Type>QUICKLOOK_CM</File_Type>
+                    <File_Type>PDI_GR_LIST</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>/workspace/steps_data/DS/QL_DATA/QL_DATA_CM/</File_Name>
+                        <File_Name>/workspace/steps_data/GR/</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
-                    <File_Type>PDI_DS</File_Type>
+                    <File_Type>VECTOR</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
                     <List_of_File_Names count="1">
-                        <File_Name>/workspace/steps_data/DS/</File_Name>
-                    </List_of_File_Names>
-                </Input>
-                <Input>
-                    <File_Type>GIP_INVLOC</File_Type>
-                    <File_Name_Type>Physical</File_Name_Type>
-                    <List_of_File_Names count="1">
-                        <File_Name>/workspace/steps_data/GIPP/GIP_INVLOC/@gipp_invloc@</File_Name>
-                    </List_of_File_Names>
-                </Input>
-                <Input>
-                    <File_Type>GIP_R2ABCA</File_Type>
-                    <File_Name_Type>Physical</File_Name_Type>
-                    <List_of_File_Names count="1">
-                        <File_Name>/workspace/steps_data/GIPP/GIP_R2ABCA/@gipp_r2abca@</File_Name>
-                    </List_of_File_Names>
-                </Input>
-                <Input>
-                    <File_Type>GIP_CLOINV</File_Type>
-                    <File_Name_Type>Physical</File_Name_Type>
-                    <List_of_File_Names count="1">
-                        <File_Name>/workspace/steps_data/GIPP/GIP_CLOINV/@gipp_cloinv@</File_Name>
+                        <File_Name>/workspace/steps_data/DS/MASKS/</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
@@ -107,19 +102,14 @@
             </List_of_Inputs>
             <List_of_Outputs count="3">
                 <Output mandatory="true">
-                    <File_Type>VECTOR</File_Type>
+                    <File_Type>PDI_DS_GR_LIST</File_Type>
                     <File_Name_Type>Directory</File_Name_Type>
-                    <File_Name>/workspace/steps_data/DS/MASKS/</File_Name>
-                </Output>
-                <Output mandatory="true">
-                    <File_Type>QUICKLOOK_CM</File_Type>
-                    <File_Name_Type>Directory</File_Name_Type>
-                    <File_Name>/workspace/steps_data/DS/QL_DATA/QL_DATA_CM/</File_Name>
+                    <File_Name>/workspace/steps_data/GR/</File_Name>
                 </Output>
                 <Output mandatory="true">
                     <File_Type>REPORT</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
-                    <File_Name>/workspace/app_data/step_@jobOrderName@/launch_@jobnumber@/ipf_report_file.xml</File_Name>
+                    <File_Name>/workspace/app_data/step_FORMAT_METADATA_GR_L0C/launch_07/ipf_report_file.xml</File_Name>
                 </Output>
             </List_of_Outputs>
         </Ipf_Proc>

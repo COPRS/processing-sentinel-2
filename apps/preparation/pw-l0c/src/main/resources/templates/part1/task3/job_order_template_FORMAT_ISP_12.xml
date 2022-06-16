@@ -23,7 +23,7 @@
             </Processing_Parameter>
             <Processing_Parameter>
                 <Name>PARALLEL_GRANULE_BEGIN</Name>
-                <Value>@granule_begin@</Value>
+                <Value>001</Value>
             </Processing_Parameter>
             <Processing_Parameter>
                 <Name>PARALLEL_GRANULE_END</Name>
@@ -39,7 +39,7 @@
             </Processing_Parameter>
             <Processing_Parameter>
                 <Name>PARALLEL_DETECTOR_IDENT</Name>
-                <Value>@detector@</Value>
+                <Value>12</Value>
             </Processing_Parameter>
             <Processing_Parameter>
                 <Name>DATABLOCK_NUMBER</Name>
@@ -130,7 +130,7 @@
                 <Output mandatory="true">
                     <File_Type>REPORT</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
-                    <File_Name>/workspace/app_data/step_@jobOrderName@/launch_@jobnumber@/ipf_report_file.xml</File_Name>
+                    <File_Name>/workspace/app_data/step_FORMAT_ISP/launch_12/ipf_report_file.xml</File_Name>
                 </Output>
             </List_of_Outputs>
         </Ipf_Proc>

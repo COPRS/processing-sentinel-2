@@ -27,8 +27,9 @@
                 <Input>
                     <File_Type>PDI_SAFE</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
-                    <List_of_File_Names count="1">
-                        <File_Name>/workspace/steps_data/DS/@l0_dsname@</File_Name>
+                    <List_of_File_Names count="@count_l0gr@">
+<!--                        TODO this will be modified in EW-->
+                        <File_Name>/workspace/steps_data/GR/DB1/@list_l0gr_items@_04_@gr_postfix@/</File_Name>
                     </List_of_File_Names>
                 </Input>
                 <Input>
@@ -64,7 +65,7 @@
                 <Output mandatory="true">
                     <File_Type>REPORT</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
-                    <File_Name>/workspace/app_data/step_@jobOrderName@/launch_@jobnumber@/ipf_report_file.xml</File_Name>
+                    <File_Name>/workspace/app_data/step_OLQC-L0cGr/launch_04/ipf_report_file.xml</File_Name>
                 </Output>
             </List_of_Outputs>
         </Ipf_Proc>

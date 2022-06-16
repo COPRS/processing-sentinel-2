@@ -39,7 +39,7 @@
             </Processing_Parameter>
             <Processing_Parameter>
                 <Name>PARALLEL_DETECTOR_IDENT</Name>
-                <Value>@detector@</Value>
+                <Value>08</Value>
             </Processing_Parameter>
             <Processing_Parameter>
                 <Name>PARALLEL_BAND_QL</Name>
@@ -190,7 +190,7 @@
                 <Output mandatory="true">
                     <File_Type>REPORT</File_Type>
                     <File_Name_Type>Physical</File_Name_Type>
-                    <File_Name>/workspace/app_data/step_@jobOrderName@/launch_@jobnumber@/ipf_report_file.xml</File_Name>
+                    <File_Name>/workspace/app_data/step_QL_GEO/launch_08/ipf_report_file.xml</File_Name>
                 </Output>
             </List_of_Outputs>
         </Ipf_Proc>

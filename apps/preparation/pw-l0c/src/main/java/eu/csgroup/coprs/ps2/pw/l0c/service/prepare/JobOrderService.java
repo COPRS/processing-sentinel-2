@@ -1,6 +1,5 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidInputException;
 import eu.csgroup.coprs.ps2.core.common.settings.FileParameters;
@@ -28,11 +27,9 @@ public class JobOrderService {
 
     private String demFolder;
 
-    private final CatalogService catalogService;
     private final L0cPreparationProperties l0cPreparationProperties;
 
-    public JobOrderService(CatalogService catalogService, L0cPreparationProperties l0cPreparationProperties) {
-        this.catalogService = catalogService;
+    public JobOrderService(L0cPreparationProperties l0cPreparationProperties) {
         this.l0cPreparationProperties = l0cPreparationProperties;
     }
 
@@ -64,26 +61,48 @@ public class JobOrderService {
         commonValues.put(JobOrderFields.DT_DIR.getPlaceholder(), StringUtils.substringBeforeLast(datastrip.getFolder(), "/"));
         commonValues.put(JobOrderFields.CREATION_DATE.getPlaceholder(), DateUtils.toShortDate(Instant.now()));
 
+        commonValues.put(JobOrderFields.GRANULE_END.getPlaceholder(), String.valueOf(getGRCount(datastrip)));
+
+
         // TODO
-        // Insert into templates
-        // Use parallel detector or band
+
         // Add S2A step if A
 
         // add DEM_GLOBEF : find int dem folder
 
+        // @jobOrderName@       NO   => preparation, count l0u gr
+        // @jobnumber@         NO
+        // @detector@          NO
+        // @granule_begin@    NO
+        // @granule_end@      compute once, same for all bands
 
-        // @jobOrderName@
-        // @jobnumber@
+        //        PARALLEL_DETECTOR =
+        //            FORMAT_ISP
+        //            QL_GEO
+        //            FORMAT_METADATA_GR_L0C
+        //            OLQC-L0cGr
+        //        PARALLEL_BAND =
+        //            FORMAT_IMG_QL_L0
 
-        // @detector@
-        // @granule_begin@
-        // @granule_end@
+        // FOR execution :
+        // OLQC-L0cGr
+        // @list_l0gr_items@  |    => execution, need output first part
+        // @gr_postfix@       |
+        // replaced with gr_name
+        // For execution:
+        // l0_dsname
 
-        // @list_l0gr_items@
-        // @gr_postfix@
+        // Replace in all at once, in the end
 
         return jobOrders;
 
+    }
+
+
+    private long getGRCount(Datastrip datastrip) {
+        // There should be an equald number of GR per band, hence this computation
+        // Any error here should indicate a bigger issue with that datastrip data
+        return FileOperationUtils.countFiles(Paths.get(datastrip.getFolder()).getParent().resolve("GR/DB1")) / JobParameters.BAND_COUNT;
     }
 
     private String getGpsUtc() {

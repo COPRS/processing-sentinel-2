@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -85,27 +84,31 @@ public final class FileOperationUtils {
     }
 
     public static List<Path> findFolders(Path root, String regex) {
-        List<Path> pathList = Collections.emptyList();
         try (Stream<Path> stream = Files.list(root)) {
-            pathList = stream.filter(Files::isDirectory)
+            return stream.filter(Files::isDirectory)
                     .filter(path -> path.getFileName().toString().matches(regex))
                     .toList();
         } catch (IOException e) {
             throw new FileOperationException("Unable to list folder: " + root, e);
         }
-        return pathList;
     }
 
     public static List<Path> findFoldersInTree(Path root, String regex) {
-        List<Path> pathList = Collections.emptyList();
         try (Stream<Path> stream = Files.walk(root)) {
-            pathList = stream.filter(Files::isDirectory)
+            return stream.filter(Files::isDirectory)
                     .filter(path -> path.getFileName().toString().matches(regex))
                     .toList();
         } catch (IOException e) {
             throw new FileOperationException("Unable to list folder: " + root, e);
         }
-        return pathList;
+    }
+
+    public static long countFiles(Path folder) {
+        try (Stream<Path> stream = Files.list(folder)) {
+            return stream.count();
+        } catch (IOException e) {
+            throw new FileOperationException("Unable to access folder: " + folder, e);
+        }
     }
 
     private FileOperationUtils() {

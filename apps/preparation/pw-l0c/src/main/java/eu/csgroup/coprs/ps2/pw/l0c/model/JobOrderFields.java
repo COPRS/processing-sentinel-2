@@ -14,7 +14,8 @@ public enum JobOrderFields {
     DATASTRIP_NAME("@l0u_dsname@"),
     DT_DIR("@dt_dir@"),
     DEM_PATH("@dem_path"),
-    CREATION_DATE("@creationDate@");
+    CREATION_DATE("@creationDate@"),
+    GRANULE_END("@granule_end@");
 
     private final String placeholder;
 

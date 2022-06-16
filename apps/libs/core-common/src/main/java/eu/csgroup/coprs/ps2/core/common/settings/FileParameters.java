@@ -10,6 +10,7 @@ public final class FileParameters {
     public static final String DS_REGEX = "^S2[A|B]_OPER_.*_N00\\.00$";
     public static final String DS_SUFFIX = "_N00.00";
     public static final String DEM_REGEX = "^.*DEM_GLOBEF.*";
+    public static final String AUX_FILE_EXTENSION = ".DBL";
 
     private FileParameters() {
     }

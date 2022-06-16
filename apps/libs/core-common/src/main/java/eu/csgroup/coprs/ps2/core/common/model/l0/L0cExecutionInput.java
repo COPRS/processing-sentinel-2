@@ -14,7 +14,7 @@ import java.util.Set;
 @EqualsAndHashCode
 public class L0cExecutionInput {
 
-    private String session;
+    private String datastrip;
     private String satellite;
     private String station;
 

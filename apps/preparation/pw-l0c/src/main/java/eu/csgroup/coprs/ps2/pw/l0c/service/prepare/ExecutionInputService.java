@@ -1,19 +1,29 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
+import eu.csgroup.coprs.ps2.pw.l0c.model.AuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class ExecutionInputService {
 
+    private final AuxService auxService;
     private final JobOrderService jobOrderService;
 
-    public ExecutionInputService(JobOrderService jobOrderService) {
+    public ExecutionInputService(AuxService auxService, JobOrderService jobOrderService) {
+        this.auxService = auxService;
         this.jobOrderService = jobOrderService;
     }
 
@@ -30,18 +40,39 @@ public class ExecutionInputService {
 
     private L0cExecutionInput create(Datastrip datastrip) {
 
-        // TODO
-        // Create JO first
-        // Then ExecInput
+        log.info("Building execution input for Datastrip {}", datastrip.getName());
 
-        final L0cExecutionInput l0cExecutionInput = new L0cExecutionInput();
+        final L0cExecutionInput l0cExecutionInput = new L0cExecutionInput()
+                .setDatastrip(datastrip.getName())
+                .setSatellite(datastrip.getSatellite())
+                .setStation(datastrip.getStationCode());
 
-        // TODO use AuxService to get that
-        l0cExecutionInput.setFiles(null);
+        final Map<AuxFile, List<FileInfo>> auxFilesByType = auxService.getAux(datastrip);
 
-        // TODO have JOService use previously defined map (transformed to just PH - name)
-        l0cExecutionInput.setJobOrders(jobOrderService.create(datastrip));
+        l0cExecutionInput.setFiles(auxFilesByType.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
 
+        Map<String, String> auxValues = new HashMap<>();
+
+        auxFilesByType.forEach((auxFile, fileInfoList) -> {
+
+            final String placeHolder = auxFile.getPlaceHolder();
+            final String extension = auxFile.getAuxProductType().getExtension();
+
+            if (!Strings.isEmpty(placeHolder) && !CollectionUtils.isEmpty(fileInfoList)) {
+
+                if (fileInfoList.size() == 1) {
+                    auxValues.put("@" + placeHolder + "@", fileInfoList.get(0).getLocalName() + extension);
+                } else {
+                    for (int i = 0; i < fileInfoList.size(); i++) {
+                        auxValues.put("@" + placeHolder + String.format("%02d", i + 1) + "@", fileInfoList.get(i).getLocalName() + extension);
+                    }
+                }
+            }
+        });
+
+        l0cExecutionInput.setJobOrders(jobOrderService.create(datastrip, auxValues));
+
+        log.info("Finished building execution input for Datastrip {}", datastrip.getName());
 
         return l0cExecutionInput;
     }

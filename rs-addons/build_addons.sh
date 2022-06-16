@@ -27,7 +27,7 @@ function build() {
 
   echo "Building $APP"
 
-  ROOT_NAME=RS_ADDON_${APP}_${VERSION}_${DATE}
+  ROOT_NAME=RS_ADDON_${APP}_${VERSION}
   ZIP_NAME=${ROOT_NAME}.zip
 
   cd "$APP" || exit

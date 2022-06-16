@@ -1,15 +1,16 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
+import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidInputException;
 import eu.csgroup.coprs.ps2.core.common.settings.FileParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
-import eu.csgroup.coprs.ps2.pw.l0c.model.AuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
 import eu.csgroup.coprs.ps2.pw.l0c.model.JobOrderFields;
 import eu.csgroup.coprs.ps2.pw.l0c.settings.L0cPreparationProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class JobOrderService {
 
@@ -37,14 +39,18 @@ public class JobOrderService {
     @PostConstruct
     public void setup() {
         final String demFolderRoot = l0cPreparationProperties.getDemFolderRoot();
-        final List<Path> demFolders = FileOperationUtils.findFolders(Paths.get(demFolderRoot), FileParameters.DEM_REGEX);
-        if (demFolders.size() != 1) {
-            throw new InvalidInputException("Invalid DEM files number found in " + demFolderRoot);
+        try {
+            final List<Path> demFolders = FileOperationUtils.findFolders(Paths.get(demFolderRoot), FileParameters.DEM_REGEX);
+            if (demFolders.size() != 1) {
+                throw new InvalidInputException("Invalid DEM files number found in " + demFolderRoot);
+            }
+            demFolder = demFolders.get(0).toString();
+        } catch (FileOperationException fileOperationException) {
+            log.error("Unable to parse DEM folder", fileOperationException);
         }
-        demFolder = demFolders.get(0).toString();
     }
 
-    public Map<String, Map<String, String>> create(Datastrip datastrip) {
+    public Map<String, Map<String, String>> create(Datastrip datastrip, Map<String, String> auxValues) {
 
         Map<String, Map<String, String>> jobOrders = new HashMap<>();
 
@@ -59,7 +65,6 @@ public class JobOrderService {
         commonValues.put(JobOrderFields.CREATION_DATE.getPlaceholder(), DateUtils.toShortDate(Instant.now()));
 
         // TODO
-        // Check all aux and fetch names
         // Insert into templates
         // Use parallel detector or band
         // Add S2A step if A
@@ -79,28 +84,6 @@ public class JobOrderService {
 
         return jobOrders;
 
-    }
-
-
-    private Map<AuxFile, List<String>> getAux() {
-
-        // TODO create AuxService that will return that map, using AuxFile ENUM to match placeholder
-
-        // @gipp_olqcpa@
-        // @gipp_probas@
-        // @gipp_lrextr@
-        // @gipp_atmsad@
-        // @gipp_atmima@
-        // @gipp_cloinv@
-        // @gipp_r2abca@
-        // @gipp_jp2kpa@
-        // @gipp_invloc@
-        // @gipp_datati@
-        // @gipp_blindp@
-        // @gipp_spamod@
-        // @gipp_viedir01@ - @gipp_viedir13@
-
-        return null;
     }
 
     private String getGpsUtc() {

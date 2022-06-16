@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.exception.AuxQueryException;
+import eu.csgroup.coprs.ps2.core.common.settings.FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.pw.l0u.model.AuxValue;
@@ -26,7 +27,6 @@ import java.util.stream.Collectors;
 public class AuxService {
 
     public static final String DOWNLOAD_ROOT = "/tmp";
-    public static final String AUX_EXTENSION = ".DBL";
 
     private final CatalogService catalogService;
     private final L0uPreparationProperties l0uPreparationProperties;
@@ -81,7 +81,7 @@ public class AuxService {
 
         return keyByAuxValue.entrySet()
                 .stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, entry -> Paths.get(tmpFolder, entry.getValue(), entry.getValue() + AUX_EXTENSION)));
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> Paths.get(tmpFolder, entry.getValue(), entry.getValue() + FileParameters.AUX_FILE_EXTENSION)));
     }
 
     private String extractValue(AuxValue auxValue, Path auxPath) {

@@ -16,10 +16,11 @@ PARALLEL_BAND="false" ;
 
 # Retrieve L0c DS name for PART2
 L0_DS_NAME="$(ls DS/S2B_OPER_MSI_L0__DS* -d | awk -F/ '{print $NF}')" ;
+
+
 sed 's#<Version>2.3.6</Version>#<Version>3.0.3</Version>#g' -i job_order_template_${TASK}.xml ;
 
 # Date de génération des JobOrders
-
 ### replace @creationDate@
 sed 's#2020-04-20T20:58:28.099Z#2022-04-26T11:50:29.024Z#g' -i job_order_template_${TASK}.xml ;
 

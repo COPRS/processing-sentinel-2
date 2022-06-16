@@ -136,7 +136,7 @@ public class DatastripManagementService {
 
                         AuxProductType auxProductType = AuxProductType.valueOf(entry.getKey());
 
-                        // TODO
+                        // TODO modify when band query is available with catalog
 
                         if (Boolean.FALSE.equals(entry.getValue())) {
                             catalogService.retrieveLatestAuxData(

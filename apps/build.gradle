@@ -64,7 +64,7 @@ subprojects {
     sourceCompatibility = '17'
 
     ext {
-        springCloudVersion = "2021.0.2"
+        springCloudVersion = "2021.0.3"
         podamVersion = "7.2.8.RELEASE"
 
         registryBase = System.getenv("REGISTRY_BASE")
@@ -72,8 +72,8 @@ subprojects {
         registryUser = System.getenv("REGISTRY_USER")
         registryPassword = System.getenv("REGISTRY_PWD")
 
-        amazonSDKVersion = "2.17.180"
-        amazonSDKS3Version = "2.17.180-PREVIEW"
+        amazonSDKVersion = "2.17.211"
+        amazonSDKS3Version = "2.17.211-PREVIEW"
 
         apacheCommonsLangVersion = "3.12.0"
         apacheCommonsIOVersion = "2.11.0"

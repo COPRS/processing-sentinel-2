@@ -7,6 +7,8 @@ public final class PreparationParameters {
      */
     public static final Long FAILED_DELAY = 24L;
 
+    public static final String TMP_DOWNLOAD_FOLDER = "/tmp";
+
     private PreparationParameters() {
     }
 

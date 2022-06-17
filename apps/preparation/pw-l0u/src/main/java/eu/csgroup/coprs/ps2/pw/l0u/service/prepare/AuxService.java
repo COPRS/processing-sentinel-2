@@ -3,6 +3,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.exception.AuxQueryException;
 import eu.csgroup.coprs.ps2.core.common.settings.FileParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.pw.l0u.model.AuxValue;
@@ -26,8 +27,6 @@ import java.util.stream.Collectors;
 @Service
 public class AuxService {
 
-    public static final String DOWNLOAD_ROOT = "/tmp";
-
     private final CatalogService catalogService;
     private final L0uPreparationProperties l0uPreparationProperties;
     private final ObsService obsService;
@@ -44,7 +43,7 @@ public class AuxService {
         log.info("Extracting values from AUX files");
 
         Map<AuxValue, String> infoByAuxValue = new EnumMap<>(AuxValue.class);
-        String tmpFolder = DOWNLOAD_ROOT + "/" + UUID.randomUUID();
+        String tmpFolder = PreparationParameters.TMP_DOWNLOAD_FOLDER + "/" + UUID.randomUUID();
 
         Map<AuxValue, Path> auxPathByAuxValue = downloadAuxFiles(satellite, from, to, tmpFolder);
 

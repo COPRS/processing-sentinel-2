@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum L0cStep {
+public enum L0cTask {
 
     GSE("GSE", 1),
     INIT_L0C_L0("INIT_L0C_L0", 1),

@@ -15,7 +15,8 @@ public enum JobOrderFields {
     DT_DIR("@dt_dir@"),
     DEM_PATH("@dem_path"),
     CREATION_DATE("@creationDate@"),
-    GRANULE_END("@granule_end@");
+    GRANULE_END("@granule_end@"),
+    GPS_UTC("@gps_utc@");
 
     private final String placeholder;
 

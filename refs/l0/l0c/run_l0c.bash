@@ -55,6 +55,13 @@ if [ ${TASK} == "OLQC-L0cDs" ]; then
   TASK_VERSION=$(ls /dpc/app/s2ipf/OLQC) ;
 fi ;
 
+#PARALLEL_DETECTOR =
+#    FORMAT_ISP
+#    QL_GEO
+#    FORMAT_METADATA_GR_L0C
+#    OLQC-L0cGr
+#PARALLEL_BAND =
+#    FORMAT_IMG_QL_L0
 
 CMD_SED="sed 's#<Task_Version>02.16.00</Task_Version>#<Task_Version>${TASK_VERSION}</Task_Version>#g' -i job_order_template_${TASK}.xml" ;
 eval $CMD_SED ;

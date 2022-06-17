@@ -21,9 +21,4 @@ public class L0uPreparationProperties {
      */
     private String caduBucket;
 
-    /**
-     * Name of the Job Order generated
-     */
-    private String jobOrderName = "JobOrder_L0U.xml";
-
 }

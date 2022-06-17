@@ -25,6 +25,18 @@ public class ProcessorService {
 
         return processingMessage -> {
             log.info("Received message : {}", processingMessage);
+
+
+            // FOR execution :
+            // OLQC-L0cGr
+            // @list_l0gr_items@  |    => execution, need output first part
+            // @gr_postfix@       |
+            // replaced with gr_name
+
+            // For execution:
+            // l0_dsname
+
+
             return processingMessage;
         };
 

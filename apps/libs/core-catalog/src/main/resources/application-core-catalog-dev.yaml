@@ -1,5 +1,0 @@
-catalog:
-  url:
-  timeout: 2
-  auxProductFamily: S2_AUX
-  mode: LatestValCover

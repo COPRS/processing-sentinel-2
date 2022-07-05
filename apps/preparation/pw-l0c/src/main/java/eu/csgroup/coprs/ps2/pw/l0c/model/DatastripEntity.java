@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l0c.model;
 
+import eu.csgroup.coprs.ps2.core.mongo.model.AuditableEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -12,7 +13,7 @@ import java.util.Map;
 @Getter
 @Setter
 @Document(collection = "Datastrip")
-public class DatastripEntity {
+public class DatastripEntity extends AuditableEntity {
 
     @Id
     private String name;
@@ -22,10 +23,10 @@ public class DatastripEntity {
     private String satellite;
     private String stationCode;
 
-    private Instant creationDate;
-
     private Instant startTime;
     private Instant stopTime;
+
+    private Instant t0PdgsDate;
 
     private Map<String, Boolean> availableByAux;
 

@@ -1,0 +1,10 @@
+
+dependencies {
+    testImplementation "io.github.hakky54:logcaptor:2.7.10"
+}
+
+configurations {
+    testImplementation {
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+    }
+}

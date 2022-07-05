@@ -56,13 +56,18 @@ public class ProcessorService {
 
             try {
 
-                final L0cPreparationInput l0cPreparationInput = inputService.extractInput(processingMessage);
+                if (inputService.isPreparationInput(processingMessage)) {
 
-                final List<Path> datastrips = inputService.getDatastrips(l0cPreparationInput.getInputFolder());
+                    final L0cPreparationInput l0cPreparationInput = inputService.extractInput(processingMessage);
 
-                log.info("Found {} datastrips to prepare", datastrips.size());
+                    log.info("Preparing datastrips for input folder {}", l0cPreparationInput.getInputFolder());
 
-                datastrips.forEach(datastripPath -> datastripManagementService.create(datastripPath, l0cPreparationInput.getSatellite(), l0cPreparationInput.getStation()));
+                    final List<Path> datastrips = inputService.getDatastrips(l0cPreparationInput.getInputFolder());
+
+                    log.info("Found {} datastrips to prepare", datastrips.size());
+
+                    datastrips.forEach(datastripPath -> datastripManagementService.create(datastripPath, l0cPreparationInput.getSatellite(), l0cPreparationInput.getStation()));
+                }
 
                 datastripManagementService.updateFailed();
                 datastripManagementService.updateAvailableAux();

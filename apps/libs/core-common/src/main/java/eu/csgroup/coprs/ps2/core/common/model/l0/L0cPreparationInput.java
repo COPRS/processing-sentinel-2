@@ -1,17 +1,12 @@
 package eu.csgroup.coprs.ps2.core.common.model.l0;
 
-import lombok.EqualsAndHashCode;
+import eu.csgroup.coprs.ps2.core.common.model.PreparationInput;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode
-public class L0cPreparationInput {
-
-    private String session;
-    private String satellite;
-    private String station;
+public class L0cPreparationInput extends PreparationInput {
 
     private String inputFolder;
 

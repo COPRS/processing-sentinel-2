@@ -1,11 +1,13 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.service.pw.PWItemService;
 import eu.csgroup.coprs.ps2.core.mongo.exception.MongoDBException;
 import eu.csgroup.coprs.ps2.pw.l0c.model.AuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
 import eu.csgroup.coprs.ps2.pw.l0c.model.DatastripEntity;
 import eu.csgroup.coprs.ps2.pw.l0c.model.DatastripMapper;
 import eu.csgroup.coprs.ps2.pw.l0c.repository.DatastripEntityRepository;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
 @Slf4j
 @Service
-public class DatastripService {
+@Transactional
+public class DatastripService implements PWItemService<Datastrip> {
 
     private final DatastripEntityRepository datastripEntityRepository;
     private final DatastripMapper datastripMapper;
@@ -28,8 +32,7 @@ public class DatastripService {
         this.datastripMapper = datastripMapper;
     }
 
-    @Transactional
-    public Datastrip create(String datastripName, String folder, Instant startTime, Instant stopTime, String satellite, String stationCode) {
+    public Datastrip create(String datastripName, String folder, Instant startTime, Instant stopTime, String satellite, String stationCode, Instant t0PdgsDate) {
 
         log.info("Creating Datastrip: {}", datastripName);
 
@@ -40,11 +43,11 @@ public class DatastripService {
         DatastripEntity datastripEntity = new DatastripEntity()
                 .setName(datastripName)
                 .setFolder(folder)
-                .setCreationDate(Instant.now())
                 .setStartTime(startTime)
                 .setStopTime(stopTime)
                 .setSatellite(satellite)
                 .setStationCode(stationCode)
+                .setT0PdgsDate(t0PdgsDate)
                 .setAvailableByAux(
                         Arrays.stream(AuxFile.values()).collect(Collectors.toMap(auxFile -> auxFile.getAuxProductType().name(), o -> false))
                 );
@@ -54,34 +57,27 @@ public class DatastripService {
         return datastripMapper.toDatastrip(datastripEntity);
     }
 
-    @Transactional
     public boolean exists(String datastripName) {
         return datastripEntityRepository.existsById(datastripName);
     }
 
-    @Transactional
     public Datastrip read(String datastripName) {
         log.debug("Retrieving Datastrip: {}", datastripName);
         return datastripMapper.toDatastrip(readEntity(datastripName));
     }
 
-    @Transactional
     public List<Datastrip> readAll(boolean ready, boolean failed, boolean jobOrderCreated) {
-        return datastripEntityRepository.findAllByReadyAndFailedAndJobOrderCreated(ready, failed, jobOrderCreated)
-                .stream()
-                .map(datastripMapper::toDatastrip)
-                .toList();
+        return toDatastrips(datastripEntityRepository.findAllByReadyAndFailedAndJobOrderCreated(ready, failed, jobOrderCreated));
     }
 
-    @Transactional
     public List<Datastrip> readAll(boolean failed, boolean jobOrderCreated) {
-        return datastripEntityRepository.findAllByFailedAndJobOrderCreated(failed, jobOrderCreated)
-                .stream()
-                .map(datastripMapper::toDatastrip)
-                .toList();
+        return toDatastrips(datastripEntityRepository.findAllByFailedAndJobOrderCreated(failed, jobOrderCreated));
     }
 
-    @Transactional
+    public List<Datastrip> readAllOr(boolean failed, boolean jobOrderCreated) {
+        return toDatastrips(datastripEntityRepository.findAllByFailedOrJobOrderCreated(failed, jobOrderCreated));
+    }
+
     public Datastrip update(Datastrip datastrip) {
 
         log.info("Updating Datastrip: {}", datastrip.getName());
@@ -94,7 +90,7 @@ public class DatastripService {
         return datastripMapper.toDatastrip(datastripEntityRepository.save(datastripEntity));
     }
 
-    @Transactional
+    @Override
     public void updateAll(List<Datastrip> datastripList) {
 
         log.info("Updating multiple Datastrips ({})", datastripList.size());
@@ -112,11 +108,16 @@ public class DatastripService {
         datastripEntityRepository.saveAll(datastripEntities);
     }
 
-    @Transactional
     public void delete(String datastripName) {
         log.info("Deleting Datastrip: {}", datastripName);
         DatastripEntity datastripEntity = readEntity(datastripName);
         datastripEntityRepository.delete(datastripEntity);
+    }
+
+    @Override
+    public void deleteAll(Set<String> datastripNameSet) {
+        log.info("Deleting Datastrip ({})", datastripNameSet.size());
+        datastripEntityRepository.deleteAllByNameIn(datastripNameSet);
     }
 
     private DatastripEntity readEntity(String datastripName) {
@@ -129,6 +130,12 @@ public class DatastripService {
                 .setReady(updatedDatastripEntity.isReady())
                 .setFailed(updatedDatastripEntity.isFailed())
                 .setJobOrderCreated(updatedDatastripEntity.isJobOrderCreated());
+    }
+
+    private List<Datastrip> toDatastrips(List<DatastripEntity> datastripEntityList) {
+        return datastripEntityList.stream()
+                .map(datastripMapper::toDatastrip)
+                .toList();
     }
 
 }

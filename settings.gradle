@@ -1,8 +1,6 @@
 include ":apps:libs:core-common"
 include ":apps:libs:core-obs"
 include ":apps:libs:core-mongo"
-include ":apps:libs:core-elastic"
-include ":apps:libs:core-catalog"
 
 include ":apps:preparation:pw-l0u"
 include ":apps:preparation:pw-l0c"

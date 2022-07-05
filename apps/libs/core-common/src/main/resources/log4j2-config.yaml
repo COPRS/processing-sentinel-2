@@ -13,19 +13,16 @@ Configuration:
     level: DEBUG
 
   Appenders:
-
     Console:
       - name: STDOUT
         target: SYSTEM_OUT
         PatternLayout:
           alwaysWriteExceptions: true
           Pattern: "{\"header\":{\"type\":\"LOG\",\"timestamp\":\"%d{yyyy-MM-dd'T'HH:mm:ss.nnnnnn}Z\",\"level\":\"%level\",\"line\":%L,\"file\":\"%.255F\",\"thread\":\"%.255t\"},\"message\":{\"content\":\"%enc{%m%xEx}{JSON}\"},\"custom\":{\"logger_string\":\"%logger\"}}%n"
-
       - name: PLAIN
         target: SYSTEM_OUT
         PatternLayout:
           Pattern: "%msg%n"
-
     RollingFile:
       - name: FILE
         fileName: "${path}/logfile.log"
@@ -39,8 +36,12 @@ Configuration:
           max: 30
 
   Loggers:
-
     Logger:
+      - name: eu.csgroup.coprs.ps2.core.common.model.trace
+        level: DEBUG
+        additivity: false
+        AppenderRef:
+          - ref: PLAIN
       - name: eu.csgroup.coprs
         level: DEBUG
         additivity: false

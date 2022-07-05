@@ -43,15 +43,15 @@ class ObsServiceTest {
     private ObsService obsService;
 
     private static final String BUCKET = "bucket";
-    private static final String KEY_1 = "root/key1";
-    private static final String KEY_2 = "root/key2";
-    private static final List<String> KEY_LIST = List.of(KEY_1, KEY_2);
-    private static final String PATH_1 = "src/test/resources/folder";
-    private static final String PATH_2 = "src/test/resources/folder/foo";
-    private static final List<Path> PATH_LIST = List.of(Paths.get(PATH_1), Paths.get(PATH_2));
-    private static final FileInfo FILE_INFO_FILE = new FileInfo().setBucket(BUCKET).setKey(KEY_1).setFullLocalPath(PATH_2);
-    private static final FileInfo FILE_INFO_DIR = new FileInfo().setBucket(BUCKET).setKey(KEY_2).setFullLocalPath(PATH_1);
-    private static final Set<FileInfo> FILE_INFO_SET = Set.of(FILE_INFO_FILE, FILE_INFO_DIR);
+    private static final String FOLDER_KEY = "root/folder";
+    private static final String FILE_KEY = "root/file";
+    private static final List<String> KEY_LIST = List.of(FOLDER_KEY, FILE_KEY);
+    private static final String FOLDER_PATH = "src/test/resources/folder";
+    private static final String FILE_PATH = "src/test/resources/folder/foo";
+    private static final List<Path> PATH_LIST = List.of(Paths.get(FOLDER_PATH), Paths.get(FILE_PATH));
+    private static final FileInfo FILE_INFO_FOLDER = new FileInfo().setBucket(BUCKET).setKey(FOLDER_KEY).setFullLocalPath(FOLDER_PATH);
+    private static final FileInfo FILE_INFO_FILE = new FileInfo().setBucket(BUCKET).setKey(FILE_KEY).setFullLocalPath(FILE_PATH);
+    private static final Set<FileInfo> FILE_INFO_SET = Set.of(FILE_INFO_FOLDER, FILE_INFO_FILE);
 
     private AutoCloseable autoCloseable;
 
@@ -68,161 +68,139 @@ class ObsServiceTest {
 
     @Test
     void exists() {
-        mockListResponse();
-        assertTrue(obsService.exists(BUCKET, KEY_1));
+        mockExists();
+        assertTrue(obsService.exists(BUCKET, FILE_KEY));
     }
 
     @Test
     void exists_not() {
-        mockListResponseEmpty();
-        assertFalse(obsService.exists(BUCKET, KEY_1));
+        mockNotExists();
+        assertFalse(obsService.exists(BUCKET, FILE_KEY));
     }
 
     @Test
     void exists_fails() {
-        assertThrows(ObsException.class, () -> obsService.exists(BUCKET, KEY_1));
+        assertThrows(ObsException.class, () -> obsService.exists(BUCKET, FOLDER_KEY));
     }
 
     @Test
     void downloadFile() {
+        mockIsFile();
         mockFileDownloadSuccess();
-        obsService.downloadFile(BUCKET, KEY_1, PATH_1);
+        obsService.download(BUCKET, FILE_KEY, FILE_PATH);
         assertTrue(true);
     }
 
     @Test
     void downloadFile_failure() {
+        mockIsFile();
         mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.downloadFile(BUCKET, KEY_1, PATH_1));
+        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FILE_KEY, FOLDER_PATH));
     }
 
     @Test
     void downloadDirectory() {
+        mockIsFolder();
         mockDirDownloadSuccess();
-        obsService.downloadDirectory(BUCKET, KEY_1, PATH_1);
+        obsService.download(BUCKET, FOLDER_KEY, FOLDER_PATH);
         assertTrue(true);
     }
 
     @Test
     void downloadDirectory_failure() {
+        mockIsFolder();
         mockDirDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.downloadDirectory(BUCKET, KEY_1, PATH_1));
+        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FOLDER_KEY, FOLDER_PATH));
     }
 
     @Test
-    void downloadFileBatch() {
+    void downloadBatch() {
+        mockIsFolderThenIsFile();
+        mockDirDownloadSuccess();
         mockFileDownloadSuccess();
-        obsService.downloadFileBatch(BUCKET, KEY_LIST, PATH_1);
+        obsService.download(BUCKET, KEY_LIST, FOLDER_PATH);
         assertTrue(true);
     }
 
     @Test
-    void downloadFileBatch_failure() {
+    void downloadBatch_failure() {
+        mockIsFolderThenIsFile();
+        mockDirDownloadSuccess();
         mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.downloadFileBatch(BUCKET, KEY_LIST, PATH_1));
+        assertThrows(ObsException.class, () -> obsService.download(BUCKET, KEY_LIST, FOLDER_PATH));
     }
 
     @Test
-    void downloadDirBatch() {
+    void downloadAll() {
+        mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
-        obsService.downloadDirBatch(BUCKET, KEY_LIST, PATH_1);
-        assertTrue(true);
-    }
-
-    @Test
-    void downloadDirBatch_failure() {
-        mockDirDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.downloadDirBatch(BUCKET, KEY_LIST, PATH_1));
-    }
-
-    @Test
-    void downloadAll_withFiles() {
-        mockListResponseEmpty();
         mockFileDownloadSuccess();
-        obsService.downloadAll(FILE_INFO_SET);
-        assertTrue(true);
-    }
-
-    @Test
-    void downloadAll_withDirs() {
-        mockListResponse();
-        mockDirDownloadSuccess();
-        obsService.downloadAll(FILE_INFO_SET);
+        obsService.download(FILE_INFO_SET);
         assertTrue(true);
     }
 
     @Test
     void downloadAll_failure() {
-        mockListResponseEmpty();
+        mockIsFolderThenIsFile();
+        mockDirDownloadSuccess();
         mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.downloadAll(FILE_INFO_SET));
+        assertThrows(ObsException.class, () -> obsService.download(FILE_INFO_SET));
     }
 
     @Test
     void uploadFile() {
         mockFileUploadSuccess();
-        obsService.uploadFile(BUCKET, PATH_1, KEY_1);
+        obsService.upload(BUCKET, FILE_PATH, FILE_KEY);
         assertTrue(true);
     }
 
     @Test
     void uploadFile_failure() {
         mockFileUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.uploadFile(BUCKET, PATH_1, KEY_1));
+        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, FILE_PATH, FILE_KEY));
     }
 
     @Test
     void uploadDirectory() {
         mockDirUploadSuccess();
-        obsService.uploadDirectory(BUCKET, PATH_1, KEY_1);
+        obsService.upload(BUCKET, FOLDER_PATH, FOLDER_KEY);
         assertTrue(true);
     }
 
     @Test
     void uploadDirectory_failure() {
         mockDirUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.uploadDirectory(BUCKET, PATH_1, KEY_1));
+        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, FOLDER_PATH, FOLDER_KEY));
     }
 
     @Test
-    void uploadFileBatch() {
-        mockFileUploadSuccess();
-        obsService.uploadFileBatch(BUCKET, PATH_LIST, KEY_1);
-        assertTrue(true);
-    }
-
-    @Test
-    void uploadFileBatch_failure() {
-        mockFileUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.uploadFileBatch(BUCKET, PATH_LIST, KEY_1));
-    }
-
-    @Test
-    void uploadDirBatch() {
+    void uploadBatch() {
         mockDirUploadSuccess();
-        obsService.uploadDirBatch(BUCKET, PATH_LIST, KEY_1);
+        mockFileUploadSuccess();
+        obsService.upload(BUCKET, PATH_LIST, FOLDER_KEY);
         assertTrue(true);
     }
 
     @Test
-    void uploadDirBatch_failure() {
+    void uploadBatch_failure() {
         mockDirUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.uploadDirBatch(BUCKET, PATH_LIST, KEY_1));
+        mockFileUploadSuccess();
+        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, PATH_LIST, FOLDER_KEY));
     }
 
     @Test
     void uploadAll() {
         mockDirUploadSuccess();
         mockFileUploadSuccess();
-        obsService.uploadAll(FILE_INFO_SET);
+        obsService.upload(FILE_INFO_SET);
         assertTrue(true);
     }
 
     @Test
     void uploadAll_failure() {
         mockDirUploadFailure();
-        mockFileUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.uploadAll(FILE_INFO_SET));
+        mockFileUploadSuccess();
+        assertThrows(ObsException.class, () -> obsService.upload(FILE_INFO_SET));
     }
 
     // ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -283,14 +261,56 @@ class ObsServiceTest {
         Mockito.when(transferManager.uploadDirectory(any(UploadDirectoryRequest.class))).thenReturn(directoryUploadFailure);
     }
 
+
+    private void mockExists() {
+        mockListResponse();
+    }
+
+    private void mockNotExists() {
+        mockListResponseEmpty();
+    }
+
+    private void mockIsFolder() {
+        mockListResponse();
+    }
+
+    private void mockIsFile() {
+        mockListResponseEmpty();
+    }
+
+    private void mockIsFolderThenIsFile() {
+        mockListResponseFullThenEmpty();
+    }
+
+    /**
+     * Used for exists and isFolder:
+     * - exists will return false
+     * - isFolder will return false
+     */
     private void mockListResponseEmpty() {
         final ListObjectsV2Response emptyResponse = ListObjectsV2Response.builder().build();
         Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(emptyResponse);
     }
 
+    /**
+     * Used for exists and isFolder:
+     * - exists will return true
+     * - isFolder will return true
+     */
     private void mockListResponse() {
         final ListObjectsV2Response response = ListObjectsV2Response.builder().contents(Set.of(S3Object.builder().build())).build();
         Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response);
+    }
+
+    /**
+     * Used for exists and isFolder:
+     * - exists will return true then false
+     * - isFolder will return true then false
+     */
+    private void mockListResponseFullThenEmpty() {
+        final ListObjectsV2Response emptyResponse = ListObjectsV2Response.builder().build();
+        final ListObjectsV2Response response = ListObjectsV2Response.builder().contents(Set.of(S3Object.builder().build())).build();
+        Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response).thenReturn(emptyResponse);
     }
 
 }

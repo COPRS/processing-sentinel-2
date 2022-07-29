@@ -46,6 +46,7 @@ public class UploadService extends AbstractEWUploadService {
             log.info("Found {} SAD files", sadFolders.size());
             log.info("Found {} HKTM files", hktmFolders.size());
 
+            // TODO put those in conf
             fileInfosByFamily.put(ProductFamily.S2_SAD, getFileInfoSet(sadFolders, l0uExecutionProperties.getSadUploadBucket()));
             fileInfosByFamily.put(ProductFamily.S2_HKTM, getFileInfoSet(hktmFolders, l0uExecutionProperties.getHktmUploadBucket()));
 

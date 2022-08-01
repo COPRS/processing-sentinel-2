@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.core.common.model.trace;
 
 
 import eu.csgroup.coprs.ps2.core.common.model.trace.input.TaskInput;
+import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.output.TaskOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.BeginTask;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.EndTask;
@@ -18,7 +19,7 @@ import java.util.UUID;
 @Slf4j
 @Getter
 @Setter
-public class TraceManager {
+public class TaskReport {
 
     private final UUID uid = UUID.randomUUID();
 
@@ -59,18 +60,30 @@ public class TraceManager {
     }
 
     public void end(String message, TaskOutput output, TaskQuality quality) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, output, quality);
+        end(TraceLevel.INFO, TaskStatus.OK, message, output, quality, null);
+    }
+
+    public void end(String message, TaskOutput output, TaskQuality quality, TaskMissingOutput missingOutput) {
+        end(TraceLevel.INFO, TaskStatus.OK, message, output, quality, missingOutput);
+    }
+
+    public void warning(String message, TaskOutput output) {
+        end(TraceLevel.WARNING, TaskStatus.OK, message, output, null, null);
     }
 
     public void warning(String message, TaskOutput output, TaskQuality quality) {
-        end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality);
+        end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality, null);
+    }
+
+    public void warning(String message, TaskOutput output, TaskQuality quality, TaskMissingOutput missingOutput) {
+        end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality, missingOutput);
     }
 
     public void error(String message) {
-        end(TraceLevel.ERROR, TaskStatus.NOK, message, null, null);
+        end(TraceLevel.ERROR, TaskStatus.NOK, message, null, null, null);
     }
 
-    public void end(TraceLevel level, TaskStatus status, String message, TaskOutput output, TaskQuality quality) {
+    private void end(TraceLevel level, TaskStatus status, String message, TaskOutput output, TaskQuality quality, TaskMissingOutput missingOutput) {
 
         final Double duration = Duration.between(start, Instant.now()).toMillis() / 1000.0;
 
@@ -82,6 +95,7 @@ public class TraceManager {
         if (quality != null) {
             endTask.setQuality(quality);
         }
+        endTask.setMissingOutput(missingOutput);
 
         endTask.setStatus(status)
                 .setDurationInSeconds(duration)

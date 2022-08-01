@@ -15,6 +15,8 @@ public class Header {
     private String mission = "S2";
     private String workflow = "NOMINAL";
     private String debugMode = "false";
+    private String rsChainName; // TODO set that
+    private String rsChanVersion;
     private List<String> tagList;
 
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", timezone = "UTC")

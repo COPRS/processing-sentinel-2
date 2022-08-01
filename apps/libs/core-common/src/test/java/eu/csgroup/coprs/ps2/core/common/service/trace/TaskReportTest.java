@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.core.common.service.trace;
 
 import eu.csgroup.coprs.ps2.core.common.AbstractSpringBootTest;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TraceLogger;
-import eu.csgroup.coprs.ps2.core.common.model.trace.TraceManager;
+import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import nl.altindag.log.LogCaptor;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-class TraceManagerTest extends AbstractSpringBootTest {
+class TaskReportTest extends AbstractSpringBootTest {
 
     private static final String satellite = "S2A";
 
@@ -31,10 +31,10 @@ class TraceManagerTest extends AbstractSpringBootTest {
 
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {
 
-            final TraceManager traceManager = basicTraceManager("basicTask");
+            final TaskReport taskReport = basicTraceManager("basicTask");
 
-            traceManager.begin("begin message", null);
-            traceManager.end("end message", null, null);
+            taskReport.begin("begin message", null);
+            taskReport.end("end message", null, null);
 
             assertEquals(2, logCaptor.getLogs().size());
 
@@ -52,10 +52,10 @@ class TraceManagerTest extends AbstractSpringBootTest {
 
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {
 
-            final TraceManager traceManager = fullTraceManager("chainTask");
+            final TaskReport taskReport = fullTraceManager("chainTask");
 
-            traceManager.begin("begin message", null);
-            traceManager.end("end message", null, null);
+            taskReport.begin("begin message", null);
+            taskReport.end("end message", null, null);
 
             assertEquals(2, logCaptor.getLogs().size());
 
@@ -74,10 +74,10 @@ class TraceManagerTest extends AbstractSpringBootTest {
 
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {
 
-            final TraceManager traceManager = fullTraceManager("chainTask");
+            final TaskReport taskReport = fullTraceManager("chainTask");
 
-            traceManager.begin("begin message", null);
-            traceManager.warning("warning message", null, null);
+            taskReport.begin("begin message", null);
+            taskReport.warning("warning message", null, null);
 
             assertEquals(2, logCaptor.getLogs().size());
 
@@ -96,10 +96,10 @@ class TraceManagerTest extends AbstractSpringBootTest {
 
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {
 
-            final TraceManager traceManager = fullTraceManager("chainTask");
+            final TaskReport taskReport = fullTraceManager("chainTask");
 
-            traceManager.begin("begin message", null);
-            traceManager.error("error message");
+            taskReport.begin("begin message", null);
+            taskReport.error("error message");
 
             assertEquals(2, logCaptor.getLogs().size());
 
@@ -113,16 +113,16 @@ class TraceManagerTest extends AbstractSpringBootTest {
         }
     }
 
-    private TraceManager basicTraceManager(String taskName) {
+    private TaskReport basicTraceManager(String taskName) {
         return traceManager(taskName, satellite, null, null);
     }
 
-    private TraceManager fullTraceManager(String taskName) {
+    private TaskReport fullTraceManager(String taskName) {
         return traceManager(taskName, satellite, parentUid, predecessorUid);
     }
 
-    private TraceManager traceManager(String taskName, String satellite, UUID parentUid, UUID predecessorUid) {
-        return new TraceManager()
+    private TaskReport traceManager(String taskName, String satellite, UUID parentUid, UUID predecessorUid) {
+        return new TaskReport()
                 .setTaskName(taskName)
                 .setSatellite(satellite)
                 .setParentUid(parentUid)

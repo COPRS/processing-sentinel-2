@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.core.common.model.trace.task;
 
+import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.output.TaskOutput;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,7 @@ public class EndTask extends AbstractTask {
 
     private TaskOutput output;
     private TaskQuality quality;
+    private TaskMissingOutput missingOutput;
 
     public EndTask() {
         this.setEvent(TaskEvent.END);

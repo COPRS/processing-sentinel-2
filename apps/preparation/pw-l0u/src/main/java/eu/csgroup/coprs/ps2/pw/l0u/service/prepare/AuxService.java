@@ -73,7 +73,7 @@ public class AuxService {
                 );
 
         // Download all files to tmp folder
-        obsService.downloadDirBatch(
+        obsService.download(
                 l0uPreparationProperties.getAuxBucket(),
                 keyByAuxValue.values().stream().toList(),
                 tmpFolder);

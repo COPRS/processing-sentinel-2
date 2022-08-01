@@ -50,7 +50,7 @@ public class UploadService extends AbstractEWUploadService {
             fileInfosByFamily.put(ProductFamily.S2_SAD, getFileInfoSet(sadFolders, l0uExecutionProperties.getSadUploadBucket()));
             fileInfosByFamily.put(ProductFamily.S2_HKTM, getFileInfoSet(hktmFolders, l0uExecutionProperties.getHktmUploadBucket()));
 
-            obsService.uploadAll(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()));
+            obsService.upload(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()));
 
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);

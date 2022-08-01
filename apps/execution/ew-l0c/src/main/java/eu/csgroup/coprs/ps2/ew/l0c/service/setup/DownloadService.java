@@ -27,7 +27,7 @@ public class DownloadService {
 
         log.info("Downloading files from object storage");
 
-        obsService.downloadAll(fileInfoSet);
+        obsService.download(fileInfoSet);
 
         Set<String> trashFolders = new HashSet<>();
 

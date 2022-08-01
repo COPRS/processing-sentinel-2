@@ -36,7 +36,7 @@ public class DownloadService {
             fileInfo.setLocalPath(localPath);
         });
 
-        obsService.downloadAll(fileInfoSet);
+        obsService.download(fileInfoSet);
 
         log.info("Finished downloading files from object storage");
     }

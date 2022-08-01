@@ -18,7 +18,6 @@ import eu.csgroup.coprs.ps2.pw.l0c.settings.PWL0cTask;
 import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -138,7 +137,7 @@ public class JobOrderService {
         Path localAuxPath = tmpFolder.resolve(auxUt1utcFileInfo.getObsName());
         Path dblPath = localAuxPath.resolve(auxUt1utcFileInfo.getObsName() + S2FileParameters.AUX_FILE_EXTENSION);
 
-        obsService.downloadDirectory(auxUt1utcFileInfo.getBucket(), auxUt1utcFileInfo.getKey(), localAuxPath.toString());
+        obsService.download(auxUt1utcFileInfo.getBucket(), auxUt1utcFileInfo.getKey(), localAuxPath.toString());
 
         final String extractValue = FileContentUtils.extractValue(dblPath, "TAI-UTC =", List.of("TAI-UTC =", "\\..*", "[ ]*"));
 

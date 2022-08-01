@@ -49,7 +49,7 @@ public class UploadService extends AbstractEWUploadService {
             fileInfosByFamily.put(ProductFamily.S2_L0_DS, getFileInfoSet(dsFolders, l0cExecutionProperties.getDsUploadBucket()));
             fileInfosByFamily.put(ProductFamily.S2_L0_GR, getFileInfoSet(grFolders, l0cExecutionProperties.getGrUploadBucket()));
 
-            obsService.uploadAll(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
+            obsService.upload(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
 
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);

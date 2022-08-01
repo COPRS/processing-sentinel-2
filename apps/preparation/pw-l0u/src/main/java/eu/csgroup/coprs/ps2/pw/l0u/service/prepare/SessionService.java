@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @Service
 public class SessionService {
 
+    private static final String RETRIEVING_MULTIPLE_SESSIONS = "Retrieving multiple sessions ({})";
+
     private final SessionEntityRepository sessionEntityRepository;
     private final SessionMapper sessionMapper;
 
@@ -73,7 +75,8 @@ public class SessionService {
                 .stream()
                 .map(sessionMapper::toSession)
                 .toList();
-        log.debug("Retrieving multiple sessions ({})", sessions.size());
+
+        log.debug(RETRIEVING_MULTIPLE_SESSIONS, sessions.size());
         return sessions;
     }
 
@@ -83,7 +86,7 @@ public class SessionService {
                 .stream()
                 .map(sessionMapper::toSession)
                 .toList();
-        log.debug("Retrieving multiple sessions ({})", sessions.size());
+        log.debug(RETRIEVING_MULTIPLE_SESSIONS, sessions.size());
         return sessions;
     }
 
@@ -93,7 +96,7 @@ public class SessionService {
                 .stream()
                 .map(sessionMapper::toSession)
                 .toList();
-        log.debug("Retrieving multiple sessions ({})", sessions.size());
+        log.debug(RETRIEVING_MULTIPLE_SESSIONS, sessions.size());
         return sessions;
     }
 

@@ -1,12 +1,13 @@
 package eu.csgroup.coprs.ps2.core.common.model.trace;
 
 
+import eu.csgroup.coprs.ps2.core.common.model.trace.input.EmptyTaskInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.input.TaskInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.output.TaskOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.BeginTask;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.EndTask;
-import eu.csgroup.coprs.ps2.core.common.model.trace.task.TaskQuality;
+import eu.csgroup.coprs.ps2.core.common.model.trace.quality.TaskQuality;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.TaskStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +29,7 @@ public class TaskReport {
     private UUID parentUid;
     private UUID predecessorUid;
     private Instant start = Instant.EPOCH;
-    private TaskInput input = TaskInput.EMPTY;
+    private TaskInput input = new EmptyTaskInput();
 
 
     public void begin(String message, TaskInput input) {

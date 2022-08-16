@@ -1,0 +1,25 @@
+{
+  "uid": "b8f7fe21-68e7-4755-ad48-1acf53360f62",
+  "creationDate": "2022-08-09T15:39:47.205Z",
+  "missionId": "S2",
+  "satelliteId": "",
+  "keyObjectStorage": "DCS_05_S2B_20220413132241026648_dat/ch_1/DCS_05_S2B_20220413132241026648_ch1_DSIB.xml",
+  "storagePath": "s3://rs-session-files/DCS_05_S2B_20220413132241026648_dat/ch_1/DCS_05_S2B_20220413132241026648_ch1_DSIB.xml",
+  "productFamily": "EDRS_SESSION",
+  "podName": "ingestion-part1-ingestion-worker-v1-f6999ff98-xt9pg",
+  "allowedActions": [],
+  "retryCounter": 0,
+  "additionalFields": {},
+  "metadata": {
+    "mode": null,
+    "relativePath": "SGS_/S2B/DCS_05_S2B_20220413132241026648_dat/ch_1/DCS_05_S2B_20220413132241026648_ch1_DSIB.xml",
+    "productName": "DCS_05_S2B_20220413132241026648_dat/ch_1/DCS_05_S2B_20220413132241026648_ch1_DSIB.xml"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": null,
+  "t0_pdgs_date": "2022-08-09T15:39:41.000Z",
+  "productSizeByte": 6858,
+  "oqcFlag": "NOT_CHECKED",
+  "stationName": "SGS_"
+}

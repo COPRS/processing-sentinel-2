@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
+import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.exception.AuxQueryException;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
@@ -73,7 +73,7 @@ public class AuxService {
                 );
 
         // Download all files to tmp folder
-        obsService.downloadDirBatch(
+        obsService.download(
                 l0uPreparationProperties.getAuxBucket(),
                 keyByAuxValue.values().stream().toList(),
                 tmpFolder);

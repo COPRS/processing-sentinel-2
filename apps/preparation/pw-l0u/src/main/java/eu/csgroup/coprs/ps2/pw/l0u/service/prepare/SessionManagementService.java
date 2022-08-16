@@ -1,10 +1,10 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.catalog.model.ProductType;
-import eu.csgroup.coprs.ps2.core.catalog.model.SessionCatalogData;
-import eu.csgroup.coprs.ps2.core.catalog.service.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
-import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.model.catalog.ProductType;
+import eu.csgroup.coprs.ps2.core.common.model.catalog.SessionCatalogData;
+import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
+import eu.csgroup.coprs.ps2.core.common.service.pw.PWItemManagementService;
+import eu.csgroup.coprs.ps2.core.common.utils.CatalogUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
@@ -20,44 +20,84 @@ import java.util.List;
 
 @Slf4j
 @Service
-public class SessionManagementService {
+@Transactional
+public class SessionManagementService extends PWItemManagementService<Session, SessionService> {
 
     private static final int TOTAL_SESSION_ENTRIES = 2;
-
-    private final SessionService sessionService;
-    private final CatalogService catalogService;
-    private final L0uPreparationProperties l0uPreparationProperties;
+    private static final long DELETION_GRACE_PERIOD = 60L;
+    private static final String TO_PDGS_DATE_PROPERTY = "t0_pdgs_date";
 
     public SessionManagementService(SessionService sessionService, CatalogService catalogService, L0uPreparationProperties l0uPreparationProperties) {
-        this.sessionService = sessionService;
-        this.catalogService = catalogService;
-        this.l0uPreparationProperties = l0uPreparationProperties;
+        super(catalogService, sessionService, l0uPreparationProperties);
     }
 
-    @Transactional
-    public List<Session> getWaiting() {
-        return sessionService.readAll(false, false);
-    }
-
-    @Transactional
+    @Override
     public List<Session> getReady() {
-        return sessionService.readAll(true, false, false);
+        return itemService.readAll(true, false, false);
     }
 
-    @Transactional
-    public List<Session> getNotReady() {
-        return sessionService.readAll(false, false, false);
+    @Override
+    public List<Session> getDeletable() {
+        final Instant now = Instant.now();
+        return itemService.readAllOr(true, true).stream()
+                .filter(session -> Duration.between(session.getLastModifiedDate(), now).getSeconds() > DELETION_GRACE_PERIOD)
+                .toList();
     }
 
-    @Transactional
-    public List<Session> getMissingAux() {
-        return sessionService.readAll(true, false, false, false);
+    @Override
+    public List<Session> getWaiting() {
+        return itemService.readAll(false, false);
     }
 
-    @Transactional
-    public void create(String sessionName) {
+    @Override
+    public void updateAvailableAux() {
 
-        if (!sessionService.exists(sessionName)) {
+        log.info("Updating AUX availability for all waiting sessions");
+
+        final List<Session> missingAux = getMissingAux();
+
+        log.debug("Found {} sessions with missing AUX", missingAux.size());
+
+        if (!CollectionUtils.isEmpty(missingAux)) {
+            missingAux.forEach(this::updateAvailableAux);
+            itemService.updateAll(missingAux);
+        }
+
+        log.info("Finished updating AUX availability for all waiting sessions");
+    }
+
+    @Override
+    public void updateNotReady() {
+
+        log.info("Updating ready status for all waiting sessions");
+
+        final List<Session> sessions = getNotReady();
+
+        log.debug("Found {} sessions not ready", sessions.size());
+
+        if (!CollectionUtils.isEmpty(sessions)) {
+            sessions.forEach(session -> {
+                boolean ready = session.isRawComplete() && session.allAuxAvailable();
+                session.setReady(ready);
+                if (ready) {
+                    log.info("Session {} is now ready", session.getName());
+                }
+            });
+            itemService.updateAll(sessions);
+        }
+
+        log.info("Finished updating ready status for all waiting sessions");
+    }
+
+    @Override
+    public void setJobOrderCreated(List<Session> sessionList) {
+        sessionList.forEach(session -> session.setJobOrderCreated(true));
+        itemService.updateAll(sessionList);
+    }
+
+    public void create(String sessionName, Instant t0PdgsDate) {
+
+        if (!itemService.exists(sessionName)) {
             catalogService.retrieveSessionData(sessionName)
                     .stream()
                     .filter(sessionCatalogData -> ProductType.SESSION.name().equals(sessionCatalogData.getProductType()))
@@ -65,19 +105,18 @@ public class SessionManagementService {
                     .ifPresent(sessionCatalogData -> {
                         Instant start = DateUtils.toInstant(sessionCatalogData.getStartTime());
                         Instant stop = DateUtils.toInstant(sessionCatalogData.getStopTime());
-                        sessionService.create(sessionName, start, stop, sessionCatalogData.getSatelliteId(), sessionCatalogData.getStationCode());
+                        itemService.create(sessionName, start, stop, sessionCatalogData.getSatelliteId(), sessionCatalogData.getStationCode(), t0PdgsDate);
                     });
         }
 
         updateRawComplete(sessionName);
     }
 
-    @Transactional
     public void updateRawComplete(String sessionName) {
 
-        if (sessionService.exists(sessionName)) {
+        if (itemService.exists(sessionName)) {
 
-            final Session session = sessionService.read(sessionName);
+            final Session session = itemService.read(sessionName);
 
             if (!session.isRawComplete()) {
 
@@ -102,7 +141,17 @@ public class SessionManagementService {
                             .sum();
 
                     session.setRawComplete(rawCount == totalRawCount);
-                    sessionService.update(session);
+
+                    if (session.isRawComplete()) {
+                        session.setT0PdgsDate(
+                                sessionCatalogDataList.stream()
+                                        .map(sessionCatalogData -> CatalogUtils.getAdditionalProperty(sessionCatalogData, TO_PDGS_DATE_PROPERTY, Instant.class))
+                                        .max(Instant::compareTo)
+                                        .orElse(session.getT0PdgsDate())
+                        );
+                    }
+
+                    itemService.update(session);
                 }
 
                 log.info("Finished checking RAW files availability for session {}", sessionName);
@@ -110,100 +159,12 @@ public class SessionManagementService {
         }
     }
 
-    @Transactional
-    public void updateFailed() {
-
-        log.info("Updating failed status for all waiting sessions");
-
-        final List<Session> waitingSessions = getWaiting();
-
-        log.debug("Found {} waiting sessions", waitingSessions.size());
-
-        if (!CollectionUtils.isEmpty(waitingSessions)) {
-            waitingSessions.forEach(session -> {
-                final Instant creationDate = session.getCreationDate();
-                if (Duration.between(creationDate, Instant.now()).toHours() > l0uPreparationProperties.getFailedDelay()) {
-                    log.info("Failing session {}", session.getName());
-                    session.setFailed(true);
-                }
-            });
-            sessionService.updateAll(waitingSessions);
-        }
-
-        log.info("Finished updating failed status for all waiting sessions");
+    private List<Session> getNotReady() {
+        return itemService.readAll(false, false, false);
     }
 
-    @Transactional
-    public void updateAvailableAux() {
-
-        log.info("Updating AUX availability for all waiting sessions");
-
-        final List<Session> missingAux = getMissingAux();
-
-        log.debug("Found {} sessions with missing AUX", missingAux.size());
-
-        if (!CollectionUtils.isEmpty(missingAux)) {
-            missingAux.forEach(this::updateAvailableAux);
-            sessionService.updateAll(missingAux);
-        }
-
-        log.info("Finished updating AUX availability for all waiting sessions");
-    }
-
-    @Transactional
-    public void updateNotReady() {
-
-        log.info("Updating ready status for all waiting sessions");
-
-        final List<Session> sessions = getNotReady();
-
-        log.debug("Found {} sessions not ready", sessions.size());
-
-        if (!CollectionUtils.isEmpty(sessions)) {
-            sessions.forEach(session -> {
-                boolean ready = session.isRawComplete() && session.allAuxAvailable();
-                session.setReady(ready);
-                if (ready) {
-                    log.info("Session {} is now ready", session.getName());
-                }
-            });
-            sessionService.updateAll(sessions);
-        }
-
-        log.info("Finished updating ready status for all waiting sessions");
-    }
-
-    @Transactional
-    public void setJobOrderCreated(List<Session> sessionList) {
-        sessionList.forEach(session -> session.setJobOrderCreated(true));
-        sessionService.updateAll(sessionList);
-    }
-
-    private void updateAvailableAux(Session session) {
-
-        log.debug("Updating AUX availability for session {}", session.getName());
-
-        if (!session.allAuxAvailable()) {
-
-            session.getAvailableByAux()
-                    .entrySet()
-                    .forEach(entry -> {
-
-                        AuxProductType auxProductType = AuxProductType.valueOf(entry.getKey());
-
-                        if (Boolean.FALSE.equals(entry.getValue())) {
-
-                            catalogService.retrieveLatestAuxData(
-                                            auxProductType,
-                                            session.getSatellite(),
-                                            session.getStartTime(),
-                                            session.getStopTime())
-                                    .ifPresent(auxCatalogData -> entry.setValue(Boolean.TRUE));
-                        }
-                    });
-        }
-
-        log.debug("Finished updating AUX availability for session {}", session.getName());
+    private List<Session> getMissingAux() {
+        return itemService.readAll(true, false, false, false);
     }
 
 }

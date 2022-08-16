@@ -14,7 +14,7 @@ data:
     def output
 
     if (object.productFamily == "S2_AUX" || object.productFamily == "S2_SAD" || object.productFamily == "S2_HKTM") {
-        output = "catalog-jobs"
+        output = "catalog-job"
     } else {
         output = "s2-l0c-job"
     }
@@ -22,5 +22,5 @@ data:
     println(" to queue: " + output)
     return output
 metadata:
-  name: stream-l0u-router-ew-script
+  name: s2-l0u-router-ew-script
   namespace: processing

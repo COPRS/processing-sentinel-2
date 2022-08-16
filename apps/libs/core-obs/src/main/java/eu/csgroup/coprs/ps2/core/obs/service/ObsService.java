@@ -18,6 +18,7 @@ import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
 import software.amazon.awssdk.transfer.s3.*;
 
 import javax.annotation.PostConstruct;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -60,53 +61,37 @@ public class ObsService {
     }
 
     /**
-     * Download a file from the specified key
+     * Download a file from the specified key to a given destination OR the content of an obs folder to a local directory
      *
-     * @param bucket   Source bucket
-     * @param key      Key to download from
-     * @param destFile Path to the destination file
+     * @param bucket Source bucket
+     * @param key    Key to download from OR name of the s3 folder content to download
+     * @param dest   Path to the destination file OR to the local directory under which to store the downloaded files
      */
-    public void downloadFile(String bucket, String key, String destFile) {
-        doFileDownload(key, bucket, Paths.get(destFile))
-                .block();
+    public void download(String bucket, String key, String dest) {
+        final Path destPath = Paths.get(dest);
+        if (isFolder(bucket, key)) {
+            doDirDownload(key, bucket, destPath).block();
+        } else {
+            doFileDownload(key, bucket, destPath).block();
+        }
     }
 
     /**
-     * Download the content of an obs folder to a local directory
-     *
-     * @param bucket    Source bucket
-     * @param keyPrefix Name of the s3 folder content to download
-     * @param destRoot  Path to the local directory under which to store the downloaded files
-     */
-    public void downloadDirectory(String bucket, String keyPrefix, String destRoot) {
-        doDirDownload(keyPrefix, bucket, Paths.get(destRoot))
-                .block();
-    }
-
-    /**
-     * Download a list of files to the specified directory
+     * Download a list of files or directories to the specified directory root
      *
      * @param bucket   Source bucket
      * @param keyList  List of keys to download
-     * @param destRoot Path to the local directory under which to store the downloaded files
+     * @param destRoot Path to the local directory under which to store the downloaded items
      */
-    public void downloadFileBatch(String bucket, List<String> keyList, String destRoot) {
+    public void download(String bucket, List<String> keyList, String destRoot) {
         Mono.when(keyList.stream()
-                        .map(key -> doFileDownload(key, bucket, Paths.get(destRoot, filename(key))))
-                        .toList())
-                .block();
-    }
-
-    /**
-     * Download a list of directories to the specified directory root
-     *
-     * @param bucket   Source bucket
-     * @param keyList  List of keys to download
-     * @param destRoot Path to the local directory under which to store the downloaded directories
-     */
-    public void downloadDirBatch(String bucket, List<String> keyList, String destRoot) {
-        Mono.when(keyList.stream()
-                        .map(key -> doDirDownload(key, bucket, Paths.get(destRoot, filename(key))))
+                        .map(key -> {
+                            if (isFolder(bucket, key)) {
+                                return doDirDownload(key, bucket, Paths.get(destRoot, filename(key)));
+                            } else {
+                                return doFileDownload(key, bucket, Paths.get(destRoot, filename(key)));
+                            }
+                        })
                         .toList())
                 .block();
     }
@@ -116,7 +101,7 @@ public class ObsService {
      *
      * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
      */
-    public void downloadAll(Set<FileInfo> fileInfoList) {
+    public void download(Set<FileInfo> fileInfoList) {
         Mono.when(fileInfoList.stream()
                         .map(fileInfo -> {
                             final String key = fileInfo.getKey();
@@ -133,53 +118,37 @@ public class ObsService {
     }
 
     /**
-     * Upload a single file to the specified key
+     * Upload a single file or directory to the specified key
      *
-     * @param bucket     Destination bucket
-     * @param sourceFile Path to the source file
-     * @param key        Key to upload to
+     * @param bucket Destination bucket
+     * @param source Path to the source item
+     * @param key    Key to upload to
      */
-    public void uploadFile(String bucket, String sourceFile, String key) {
-        doFileUpload(Paths.get(sourceFile), bucket, key)
-                .block();
+    public void upload(String bucket, String source, String key) {
+        final Path sourcePath = Paths.get(source);
+        if (Files.isDirectory(sourcePath)) {
+            doDirUpload(sourcePath, bucket, key).block();
+        } else {
+            doFileUpload(sourcePath, bucket, key).block();
+        }
     }
 
     /**
-     * Upload a whole directory, including subdirectories, to the specified folder key
-     *
-     * @param bucket    Destination bucket
-     * @param sourceDir Path to the source directory
-     * @param key       Key of the destination folder
-     */
-    public void uploadDirectory(String bucket, String sourceDir, String key) {
-        doDirUpload(Paths.get(sourceDir), bucket, key)
-                .block();
-    }
-
-    /**
-     * Upload a list of files to the specified folder key
+     * Upload a list of files or directories to the specified folder key
      *
      * @param bucket   Destination bucket
-     * @param pathList List of Path to files to upload
-     * @param rootKey  Root key under which to upload files
+     * @param pathList List of Path to items to upload
+     * @param rootKey  Root key under which to upload items
      */
-    public void uploadFileBatch(String bucket, List<Path> pathList, String rootKey) {
+    public void upload(String bucket, List<Path> pathList, String rootKey) {
         Mono.when(pathList.stream()
-                        .map(path -> doFileUpload(path, bucket, destinationPath(rootKey, path)))
-                        .toList())
-                .block();
-    }
-
-    /**
-     * Upload a list of directories to the specified folder key
-     *
-     * @param bucket   Destination bucket
-     * @param pathList List of Path to directories to upload
-     * @param rootKey  Root key under which to upload directories
-     */
-    public void uploadDirBatch(String bucket, List<Path> pathList, String rootKey) {
-        Mono.when(pathList.stream()
-                        .map(path -> doDirUpload(path, bucket, destinationPath(rootKey, path)))
+                        .map(path -> {
+                            if (Files.isDirectory(path)) {
+                                return doDirUpload(path, bucket, destinationPath(rootKey, path));
+                            } else {
+                                return doFileUpload(path, bucket, destinationPath(rootKey, path));
+                            }
+                        })
                         .toList())
                 .block();
     }
@@ -189,7 +158,7 @@ public class ObsService {
      *
      * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
      */
-    public void uploadAll(Set<FileInfo> fileInfoList) {
+    public void upload(Set<FileInfo> fileInfoList) {
         Mono.when(fileInfoList.stream()
                         .map(fileInfo -> {
                             final Path sourcePath = Paths.get(fileInfo.getFullLocalPath());

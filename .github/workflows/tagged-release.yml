@@ -1,4 +1,4 @@
-name: "tagged-release-processing-sentinel-2"
+name: "PS2 Tagged Release"
 on:
   push:
     tags:
@@ -9,7 +9,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Checkout source code"
-        uses: "actions/checkout@v2"
+        uses: "actions/checkout@v3"
         with:
           lfs: true
           fetch-depth: 0

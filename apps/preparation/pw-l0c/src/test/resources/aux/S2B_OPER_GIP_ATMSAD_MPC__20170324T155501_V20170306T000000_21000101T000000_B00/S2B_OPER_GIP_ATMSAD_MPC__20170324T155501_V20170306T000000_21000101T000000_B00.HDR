@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Earth_Explorer_Header xmlns="http://eop-cfi.esa.int/S2/S2_SCHEMAS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Fixed_Header>
+		<File_Name>S2B_OPER_GIP_ATMSAD_MPC__20170324T155501_V20170306T000000_21000101T000000_B00</File_Name>
+		<File_Description>GIPP_ANA_TM_SAD_PARAMETERS</File_Description>
+		<Notes>Commentaire libre</Notes>
+		<Mission>Sentinel-2B</Mission>
+		<File_Class>OPER</File_Class>
+		<File_Type>GIP_ATMSAD</File_Type>
+		<File_Version>0003</File_Version>
+		<Validity_Period>
+			<Validity_Start>UTC=2017-03-06T00:00:00</Validity_Start>
+			<Validity_Stop>UTC=2100-01-01T00:00:00</Validity_Stop>
+		</Validity_Period>
+		<Source>
+			<System>MPC_</System>
+			<Creator>IQP</Creator>
+			<Creator_Version>2.0</Creator_Version>
+			<Creation_Date>UTC=2017-03-24T15:55:01</Creation_Date>
+		</Source>
+	</Fixed_Header>
+	<Variable_Header></Variable_Header>
+</Earth_Explorer_Header>

@@ -22,6 +22,7 @@ public interface EWExecutionService<T extends ExecutionInput> {
             processing(executionInput, parentTaskUid);
         } catch (Exception e) {
             taskReport.error(e.getLocalizedMessage());
+            throw e;
         }
 
         taskReport.end("End " + getLevel() + " processing");

@@ -5,7 +5,6 @@ import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
-import eu.csgroup.coprs.ps2.core.common.model.trace.input.EmptyTaskInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.service.ew.EWExecutionService;
 import eu.csgroup.coprs.ps2.core.common.utils.ScriptUtils;
@@ -50,10 +49,7 @@ public class L0uEWExecutionService implements EWExecutionService<L0uExecutionInp
                 if (exitCode < 128) {
                     log.warn("Finished L0U processing with a warning");
                 } else {
-                    final String message = "Finished L0U processing with an error";
-                    log.error(message);
-                    taskReport.error(message);
-                    throw new ScriptExecutionException(message);
+                    throw new ScriptExecutionException("Finished L0U processing with an error");
                 }
             }
 

@@ -1,0 +1,23 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<Earth_Explorer_Header>
+   <Fixed_Header>
+      <File_Name>S2__OPER_AUX_UT1UTC_PDMC_20220407T000000_V20220408T000000_20230407T000000</File_Name>
+      <File_Description>File AUX_UT1UTC</File_Description>
+      <Notes></Notes>
+      <Mission>Sentinel-2</Mission>
+      <File_Class>OPER</File_Class>
+      <File_Type>AUX_UT1UTC</File_Type>
+      <Validity_Period>
+         <Validity_Start>UTC=2022-04-08T00:00:00</Validity_Start>
+         <Validity_Stop>UTC=2023-04-07T00:00:00</Validity_Stop>
+      </Validity_Period>
+      <File_Version>0001</File_Version>
+      <Source>
+         <System>PDMC</System>
+         <Creator></Creator>
+         <Creator_Version>1.0</Creator_Version>
+         <Creation_Date>UTC=2022-04-07T00:00:00</Creation_Date>
+      </Source>
+   </Fixed_Header>
+   <Variable_Header></Variable_Header>
+</Earth_Explorer_Header>

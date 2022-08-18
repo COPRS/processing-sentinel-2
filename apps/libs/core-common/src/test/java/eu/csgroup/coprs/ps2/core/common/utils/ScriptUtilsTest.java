@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.core.common.utils;
 
-import eu.csgroup.coprs.ps2.core.common.AbstractSpringBootTest;
+import eu.csgroup.coprs.ps2.core.common.test.AbstractSpringBootTest;
 import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,12 @@ class ScriptUtilsTest extends AbstractSpringBootTest {
 
     @Override
     public void setup() {
-        //
+        // Nothing
+    }
+
+    @Override
+    public void teardown() throws Exception {
+        // Nothing
     }
 
     @Test

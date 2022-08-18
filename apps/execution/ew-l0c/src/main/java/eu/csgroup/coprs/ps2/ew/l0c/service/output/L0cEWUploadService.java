@@ -29,6 +29,7 @@ public class L0cEWUploadService extends EWUploadService {
         this.obsService = obsService;
     }
 
+    @Override
     public Map<ProductFamily, Set<FileInfo>> upload() {
 
         log.info("Uploading L0C files to OBS");

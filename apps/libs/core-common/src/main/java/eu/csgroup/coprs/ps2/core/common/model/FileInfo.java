@@ -30,7 +30,9 @@ public class FileInfo {
     public FileInfo setFullLocalPath(String fullLocalPath) {
         final Path path = Paths.get(fullLocalPath);
         localName = path.getFileName().toString();
-        localPath = path.getParent().toString();
+        if (path.getParent() != null) {
+            localPath = path.getParent().toString();
+        }
         return this;
     }
 

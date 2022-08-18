@@ -53,7 +53,7 @@ public class JobOrderService {
             demFolder = demFolders.get(0).toString();
             log.info("Set up JobOrderService with L0U DUMP location: {} and DEM location: {}", l0cPreparationProperties.getInputFolderRoot(), demFolder);
         } catch (FileOperationException fileOperationException) {
-            log.error("Unable to parse DEM folder", fileOperationException);
+            throw new InvalidInputException("Unable to parse DEM folder", fileOperationException);
         }
     }
 

@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - '**'
-  workflow_dispatch: {}
+  workflow_dispatch: { }
 
 env:
   REGISTRY_USER: ${{ secrets.ARTIFACTORY_USER }}
@@ -21,9 +21,34 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0 # fetch all history so multiple commits can be scanned
+
+      - name: Build S2_L0U
+        uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_path: rs-addons/S2_L0U/Release_Note.md
+          output_dir: rs-addons/S2_L0U/
+          table_of_contents: false
+          # image_dir:
+          build_html: false
+
+      - name: Build S2_L0C
+        uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_path: rs-addons/S2_L0C/Release_Note.md
+          output_dir: rs-addons/S2_L0C/
+          table_of_contents: false
+          # image_dir:
+          build_html: false
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: release-notes
+          path: |
+            rs-addons/S2_L0U/Release_Note.pdf
+            rs-addons/S2_L0C/Release_Note.pdf
 
       - name: Set up env
         run: |

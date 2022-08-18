@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - '**'
+    paths:
+      - 'apps/**'
+      - 'gradle.properties'
+      - 'settings.gradle'
   workflow_dispatch: {}
 
 env:
@@ -23,7 +27,7 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0 # fetch all history so multiple commits can be scanned
 

@@ -42,7 +42,7 @@ function build() {
   mv Manifest.json "${ROOT_NAME}"_Manifest.json
   mv Release_Note.pdf "${ROOT_NAME}"_Release_Note.pdf
 
-  zip -qq -r "${ZIP_NAME}" ./*
+  zip -qq -r "${ZIP_NAME}" ./* -x ./*.md
 
   mv "${ZIP_NAME}" ../
 
@@ -62,5 +62,3 @@ if [ "$1" == "push" ]; then
     curl -u "${REGISTRY_USER}:${REGISTRY_PWD}" -T "${ARCHIVE}" -X PUT "${REGISTRY_URL}/${ARCHIVE}"
   done
 fi
-
-

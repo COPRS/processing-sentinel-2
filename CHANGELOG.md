@@ -10,6 +10,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.0.0-rc1] - 2022-08-31
+
+### Added
+
+- Code Quality improvements
+- Docs skeleton
+
 ## [0.11.0-rc3] - 2022-08-19
 
 ### Added

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DIMAP_Level-0-unconsolidated_Granule xmlns:base="http://gs2.esa.int/DICO/1.0/PDGS/base/" xmlns:center="http://gs2.esa.int/DICO/1.0/PDGS/center/" xmlns:date_time="http://gs2.esa.int/DICO/1.0/SY/date_time/" xmlns:dimapuncons="http://gs2.esa.int/DICO/1.0/PDGS/dimap/dimapuncons.xsd" xmlns:geographical="http://gs2.esa.int/DICO/1.0/SY/geographical/" xmlns:gs2="http://gs2.esa.int/doc/1.0/" xmlns:image="http://gs2.esa.int/DICO/1.0/SY/image/" xmlns:item="http://gs2.esa.int/DICO/1.0/DataAccess/item/" xmlns:logical_definition="http://gs2.esa.int/DICO/1.0/PDGS/logical_definition/" xmlns:misc="http://gs2.esa.int/DICO/1.0/SY/misc/" xmlns:orbital="http://gs2.esa.int/DICO/1.0/SY/orbital/" xmlns:platform="http://gs2.esa.int/DICO/1.0/SY/platform/" xmlns:representation="http://gs2.esa.int/DICO/1.0/SY/representation/" xmlns:spatio="http://gs2.esa.int/DICO/1.0/SY/spatio/" xmlns:tile="http://gs2.esa.int/DICO/1.0/SY/tile/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="DIMAP_S2_Level-0_Granule_unconsolidated.xsd">
+	<General_Info>
+		<GRANULE_ID metadataLevel="Brief">S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D07_N00.00</GRANULE_ID>
+		<DETECTOR_ID metadataLevel="Brief">07</DETECTOR_ID>
+		<DOWNLINK_PRIORITY metadataLevel="Standard">NOMINAL</DOWNLINK_PRIORITY>
+		<SENSING_TIME metadataLevel="Standard">2022-04-13T11:47:41.009Z</SENSING_TIME>
+	</General_Info>
+	<Quality_Indicators_Info>
+		<Image_Content_QI>
+			<Common_IMG_QI>
+				<DEGRADED_MSI_DATA_PERCENTAGE>0.0</DEGRADED_MSI_DATA_PERCENTAGE>
+			</Common_IMG_QI>
+			<Source_Packet_description>
+				<Source_Packet_Counters_List>
+					<Source_Packet_Counters bandId="0">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>24</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="1">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>144</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="2">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>144</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="3">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>144</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="4">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>72</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="5">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>72</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="6">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>72</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="7">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>144</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="8">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>72</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="9">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>24</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="10">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>24</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="11">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>72</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+					<Source_Packet_Counters bandId="12">
+						<DATA_STRIP_START>1</DATA_STRIP_START>
+						<SCENE_POSITION>1</SCENE_POSITION>
+						<NB_OF_SOURCE_PACKETS>72</NB_OF_SOURCE_PACKETS>
+					</Source_Packet_Counters>
+				</Source_Packet_Counters_List>
+			</Source_Packet_description>
+		</Image_Content_QI>
+	</Quality_Indicators_Info>
+</DIMAP_Level-0-unconsolidated_Granule>

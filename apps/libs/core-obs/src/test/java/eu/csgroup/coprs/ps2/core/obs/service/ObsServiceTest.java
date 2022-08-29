@@ -1,16 +1,14 @@
 package eu.csgroup.coprs.ps2.core.obs.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import software.amazon.awssdk.core.exception.SdkClientException;
 import software.amazon.awssdk.core.exception.SdkServiceException;
@@ -30,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
-class ObsServiceTest {
+class ObsServiceTest extends AbstractTest {
 
     @Mock
     private S3TransferManager transferManager;
@@ -53,17 +51,14 @@ class ObsServiceTest {
     private static final FileInfo FILE_INFO_FILE = new FileInfo().setBucket(BUCKET).setKey(FILE_KEY).setFullLocalPath(FILE_PATH);
     private static final Set<FileInfo> FILE_INFO_SET = Set.of(FILE_INFO_FOLDER, FILE_INFO_FILE);
 
-    private AutoCloseable autoCloseable;
-
-    @BeforeEach
-    protected void setup() {
-        autoCloseable = MockitoAnnotations.openMocks(this);
+    @Override
+    public void setup() {
         obsService = new ObsService(transferManager, s3Client, obsProperties);
     }
 
-    @AfterEach
-    protected void cleanup() throws Exception {
-        autoCloseable.close();
+    @Override
+    public void teardown() throws Exception {
+        //
     }
 
     @Test

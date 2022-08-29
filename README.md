@@ -7,6 +7,19 @@ Go back to the
 
 # Processing Sentinel 2
 
+<!-- TOC -->
+* [Processing Sentinel 2](#processing-sentinel-2)
+  * [Overview](#overview)
+  * [Available RS Addons](#available-rs-addons)
+  * [Installation](#installation)
+    * [Prerequisites](#prerequisites)
+    * [Build](#build)
+    * [Repository content](#repository-content)
+    * [Using Ansible](#using-ansible)
+    * [Manual Install](#manual-install)
+    * [Uninstall](#uninstall)
+<!-- TOC -->
+
 ## Overview
 
 This repository contains components for the Sentinel 2 processing chain.  

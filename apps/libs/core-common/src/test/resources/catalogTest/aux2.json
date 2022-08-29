@@ -1,0 +1,16 @@
+[
+  {
+    "productName": "S2B_OPER_GIP_ATMSAD_MPC__20170324T155501_V20170306T000000_21000101T000000_B00",
+    "productType": "GIP_ATMSAD",
+    "keyObjectStorage": "S2B_OPER_GIP_ATMSAD_MPC__20170324T155501_V20170306T000000_21000101T000000_B00",
+    "validityStart": "2017-03-06T00:00:00.000000Z",
+    "validityStop": "2100-01-01T00:00:00.000000Z",
+    "missionId": null,
+    "satelliteId": null,
+    "stationCode": null,
+    "swathtype": null,
+    "additionalProperties": {},
+    "footprint": [],
+    "insertionTime": null
+  }
+]

@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - '**'
+    paths:
+      - 'apps/build.gradle'
+      - 'rs-addons/**'
   workflow_dispatch: { }
 
 env:

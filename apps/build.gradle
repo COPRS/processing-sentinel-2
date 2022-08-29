@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.2' apply false
+    id 'org.springframework.boot' version '2.7.3' apply false
     id 'io.spring.dependency-management' version '1.0.12.RELEASE' apply false
     id 'io.freefair.lombok' version '6.5.0.2' apply false
     id 'com.palantir.docker' version '0.34.0' apply false
@@ -62,22 +62,27 @@ subprojects {
     sourceCompatibility = '17'
 
     ext {
+        // Libs
         springCloudVersion = "2021.0.3"
-        podamVersion = "7.2.8.RELEASE"
+        amazonSDKVersion = "2.17.224"
+        amazonSDKS3Version = "2.17.224-PREVIEW"
+        apacheCommonsLangVersion = "3.12.0"
+        apacheCommonsIOVersion = "2.11.0"
 
+        // Test libs
+        // See core-common for imports
+        podamVersion = "7.2.8.RELEASE"
+        mapstructVersion = "1.4.2.Final"
+        bytebuddyVersion = "1.12.9"
+        mockitoVersion = "4.5.1"
+        okhttpVersion = "4.10.0"
+        logCaptorVersion = "2.7.10";
+
+        // Build parameters
         registryBase = System.getenv("REGISTRY_BASE")
         registryProject = System.getenv("REGISTRY_PROJECT")
         registryUser = System.getenv("REGISTRY_USER")
         registryPassword = System.getenv("REGISTRY_PWD")
-
-        amazonSDKVersion = "2.17.224"
-        amazonSDKS3Version = "2.17.224-PREVIEW"
-
-        apacheCommonsLangVersion = "3.12.0"
-        apacheCommonsIOVersion = "2.11.0"
-        mapstructVersion = "1.4.2.Final"
-        bytebuddyVersion = "1.12.9"
-        mockitoVersion = "4.5.1"
     }
 
     dependencies {
@@ -105,14 +110,13 @@ subprojects {
         annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
         annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        // See core-common build.gradle for test imports
+
+        configurations {
+            testImplementation {
+                exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+            }
         }
-        testImplementation "uk.co.jemos.podam:podam:${podamVersion}"
-        testImplementation "org.mockito:mockito-inline:${mockitoVersion}"
-        testImplementation "org.mockito:mockito-core:${mockitoVersion}"
-        testImplementation "net.bytebuddy:byte-buddy:${bytebuddyVersion}"
-        testImplementation "net.bytebuddy:byte-buddy-agent:${bytebuddyVersion}"
     }
 
     dependencyManagement {

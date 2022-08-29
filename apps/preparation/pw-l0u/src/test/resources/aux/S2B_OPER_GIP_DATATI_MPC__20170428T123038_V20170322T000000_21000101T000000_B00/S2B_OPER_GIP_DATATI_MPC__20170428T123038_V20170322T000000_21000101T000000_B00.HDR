@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Earth_Explorer_Header xmlns="http://eop-cfi.esa.int/S2/S2_SCHEMAS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Fixed_Header>
+		<File_Name>S2B_OPER_GIP_DATATI_MPC__20170428T123038_V20170322T000000_21000101T000000_B00</File_Name>
+		<File_Description>GIPP_DATATION_PARAMETERS</File_Description>
+		<Notes>Commentaire libre</Notes>
+		<Mission>Sentinel-2B</Mission>
+		<File_Class>OPER</File_Class>
+		<File_Type>GIP_DATATI</File_Type>
+		<File_Version>0003</File_Version>
+		<Validity_Period>
+			<Validity_Start>UTC=2017-03-22T00:00:00</Validity_Start>
+			<Validity_Stop>UTC=2100-01-01T00:00:00</Validity_Stop>
+		</Validity_Period>
+		<Source>
+			<System>MPC_</System>
+			<Creator>IQP</Creator>
+			<Creator_Version>2.0</Creator_Version>
+			<Creation_Date>UTC=2017-04-28T12:30:38</Creation_Date>
+		</Source>
+	</Fixed_Header>
+	<Variable_Header></Variable_Header>
+</Earth_Explorer_Header>

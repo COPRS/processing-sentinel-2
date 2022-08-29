@@ -6,4 +6,6 @@ dependencies {
     implementation "software.amazon.awssdk:s3"
     implementation "software.amazon.awssdk:s3-transfer-manager:${amazonSDKS3Version}"
 
+    testImplementation(testFixtures(project(":apps:libs:core-common")))
+
 }

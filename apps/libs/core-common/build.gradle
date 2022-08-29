@@ -1,10 +1,17 @@
+apply plugin: 'java-test-fixtures'
 
 dependencies {
-    testImplementation "io.github.hakky54:logcaptor:2.7.10"
-}
 
-configurations {
-    testImplementation {
-        exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl'
+    testFixturesApi('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testFixturesApi "uk.co.jemos.podam:podam:${podamVersion}"
+    testFixturesApi "org.mockito:mockito-inline:${mockitoVersion}"
+    testFixturesApi "org.mockito:mockito-core:${mockitoVersion}"
+    testFixturesApi "net.bytebuddy:byte-buddy:${bytebuddyVersion}"
+    testFixturesApi "net.bytebuddy:byte-buddy-agent:${bytebuddyVersion}"
+    testFixturesApi "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    testFixturesApi "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
+    testFixturesApi "io.github.hakky54:logcaptor:${logCaptorVersion}"
+
 }

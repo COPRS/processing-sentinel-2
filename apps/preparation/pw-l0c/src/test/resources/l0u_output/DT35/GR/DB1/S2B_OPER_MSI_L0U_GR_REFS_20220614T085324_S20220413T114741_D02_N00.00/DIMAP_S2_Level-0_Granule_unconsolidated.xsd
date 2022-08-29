@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by Thales (THALES INFORMATION SYSTEMS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:dimapuncons="http://gs2.esa.int/DICO/1.0/PDGS/dimap/dimapuncons.xsd" xmlns:date_time="http://gs2.esa.int/DICO/1.0/SY/date_time/" xmlns:logical_definition="http://gs2.esa.int/DICO/1.0/PDGS/logical_definition/" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://gs2.esa.int/DICO/1.0/PDGS/dimap/dimapuncons.xsd" schemaLocation="DICO/1.0/PDGS/dimap/dimapuncons.xsd"/>
+	<xs:import namespace="http://gs2.esa.int/DICO/1.0/SY/date_time/" schemaLocation="DICO/1.0/SY/date_time/date_time.xsd"/>
+	<xs:element name="DIMAP_Level-0-unconsolidated_Granule" type="DIMAP_Level-0-uncons_Granule"/>
+	<xs:complexType name="DIMAP_Level-0-uncons_Granule">
+		<xs:sequence>
+			<xs:element name="General_Info" type="dimapuncons:A_GENERAL_INFO_L0_L1A_L1B"/>
+			<xs:element name="Quality_Indicators_Info">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Image_Content_QI" type="dimapuncons:A_SOURCE_PACKET_DESCRIPTION_GRL0UC"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

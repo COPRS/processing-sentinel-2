@@ -1,0 +1,3163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DIMAP_Level-0-unconsolidated_DataStrip xmlns:base="http://gs2.esa.int/DICO/1.0/PDGS/base/" xmlns:center="http://gs2.esa.int/DICO/1.0/PDGS/center/" xmlns:date_time="http://gs2.esa.int/DICO/1.0/SY/date_time/" xmlns:dimapuncons="http://gs2.esa.int/DICO/1.0/PDGS/dimap/dimapuncons.xsd" xmlns:editor="http://ipu.this.fr/dic/ipu/core/XMLEditor" xmlns:geographical="http://gs2.esa.int/DICO/1.0/SY/geographical/" xmlns:gs2="http://gs2.esa.int/doc/1.0/" xmlns:image="http://gs2.esa.int/DICO/1.0/SY/image/" xmlns:item="http://gs2.esa.int/DICO/1.0/DataAccess/item/" xmlns:misc="http://gs2.esa.int/DICO/1.0/SY/misc/" xmlns:ns1="http://gs2.esa.int/DICO/DIMAP_S2_Level-0_DataStrip_unconconso.xsd" xmlns:orbital="http://gs2.esa.int/DICO/1.0/SY/orbital/" xmlns:platform="http://gs2.esa.int/DICO/1.0/SY/platform/" xmlns:representation="http://gs2.esa.int/DICO/1.0/SY/representation/" xmlns:spatio="http://gs2.esa.int/DICO/1.0/SY/spatio/" xmlns:tile="http://gs2.esa.int/DICO/1.0/SY/tile/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datastripIdentifier="S2B_OPER_MSI_L0U_DS_REFS_20220614T090618_S20220413T114741_N00.00" xsi:noNamespaceSchemaLocation="DIMAP_S2_Level-0_DataStrip_unconsolidated.xsd">
+	<General_Info>
+		<Datatake_Info datatakeIdentifier="GS2B_20220413T114629_026647_N00.00">
+			<SPACECRAFT_NAME>Sentinel-2B</SPACECRAFT_NAME>
+			<DATATAKE_TYPE>INS-NOBS</DATATAKE_TYPE>
+			<DATATAKE_SENSING_START>2022-04-13T11:46:29.024Z</DATATAKE_SENSING_START>
+			<DATATAKE_SENSING_STOP>2022-04-13T11:50:29.024Z</DATATAKE_SENSING_STOP>
+			<SENSING_ORBIT_NUMBER>23</SENSING_ORBIT_NUMBER>
+		</Datatake_Info>
+		<Datastrip_Time_Info>
+			<DATASTRIP_SENSING_START>2022-04-13T11:47:41.009Z</DATASTRIP_SENSING_START>
+			<DATASTRIP_SENSING_STOP>2022-04-13T11:50:08.928Z</DATASTRIP_SENSING_STOP>
+		</Datastrip_Time_Info>
+		<Downlink_Info>
+			<RECEPTION_STATION>SGS_</RECEPTION_STATION>
+			<DOWNLINK_ORBIT_NUMBER>26648</DOWNLINK_ORBIT_NUMBER>
+		</Downlink_Info>
+	</General_Info>
+	<Image_Data_Info>
+		<Granules_Information metadataLevel="Standard">
+			<Detector_List>
+				<Detector detectorId="01">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D01_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D01_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085335_S20220413T114748_D01_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085339_S20220413T114751_D01_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085342_S20220413T114755_D01_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085345_S20220413T114759_D01_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085348_S20220413T114802_D01_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085352_S20220413T114806_D01_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D01_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D01_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085403_S20220413T114817_D01_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085407_S20220413T114820_D01_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085412_S20220413T114824_D01_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085416_S20220413T114827_D01_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085419_S20220413T114831_D01_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085422_S20220413T114835_D01_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085426_S20220413T114838_D01_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085429_S20220413T114842_D01_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085432_S20220413T114845_D01_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085436_S20220413T114849_D01_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085439_S20220413T114853_D01_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D01_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D01_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D01_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085452_S20220413T114907_D01_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D01_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085458_S20220413T114914_D01_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085501_S20220413T114918_D01_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085504_S20220413T114922_D01_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085508_S20220413T114925_D01_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085511_S20220413T114929_D01_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085515_S20220413T114932_D01_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085518_S20220413T114936_D01_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085522_S20220413T114940_D01_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114943_D01_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085529_S20220413T114947_D01_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085532_S20220413T114950_D01_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114954_D01_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085538_S20220413T114958_D01_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085541_S20220413T115001_D01_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085544_S20220413T115005_D01_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085548_S20220413T115008_D01_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="02">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D02_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D02_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085335_S20220413T114748_D02_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085339_S20220413T114751_D02_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085342_S20220413T114755_D02_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085345_S20220413T114759_D02_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085348_S20220413T114802_D02_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085352_S20220413T114806_D02_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D02_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D02_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085403_S20220413T114817_D02_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085407_S20220413T114820_D02_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085412_S20220413T114824_D02_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085416_S20220413T114827_D02_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085419_S20220413T114831_D02_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085422_S20220413T114835_D02_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085426_S20220413T114838_D02_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085429_S20220413T114842_D02_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085432_S20220413T114845_D02_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085436_S20220413T114849_D02_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085439_S20220413T114853_D02_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D02_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D02_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D02_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085452_S20220413T114907_D02_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D02_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085458_S20220413T114914_D02_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085501_S20220413T114918_D02_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085504_S20220413T114922_D02_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085508_S20220413T114925_D02_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085511_S20220413T114929_D02_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085515_S20220413T114932_D02_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085518_S20220413T114936_D02_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085522_S20220413T114940_D02_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114943_D02_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085529_S20220413T114947_D02_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085532_S20220413T114950_D02_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114954_D02_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085538_S20220413T114958_D02_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085541_S20220413T115001_D02_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085544_S20220413T115005_D02_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085548_S20220413T115008_D02_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="03">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D03_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D03_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085335_S20220413T114748_D03_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085339_S20220413T114751_D03_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085342_S20220413T114755_D03_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085345_S20220413T114759_D03_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085348_S20220413T114802_D03_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085352_S20220413T114806_D03_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D03_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D03_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085403_S20220413T114817_D03_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085407_S20220413T114820_D03_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085412_S20220413T114824_D03_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085416_S20220413T114827_D03_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085419_S20220413T114831_D03_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085422_S20220413T114835_D03_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085426_S20220413T114838_D03_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085429_S20220413T114842_D03_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085432_S20220413T114845_D03_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085436_S20220413T114849_D03_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085439_S20220413T114853_D03_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D03_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D03_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D03_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085452_S20220413T114907_D03_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D03_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085458_S20220413T114914_D03_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085501_S20220413T114918_D03_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085504_S20220413T114922_D03_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085508_S20220413T114925_D03_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085511_S20220413T114929_D03_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085515_S20220413T114932_D03_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085518_S20220413T114936_D03_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085522_S20220413T114940_D03_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114943_D03_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085529_S20220413T114947_D03_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085532_S20220413T114950_D03_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114954_D03_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085538_S20220413T114958_D03_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085541_S20220413T115001_D03_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085544_S20220413T115005_D03_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085548_S20220413T115008_D03_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="04">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D04_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D04_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085335_S20220413T114748_D04_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085339_S20220413T114751_D04_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085342_S20220413T114755_D04_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085345_S20220413T114759_D04_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085348_S20220413T114802_D04_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085352_S20220413T114806_D04_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D04_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D04_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085403_S20220413T114817_D04_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085407_S20220413T114820_D04_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085412_S20220413T114824_D04_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085416_S20220413T114827_D04_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085419_S20220413T114831_D04_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085422_S20220413T114835_D04_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085426_S20220413T114838_D04_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085429_S20220413T114842_D04_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085432_S20220413T114845_D04_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085436_S20220413T114849_D04_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085439_S20220413T114853_D04_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D04_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D04_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D04_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085452_S20220413T114907_D04_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D04_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085458_S20220413T114914_D04_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085501_S20220413T114918_D04_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085504_S20220413T114922_D04_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085508_S20220413T114925_D04_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085511_S20220413T114929_D04_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085515_S20220413T114932_D04_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085518_S20220413T114936_D04_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085522_S20220413T114940_D04_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114943_D04_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085529_S20220413T114947_D04_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085532_S20220413T114950_D04_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114954_D04_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085538_S20220413T114958_D04_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085541_S20220413T115001_D04_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085544_S20220413T115005_D04_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085548_S20220413T115008_D04_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="05">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D05_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D05_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085335_S20220413T114748_D05_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085339_S20220413T114751_D05_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085342_S20220413T114755_D05_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085345_S20220413T114759_D05_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085348_S20220413T114802_D05_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085352_S20220413T114806_D05_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D05_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D05_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085403_S20220413T114817_D05_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085407_S20220413T114820_D05_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085412_S20220413T114824_D05_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085416_S20220413T114827_D05_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085419_S20220413T114831_D05_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085422_S20220413T114835_D05_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085426_S20220413T114838_D05_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085429_S20220413T114842_D05_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085432_S20220413T114845_D05_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085436_S20220413T114849_D05_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085439_S20220413T114853_D05_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D05_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D05_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D05_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085452_S20220413T114907_D05_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D05_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085458_S20220413T114914_D05_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085501_S20220413T114918_D05_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085504_S20220413T114922_D05_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085508_S20220413T114925_D05_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085511_S20220413T114929_D05_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085515_S20220413T114932_D05_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085518_S20220413T114936_D05_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085522_S20220413T114940_D05_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114943_D05_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085529_S20220413T114947_D05_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085532_S20220413T114950_D05_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114954_D05_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085538_S20220413T114958_D05_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085541_S20220413T115001_D05_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085544_S20220413T115005_D05_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085548_S20220413T115008_D05_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="06">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D06_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D06_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085335_S20220413T114748_D06_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085339_S20220413T114751_D06_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085342_S20220413T114755_D06_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085345_S20220413T114759_D06_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085348_S20220413T114802_D06_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085352_S20220413T114806_D06_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D06_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D06_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085403_S20220413T114817_D06_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085407_S20220413T114820_D06_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085412_S20220413T114824_D06_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085416_S20220413T114827_D06_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085419_S20220413T114831_D06_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085422_S20220413T114835_D06_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085426_S20220413T114838_D06_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085429_S20220413T114842_D06_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085432_S20220413T114845_D06_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085436_S20220413T114849_D06_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085439_S20220413T114853_D06_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D06_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D06_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D06_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085452_S20220413T114907_D06_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D06_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085458_S20220413T114914_D06_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085501_S20220413T114918_D06_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085504_S20220413T114922_D06_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085508_S20220413T114925_D06_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085511_S20220413T114929_D06_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085515_S20220413T114932_D06_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085518_S20220413T114936_D06_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085522_S20220413T114940_D06_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114943_D06_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085529_S20220413T114947_D06_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085532_S20220413T114950_D06_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114954_D06_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085538_S20220413T114958_D06_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085541_S20220413T115001_D06_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085544_S20220413T115005_D06_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085548_S20220413T115008_D06_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="07">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D07_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D07_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085334_S20220413T114748_D07_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085338_S20220413T114751_D07_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085343_S20220413T114755_D07_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085346_S20220413T114759_D07_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085349_S20220413T114802_D07_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085353_S20220413T114806_D07_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D07_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D07_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085404_S20220413T114817_D07_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085408_S20220413T114820_D07_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085411_S20220413T114824_D07_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085415_S20220413T114827_D07_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085417_S20220413T114831_D07_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085420_S20220413T114835_D07_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085424_S20220413T114838_D07_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085427_S20220413T114842_D07_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085430_S20220413T114845_D07_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085435_S20220413T114849_D07_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085438_S20220413T114853_D07_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D07_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D07_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D07_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085451_S20220413T114907_D07_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D07_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085459_S20220413T114914_D07_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085502_S20220413T114918_D07_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085506_S20220413T114922_D07_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085510_S20220413T114925_D07_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085513_S20220413T114929_D07_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085517_S20220413T114932_D07_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085520_S20220413T114936_D07_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114940_D07_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085528_S20220413T114943_D07_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085531_S20220413T114947_D07_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114950_D07_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085539_S20220413T114954_D07_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085542_S20220413T114958_D07_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085546_S20220413T115001_D07_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085550_S20220413T115005_D07_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085553_S20220413T115008_D07_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="08">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D08_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D08_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085334_S20220413T114748_D08_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085338_S20220413T114751_D08_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085343_S20220413T114755_D08_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085346_S20220413T114759_D08_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085349_S20220413T114802_D08_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085353_S20220413T114806_D08_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D08_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D08_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085404_S20220413T114817_D08_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085408_S20220413T114820_D08_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085411_S20220413T114824_D08_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085415_S20220413T114827_D08_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085417_S20220413T114831_D08_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085420_S20220413T114835_D08_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085424_S20220413T114838_D08_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085427_S20220413T114842_D08_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085430_S20220413T114845_D08_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085435_S20220413T114849_D08_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085438_S20220413T114853_D08_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D08_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D08_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D08_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085451_S20220413T114907_D08_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D08_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085459_S20220413T114914_D08_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085502_S20220413T114918_D08_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085506_S20220413T114922_D08_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085510_S20220413T114925_D08_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085513_S20220413T114929_D08_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085517_S20220413T114932_D08_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085520_S20220413T114936_D08_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114940_D08_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085528_S20220413T114943_D08_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085531_S20220413T114947_D08_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114950_D08_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085539_S20220413T114954_D08_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085542_S20220413T114958_D08_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085546_S20220413T115001_D08_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085550_S20220413T115005_D08_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085553_S20220413T115008_D08_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="09">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D09_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D09_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085334_S20220413T114748_D09_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085338_S20220413T114751_D09_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085343_S20220413T114755_D09_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085346_S20220413T114759_D09_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085349_S20220413T114802_D09_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085353_S20220413T114806_D09_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D09_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D09_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085404_S20220413T114817_D09_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085408_S20220413T114820_D09_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085411_S20220413T114824_D09_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085415_S20220413T114827_D09_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085417_S20220413T114831_D09_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085420_S20220413T114835_D09_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085424_S20220413T114838_D09_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085427_S20220413T114842_D09_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085430_S20220413T114845_D09_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085435_S20220413T114849_D09_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085438_S20220413T114853_D09_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D09_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D09_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D09_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085451_S20220413T114907_D09_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D09_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085459_S20220413T114914_D09_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085502_S20220413T114918_D09_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085506_S20220413T114922_D09_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085510_S20220413T114925_D09_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085513_S20220413T114929_D09_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085517_S20220413T114932_D09_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085520_S20220413T114936_D09_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114940_D09_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085528_S20220413T114943_D09_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085531_S20220413T114947_D09_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114950_D09_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085539_S20220413T114954_D09_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085542_S20220413T114958_D09_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085546_S20220413T115001_D09_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085550_S20220413T115005_D09_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085553_S20220413T115008_D09_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="10">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D10_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D10_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085334_S20220413T114748_D10_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085338_S20220413T114751_D10_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085343_S20220413T114755_D10_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085346_S20220413T114759_D10_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085349_S20220413T114802_D10_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085353_S20220413T114806_D10_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D10_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D10_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085404_S20220413T114817_D10_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085408_S20220413T114820_D10_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085411_S20220413T114824_D10_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085415_S20220413T114827_D10_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085417_S20220413T114831_D10_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085420_S20220413T114835_D10_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085424_S20220413T114838_D10_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085427_S20220413T114842_D10_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085430_S20220413T114845_D10_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085435_S20220413T114849_D10_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085438_S20220413T114853_D10_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D10_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D10_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D10_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085451_S20220413T114907_D10_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D10_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085459_S20220413T114914_D10_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085502_S20220413T114918_D10_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085506_S20220413T114922_D10_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085510_S20220413T114925_D10_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085513_S20220413T114929_D10_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085517_S20220413T114932_D10_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085520_S20220413T114936_D10_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114940_D10_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085528_S20220413T114943_D10_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085531_S20220413T114947_D10_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114950_D10_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085539_S20220413T114954_D10_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085542_S20220413T114958_D10_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085546_S20220413T115001_D10_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085550_S20220413T115005_D10_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085553_S20220413T115008_D10_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="11">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D11_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D11_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085334_S20220413T114748_D11_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085338_S20220413T114751_D11_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085343_S20220413T114755_D11_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085346_S20220413T114759_D11_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085349_S20220413T114802_D11_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085353_S20220413T114806_D11_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D11_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D11_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085404_S20220413T114817_D11_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085408_S20220413T114820_D11_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085411_S20220413T114824_D11_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085415_S20220413T114827_D11_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085417_S20220413T114831_D11_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085420_S20220413T114835_D11_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085424_S20220413T114838_D11_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085427_S20220413T114842_D11_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085430_S20220413T114845_D11_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085435_S20220413T114849_D11_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085438_S20220413T114853_D11_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D11_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D11_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D11_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085451_S20220413T114907_D11_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D11_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085459_S20220413T114914_D11_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085502_S20220413T114918_D11_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085506_S20220413T114922_D11_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085510_S20220413T114925_D11_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085513_S20220413T114929_D11_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085517_S20220413T114932_D11_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085520_S20220413T114936_D11_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114940_D11_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085528_S20220413T114943_D11_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085531_S20220413T114947_D11_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114950_D11_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085539_S20220413T114954_D11_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085542_S20220413T114958_D11_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085546_S20220413T115001_D11_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085550_S20220413T115005_D11_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085553_S20220413T115008_D11_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+				<Detector detectorId="12">
+					<Granule_List>
+					<Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085324_S20220413T114741_D12_N00.00">
+              <POSITION>1</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085330_S20220413T114744_D12_N00.00">
+              <POSITION>2305</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085334_S20220413T114748_D12_N00.00">
+              <POSITION>4609</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085338_S20220413T114751_D12_N00.00">
+              <POSITION>6913</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085343_S20220413T114755_D12_N00.00">
+              <POSITION>9217</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085346_S20220413T114759_D12_N00.00">
+              <POSITION>11521</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085349_S20220413T114802_D12_N00.00">
+              <POSITION>13825</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085353_S20220413T114806_D12_N00.00">
+              <POSITION>16129</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085356_S20220413T114809_D12_N00.00">
+              <POSITION>18433</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085400_S20220413T114813_D12_N00.00">
+              <POSITION>20737</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085404_S20220413T114817_D12_N00.00">
+              <POSITION>23041</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085408_S20220413T114820_D12_N00.00">
+              <POSITION>25345</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085411_S20220413T114824_D12_N00.00">
+              <POSITION>27649</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085415_S20220413T114827_D12_N00.00">
+              <POSITION>29953</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085417_S20220413T114831_D12_N00.00">
+              <POSITION>32257</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085420_S20220413T114835_D12_N00.00">
+              <POSITION>34561</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085424_S20220413T114838_D12_N00.00">
+              <POSITION>36865</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085427_S20220413T114842_D12_N00.00">
+              <POSITION>39169</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085430_S20220413T114845_D12_N00.00">
+              <POSITION>41473</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085435_S20220413T114849_D12_N00.00">
+              <POSITION>43777</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085438_S20220413T114853_D12_N00.00">
+              <POSITION>46081</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085442_S20220413T114856_D12_N00.00">
+              <POSITION>48385</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085445_S20220413T114900_D12_N00.00">
+              <POSITION>50689</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085449_S20220413T114903_D12_N00.00">
+              <POSITION>52993</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085451_S20220413T114907_D12_N00.00">
+              <POSITION>55297</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085454_S20220413T114911_D12_N00.00">
+              <POSITION>57601</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085459_S20220413T114914_D12_N00.00">
+              <POSITION>59905</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085502_S20220413T114918_D12_N00.00">
+              <POSITION>62209</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085506_S20220413T114922_D12_N00.00">
+              <POSITION>64513</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085510_S20220413T114925_D12_N00.00">
+              <POSITION>66817</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085513_S20220413T114929_D12_N00.00">
+              <POSITION>69121</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085517_S20220413T114932_D12_N00.00">
+              <POSITION>71425</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085520_S20220413T114936_D12_N00.00">
+              <POSITION>73729</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085525_S20220413T114940_D12_N00.00">
+              <POSITION>76033</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085528_S20220413T114943_D12_N00.00">
+              <POSITION>78337</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085531_S20220413T114947_D12_N00.00">
+              <POSITION>80641</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085536_S20220413T114950_D12_N00.00">
+              <POSITION>82945</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085539_S20220413T114954_D12_N00.00">
+              <POSITION>85249</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085542_S20220413T114958_D12_N00.00">
+              <POSITION>87553</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085546_S20220413T115001_D12_N00.00">
+              <POSITION>89857</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085550_S20220413T115005_D12_N00.00">
+              <POSITION>92161</POSITION>
+            </Granule>
+            <Granule granuleId="S2B_OPER_MSI_L0U_GR_REFS_20220614T085553_S20220413T115008_D12_N00.00">
+              <POSITION>94465</POSITION>
+            </Granule>
+          </Granule_List>
+				</Detector>
+			</Detector_List>
+		</Granules_Information>
+		<Sensor_Configuration>
+			<Acquisition_Configuration>
+				<COMPRESS_MODE metadataLevel="Expertise">true</COMPRESS_MODE>
+				<EQUALIZATION_MODE metadataLevel="Expertise">true</EQUALIZATION_MODE>
+				<NUC_TABLE_ID metadataLevel="Expertise">2</NUC_TABLE_ID>
+				<Active_Detectors_List metadataLevel="Expertise">
+				<ACTIVE_DETECTOR>07</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>08</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>09</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>10</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>11</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>12</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>01</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>02</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>03</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>04</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>05</ACTIVE_DETECTOR>
+          <ACTIVE_DETECTOR>06</ACTIVE_DETECTOR>
+        </Active_Detectors_List>
+				<TDI_Configuration_List metadataLevel="Standard">
+				<TDI_CONFIGURATION bandId="02">APPLIED</TDI_CONFIGURATION>
+          <TDI_CONFIGURATION bandId="03">APPLIED</TDI_CONFIGURATION>
+          <TDI_CONFIGURATION bandId="11">APPLIED</TDI_CONFIGURATION>
+          <TDI_CONFIGURATION bandId="12">APPLIED</TDI_CONFIGURATION>
+        </TDI_Configuration_List>
+				<Spectral_Band_Info>
+					<Spectral_Band_Information bandId="0">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.655</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">7.22833</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="1">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.970</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">1.2646269</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="2">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.970</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">1.2996743</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="3">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.970</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">1.3405629</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="4">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.655</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">2.7846026</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="5">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.655</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">2.7727115</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="6">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.655</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">2.7727115</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="7">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.970</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">1.3872929</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="8">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.655</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">2.7608204</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="9">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.655</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">8.031501</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="10">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.655</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">5.5537686</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="11">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.400</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">1.3793689</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+					<Spectral_Band_Information bandId="12">
+						<COMPRESSION_RATE metadataLevel="Expertise">2.400</COMPRESSION_RATE>
+						<INTEGRATION_TIME metadataLevel="Expertise" unit="ms">1.4761667</INTEGRATION_TIME>
+					</Spectral_Band_Information>
+				</Spectral_Band_Info>
+			</Acquisition_Configuration>
+			<Source_Packet_Description>
+				<Source_Packet_Counters_List>
+					<Detector_List>
+						<Detector detectorId="01">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="02">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="03">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="04">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="05">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="06">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="07">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="08">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="09">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="10">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="11">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+						<Detector detectorId="12">
+							<Band_List>
+								<Band bandId="0">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="1">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="2">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="3">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="4">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="5">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="6">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="7">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>6048</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="8">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="9">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="10">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>1008</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="11">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+								<Band bandId="12">
+									<DATA_STRIP_START>1</DATA_STRIP_START>
+									<SCENE_POSITION>1</SCENE_POSITION>
+									<NB_OF_SOURCE_PACKETS>3024</NB_OF_SOURCE_PACKETS>
+								</Band>
+							</Band_List>
+						</Detector>
+					</Detector_List>
+				</Source_Packet_Counters_List>
+				<Degradation_Summary degradationPercentage="0.0">
+					<NUMBER_OF_LOST_PACKETS>0</NUMBER_OF_LOST_PACKETS>
+					<NUMBER_OF_T00_DEGRADED_PACKETS>0</NUMBER_OF_T00_DEGRADED_PACKETS>
+					<NUMBER_OF_KEPT_DEGRADED_PACKETS>0</NUMBER_OF_KEPT_DEGRADED_PACKETS>
+				</Degradation_Summary>
+			</Source_Packet_Description>
+			<Time_Stamp usedModel="INITIAL">
+				<LINE_PERIOD unit="ms">1.5658736</LINE_PERIOD>
+				<Band_Time_Stamp bandId="0">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="1">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="2">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="3">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+        <Band_Time_Stamp bandId="4">
+				<Detector detectorId="01">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="02">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="03">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="04">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="05">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="06">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="07">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="08">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="09">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="10">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="11">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+				<Detector detectorId="12">
+					<REFERENCE_LINE>1</REFERENCE_LINE>
+					<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+				</Detector>
+			</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="5">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="6">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="7">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="8">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="9">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="10">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="11">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<Band_Time_Stamp bandId="12">
+					<Detector detectorId="01">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="02">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="03">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="04">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="05">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="06">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="07">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="08">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="09">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="10">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="11">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+					<Detector detectorId="12">
+						<REFERENCE_LINE>1</REFERENCE_LINE>
+						<GPS_TIME>2022-04-13T11:47:59.009720683</GPS_TIME>
+					</Detector>
+				</Band_Time_Stamp>
+				<GPS_SYNC>true</GPS_SYNC>
+			</Time_Stamp>
+		</Sensor_Configuration>
+	</Image_Data_Info>
+	<Satellite_Ancillary_Data_Info>
+		<ANC_DATA_REF>.//ANC_DATA/</ANC_DATA_REF>
+	</Satellite_Ancillary_Data_Info>
+</DIMAP_Level-0-unconsolidated_DataStrip>

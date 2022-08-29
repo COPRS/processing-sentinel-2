@@ -55,9 +55,7 @@ public class SessionService implements PWItemService<Session> {
                                 .collect(Collectors.toMap(Enum::name, o -> false))
                 );
 
-        sessionEntityRepository.save(sessionEntity);
-
-        return sessionMapper.toSession(sessionEntity);
+        return sessionMapper.toSession(sessionEntityRepository.save(sessionEntity));
     }
 
     public boolean exists(String sessionName) {

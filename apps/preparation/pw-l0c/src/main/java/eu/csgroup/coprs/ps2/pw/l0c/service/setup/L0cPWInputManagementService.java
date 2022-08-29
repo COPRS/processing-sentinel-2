@@ -1,6 +1,5 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.setup;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidInputException;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
@@ -14,6 +13,7 @@ import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0c.service.prepare.DatastripManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,7 +65,7 @@ public class L0cPWInputManagementService implements PWInputManagementService {
         final L0cPreparationInput l0cPreparationInput =
                 ProcessingMessageUtils.getAdditionalField(processingMessage, MessageParameters.PREPARATION_INPUT_FIELD, L0cPreparationInput.class);
 
-        if (l0cPreparationInput.getInputFolder().isBlank() || l0cPreparationInput.getSession().isBlank()) {
+        if (!StringUtils.hasText(l0cPreparationInput.getInputFolder()) || !StringUtils.hasText(l0cPreparationInput.getSession())) {
             throw new InvalidMessageException("Invalid Preparation Data");
         }
 

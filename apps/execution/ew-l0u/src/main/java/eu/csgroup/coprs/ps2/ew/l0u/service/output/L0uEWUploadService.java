@@ -30,6 +30,7 @@ public class L0uEWUploadService extends EWUploadService {
         this.obsService = obsService;
     }
 
+    @Override
     public Map<ProductFamily, Set<FileInfo>> upload() {
 
         log.info("Uploading AUX files to OBS");

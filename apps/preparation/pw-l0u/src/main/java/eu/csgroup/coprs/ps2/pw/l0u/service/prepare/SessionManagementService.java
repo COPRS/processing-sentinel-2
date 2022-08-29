@@ -27,8 +27,8 @@ public class SessionManagementService extends PWItemManagementService<Session, S
     private static final long DELETION_GRACE_PERIOD = 60L;
     private static final String TO_PDGS_DATE_PROPERTY = "t0_pdgs_date";
 
-    public SessionManagementService(SessionService sessionService, CatalogService catalogService, L0uPreparationProperties l0uPreparationProperties) {
-        super(catalogService, sessionService, l0uPreparationProperties);
+    public SessionManagementService(CatalogService catalogService, SessionService itemService, L0uPreparationProperties l0uPreparationProperties) {
+        super(catalogService, itemService, l0uPreparationProperties);
     }
 
     @Override

@@ -1,5 +1,25 @@
 # RS Addon : S2_L0c
 
+<!-- TOC -->
+* [RS Addon : S2_L0c](#rs-addon--s2_l0c)
+  * [Prerequisites](#prerequisites)
+  * [Deployment](#deployment)
+    * [Principle](#principle)
+    * [Additional resources](#additional-resources)
+    * [Requirements](#requirements)
+  * [Configuration](#configuration)
+    * [Global deployer settings](#global-deployer-settings)
+    * [Workers deployer settings](#workers-deployer-settings)
+    * [Filter](#filter)
+    * [OBS settings](#obs-settings)
+    * [Kafka settings](#kafka-settings)
+    * [Preparation worker](#preparation-worker)
+      * [Catalog](#catalog)
+      * [MongoDB](#mongodb)
+      * [Misc](#misc)
+    * [Execution worker](#execution-worker)
+<!-- TOC -->
+
 ## Prerequisites
 
 - Global requirements are met (See [Global readme file](../../README.md)).

@@ -43,7 +43,7 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
 
         taskReport.begin("Start Job Processing", new JobProcessingInput(inputService.getTaskInputs(executionInput)));
 
-        Set<ProcessingMessage> processingMessages;
+        Set<ProcessingMessage> outputMessageSet;
 
         try {
 
@@ -51,11 +51,11 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
 
             executionService.execute(executionInput, taskReport.getUid());
 
-            processingMessages = outputService.output(executionInput);
+            outputMessageSet = outputService.output(executionInput);
 
             taskReport.end(
                     "End Job Processing",
-                    new JobProcessingOutput(getTaskOutputs(processingMessages), executionInput.getT0PdgsDate()),
+                    new JobProcessingOutput(getTaskOutputs(outputMessageSet), executionInput.getT0PdgsDate()),
                     new EmptyTaskMissingOutput()); // TODO Add missing output after scanning proper file
 
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
             throw e;
         }
 
-        return processingMessages;
+        return outputMessageSet;
     }
 
     protected Set<String> getTaskOutputs(Set<ProcessingMessage> processingMessages) {

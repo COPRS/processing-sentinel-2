@@ -17,7 +17,8 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class DatastripServiceTest extends AbstractTest {
 
@@ -68,7 +69,7 @@ class DatastripServiceTest extends AbstractTest {
     }
 
     @Test
-    void ecreate_xists() {
+    void create_exists() {
         // Given
         mockExists(true);
         // When Then
@@ -106,10 +107,10 @@ class DatastripServiceTest extends AbstractTest {
     @Test
     void readAll_Full() {
         // Given
-        when(datastripEntityRepository.findAllByReadyAndFailedAndJobOrderCreated(anyBoolean(), anyBoolean(), anyBoolean())).thenReturn(
+        when(datastripEntityRepository.findAllByReadyAndJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(
                 List.of(TestHelper.DATASTRIP_ENTITY));
         // When
-        final List<Datastrip> datastrips = datastripService.readAll(true, false, true);
+        final List<Datastrip> datastrips = datastripService.readAll(true, true);
         // Then
         assertEquals(1, datastrips.size());
         assertEquals(TestHelper.DATASTRIP_NAME, datastrips.get(0).getName());
@@ -118,22 +119,10 @@ class DatastripServiceTest extends AbstractTest {
     @Test
     void readAll() {
         // Given
-        when(datastripEntityRepository.findAllByFailedAndJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(
+        when(datastripEntityRepository.findAllByJobOrderCreated(anyBoolean())).thenReturn(
                 List.of(TestHelper.DATASTRIP_ENTITY));
         // When
-        final List<Datastrip> datastrips = datastripService.readAll(true, false);
-        // Then
-        assertEquals(1, datastrips.size());
-        assertEquals(TestHelper.DATASTRIP_NAME, datastrips.get(0).getName());
-    }
-
-    @Test
-    void readAllOr() {
-        // Given
-        when(datastripEntityRepository.findAllByFailedOrJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(
-                List.of(TestHelper.DATASTRIP_ENTITY));
-        // When
-        final List<Datastrip> datastrips = datastripService.readAllOr(true, false);
+        final List<Datastrip> datastrips = datastripService.readAll(false);
         // Then
         assertEquals(1, datastrips.size());
         assertEquals(TestHelper.DATASTRIP_NAME, datastrips.get(0).getName());

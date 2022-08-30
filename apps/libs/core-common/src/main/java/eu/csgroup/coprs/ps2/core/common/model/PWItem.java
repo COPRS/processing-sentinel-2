@@ -27,7 +27,6 @@ public abstract class PWItem {
     protected Map<String, Boolean> availableByAux;
 
     protected boolean ready;
-    protected boolean failed;
     protected boolean jobOrderCreated;
 
     public boolean allAuxAvailable() {

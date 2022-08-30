@@ -22,9 +22,4 @@ public class L0uPreparationProperties implements PWProperties {
      */
     private String caduBucket;
 
-    /**
-     * Delay (in hours) after which a preparation should be failed
-     */
-    private Integer failedDelay = 24;
-
 }

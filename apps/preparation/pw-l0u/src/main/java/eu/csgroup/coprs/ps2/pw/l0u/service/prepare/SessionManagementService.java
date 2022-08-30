@@ -6,7 +6,6 @@ import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.service.pw.PWItemManagementService;
 import eu.csgroup.coprs.ps2.core.common.utils.CatalogUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
-import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,26 +26,21 @@ public class SessionManagementService extends PWItemManagementService<Session, S
     private static final long DELETION_GRACE_PERIOD = 60L;
     private static final String TO_PDGS_DATE_PROPERTY = "t0_pdgs_date";
 
-    public SessionManagementService(CatalogService catalogService, SessionService itemService, L0uPreparationProperties l0uPreparationProperties) {
-        super(catalogService, itemService, l0uPreparationProperties);
+    public SessionManagementService(CatalogService catalogService, SessionService itemService) {
+        super(catalogService, itemService);
     }
 
     @Override
     public List<Session> getReady() {
-        return itemService.readAll(true, false, false);
+        return itemService.readAll(true, false);
     }
 
     @Override
     public List<Session> getDeletable() {
         final Instant now = Instant.now();
-        return itemService.readAllOr(true, true).stream()
+        return itemService.readAll(true).stream()
                 .filter(session -> Duration.between(session.getLastModifiedDate(), now).getSeconds() > DELETION_GRACE_PERIOD)
                 .toList();
-    }
-
-    @Override
-    public List<Session> getWaiting() {
-        return itemService.readAll(false, false);
     }
 
     @Override
@@ -160,11 +154,11 @@ public class SessionManagementService extends PWItemManagementService<Session, S
     }
 
     private List<Session> getNotReady() {
-        return itemService.readAll(false, false, false);
+        return itemService.readAll(false, false);
     }
 
     private List<Session> getMissingAux() {
-        return itemService.readAll(true, false, false, false);
+        return itemService.readAll(true, false, false);
     }
 
 }

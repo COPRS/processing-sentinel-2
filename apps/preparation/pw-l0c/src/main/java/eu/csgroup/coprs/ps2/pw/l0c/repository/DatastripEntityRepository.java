@@ -11,11 +11,9 @@ import java.util.Set;
 @Repository
 public interface DatastripEntityRepository extends MongoRepository<DatastripEntity, String> {
 
-    List<DatastripEntity> findAllByFailedAndJobOrderCreated(boolean failed, boolean jobOrderCreated);
+    List<DatastripEntity> findAllByJobOrderCreated(boolean jobOrderCreated);
 
-    List<DatastripEntity> findAllByFailedOrJobOrderCreated(boolean failed, boolean jobOrderCreated);
-
-    List<DatastripEntity> findAllByReadyAndFailedAndJobOrderCreated(boolean ready, boolean failed, boolean jobOrderCreated);
+    List<DatastripEntity> findAllByReadyAndJobOrderCreated(boolean ready, boolean jobOrderCreated);
 
     void deleteAllByNameIn(Set<String> nameSet);
 

@@ -45,7 +45,6 @@ public abstract class PWProcessorService<T extends ExecutionInput, S extends PWI
         log.info("Cleaning up items ...");
 
         itemManagementService.cleanup();
-        itemManagementService.updateFailed();
 
         log.info("Finished cleaning up items ...");
     }

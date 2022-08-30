@@ -67,26 +67,20 @@ public class SessionService implements PWItemService<Session> {
         return sessionMapper.toSession(readEntity(sessionName));
     }
 
-    public List<Session> readAll(boolean rawComplete, boolean ready, boolean failed, boolean jobOrderCreated) {
-        final List<Session> sessions = toSessions(sessionEntityRepository.findAllByRawCompleteAndReadyAndFailedAndJobOrderCreated(rawComplete, ready, failed, jobOrderCreated));
+    public List<Session> readAll(boolean rawComplete, boolean ready, boolean jobOrderCreated) {
+        final List<Session> sessions = toSessions(sessionEntityRepository.findAllByRawCompleteAndReadyAndJobOrderCreated(rawComplete, ready, jobOrderCreated));
         log.debug(RETRIEVING_MULTIPLE_SESSIONS, sessions.size());
         return sessions;
     }
 
-    public List<Session> readAll(boolean ready, boolean failed, boolean jobOrderCreated) {
-        final List<Session> sessions = toSessions(sessionEntityRepository.findAllByReadyAndFailedAndJobOrderCreated(ready, failed, jobOrderCreated));
+    public List<Session> readAll(boolean ready, boolean jobOrderCreated) {
+        final List<Session> sessions = toSessions(sessionEntityRepository.findAllByReadyAndJobOrderCreated(ready, jobOrderCreated));
         log.debug(RETRIEVING_MULTIPLE_SESSIONS, sessions.size());
         return sessions;
     }
 
-    public List<Session> readAll(boolean failed, boolean jobOrderCreated) {
-        final List<Session> sessions = toSessions(sessionEntityRepository.findAllByFailedAndJobOrderCreated(failed, jobOrderCreated));
-        log.debug(RETRIEVING_MULTIPLE_SESSIONS, sessions.size());
-        return sessions;
-    }
-
-    public List<Session> readAllOr(boolean failed, boolean jobOrderCreated) {
-        final List<Session> sessions = toSessions(sessionEntityRepository.findAllByFailedOrJobOrderCreated(failed, jobOrderCreated));
+    public List<Session> readAll(boolean jobOrderCreated) {
+        final List<Session> sessions = toSessions(sessionEntityRepository.findAllByJobOrderCreated(jobOrderCreated));
         log.debug(RETRIEVING_MULTIPLE_SESSIONS, sessions.size());
         return sessions;
     }
@@ -142,7 +136,6 @@ public class SessionService implements PWItemService<Session> {
         sessionEntity.setRawComplete(updatedSessionEntity.isRawComplete())
                 .setAvailableByAux(updatedSessionEntity.getAvailableByAux())
                 .setReady(updatedSessionEntity.isReady())
-                .setFailed(updatedSessionEntity.isFailed())
                 .setJobOrderCreated(updatedSessionEntity.isJobOrderCreated())
                 .setT0PdgsDate(updatedSessionEntity.getT0PdgsDate());
     }

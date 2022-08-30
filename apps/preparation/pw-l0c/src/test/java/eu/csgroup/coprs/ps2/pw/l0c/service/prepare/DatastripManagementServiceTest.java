@@ -4,7 +4,6 @@ import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class DatastripManagementServiceTest extends AbstractTest {
 
@@ -30,8 +30,6 @@ class DatastripManagementServiceTest extends AbstractTest {
     private CatalogService catalogService;
     @Mock
     private DatastripService datastripService;
-    @Mock
-    private L0cPreparationProperties l0cPreparationProperties;
 
     @InjectMocks
     private DatastripManagementService datastripManagementService;
@@ -64,7 +62,7 @@ class DatastripManagementServiceTest extends AbstractTest {
         missingAuxDatastripList = List.of(missingAuxDatastrip);
 
 
-        datastripManagementService = new DatastripManagementService(datastripService, catalogService, l0cPreparationProperties);
+        datastripManagementService = new DatastripManagementService(datastripService, catalogService);
     }
 
     @Override
@@ -75,7 +73,7 @@ class DatastripManagementServiceTest extends AbstractTest {
     @Test
     void getReady() {
         // Given
-        when(datastripService.readAll(true, false, false)).thenReturn(readyDatastripList);
+        when(datastripService.readAll(true, false)).thenReturn(readyDatastripList);
         // When
         final List<Datastrip> ready = datastripManagementService.getReady();
         // Then
@@ -85,7 +83,7 @@ class DatastripManagementServiceTest extends AbstractTest {
     @Test
     void getDeletable() {
         // Given
-        when(datastripService.readAllOr(true, true)).thenReturn(deletableDatastripList);
+        when(datastripService.readAll(true)).thenReturn(deletableDatastripList);
         // When
         final List<Datastrip> deletable = datastripManagementService.getDeletable();
         // Then
@@ -93,19 +91,9 @@ class DatastripManagementServiceTest extends AbstractTest {
     }
 
     @Test
-    void getWaiting() {
-        // Given
-        when(datastripService.readAll(false, false)).thenReturn(waitingDatastripList);
-        // When
-        final List<Datastrip> waiting = datastripManagementService.getWaiting();
-        // Then
-        assertEquals(waitingDatastripList, waiting);
-    }
-
-    @Test
     void updateAvailableAux() {
         // Given
-        when(datastripService.readAll(false, false, false)).thenReturn(missingAuxDatastripList);
+        when(datastripService.readAll(false, false)).thenReturn(missingAuxDatastripList);
         mockAuxCatalogResponse();
         // When
         datastripManagementService.updateAvailableAux();
@@ -117,7 +105,7 @@ class DatastripManagementServiceTest extends AbstractTest {
     @Test
     void updateNotReady() {
         // Given
-        when(datastripService.readAll(false, false, false)).thenReturn(notReadyDatastripList);
+        when(datastripService.readAll(false, false)).thenReturn(notReadyDatastripList);
         // When
         datastripManagementService.updateNotReady();
         // Then

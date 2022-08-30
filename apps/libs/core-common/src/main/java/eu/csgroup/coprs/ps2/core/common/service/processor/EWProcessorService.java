@@ -4,6 +4,10 @@ import eu.csgroup.coprs.ps2.core.common.model.ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.input.JobProcessingInput;
+import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
+import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProductType;
+import eu.csgroup.coprs.ps2.core.common.model.trace.missing.ProductMetadata;
+import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.output.JobProcessingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.service.ew.EWExecutionService;
@@ -14,6 +18,7 @@ import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,6 +36,7 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
         this.outputService = outputService;
     }
 
+    protected abstract List<TaskMissingOutput> getMissingOutputs(T executionInput);
 
     @Override
     protected Set<ProcessingMessage> processMessage(ProcessingMessage processingMessage) {
@@ -59,7 +65,7 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
                     Collections.emptyList());
 
         } catch (Exception e) {
-            taskReport.error(e.getLocalizedMessage(), Collections.emptyList());
+            taskReport.error(e.getLocalizedMessage(), getMissingOutputs(executionInput));
             throw e;
         }
 
@@ -71,6 +77,21 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
                 .filter(processingMessage -> StringUtils.hasText(processingMessage.getKeyObjectStorage()))
                 .map(processingMessage -> ObsUtils.keyToName(processingMessage.getKeyObjectStorage()))
                 .collect(Collectors.toSet());
+    }
+
+    protected JobProcessingTaskMissingOutput buildMissingOutput(MissingOutputProductType type, Integer count, String satellite, Boolean endToEnd, String ipf) {
+        return new JobProcessingTaskMissingOutput()
+                .setEndToEndProductBoolean(endToEnd)
+                .setEstimatedCountInteger(count)
+                .setProductMetadataCustomObject(
+                        new ProductMetadata()
+                                .setProductTypeString(type.getType())
+                                .setPlatformSerialIdentifierString(satellite)
+                                .setProcessingLevelInteger(0)
+                                .setProductConsolidatedBoolean(true)
+                                .setProductConsolidatedBoolean(endToEnd)
+                                .setProcessorVersionString(ipf)
+                );
     }
 
 }

@@ -51,6 +51,8 @@ public class L0uPWExecutionInputService implements PWExecutionInputService<L0uEx
                 .setJobOrders(jobOrderService.create(session))
                 .setSatellite(session.getSatellite())
                 .setStation(session.getStationCode())
+                .setStartTime(session.getStartTime())
+                .setStopTime(session.getStopTime())
                 .setT0PdgsDate(session.getT0PdgsDate())
                 .setFiles(getFileInfos(sessionName));
 

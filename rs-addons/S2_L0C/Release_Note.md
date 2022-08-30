@@ -167,7 +167,6 @@ _Prefix_: app.pw-l0c
 | pw.l0c.auxBucket       | OBS Bucket holding AUX files                                           | rs-s2-aux |
 | pw.l0c.inputFolderRoot | Path to the folder used as input for L0u files.<br/>Mount to shared fs |  /input   |
 | pw.l0c.demFolderRoot   | Path to the folder holding DEM_GLOBEF files                            |   /dem    |
-| pw.l0c.failedDelay     | Delay after which a datastrip is failed if not ready (hours)           |    24     |
 
 ### Execution worker
 

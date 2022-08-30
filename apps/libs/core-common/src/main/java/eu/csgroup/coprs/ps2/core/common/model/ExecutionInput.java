@@ -15,6 +15,8 @@ public abstract class ExecutionInput {
 
     private String satellite;
     private String station;
+    private Instant startTime;
+    private Instant stopTime;
     private Instant t0PdgsDate;
 
     private Set<FileInfo> files;

@@ -11,13 +11,11 @@ import java.util.Set;
 @Repository
 public interface SessionEntityRepository extends MongoRepository<SessionEntity, String> {
 
-    List<SessionEntity> findAllByFailedAndJobOrderCreated(boolean failed, boolean jobOrderCreated);
+    List<SessionEntity> findAllByJobOrderCreated(boolean jobOrderCreated);
 
-    List<SessionEntity> findAllByFailedOrJobOrderCreated(boolean failed, boolean jobOrderCreated);
+    List<SessionEntity> findAllByReadyAndJobOrderCreated(boolean ready, boolean jobOrderCreated);
 
-    List<SessionEntity> findAllByReadyAndFailedAndJobOrderCreated(boolean ready, boolean failed, boolean jobOrderCreated);
-
-    List<SessionEntity> findAllByRawCompleteAndReadyAndFailedAndJobOrderCreated(boolean rawComplete, boolean ready, boolean failed, boolean jobOrderCreated);
+    List<SessionEntity> findAllByRawCompleteAndReadyAndJobOrderCreated(boolean rawComplete, boolean ready, boolean jobOrderCreated);
 
     void deleteAllByNameIn(Set<String> nameSet);
 

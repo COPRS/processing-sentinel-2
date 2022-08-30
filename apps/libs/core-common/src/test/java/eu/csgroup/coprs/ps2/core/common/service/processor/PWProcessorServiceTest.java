@@ -77,7 +77,6 @@ class PWProcessorServiceTest extends AbstractTest {
 
             // Then
             verify(itemManagementService).cleanup();
-            verify(itemManagementService).updateFailed();
 
             verify(itemManagementService).updateAvailableAux();
             verify(itemManagementService).updateNotReady();
@@ -107,7 +106,6 @@ class PWProcessorServiceTest extends AbstractTest {
 
             // Then
             verify(itemManagementService).cleanup();
-            verify(itemManagementService).updateFailed();
 
             verify(itemManagementService).updateAvailableAux();
             verify(itemManagementService).updateNotReady();

@@ -27,9 +27,4 @@ public class L0cPreparationProperties implements PWProperties {
      */
     private String auxBucket;
 
-    /**
-     * Delay (in hours) after which a preparation should be failed
-     */
-    private Integer failedDelay = 24;
-
 }

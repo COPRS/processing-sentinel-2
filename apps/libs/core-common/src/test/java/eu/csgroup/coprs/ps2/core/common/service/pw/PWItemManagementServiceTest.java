@@ -48,8 +48,6 @@ class PWItemManagementServiceTest extends AbstractTest {
 
         item1 = podamFactory.manufacturePojo(Item.class);
         item2 = podamFactory.manufacturePojo(Item.class);
-        item1.setFailed(false);
-        item2.setFailed(false);
         item1.setCreatedDate(Instant.now().minus(2, ChronoUnit.DAYS));
         item2.setCreatedDate(Instant.now().minus(2, ChronoUnit.HOURS));
 
@@ -68,7 +66,6 @@ class PWItemManagementServiceTest extends AbstractTest {
         itemManagementService = Mockito.mock(PWItemManagementService.class, CALLS_REAL_METHODS);
         ReflectionTestUtils.setField(itemManagementService, "itemService", itemService);
         ReflectionTestUtils.setField(itemManagementService, "catalogService", catalogService);
-        ReflectionTestUtils.setField(itemManagementService, "pwProperties", pwProperties);
     }
 
     @Override
@@ -95,28 +92,6 @@ class PWItemManagementServiceTest extends AbstractTest {
         itemManagementService.cleanup();
         // Then
         verify(itemService, never()).deleteAll(any());
-    }
-
-    @Test
-    void updateFailed() {
-        // Given
-        when(pwProperties.getFailedDelay()).thenReturn(24);
-        when(itemManagementService.getWaiting()).thenReturn(itemList);
-        doNothing().when(itemService).updateAll(itemArgumentCaptor.capture());
-        // When
-        itemManagementService.updateFailed();
-        // Then
-        assertEquals(1, itemArgumentCaptor.getValue().stream().filter(Item::isFailed).count());
-    }
-
-    @Test
-    void updateFailed_empty() {
-        // Given
-        when(itemManagementService.getWaiting()).thenReturn(Collections.emptyList());
-        // When
-        itemManagementService.updateFailed();
-        // Then
-        verify(itemService, never()).updateAll(anyList());
     }
 
     @Test

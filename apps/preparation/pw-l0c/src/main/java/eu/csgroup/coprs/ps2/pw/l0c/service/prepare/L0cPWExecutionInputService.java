@@ -47,6 +47,8 @@ public class L0cPWExecutionInputService implements PWExecutionInputService<L0cEx
                 .setDtFolder(Paths.get(datastrip.getFolder()).getParent().toString())
                 .setSatellite(datastrip.getSatellite())
                 .setStation(datastrip.getStationCode())
+                .setStartTime(datastrip.getStartTime())
+                .setStopTime(datastrip.getStopTime())
                 .setT0PdgsDate(datastrip.getT0PdgsDate());
 
         final Map<AuxFile, List<FileInfo>> auxFilesByType = auxService.getAux(datastrip);

@@ -5,7 +5,6 @@ import eu.csgroup.coprs.ps2.core.common.service.pw.PWItemManagementService;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -27,27 +26,22 @@ public class DatastripManagementService extends PWItemManagementService<Datastri
     private static final String STOP_TIME_TAG = "DATASTRIP_SENSING_STOP";
     private static final long DELETION_GRACE_PERIOD = 60L;
 
-    public DatastripManagementService(DatastripService datastripService, CatalogService catalogService, L0cPreparationProperties l0cPreparationProperties) {
-        super(catalogService, datastripService, l0cPreparationProperties);
+    public DatastripManagementService(DatastripService datastripService, CatalogService catalogService) {
+        super(catalogService, datastripService);
     }
 
 
     @Override
     public List<Datastrip> getReady() {
-        return itemService.readAll(true, false, false);
+        return itemService.readAll(true, false);
     }
 
     @Override
     public List<Datastrip> getDeletable() {
         final Instant now = Instant.now();
-        return itemService.readAllOr(true, true).stream()
+        return itemService.readAll(true).stream()
                 .filter(datastrip -> Duration.between(datastrip.getLastModifiedDate(), now).getSeconds() > DELETION_GRACE_PERIOD)
                 .toList();
-    }
-
-    @Override
-    public List<Datastrip> getWaiting() {
-        return itemService.readAll(false, false);
     }
 
     @Override
@@ -72,7 +66,7 @@ public class DatastripManagementService extends PWItemManagementService<Datastri
     @Override
     public void updateNotReady() {
 
-        log.info("Updating ready and failed status for all Datastrips not yet ready");
+        log.info("Updating ready status for all Datastrips not yet ready");
 
         final List<Datastrip> datastrips = getNotReady();
 
@@ -87,7 +81,7 @@ public class DatastripManagementService extends PWItemManagementService<Datastri
             });
             itemService.updateAll(datastrips);
         }
-        log.info("Finished updating ready and failed status for all datastrips not yet ready");
+        log.info("Finished updating ready status for all datastrips not yet ready");
     }
 
     @Override
@@ -118,7 +112,7 @@ public class DatastripManagementService extends PWItemManagementService<Datastri
     }
 
     private List<Datastrip> getNotReady() {
-        return itemService.readAll(false, false, false);
+        return itemService.readAll(false, false);
     }
 
 }

@@ -16,12 +16,10 @@ public abstract class PWItemManagementService<S extends PWItem, V extends PWItem
 
     protected final CatalogService catalogService;
     protected final V itemService;
-    private final PWProperties pwProperties;
 
-    protected PWItemManagementService(CatalogService catalogService, V itemService, PWProperties pwProperties) {
+    protected PWItemManagementService(CatalogService catalogService, V itemService) {
         this.catalogService = catalogService;
         this.itemService = itemService;
-        this.pwProperties = pwProperties;
     }
 
 
@@ -31,14 +29,13 @@ public abstract class PWItemManagementService<S extends PWItem, V extends PWItem
 
     public abstract List<S> getReady();
     public abstract List<S> getDeletable();
-    public abstract List<S> getWaiting();
 
     public abstract void setJobOrderCreated(List<S> itemList);
 
 
     public void cleanup() {
 
-        log.info("Removing created or failed items");
+        log.info("Removing created items");
 
         final List<S> deletableItems = getDeletable();
 
@@ -48,30 +45,7 @@ public abstract class PWItemManagementService<S extends PWItem, V extends PWItem
             itemService.deleteAll(deletableItems.stream().map(S::getName).collect(Collectors.toSet()));
         }
 
-        log.info("Finished Removing created or failed items");
-    }
-
-    public void updateFailed() {
-
-        log.info("Updating failed status for all waiting items");
-
-        final List<S> waitingItems = getWaiting();
-
-        log.debug("Found {} waiting items", waitingItems.size());
-
-        if (!CollectionUtils.isEmpty(waitingItems)) {
-            waitingItems.forEach(item -> {
-                final Instant creationDate = item.getCreatedDate();
-                if (Duration.between(creationDate, Instant.now()).toHours() > pwProperties.getFailedDelay()) {
-                    log.info("Failing item {}", item.getName());
-                    item.setFailed(true);
-                    // TODO send message to DLQ ?
-                }
-            });
-            itemService.updateAll(waitingItems);
-        }
-
-        log.info("Finished updating failed status for all waiting items");
+        log.info("Finished Removing created items");
     }
 
     protected void updateAvailableAux(S item) {

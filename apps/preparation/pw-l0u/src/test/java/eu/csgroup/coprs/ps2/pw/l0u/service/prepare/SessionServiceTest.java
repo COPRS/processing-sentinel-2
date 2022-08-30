@@ -102,10 +102,10 @@ class SessionServiceTest extends AbstractTest {
     @Test
     void readAll_all() {
         // Given
-        when(sessionEntityRepository.findAllByRawCompleteAndReadyAndFailedAndJobOrderCreated(anyBoolean(), anyBoolean(), anyBoolean(), anyBoolean())).thenReturn(
+        when(sessionEntityRepository.findAllByRawCompleteAndReadyAndJobOrderCreated(anyBoolean(), anyBoolean(), anyBoolean())).thenReturn(
                 List.of(TestHelper.SESSION_ENTITY));
         // When
-        final List<Session> sessions = sessionService.readAll(true, false, true, false);
+        final List<Session> sessions = sessionService.readAll(true, true, false);
         // Then
         assertEquals(1, sessions.size());
         assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());
@@ -114,9 +114,9 @@ class SessionServiceTest extends AbstractTest {
     @Test
     void readAll_mid() {
         // Given
-        when(sessionEntityRepository.findAllByReadyAndFailedAndJobOrderCreated(anyBoolean(), anyBoolean(), anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
+        when(sessionEntityRepository.findAllByReadyAndJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
         // When
-        final List<Session> sessions = sessionService.readAll(true, false, true);
+        final List<Session> sessions = sessionService.readAll(true, true);
         // Then
         assertEquals(1, sessions.size());
         assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());
@@ -125,9 +125,9 @@ class SessionServiceTest extends AbstractTest {
     @Test
     void readAll_short() {
         // Given
-        when(sessionEntityRepository.findAllByFailedAndJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
+        when(sessionEntityRepository.findAllByJobOrderCreated(anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
         // When
-        final List<Session> sessions = sessionService.readAll(true, false);
+        final List<Session> sessions = sessionService.readAll(false);
         // Then
         assertEquals(1, sessions.size());
         assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());
@@ -136,9 +136,9 @@ class SessionServiceTest extends AbstractTest {
     @Test
     void readAllOr() {
         // Given
-        when(sessionEntityRepository.findAllByFailedOrJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
+        when(sessionEntityRepository.findAllByJobOrderCreated(anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
         // When
-        final List<Session> sessions = sessionService.readAllOr(true, false);
+        final List<Session> sessions = sessionService.readAll(false);
         // Then
         assertEquals(1, sessions.size());
         assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());

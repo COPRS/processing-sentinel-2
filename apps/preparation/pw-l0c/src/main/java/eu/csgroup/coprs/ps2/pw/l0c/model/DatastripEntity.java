@@ -31,7 +31,6 @@ public class DatastripEntity extends AuditableEntity {
     private Map<String, Boolean> availableByAux;
 
     private boolean ready;
-    private boolean failed;
     private boolean jobOrderCreated;
 
 }

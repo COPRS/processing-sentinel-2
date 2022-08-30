@@ -184,7 +184,6 @@ _Prefix_: app.pw-l0u
 | spring.profiles.active | Name of the profile to run with (prod or dev)              |       prod       |
 | pw.l0u.auxBucket       | OBS Bucket holding AUX files                               |    rs-s2-aux     |
 | pw.l0u.caduBucket      | OBS Bucket holding session files (DSIB, DSDB)              | rs-session-files |
-| pw.l0u.failedDelay     | Delay after which a session is failed if not ready (hours) |        24        |
 
 ### Execution worker
 

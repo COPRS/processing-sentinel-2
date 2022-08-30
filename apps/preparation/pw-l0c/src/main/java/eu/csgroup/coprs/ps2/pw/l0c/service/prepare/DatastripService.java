@@ -7,7 +7,6 @@ import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
 import eu.csgroup.coprs.ps2.pw.l0c.model.DatastripEntity;
 import eu.csgroup.coprs.ps2.pw.l0c.model.DatastripMapper;
 import eu.csgroup.coprs.ps2.pw.l0c.repository.DatastripEntityRepository;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,16 +65,12 @@ public class DatastripService implements PWItemService<Datastrip> {
         return datastripMapper.toDatastrip(readEntity(datastripName));
     }
 
-    public List<Datastrip> readAll(boolean ready, boolean failed, boolean jobOrderCreated) {
-        return toDatastrips(datastripEntityRepository.findAllByReadyAndFailedAndJobOrderCreated(ready, failed, jobOrderCreated));
+    public List<Datastrip> readAll(boolean ready, boolean jobOrderCreated) {
+        return toDatastrips(datastripEntityRepository.findAllByReadyAndJobOrderCreated(ready, jobOrderCreated));
     }
 
-    public List<Datastrip> readAll(boolean failed, boolean jobOrderCreated) {
-        return toDatastrips(datastripEntityRepository.findAllByFailedAndJobOrderCreated(failed, jobOrderCreated));
-    }
-
-    public List<Datastrip> readAllOr(boolean failed, boolean jobOrderCreated) {
-        return toDatastrips(datastripEntityRepository.findAllByFailedOrJobOrderCreated(failed, jobOrderCreated));
+    public List<Datastrip> readAll(boolean jobOrderCreated) {
+        return toDatastrips(datastripEntityRepository.findAllByJobOrderCreated(jobOrderCreated));
     }
 
     public Datastrip update(Datastrip datastrip) {
@@ -128,7 +123,6 @@ public class DatastripService implements PWItemService<Datastrip> {
     private void updateEntity(DatastripEntity datastripEntity, DatastripEntity updatedDatastripEntity) {
         datastripEntity.setAvailableByAux(updatedDatastripEntity.getAvailableByAux())
                 .setReady(updatedDatastripEntity.isReady())
-                .setFailed(updatedDatastripEntity.isFailed())
                 .setJobOrderCreated(updatedDatastripEntity.isJobOrderCreated());
     }
 

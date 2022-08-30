@@ -10,6 +10,7 @@
 #   REGISTRY_PWD
 #   REGISTRY_BASE
 #   REGISTRY_PROJECT
+#   REGISTRY_FOLDER
 ######################################################################
 
 #set -x
@@ -19,7 +20,7 @@ echo "Building rs-addons"
 VERSION=$(grep "version =" ../apps/build.gradle | xargs | cut -d' ' -f3)
 DATE=$(date '+%Y-%m-%d')
 
-REGISTRY_URL="https://${REGISTRY_BASE}/artifactory/${REGISTRY_PROJECT}"
+REGISTRY_URL="https://${REGISTRY_BASE}/artifactory/${REGISTRY_PROJECT}/${REGISTRY_FOLDER}"
 
 function build() {
 

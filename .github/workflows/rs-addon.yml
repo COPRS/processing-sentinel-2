@@ -3,10 +3,12 @@ name: PS2 RS-ADDON build
 on:
   push:
     branches:
-      - '**'
-    paths:
-      - 'apps/build.gradle'
-      - 'rs-addons/**'
+      - 'develop'
+      - 'main'
+      - 'release/**'
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]"
   workflow_dispatch: { }
 
 env:
@@ -14,6 +16,7 @@ env:
   REGISTRY_PWD: ${{ secrets.ARTIFACTORY_PASSWORD }}
   REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
   REGISTRY_PROJECT: rs-zip-private
+  REGISTRY_FOLDER: rs-addons/s2
 
 jobs:
 
@@ -60,6 +63,7 @@ jobs:
           echo "REGISTRY_PWD=${{ env.REGISTRY_PWD }}" >> $GITHUB_ENV
           echo "REGISTRY_BASE=${{ env.REGISTRY_BASE }}" >> $GITHUB_ENV
           echo "REGISTRY_PROJECT=${{ env.REGISTRY_PROJECT }}" >> $GITHUB_ENV
+          echo "REGISTRY_FOLDER=${{ env.REGISTRY_FOLDER }}" >> $GITHUB_ENV
 
       - name: Build rs-addons and push
         run: |

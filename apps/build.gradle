@@ -85,6 +85,10 @@ subprojects {
         registryProject = System.getenv("REGISTRY_PROJECT")
         registryUser = System.getenv("REGISTRY_USER")
         registryPassword = System.getenv("REGISTRY_PWD")
+        registryFolder = System.getenv("REGISTRY_FOLDER")
+        dockerPrefix = registryBase ? "${registryBase}/${registryProject}/" : ""
+        dockerPrefix += registryFolder ? "${registryFolder}/" : ""
+        dockerPublish = registryBase
     }
 
     dependencies {
@@ -153,8 +157,8 @@ subprojects {
     task allDeps(type: DependencyReportTask) {}
 
     tasks.named('bootBuildImage') {
-        imageName = "${registryBase}/${registryProject}/${project.name}:${project.version}"
-        publish = true
+        imageName = "${dockerPrefix}${project.name}:${project.version}"
+        publish = dockerPublish
         docker {
             publishRegistry {
                 url = "https://${registryBase}/${registryProject}"

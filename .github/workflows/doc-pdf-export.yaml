@@ -1,25 +1,25 @@
-name: PS2 Documentation Export 
+name: PS2 Documentation Export
 
 on:
   push:
     branches:
       - 'main'
+      - 'release/**'
       - '**doc**'
-      - 'release**'
     paths:
       - '**'
     tags:
       - "[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
       - "[0-9]+.[0-9]+.[0-9]"
-  workflow_dispatch: {}
+  workflow_dispatch: { }
 
 jobs:
-          
+
   convert_add_via_pandoc_with_properties:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Latex commands for defining parameters
         run: |
           echo "\newcommand{\doctitle}{Processing Sentinel 2 Architecture Design Document}" >> latexcommands.tex
@@ -45,12 +45,12 @@ jobs:
           echo "  \newpage" >> patch.md
           echo "---" >> patch.md
           cat patch.md docs/architecture/README.md > README_patched.md
-          
+
       - name: make output dir
         id: make_output_dir
         run: mkdir output # create output dir
 
-      - name: Create PDF 
+      - name: Create PDF
         uses: docker://ghcr.io/coprs/reference-system-software:dependencies_pandoc_latex
         with:
           args: -s --resource-path="/github/workspace/docs/media:/github/workspace/inputs/media:." --listings -H /root/.pandoc/listings-setup.tex -H /root/.pandoc/deeplists.tex -H  header-cs2.tex -V geometry:margin=1in --table-of-contents --pdf-engine=xelatex --output="output/CSGF-CSC-RS-PRD-ADDPS2.pdf" --from=markdown+autolink_bare_uris README_patched.md
@@ -59,12 +59,12 @@ jobs:
         with:
           name: documentation
           path: output
-          
+
   convert_sim_via_pandoc_with_properties:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Latex commands for defining parameters
         run: |
           echo "\newcommand{\doctitle}{Processing Sentinel 2 Installation Manual}" >> latexcommands.tex
@@ -90,12 +90,12 @@ jobs:
           echo "  \newpage" >> patch.md
           echo "---" >> patch.md
           cat patch.md docs/installation_manual/README.md > README_patched.md
-          
+
       - name: make output dir
         id: make_output_dir
         run: mkdir output # create output dir
 
-      - name: Create PDF 
+      - name: Create PDF
         uses: docker://ghcr.io/coprs/reference-system-software:dependencies_pandoc_latex
         with:
           args: -s --resource-path="/github/workspace/docs/media:/github/workspace/inputs/media:." --listings -H /root/.pandoc/listings-setup.tex -H /root/.pandoc/deeplists.tex -H  header-cs2.tex -V geometry:margin=1in --table-of-contents --pdf-engine=xelatex --output="output/CSGF-CSC-RS-PRD-SIM-PS2.pdf" --from=markdown+autolink_bare_uris README_patched.md
@@ -104,12 +104,12 @@ jobs:
         with:
           name: documentation
           path: output
-          
+
   convert_sum_via_pandoc_with_properties:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Latex commands for defining parameters
         run: |
           echo "\newcommand{\doctitle}{Processing Sentinel 2 User's Manual}" >> latexcommands.tex
@@ -135,12 +135,12 @@ jobs:
           echo "  \newpage" >> patch.md
           echo "---" >> patch.md
           cat patch.md docs/user_manual/README.md > README_patched.md
-          
+
       - name: make output dir
         id: make_output_dir
         run: mkdir output # create output dir
 
-      - name: Create PDF 
+      - name: Create PDF
         uses: docker://ghcr.io/coprs/reference-system-software:dependencies_pandoc_latex
         with:
           args: -s --resource-path="/github/workspace/docs/media:/github/workspace/inputs/media:." --listings -H /root/.pandoc/listings-setup.tex -H /root/.pandoc/deeplists.tex -H  header-cs2.tex -V geometry:margin=1in --table-of-contents --pdf-engine=xelatex --output="output/CSGF-CSC-RS-PRD-SUM-PS2.pdf" --from=markdown+autolink_bare_uris README_patched.md

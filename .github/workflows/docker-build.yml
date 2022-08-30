@@ -3,20 +3,25 @@ name: PS2 Docker build
 on:
   push:
     branches:
-      - '**'
-    paths:
-      - 'apps/**'
-      - 'gradle.properties'
-      - 'settings.gradle'
-  workflow_dispatch: {}
+      - 'develop'
+      - 'main'
+      - 'release/**'
+      - 'feature/**'
+      - 'fix/**'
+    tags:
+      - "[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]"
+  workflow_dispatch: { }
 
 env:
   REGISTRY_USER: ${{ secrets.ARTIFACTORY_USER }}
   REGISTRY_PWD: ${{ secrets.ARTIFACTORY_PASSWORD }}
   REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
   REGISTRY_PROJECT: rs-docker-private
+  REGISTRY_FOLDER: ""
   SONARQUBE_HOST: ${{ secrets.SONARQUBE_HOST }}
   SONARQUBE_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+  BRANCH_REGEX: "^(main$|release/*)"
 
 jobs:
 
@@ -37,19 +42,31 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up env
+      - name: Set up environment
         run: |
+          
           # Artifactory
           echo "REGISTRY_USER=${{ env.REGISTRY_USER }}" >> $GITHUB_ENV
           echo "REGISTRY_PWD=${{ env.REGISTRY_PWD }}" >> $GITHUB_ENV
           echo "REGISTRY_BASE=${{ env.REGISTRY_BASE }}" >> $GITHUB_ENV
           echo "REGISTRY_PROJECT=${{ env.REGISTRY_PROJECT }}" >> $GITHUB_ENV
+          echo "REGISTRY_FOLDER=${{ env.REGISTRY_FOLDER }}" >> $GITHUB_ENV
+          
           # Sonar
           echo "SONARQUBE_HOST=${{ env.SONARQUBE_HOST }}" >> $GITHUB_ENV
           echo "SONARQUBE_TOKEN=${{ env.SONARQUBE_TOKEN }}" >> $GITHUB_ENV
+          
           # Git
-          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
+          GIT_BRANCH=${{ github.ref_name }}
           echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+          echo Building branch : $GIT_BRANCH
+          
+          # Set project version for work branches
+          if ! [[ $GIT_BRANCH =~ ${{ env.BRANCH_REGEX }} ]]; then
+            BRANCH_NAME=$(echo $GIT_BRANCH | sed s:/:_:g)
+            echo Setting project version : $BRANCH_NAME
+            sed -i -E "s/(version = ').*(')/\1$BRANCH_NAME\2/" apps/build.gradle
+          fi
 
       - name: Log into registry ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}
         if: github.event_name != 'pull_request'

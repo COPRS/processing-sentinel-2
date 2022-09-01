@@ -36,7 +36,7 @@ public class L0cEWUploadService extends EWUploadService {
 
         final Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = new EnumMap<>(ProductFamily.class);
 
-        final Path dsPath =Paths.get(L0cFolderParameters.DS_PATH);
+        final Path dsPath = Paths.get(L0cFolderParameters.DS_PATH);
         final Path grPath = Paths.get(L0cFolderParameters.GR_DB_PATH);
 
         try {

@@ -1,6 +1,5 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.service.pw.PWItemManagementService;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;

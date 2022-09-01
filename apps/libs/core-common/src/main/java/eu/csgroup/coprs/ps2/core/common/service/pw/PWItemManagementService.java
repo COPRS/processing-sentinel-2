@@ -65,7 +65,7 @@ public abstract class PWItemManagementService<S extends PWItem, V extends PWItem
                 if (Duration.between(creationDate, Instant.now()).toHours() > pwProperties.getFailedDelay()) {
                     log.info("Failing item {}", item.getName());
                     item.setFailed(true);
-                    // TODO send message to DLQ OR Trace ?
+                    // TODO send message to DLQ ?
                 }
             });
             itemService.updateAll(waitingItems);

@@ -4,6 +4,10 @@ catalog:
   auxProductFamily: S2_AUX
   mode: LatestValCover
 
+chain:
+  name: s2-chain
+  version: 1
+
 spring:
   #  kafka:
   #    bootstrap-servers: localhost:9092

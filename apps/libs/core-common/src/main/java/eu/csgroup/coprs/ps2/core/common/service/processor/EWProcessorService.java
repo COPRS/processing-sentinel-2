@@ -4,7 +4,6 @@ import eu.csgroup.coprs.ps2.core.common.model.ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.input.JobProcessingInput;
-import eu.csgroup.coprs.ps2.core.common.model.trace.missing.EmptyTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.output.JobProcessingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.service.ew.EWExecutionService;
@@ -14,6 +13,7 @@ import eu.csgroup.coprs.ps2.core.common.service.ew.EWSetupService;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -56,10 +56,10 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
             taskReport.end(
                     "End Job Processing",
                     new JobProcessingOutput(getTaskOutputs(outputMessageSet), executionInput.getT0PdgsDate()),
-                    new EmptyTaskMissingOutput()); // TODO Add missing output after scanning proper file
+                    Collections.emptyList());
 
         } catch (Exception e) {
-            taskReport.error(e.getLocalizedMessage(), new EmptyTaskMissingOutput()); // TODO same for missing outputs
+            taskReport.error(e.getLocalizedMessage(), Collections.emptyList());
             throw e;
         }
 

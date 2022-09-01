@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.core.common.model.trace;
 
+import eu.csgroup.coprs.ps2.core.common.config.ChainProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,8 +17,8 @@ public class Header {
     private String workflow = "NOMINAL";
     private String debugMode = "false";
 
-    private String rsChainName; // TODO set that
-    private String rsChainVersion;
+    private String rsChainName = ChainProperties.getChainName();
+    private String rsChainVersion = ChainProperties.getChainVersion();
 
     private List<String> tagList;
 

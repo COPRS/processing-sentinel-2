@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -68,16 +69,16 @@ public class TaskReport {
         end(TraceLevel.INFO, TaskStatus.OK, message, output, null, null);
     }
 
-    public void end(String message, TaskOutput output, TaskMissingOutput missingOutput) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, output, null, missingOutput);
+    public void end(String message, TaskOutput output, List<TaskMissingOutput> missingOutputs) {
+        end(TraceLevel.INFO, TaskStatus.OK, message, output, null, missingOutputs);
     }
 
     public void end(String message, TaskOutput output, TaskQuality quality) {
         end(TraceLevel.INFO, TaskStatus.OK, message, output, quality, null);
     }
 
-    public void end(String message, TaskOutput output, TaskQuality quality, TaskMissingOutput missingOutput) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, output, quality, missingOutput);
+    public void end(String message, TaskOutput output, TaskQuality quality, List<TaskMissingOutput> missingOutputs) {
+        end(TraceLevel.INFO, TaskStatus.OK, message, output, quality, missingOutputs);
     }
 
     public void warning(String message) {
@@ -92,19 +93,19 @@ public class TaskReport {
         end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality, null);
     }
 
-    public void warning(String message, TaskOutput output, TaskQuality quality, TaskMissingOutput missingOutput) {
-        end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality, missingOutput);
+    public void warning(String message, TaskOutput output, TaskQuality quality, List<TaskMissingOutput> missingOutputs) {
+        end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality, missingOutputs);
     }
 
     public void error(String message) {
         end(TraceLevel.ERROR, TaskStatus.NOK, message, null, null, null);
     }
 
-    public void error(String message, TaskMissingOutput missingOutput) {
-        end(TraceLevel.ERROR, TaskStatus.NOK, message, null, null, missingOutput);
+    public void error(String message, List<TaskMissingOutput> missingOutputs) {
+        end(TraceLevel.ERROR, TaskStatus.NOK, message, null, null, missingOutputs);
     }
 
-    private void end(TraceLevel level, TaskStatus status, String message, TaskOutput output, TaskQuality quality, TaskMissingOutput missingOutput) {
+    private void end(TraceLevel level, TaskStatus status, String message, TaskOutput output, TaskQuality quality, List<TaskMissingOutput> missingOutputs) {
 
         final Double duration = Duration.between(start, Instant.now()).toMillis() / 1000.0;
 
@@ -116,7 +117,7 @@ public class TaskReport {
         if (quality != null) {
             endTask.setQuality(quality);
         }
-        endTask.setMissingOutput(missingOutput);
+        endTask.setMissingOutput(missingOutputs);
 
         endTask.setStatus(status)
                 .setDurationInSeconds(duration)

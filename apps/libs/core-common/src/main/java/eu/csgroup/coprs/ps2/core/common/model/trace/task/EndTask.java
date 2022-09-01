@@ -8,6 +8,8 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.quality.TaskQuality;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -19,7 +21,7 @@ public class EndTask extends AbstractTask {
 
     private TaskOutput output;
     private TaskQuality quality;
-    private TaskMissingOutput missingOutput;
+    private List<TaskMissingOutput> missingOutput;
 
     public EndTask() {
         this.setEvent(TaskEvent.END);

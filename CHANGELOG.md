@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.0.0-rc2] - 2022-09-02
+
+### Fixed
+
+- [#541 - Secrets are not encoded](https://github.com/COPRS/rs-issues/issues/541)
+- [#542 - Doube quotes in stream parameters](https://github.com/COPRS/rs-issues/issues/542)
+- [#544 - Secrets use incorrect inventory variables](https://github.com/COPRS/rs-issues/issues/544)
+- [#545 - Stream definition using labels raise warning message](https://github.com/COPRS/rs-issues/issues/545)
+- fix traces format
+
 ## [1.0.0-rc1] - 2022-08-31
 
 ### Added

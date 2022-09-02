@@ -58,7 +58,7 @@ subprojects {
     apply plugin: 'jacoco'
 
     group = 'eu.csgroup.coprs.ps2'
-    version = '1.0.0-rc2'
+    version = '1.0.0-rc3-SNAPSHOT'
     sourceCompatibility = '17'
 
     ext {

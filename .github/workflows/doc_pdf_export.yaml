@@ -1,4 +1,4 @@
-name: Infrastructure Documentation Export 
+name: PS2 Documentation Export 
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 
 jobs:
           
-  convert_readme_via_pandoc_with_properties:
+  convert_add_via_pandoc_with_properties:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
           echo "  \hspace*{2cm}Copyright CS GROUP FRANCE" >> patch.md
           echo "  \newpage" >> patch.md
           echo "---" >> patch.md
-          cat patch.md README.md > README_patched.md
+          cat patch.md docs/architecture/README.md > README_patched.md
           
       - name: make output dir
         id: make_output_dir

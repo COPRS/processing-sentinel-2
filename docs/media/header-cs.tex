@@ -1,0 +1,69 @@
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{float}
+
+\newcommand{\sectionbreak}{\clearpage}
+
+\let\oldunderscore\_
+\renewcommand{\_}{\oldunderscore\hspace{0pt}}
+
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+
+\floatplacement{figure}{H}
+
+
+\let\theversion\version
+
+\renewcommand{\maketitle}{}
+%\let\cleardoublepage\clearpage
+
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=1cm]{./logo_cs_group_bleu_petit_png1.png}}
+\fancyhead[C]{\textbf{\doctitle} \\ Status:\hspace{5mm}\docstatus\hspace{5mm}Version:\hspace{5mm}\docversion\hspace{5mm}Date:\hspace{5mm}\docdate}
+\fancyhead[R]{}
+\fancyfoot[C]{Copyright CS GROUP FRANCE}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=1cm]{./logo_cs_group_bleu_petit_png1.png}}
+\fancyhead[C]{\textbf{\doctitle} \\ Status:\hspace{5mm}\docstatus\hspace{5mm}Version:\hspace{5mm}\docversion\hspace{5mm}Date:\hspace{5mm}\docdate}
+\fancyhead[R]{}
+\fancyfoot[C]{Copyright CS GROUP FRANCE}
+\fancyfoot[R]{\thepage}
+\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\headrulewidth}{0.5pt}

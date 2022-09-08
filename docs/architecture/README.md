@@ -1,4 +1,4 @@
-# Architecture Design Document
+# Processing Sentinel 2 Architecture Design Document
 
 ## Document properties
 
@@ -58,7 +58,7 @@ The Architecture Design Document is applicable to the Reference System Project.
 | COPRS-ICD-ADST-001144532 | 5.0 | Interface Control Document Processing Message format |
 | COPRS-ICD-ADST-001133963 | 5.0 | Interface Control Document  Reference System add-on |
 | CORPS-ICD-ADST-001139201 | 6.0 | Interface Control Document Reference System core |
-| COPRS-ICD-ADST-001048446 | 3.0 | Interface Control Document Reference System Trace format |
+| COPRS-ICD-ADST-001048446 | 3.0 | Interface Control Document Reference System Trace format |
 | COPRS-ICD-ADST-001363642 | 3.0 | Interface Control Document Reference System Trace tailored format |
 | COPRS-ICD-ADST-001048444 | 2.0 | RS Log Interface Control Document |
 

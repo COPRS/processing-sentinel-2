@@ -2,6 +2,11 @@ name: Infrastructure Documentation Export
 
 on:
   push:
+    push:
+    branches:
+      - '**'
+    paths:
+      - '.github/workflows/doc_pdf_export.yaml'
     tags:
       - "[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
   workflow_dispatch:

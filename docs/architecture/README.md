@@ -96,6 +96,7 @@ The S2 processing is split in several parts, also called rs-addon, corresponding
 Each rs-addon includes : preparation worker, execution worker(s) and internal interface management with rs-core components and Object Storage.
 
 The S2 **L**evel **0** (L0) processing is then composed of 2 rs-addons :
+
 ![Basic Workflow](../../inputs/media/s2_basic_workflow.png)
 
 - The S2_L0U addon consumes Session data and auxiliary files to produce basic datastrips/granules, SAD, and HKTM files.
@@ -122,6 +123,7 @@ The rs-addon uploads the end-user products in the object storage, publishes new 
 ### S2_L0U
 
 Here below's the S2 L0U workflow schema:
+
 ![S2 L0U rs-addon](../../inputs/media/RS_Addon_L0u.png)
 
 Here below's a sequence diagram ([click here in case it is not rendering](https://mermaid.live/edit#pako:eNp1VNFO20AQ_JWVH6oiEYXSN6uKlMZRKwo0ihvRh7ysfRvn6PnWPZ-BCPHv7MUJcYjx08k3MzszvvNzlLOiKI5q-t-QzSnRWDgslxbkydGj4QLogawfjEYrbTy5GG7pEZTstahb9gROF2sPvII9JtF1jk5B-gU-Qfq1g28RIje7g_QSri8WMYybJ200uk3YpRq-ZW44Yhf2a6przbblvlGEfsO24OR7DBNHKBYQ7jkDIaFSrYC2VeNr8AxogZ507bUtAqpHjDwGi5ASunwNE7besTEhyjx0U3vAqnJcOR2GjRd_W5GPiccJr2V66KdXpDfWolIBdOrbMFdwxdmcUG3aV-9FOoMna8r_gV-jBDAGdp1s-0EnrT2gNpgZaoXIqnbxO7un3EPq2WFBx5IJP1rDqEIAWDkuwYjHvtPQ9bH_Sld9_U8PwFQ8HEAnPqY9PtpQx-3AzHEezo4tDh1N-0ceoFIUdc7qWx1d4rGlGO6clmA_f_25Gabj5BTvuNleiVmTSU9rKGWUEFtguymo-nJgLvKBfOUYqoOfHRg-J-nwx_zsHWl_Qz9k7V2dRedRSa5EreS2PweZZSRZS1pGsSwVrbAxfhkt7YtAm-3ZmyotGaN4haam8wgbz-nG5lHsXUN70O6PsUO9vAKD0l_g)):
@@ -154,6 +156,7 @@ sequenceDiagram
 ### S2_L0C
 
 Here below's the S2 L0C workflow schema:
+
 ![S2 L0C rs-addon](../../inputs/media/RS_Addon_L0c.png)
 
 Here below's a sequence diagram ([click here in case it is not rendering](https://mermaid.live/edit#pako:eNp1U9Fq20AQ_JXlHkoCKQl5FMXQWqJQkjZYmPRBYFa6tXTp6VY9nZqGkH_vyufEcqzqRYc0Ozszu_esKtakEtXT74FcRanB2mNbOJDH0eOmv97Yq2rzwOXHxeLuHvJruLlaJvG9hjSHlvoeazrrz2PVG0gKbtnVnH5JYOkJAwGCEAF7QK3hU-kvF8Z1Q-ghMKAD-mv6YFw9ombIKKDGgJAT-qqBJbvg2VryCaxG_X0A7DrPnTdjs8_rn5Hk_4XHnm6kO_B2nmTW1rrTI-hUt2Xu4BuXK0L9FD-9J5k0XjZU_YLQoBiwFvaZ7PJBL6n9QWOxtBSJyOl4-FE-UBUgD-xlAMeUKT86y6hHA7D13IIVjbHuO4tmb-pm53aqI05JdPenprPJ8EXCBHWiI5vXEdF5I570PHqMa79Xl19X8AHS7PY4ULjzXMnGSdqHWLN5mQeoZEswrsC7BKeFxy4SuPdGspB_UcxpQSV8lndDT6A79NpfCDh7qz1XF6ol36LRcteeR6pCiaSWCpXIUdMWBxsKVbgXgQ67rcq0ESkq2aLt6ULhEDh_cpVKgh_oFbS_r3vUyz9vMy5M)):

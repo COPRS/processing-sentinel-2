@@ -1,5 +1,19 @@
 # Architecture Design Document
 
+## Document properties
+
+|    |   |
+| -: | - |
+|    **Reference** | CSGF-CSC-RS-PRD-ADDPS2 |
+|        **Issue** | 1.0 |
+|   **Issue date** | 06 Sep 2022 |
+|  **Prepared by** | **Nicolas LECONTE**  *(Technical Manager)* |
+|  **Approved by** | |
+|  **Released by** | |
+|     **Doc type** | ADD |
+|       **No WBS** | WP-3000-C |
+| **CMMI Process** | CM |
+
 ## Document Summary
 
 This document is the **A**rchitecture **D**esign **D**ocument (ADD) for the **S**entinel-**2** (S2) processing of **R**eference **S**ystem **S**oftware (RS Software). This document will be completed all along the software development lifecycle.

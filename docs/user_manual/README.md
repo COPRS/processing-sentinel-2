@@ -26,5 +26,5 @@ This document is the User Manual for processing Sentinel 2 subsystem of the Refe
 ## Content
 
 Please refer to the release notes:
-- [rs-addon S2_L0U release note](../rs-addons/S2_L0U/Release_Note.md)
-- [rs-addon S2_L0C release note](../rs-addons/S2_L0C/Release_Note.md)
+- [rs-addon S2_L0U release note](./../../rs-addons/S2_L0U/Release_Note.md)
+- [rs-addon S2_L0C release note](./../../rs-addons/S2_L0C/Release_Note.md)

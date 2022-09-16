@@ -70,7 +70,7 @@ The Architecture Design Document is applicable to the processing of Sentinel 2, 
 
 | Acronym | Reference   | Issue no | Title of document |
 | :-----: | :---------: | :------: | ----------------- |
-| [ SVVD PS2 COPRS ] | CSGF-CSC-RS-TST-SVVD-PS2 | 1 | Software Verification and Validation Test Document |
+| [ SVVD PS2 COPRS ] | CSGF-CSC-RS-TST-SVVD-PS2 | 1.0 | Software Verification and Validation Test Document |
 | [ ADD INFRA COPRS ] | CSGF-CSC-RS-PRD-ADDINF | 2.0 | Architecture & Design Document Infrastructure |
 
 ### Glossary

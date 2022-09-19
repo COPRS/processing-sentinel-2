@@ -3,11 +3,14 @@ name: PS2 Documentation Export
 on:
   push:
     branches:
-      - '**'
+      - 'main'
+      - '**doc**'
+      - 'release**'
     paths:
       - '**'
     tags:
       - "[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
+      - "[0-9]+.[0-9]+.[0-9]"
   workflow_dispatch: {}
 
 jobs:

@@ -5,11 +5,9 @@ import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import software.amazon.awssdk.core.exception.SdkClientException;
 import software.amazon.awssdk.core.exception.SdkServiceException;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -21,13 +19,13 @@ import software.amazon.awssdk.transfer.s3.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
-@ExtendWith(MockitoExtension.class)
 class ObsServiceTest extends AbstractTest {
 
     @Mock
@@ -41,15 +39,19 @@ class ObsServiceTest extends AbstractTest {
     private ObsService obsService;
 
     private static final String BUCKET = "bucket";
-    private static final String FOLDER_KEY = "root/folder";
+    private static final String FOLDER_1_KEY = "folder1";
+    private static final String FOLDER_2_KEY = "folder2";
     private static final String FILE_KEY = "root/file";
-    private static final List<String> KEY_LIST = List.of(FOLDER_KEY, FILE_KEY);
-    private static final String FOLDER_PATH = "src/test/resources/folder";
-    private static final String FILE_PATH = "src/test/resources/folder/foo";
-    private static final List<Path> PATH_LIST = List.of(Paths.get(FOLDER_PATH), Paths.get(FILE_PATH));
-    private static final FileInfo FILE_INFO_FOLDER = new FileInfo().setBucket(BUCKET).setKey(FOLDER_KEY).setFullLocalPath(FOLDER_PATH);
+    private static final List<String> KEY_LIST = List.of(FOLDER_1_KEY, FILE_KEY);
+    private static final String FOLDER_1_PATH = "src/test/resources/folder1";
+    private static final String FOLDER_2_PATH = "src/test/resources/folder2";
+    private static final String FILE_PATH = "src/test/resources/folder1/foo";
+    private static final List<Path> PATH_LIST = List.of(Paths.get(FOLDER_1_PATH), Paths.get(FILE_PATH));
+    private static final FileInfo FILE_INFO_FOLDER_1 = new FileInfo().setBucket(BUCKET).setKey(FOLDER_1_KEY).setFullLocalPath(FOLDER_1_PATH);
+    private static final FileInfo FILE_INFO_FOLDER_2 = new FileInfo().setBucket(BUCKET).setKey(FOLDER_2_KEY).setFullLocalPath(FOLDER_2_PATH);
     private static final FileInfo FILE_INFO_FILE = new FileInfo().setBucket(BUCKET).setKey(FILE_KEY).setFullLocalPath(FILE_PATH);
-    private static final Set<FileInfo> FILE_INFO_SET = Set.of(FILE_INFO_FOLDER, FILE_INFO_FILE);
+    private static final Set<FileInfo> FILE_INFO_MIXED_SET = Set.of(FILE_INFO_FOLDER_1, FILE_INFO_FILE);
+    private static final Set<FileInfo> FILE_INFO_FOLDER_SET = Set.of(FILE_INFO_FOLDER_1, FILE_INFO_FOLDER_2);
 
     @Override
     public void setup() {
@@ -75,7 +77,14 @@ class ObsServiceTest extends AbstractTest {
 
     @Test
     void exists_fails() {
-        assertThrows(ObsException.class, () -> obsService.exists(BUCKET, FOLDER_KEY));
+        assertThrows(ObsException.class, () -> obsService.exists(BUCKET, FOLDER_1_KEY));
+    }
+
+    @Test
+    void getETags() {
+        mockListResponseEtags();
+        final Map<String, String> eTags = obsService.getETags(BUCKET, "root");
+        assertEquals(2, eTags.size());
     }
 
     @Test
@@ -90,14 +99,14 @@ class ObsServiceTest extends AbstractTest {
     void downloadFile_failure() {
         mockIsFile();
         mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FILE_KEY, FOLDER_PATH));
+        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FILE_KEY, FOLDER_1_PATH));
     }
 
     @Test
     void downloadDirectory() {
         mockIsFolder();
         mockDirDownloadSuccess();
-        obsService.download(BUCKET, FOLDER_KEY, FOLDER_PATH);
+        obsService.download(BUCKET, FOLDER_1_KEY, FOLDER_1_PATH);
         assertTrue(true);
     }
 
@@ -105,7 +114,7 @@ class ObsServiceTest extends AbstractTest {
     void downloadDirectory_failure() {
         mockIsFolder();
         mockDirDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FOLDER_KEY, FOLDER_PATH));
+        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FOLDER_1_KEY, FOLDER_1_PATH));
     }
 
     @Test
@@ -113,7 +122,7 @@ class ObsServiceTest extends AbstractTest {
         mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
         mockFileDownloadSuccess();
-        obsService.download(BUCKET, KEY_LIST, FOLDER_PATH);
+        obsService.download(BUCKET, KEY_LIST, FOLDER_1_PATH);
         assertTrue(true);
     }
 
@@ -122,7 +131,7 @@ class ObsServiceTest extends AbstractTest {
         mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
         mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(BUCKET, KEY_LIST, FOLDER_PATH));
+        assertThrows(ObsException.class, () -> obsService.download(BUCKET, KEY_LIST, FOLDER_1_PATH));
     }
 
     @Test
@@ -130,7 +139,7 @@ class ObsServiceTest extends AbstractTest {
         mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
         mockFileDownloadSuccess();
-        obsService.download(FILE_INFO_SET);
+        obsService.download(FILE_INFO_MIXED_SET);
         assertTrue(true);
     }
 
@@ -139,7 +148,7 @@ class ObsServiceTest extends AbstractTest {
         mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
         mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(FILE_INFO_SET));
+        assertThrows(ObsException.class, () -> obsService.download(FILE_INFO_MIXED_SET));
     }
 
     @Test
@@ -158,21 +167,21 @@ class ObsServiceTest extends AbstractTest {
     @Test
     void uploadDirectory() {
         mockDirUploadSuccess();
-        obsService.upload(BUCKET, FOLDER_PATH, FOLDER_KEY);
+        obsService.upload(BUCKET, FOLDER_1_PATH, FOLDER_1_KEY);
         assertTrue(true);
     }
 
     @Test
     void uploadDirectory_failure() {
         mockDirUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, FOLDER_PATH, FOLDER_KEY));
+        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, FOLDER_1_PATH, FOLDER_1_KEY));
     }
 
     @Test
     void uploadBatch() {
         mockDirUploadSuccess();
         mockFileUploadSuccess();
-        obsService.upload(BUCKET, PATH_LIST, FOLDER_KEY);
+        obsService.upload(BUCKET, PATH_LIST, FOLDER_1_KEY);
         assertTrue(true);
     }
 
@@ -180,14 +189,14 @@ class ObsServiceTest extends AbstractTest {
     void uploadBatch_failure() {
         mockDirUploadFailure();
         mockFileUploadSuccess();
-        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, PATH_LIST, FOLDER_KEY));
+        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, PATH_LIST, FOLDER_1_KEY));
     }
 
     @Test
     void uploadAll() {
         mockDirUploadSuccess();
         mockFileUploadSuccess();
-        obsService.upload(FILE_INFO_SET);
+        obsService.upload(FILE_INFO_MIXED_SET);
         assertTrue(true);
     }
 
@@ -195,7 +204,16 @@ class ObsServiceTest extends AbstractTest {
     void uploadAll_failure() {
         mockDirUploadFailure();
         mockFileUploadSuccess();
-        assertThrows(ObsException.class, () -> obsService.upload(FILE_INFO_SET));
+        assertThrows(ObsException.class, () -> obsService.upload(FILE_INFO_MIXED_SET));
+    }
+
+    @Test
+    void uploadAll_WithMd5() {
+        mockDirUploadSuccess();
+        mockFileUploadSuccess();
+        mockListResponseEtagsMd5();
+        obsService.uploadWithMd5(FILE_INFO_FOLDER_SET);
+        assertTrue(true);
     }
 
     // ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -306,6 +324,38 @@ class ObsServiceTest extends AbstractTest {
         final ListObjectsV2Response emptyResponse = ListObjectsV2Response.builder().build();
         final ListObjectsV2Response response = ListObjectsV2Response.builder().contents(Set.of(S3Object.builder().build())).build();
         Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response).thenReturn(emptyResponse);
+    }
+
+    private void mockListResponseEtags() {
+        final ListObjectsV2Response response = ListObjectsV2Response.builder().contents(
+                        Set.of(
+                                S3Object.builder().key(FOLDER_1_KEY).eTag("eTag1").build(),
+                                S3Object.builder().key(FOLDER_2_KEY).eTag("eTag2").build(),
+                                S3Object.builder().key("root").build()
+                        ))
+                .build();
+        Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response);
+    }
+
+    private void mockListResponseEtagsMd5() {
+        final ListObjectsV2Response response1 = ListObjectsV2Response.builder().contents(
+                        Set.of(
+                                S3Object.builder().key(FOLDER_1_KEY + "/foo1").eTag("eTag11").build(),
+                                S3Object.builder().key(FOLDER_1_KEY + "/subfolder1/bar1").eTag("eTag12").build(),
+                                S3Object.builder().key(FOLDER_1_KEY).build()
+                        ))
+                .build();
+        final ListObjectsV2Response response2 = ListObjectsV2Response.builder().contents(
+                        Set.of(
+                                S3Object.builder().key(FOLDER_2_KEY + "/foo2").eTag("eTag21").build(),
+                                S3Object.builder().key(FOLDER_2_KEY + "/subfolder2/bar2").eTag("eTag22").build(),
+                                S3Object.builder().key(FOLDER_2_KEY).build()
+                        ))
+                .build();
+        Mockito.when(s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(BUCKET).prefix(FOLDER_1_KEY).build()))
+                .thenReturn(response1);
+        Mockito.when(s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(BUCKET).prefix(FOLDER_2_KEY).build()))
+                .thenReturn(response2);
     }
 
 }

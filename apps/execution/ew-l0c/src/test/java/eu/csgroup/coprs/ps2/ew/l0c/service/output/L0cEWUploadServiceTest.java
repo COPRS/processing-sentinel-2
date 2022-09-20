@@ -73,7 +73,7 @@ class L0cEWUploadServiceTest extends AbstractTest {
         final List<Path> dsPaths = List.of(Paths.get("foo"));
         final List<Path> grPaths = List.of(Paths.get("bar"));
 
-        doThrow(ObsException.class).when(obsService).upload(any());
+        doThrow(ObsException.class).when(obsService).uploadWithMd5(any());
 
         try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
 

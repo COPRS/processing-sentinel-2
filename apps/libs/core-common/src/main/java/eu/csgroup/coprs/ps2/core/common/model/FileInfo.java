@@ -23,8 +23,6 @@ public class FileInfo {
     private String localPath;
     // Used for AuxProductType
     private String type;
-    private String md5;
-    private Long size;
 
     @JsonIgnore
     public FileInfo setFullLocalPath(String fullLocalPath) {

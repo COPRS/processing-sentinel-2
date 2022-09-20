@@ -112,6 +112,12 @@ class FileOperationUtilsTest {
     }
 
     @Test
+    void findFilesInTree() {
+        final List<Path> foo = FileOperationUtils.findFilesInTree(copyPath, ".*");
+        assertEquals(4, foo.size());
+    }
+
+    @Test
     void findFolders() {
         final List<Path> folders = FileOperationUtils.findFolders(copyPath, "^DT.*");
         assertEquals(1, folders.size());
@@ -134,5 +140,6 @@ class FileOperationUtilsTest {
         final List<Path> folders = FileOperationUtils.findFolders(rootPath, S2FileParameters.SAD_REGEX);
         assertEquals(1, folders.size());
     }
+
 
 }

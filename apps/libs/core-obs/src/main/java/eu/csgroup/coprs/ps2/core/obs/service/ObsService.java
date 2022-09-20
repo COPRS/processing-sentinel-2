@@ -1,11 +1,17 @@
 package eu.csgroup.coprs.ps2.core.obs.service;
 
+import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.common.utils.Md5utils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.util.retry.Retry;
@@ -15,16 +21,21 @@ import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.core.exception.SdkServiceException;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
+import software.amazon.awssdk.services.s3.model.S3Object;
 import software.amazon.awssdk.transfer.s3.*;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -32,6 +43,7 @@ import java.util.function.Supplier;
 public class ObsService {
 
     public static final String DELIMITER = "/";
+    public static final String MD5SUM_SUFFIX = ".md5sum";
 
     private final S3TransferManager transferManager;
     private final S3Client s3Client;
@@ -58,6 +70,20 @@ public class ObsService {
             throw new ObsException(errorMessage, e);
         }
         return exists;
+    }
+
+    public Map<String, String> getETags(String bucket, String key) {
+        try {
+            return s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).build())
+                    .contents()
+                    .stream()
+                    .filter(s3Object -> !s3Object.key().equals(key))
+                    .collect(Collectors.toMap(S3Object::key, s3Object -> StringUtils.remove(s3Object.eTag(), "\"")));
+        } catch (Exception e) {
+            String errorMessage = "Error occurred during OBS operation: " + e.getMessage();
+            log.error(errorMessage);
+            throw new ObsException(errorMessage, e);
+        }
     }
 
     /**
@@ -170,6 +196,61 @@ public class ObsService {
                         })
                         .toList())
                 .block();
+    }
+
+    /**
+     * Upload a set of folders, given their FileInfo, and create the matching md5sum files according to ICD
+     *
+     * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
+     */
+    public void uploadWithMd5(Set<FileInfo> fileInfoList) {
+
+        log.info("Uploading {} folders to OBS", fileInfoList.size());
+        upload(fileInfoList);
+
+        log.info("Creating md5sum files");
+
+        String tmpFolder = PreparationParameters.TMP_DOWNLOAD_FOLDER + FileSystems.getDefault().getSeparator() + UUID.randomUUID();
+        FileOperationUtils.createFolders(Set.of(tmpFolder));
+
+        Set<FileInfo> md5FileInfos = new HashSet<>();
+
+        fileInfoList.forEach(fileInfo -> {
+
+            final Path localPath = Paths.get(fileInfo.getFullLocalPath());
+            final Path md5sumPath = Paths.get(tmpFolder).resolve(localPath.getFileName() + MD5SUM_SUFFIX);
+
+            final Map<String, String> md5ByFileName = Md5utils.getFolderMd5(localPath);
+            final Map<String, String> eTagByKey = getETags(fileInfo.getBucket(), fileInfo.getKey());
+
+            final List<String> lines = md5ByFileName.entrySet()
+                    .stream()
+                    .map(entry -> String.format("%s %s %s", entry.getValue(), eTagByKey.get(entry.getKey()), entry.getKey()))
+                    .toList();
+
+            try (final OutputStream outputStream = Files.newOutputStream(md5sumPath)) {
+                for (String line : lines) {
+                    outputStream.write(line.getBytes());
+                    outputStream.write(System.lineSeparator().getBytes());
+                }
+            } catch (IOException e) {
+                throw new FileOperationException("Unable to create temporary files in: " + tmpFolder, e);
+            }
+
+            md5FileInfos.add(
+                    new FileInfo()
+                            .setFullLocalPath(md5sumPath.toString())
+                            .setBucket(fileInfo.getBucket())
+                            .setKey(md5sumPath.getFileName().toString())
+            );
+        });
+
+        log.info("Uploading md5sum files");
+        upload(md5FileInfos);
+
+        if (!FileUtils.deleteQuietly(new File(tmpFolder))) {
+            log.warn("Unable to delete temp folder {}", tmpFolder);
+        }
     }
 
     private Mono<?> doFileDownload(String key, String bucket, Path destinationPath) {

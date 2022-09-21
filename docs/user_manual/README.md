@@ -25,6 +25,10 @@ This document is the User Manual for processing Sentinel 2 subsystem of the Refe
 
 ## Content
 
+The User Manual is split in two documents (hereafter named "release notes") that each explain the deployment and configuration of an rs-addon.
+
+Note: The term "release notes" for rs-addon deployment and configuration shall be renamed later to avoid confusion with Software release notes.
+
 Please refer to the release notes:
 
 - [rs-addon S2_L0U release note](./../../rs-addons/S2_L0U/Release_Note.md)

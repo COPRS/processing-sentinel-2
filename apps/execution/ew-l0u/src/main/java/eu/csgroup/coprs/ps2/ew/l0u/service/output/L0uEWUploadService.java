@@ -50,7 +50,7 @@ public class L0uEWUploadService extends EWUploadService {
             fileInfosByFamily.put(ProductFamily.S2_AUX, getFileInfoSet(sadFolders, l0uExecutionProperties.getSadUploadBucket()));
             fileInfosByFamily.put(ProductFamily.S2_HKTM, getFileInfoSet(hktmFolders, l0uExecutionProperties.getHktmUploadBucket()));
 
-            obsService.upload(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()));
+            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()));
 
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);

@@ -105,6 +105,16 @@ public final class FileOperationUtils {
         }
     }
 
+    public static List<Path> findFilesInTree(Path root, String regex) {
+        try (Stream<Path> stream = Files.walk(root)) {
+            return stream.filter(path -> !Files.isDirectory(path))
+                    .filter(path -> path.getFileName().toString().matches(regex))
+                    .toList();
+        } catch (IOException e) {
+            throw new FileOperationException("Unable to list files in: " + root, e);
+        }
+    }
+
     public static List<Path> findFolders(Path root, String regex) {
         try (Stream<Path> stream = Files.list(root)) {
             return stream.filter(Files::isDirectory)

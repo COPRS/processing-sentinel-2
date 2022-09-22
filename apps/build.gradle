@@ -58,7 +58,7 @@ subprojects {
     apply plugin: 'jacoco'
 
     group = 'eu.csgroup.coprs.ps2'
-    version = '1.0.0-rc2'
+    version = '1.0.0-rc3-SNAPSHOT'
     sourceCompatibility = '17'
 
     ext {
@@ -68,6 +68,8 @@ subprojects {
         amazonSDKS3Version = "2.17.224-PREVIEW"
         apacheCommonsLangVersion = "3.12.0"
         apacheCommonsIOVersion = "2.11.0"
+        apacheCommonsCodecVersion = "1.15"
+        prometheusRsocketVersion = "1.5.0"
 
         // Test libs
         // See core-common for imports
@@ -91,11 +93,14 @@ subprojects {
 
         implementation "org.springframework.boot:spring-boot-starter-actuator"
         implementation "io.micrometer:micrometer-registry-prometheus"
+        implementation "io.micrometer.prometheus:prometheus-rsocket-spring:${prometheusRsocketVersion}"
+
         implementation "org.springframework.boot:spring-boot-starter-web"
         implementation "org.springframework.boot:spring-boot-starter-webflux"
 
         implementation "org.apache.commons:commons-lang3:${apacheCommonsLangVersion}"
         implementation "org.apache.commons:commons-compress:1.21"
+        implementation "commons-codec:commons-codec:${apacheCommonsCodecVersion}"
         implementation "commons-io:commons-io:${apacheCommonsIOVersion}"
         implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 
@@ -144,6 +149,8 @@ subprojects {
             html.enabled true
         }
     }
+
+    task allDeps(type: DependencyReportTask) {}
 
     tasks.named('bootBuildImage') {
         imageName = "${registryBase}/${registryProject}/${project.name}:${project.version}"

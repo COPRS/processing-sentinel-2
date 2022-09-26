@@ -4,6 +4,11 @@ include ":apps:libs:core-mongo"
 
 include ":apps:preparation:pw-l0u"
 include ":apps:preparation:pw-l0c"
+include ":apps:preparation:pw-l1s"
+include ":apps:preparation:pw-l1c"
 
 include ":apps:execution:ew-l0u"
 include ":apps:execution:ew-l0c"
+include ":apps:execution:ew-l1s"
+include ":apps:execution:ew-l1ab"
+include ":apps:execution:ew-l1c"

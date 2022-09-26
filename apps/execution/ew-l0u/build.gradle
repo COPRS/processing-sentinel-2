@@ -1,12 +1,1 @@
-apply plugin: 'com.palantir.docker'
 
-docker {
-    name "${dockerPrefix}${project.name}:${project.version}"
-    copySpec.from("docker")
-    copySpec.from("build/libs")
-    files "${project.name}-${project.version}.jar"
-}
-
-dockerPrepare {
-    dependsOn(bootJar)
-}

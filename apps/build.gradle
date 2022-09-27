@@ -1,8 +1,8 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.3' apply false
-    id 'io.spring.dependency-management' version '1.0.12.RELEASE' apply false
-    id 'io.freefair.lombok' version '6.5.0.2' apply false
+    id 'org.springframework.boot' version '2.7.4' apply false
+    id 'io.spring.dependency-management' version '1.0.14.RELEASE' apply false
+    id 'io.freefair.lombok' version '6.5.1' apply false
     id 'com.palantir.docker' version '0.34.0' apply false
     id 'org.sonarqube' version '3.4.0.2513'
     id 'jacoco'
@@ -63,22 +63,22 @@ subprojects {
 
     ext {
         // Libs
-        springCloudVersion = "2021.0.3"
-        amazonSDKVersion = "2.17.224"
-        amazonSDKS3Version = "2.17.224-PREVIEW"
+        springCloudVersion = "2021.0.4"
+        amazonSDKVersion = "2.17.281"
+        amazonSDKS3Version = "2.17.281-PREVIEW"
         apacheCommonsLangVersion = "3.12.0"
         apacheCommonsIOVersion = "2.11.0"
         apacheCommonsCodecVersion = "1.15"
         prometheusRsocketVersion = "1.5.0"
+        mapstructVersion = "1.5.2.Final"
 
         // Test libs
         // See core-common for imports
-        podamVersion = "7.2.8.RELEASE"
-        mapstructVersion = "1.4.2.Final"
-        bytebuddyVersion = "1.12.9"
-        mockitoVersion = "4.5.1"
+        mockitoVersion = "4.8.0"
+        logCaptorVersion = "2.7.10"
+        podamVersion = "7.2.10.RELEASE"
+        bytebuddyVersion = "1.12.17"
         okhttpVersion = "4.10.0"
-        logCaptorVersion = "2.7.10";
 
         // Build parameters
         registryBase = System.getenv("REGISTRY_BASE")

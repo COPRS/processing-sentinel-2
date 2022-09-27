@@ -2,16 +2,16 @@
 
 ## Document properties
 
-|    |   |
-| -: | - |
-|    **Reference** | CSGF-CSC-RS-PRD-ADDPS2 |
-|        **Issue** | 1.0 |
-|   **Issue date** | 16 Sep 2022 |
-|  **Prepared by** | **Nicolas LECONTE**  *(Technical Manager)* |
-|  **Approved by** | **Jonathan TAGLIONE** *(Quality Manager)* + **Cyrille BOUISSON** *(Architect / Technical Manager)* |
-|  **Released by** | **Stéphane HURIEZ** *(Project Manager)* |
-|     **Doc type** | ADD |
-|       **No WBS** | WP-3000-C |
+|                 |                                                                                                    |
+|----------------:|----------------------------------------------------------------------------------------------------|
+|   **Reference** | CSGF-CSC-RS-PRD-ADDPS2                                                                             |
+|       **Issue** | 1.0                                                                                                |
+|  **Issue date** | 16 Sep 2022                                                                                        |
+| **Prepared by** | **Nicolas LECONTE**  *(Technical Manager)*                                                         |
+| **Approved by** | **Jonathan TAGLIONE** *(Quality Manager)* + **Cyrille BOUISSON** *(Architect / Technical Manager)* |
+| **Released by** | **Stéphane HURIEZ** *(Project Manager)*                                                            |
+|    **Doc type** | ADD                                                                                                |
+|      **No WBS** | WP-3000-C                                                                                          |
 
 ## Document Summary
 
@@ -21,10 +21,10 @@ For the moment, there is only the level 0 available because the level 1 & 2 are 
 
 ## Document Change Log
 
-| Issue/Revision | Date | Change Requests | Observations |
-| :------------: | :--: | --------------- | ------------ |
-| 1.0 draft 1 | 06 Sep 2022 | | First issue of document |
-| 1.0 draft 2 | 16 Sep 2022 | Update document based on feedbacks from internal review |  |
+| Issue/Revision |    Date     | Change Requests                                         | Observations            |
+|:--------------:|:-----------:|---------------------------------------------------------|-------------------------|
+|  1.0 draft 1   | 06 Sep 2022 |                                                         | First issue of document |
+|  1.0 draft 2   | 16 Sep 2022 | Update document based on feedbacks from internal review |                         |
 
 ## Table Of Contents
 
@@ -55,40 +55,40 @@ The Architecture Design Document is applicable to the processing of Sentinel 2, 
 
 ### Applicable documents
 
-| Reference | Issue no | Title of document |
-| --------- | :------: | ----------------- |
-| COPRS-ICD-ADST-001144532 | 5.0 | Interface Control Document Processing Message format |
-| COPRS-ICD-ADST-001133963 | 5.0 | Interface Control Document  Reference System add-on |
-| CORPS-ICD-ADST-001139201 | 6.0 | Interface Control Document Reference System core |
-| COPRS-ICD-ADST-001048446 | 3.0 | Interface Control Document Reference System Trace format |
-| COPRS-ICD-ADST-001363642 | 3.0 | Interface Control Document Reference System Trace tailored format |
-| COPRS-ICD-ADST-001048444 | 2.0 | RS Log Interface Control Document |
-| CORPS-ICD-ADST-001406842 | 1.0 | Interface Control Document Reference System S3 Object Storage |
+| Reference                | Issue no | Title of document                                                 |
+|--------------------------|:--------:|-------------------------------------------------------------------|
+| COPRS-ICD-ADST-001144532 |   5.0    | Interface Control Document Processing Message format              |
+| COPRS-ICD-ADST-001133963 |   5.0    | Interface Control Document  Reference System add-on               |
+| CORPS-ICD-ADST-001139201 |   6.0    | Interface Control Document Reference System core                  |
+| COPRS-ICD-ADST-001048446 |   3.0    | Interface Control Document Reference System Trace format          |
+| COPRS-ICD-ADST-001363642 |   3.0    | Interface Control Document Reference System Trace tailored format |
+| COPRS-ICD-ADST-001048444 |   2.0    | RS Log Interface Control Document                                 |
+| CORPS-ICD-ADST-001406842 |   1.0    | Interface Control Document Reference System S3 Object Storage     |
 
 
 ### Reference documents
 
-| Acronym | Reference   | Issue no | Title of document |
-| :-----: | :---------: | :------: | ----------------- |
-| [ SVVD PS2 COPRS ] | CSGF-CSC-RS-TST-SVVD-PS2 | 1.0 | Software Verification and Validation Test Document |
-| [ ADD INFRA COPRS ] | CSGF-CSC-RS-PRD-ADDINF | 2.0 | Architecture & Design Document Infrastructure |
+|       Acronym       |        Reference         | Issue no | Title of document                                  |
+|:-------------------:|:------------------------:|:--------:|----------------------------------------------------|
+| [ SVVD PS2 COPRS ]  | CSGF-CSC-RS-TST-SVVD-PS2 |   1.0    | Software Verification and Validation Test Document |
+| [ ADD INFRA COPRS ] |  CSGF-CSC-RS-PRD-ADDINF  |   2.0    | Architecture & Design Document Infrastructure      |
 
 ### Glossary
 
-| Term | Definition |
-| ---- | ---------- |
-| ADD | Architecture Design Document |
+| Term | Definition                                     |
+|------|------------------------------------------------|
+| ADD  | Architecture Design Document                   |
 | ECSS | European Cooperation for Space Standardization |
-| HMI | Human Machine Interface |
-| ICD | Interface Control Document |
-| L0  | Level 0 |
-| L0U  | Level 0 Unconsolidated |
-| L0C  | Level 0 Consolidated |
-| L1  | Level 1 |
-| L2  | Level 2 |
-| PRIP | Production Interface Delivery Points |
-| SCDF  | Spring Cloud Data Flow |
-| SDD | Software Design Document |
+| HMI  | Human Machine Interface                        |
+| ICD  | Interface Control Document                     |
+| L0   | Level 0                                        |
+| L0U  | Level 0 Unconsolidated                         |
+| L0C  | Level 0 Consolidated                           |
+| L1   | Level 1                                        |
+| L2   | Level 2                                        |
+| PRIP | Production Interface Delivery Points           |
+| SCDF | Spring Cloud Data Flow                         |
+| SDD  | Software Design Document                       |
 
 # Software Design
 
@@ -155,6 +155,9 @@ sequenceDiagram
     router->>catalog job: processing message (HKTM/SAD)
 ```
 
+_Missing Outputs_: If the L0u processing fails, the number of missing outputs is estimated, for datastrips only, 
+based on the number produced on average. This number is currently 6.
+
 ### S2_L0C
 
 Here below's the S2 L0C workflow schema:
@@ -184,3 +187,6 @@ sequenceDiagram
     EW S2 L0C->>Object Storage: Write L0C DS/GR
     EW S2 L0C->>catalog job: processing message (L0C DS/GR)
 ```
+
+_Missing Outputs_: If the L0c processing fails, the number of missing outputs for datatstrips and granules 
+is the same as the number of L0u datastrips and granules used as input.

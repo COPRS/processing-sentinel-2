@@ -2,6 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
   name: s2-l0c-job
+  namespace: logging
   labels:
     strimzi.io/cluster: kafka-cluster
 spec:

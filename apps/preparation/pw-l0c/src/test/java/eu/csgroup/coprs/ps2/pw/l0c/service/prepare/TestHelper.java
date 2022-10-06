@@ -1,9 +1,9 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.pw.l0c.model.AuxFile;
-import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
-import eu.csgroup.coprs.ps2.pw.l0c.model.DatastripEntity;
+import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
+import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
+import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastripEntity;
 
 import java.nio.file.Paths;
 import java.time.Instant;
@@ -21,7 +21,7 @@ public final class TestHelper {
     public static final String STATION_CODE = "_SGS";
     public static final Instant T0_PDGS_DATE = Instant.now().minus(2, ChronoUnit.HOURS);
 
-    public static final Datastrip DATASTRIP = ((Datastrip) new Datastrip()
+    public static final L0cDatastrip DATASTRIP = ((L0cDatastrip) new L0cDatastrip()
             .setFolder(FOLDER)
             .setName(DATASTRIP_NAME)
             .setStartTime(START_TIME)
@@ -30,7 +30,7 @@ public final class TestHelper {
             .setSatellite(SATELLITE)
             .setStationCode(STATION_CODE));
 
-    public static final DatastripEntity DATASTRIP_ENTITY = new DatastripEntity()
+    public static final L0cDatastripEntity DATASTRIP_ENTITY = (L0cDatastripEntity) new L0cDatastripEntity()
             .setFolder(FOLDER)
             .setName(DATASTRIP_NAME)
             .setStartTime(START_TIME)
@@ -39,7 +39,7 @@ public final class TestHelper {
             .setSatellite(SATELLITE)
             .setStationCode(STATION_CODE);
 
-    public static final Datastrip UPDATED_DATASTRIP = ((Datastrip) new Datastrip()
+    public static final L0cDatastrip UPDATED_DATASTRIP = ((L0cDatastrip) new L0cDatastrip()
             .setFolder(FOLDER)
             .setName(DATASTRIP_NAME)
             .setStartTime(START_TIME)
@@ -49,11 +49,11 @@ public final class TestHelper {
             .setStationCode(STATION_CODE)
             .setReady(true));
 
-    public static final Map<AuxFile, List<FileInfo>> auxFilesByType = Map.of(
-            AuxFile.AUX_UT1UTC, List.of(
+    public static final Map<L0cAuxFile, List<FileInfo>> auxFilesByType = Map.of(
+            L0cAuxFile.AUX_UT1UTC, List.of(
                     new FileInfo().setObsName("S2__OPER_AUX_UT1UTC_PDMC_20220407T000000_V20220408T000000_20230407T000000")
                             .setLocalName("S2__OPER_AUX_UT1UTC_PDMC_20220407T000000_V20220408T000000_20230407T000000")),
-            AuxFile.GIP_ATMIMA, List.of(
+            L0cAuxFile.GIP_ATMIMA, List.of(
                     new FileInfo().setObsName("S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00")
                             .setLocalName("S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00"))
     );

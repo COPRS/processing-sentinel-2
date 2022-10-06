@@ -11,4 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("ew.l1c")
 public class L1cExecutionProperties {
 
+    private String auxBucket;
+    private String l1Bucket;
+    private String sharedFolderRoot;
+    private String demFolderRoot;
+
 }

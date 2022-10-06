@@ -6,6 +6,7 @@ import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.processing.EventAction;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
+import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 
 import java.time.Instant;
 import java.util.Map;
@@ -56,6 +57,17 @@ public final class ProcessingMessageUtils {
         }
 
         return objectMapper.convertValue(processingMessage.getMetadata().get(fieldName), clazz);
+    }
+
+    public static Instant getT0PdgsDate(ProcessingMessage processingMessage) {
+        // Looking for t0 in metadata first, where it's supposed to be. And in additionalFields after that, just in case
+        Instant t0PdgsDate = Instant.EPOCH;
+        if (ProcessingMessageUtils.hasMetadata(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD)) {
+            t0PdgsDate = ProcessingMessageUtils.getMetadata(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD, Instant.class);
+        } else if (ProcessingMessageUtils.hasAdditionalField(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD)) {
+            t0PdgsDate = ProcessingMessageUtils.getAdditionalField(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD, Instant.class);
+        }
+        return t0PdgsDate;
     }
 
     private ProcessingMessageUtils() {

@@ -4,7 +4,7 @@ subprojects {
 
         implementation project(':apps:libs:core-common')
         implementation project(':apps:libs:core-obs')
-        implementation project(':apps:libs:core-mongo')
+        implementation project(':apps:libs:core-pw')
 
         testImplementation(testFixtures(project(":apps:libs:core-common")))
 

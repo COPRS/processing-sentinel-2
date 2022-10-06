@@ -4,10 +4,8 @@ import eu.csgroup.coprs.ps2.core.common.model.l0.FileType;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.input.SingleFileInput;
-import eu.csgroup.coprs.ps2.core.common.model.trace.output.EmptyTaskOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
-import eu.csgroup.coprs.ps2.core.common.service.pw.PWInputManagementService;
-import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
+import eu.csgroup.coprs.ps2.core.pw.service.PWInputManagementService;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.SessionUtils;
@@ -16,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
-import java.time.Instant;
 import java.util.UUID;
 
 
@@ -48,17 +45,9 @@ public class L0uPWInputManagementService implements PWInputManagementService {
 
             final String product = "Product " + fileName;
 
-            // Looking for t0 in metadata and additionalFields, since it's unclear where it's supposed to be - not required, anyway
-            Instant t0PdgsDate = Instant.EPOCH;
-            if (ProcessingMessageUtils.hasAdditionalField(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD)) {
-                t0PdgsDate = ProcessingMessageUtils.getAdditionalField(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD, Instant.class);
-            } else if (ProcessingMessageUtils.hasMetadata(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD)) {
-                t0PdgsDate = ProcessingMessageUtils.getMetadata(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD, Instant.class);
-            }
-
             switch (fileType) {
                 case DSIB -> {
-                    managementService.create(SessionUtils.sessionFromFilename(fileName), t0PdgsDate);
+                    managementService.create(SessionUtils.sessionFromFilename(fileName), ProcessingMessageUtils.getT0PdgsDate(processingMessage));
                     taskReport.end(product + " is DSIB, creating session");
                 }
                 case DSDB -> {

@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.service.pw.PWExecutionInputService;
+import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import lombok.extern.slf4j.Slf4j;
@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 public class L0uPWExecutionInputService implements PWExecutionInputService<L0uExecutionInput, Session> {
 
     private final CatalogService catalogService;
-    private final JobOrderService jobOrderService;
+    private final L0uJobOrderService jobOrderService;
     private final L0uPreparationProperties l0uPreparationProperties;
 
-    public L0uPWExecutionInputService(CatalogService catalogService, JobOrderService jobOrderService, L0uPreparationProperties l0uPreparationProperties) {
+    public L0uPWExecutionInputService(CatalogService catalogService, L0uJobOrderService jobOrderService, L0uPreparationProperties l0uPreparationProperties) {
         this.catalogService = catalogService;
         this.jobOrderService = jobOrderService;
         this.l0uPreparationProperties = l0uPreparationProperties;

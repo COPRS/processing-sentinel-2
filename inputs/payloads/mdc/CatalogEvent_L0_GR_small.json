@@ -1,0 +1,73 @@
+{
+  "uid": "5a9e8615-84a7-4a26-b51c-d069b107a2f7",
+  "creationDate": "2022-10-13T14:55:57.437Z",
+  "missionId": "S2",
+  "satelliteId": "B",
+  "keyObjectStorage": "S2B_OPER_MSI_L0__GR_REFS_20221013T143134_S20221011T062613_D01_N02.08",
+  "storagePath": "s3://rs-s2-l0c/S2B_OPER_MSI_L0__GR_REFS_20221013T143134_S20221011T062613_D01_N02.08",
+  "productFamily": "S2_L0_GR",
+  "podName": "metadata-1-part1-metadata-extraction-v1-65b87b557b-lwlfv",
+  "allowedActions": [
+    "RESUBMIT"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {},
+  "metadata": {
+    "productFamily": "S2_L0_GR",
+    "creationTime": "2022-10-13T14:31:34.000000Z",
+    "insertionTime": "2022-10-13T14:55:56.470553Z",
+    "instrumentShortName": "MSI",
+    "productGroupId": "S2B_OPER_MSI_L0__DS_REFS_20221013T143134_S20221011T062334_N02.08",
+    "productName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143134_S20221011T062613_D01_N02.08",
+    "orbitNumber": "",
+    "qualityInfo": 0,
+    "platformShortName": "SENTINEL-2",
+    "qualityStatus": "NOMINAL",
+    "startTime": "2022-10-11T06:26:13.336000Z",
+    "stopTime": "2022-10-11T06:26:13.336000Z",
+    "productType": "MSI_L0__GR",
+    "productClass": "OPER",
+    "missionId": "S2",
+    "satelliteId": "B",
+    "relativeOrbitNumber": "",
+    "coordinates": {
+      "orientation": "counterclockwise",
+      "coordinates": [
+        [
+          [
+            68.305726321162,
+            47.2370425281044
+          ],
+          [
+            68.1733247320483,
+            46.8727719962757
+          ],
+          [
+            68.5200852606448,
+            46.8248219186679
+          ],
+          [
+            68.6529674578513,
+            47.1877183057656
+          ],
+          [
+            68.305726321162,
+            47.2370425281044
+          ]
+        ]
+      ],
+      "type": "polygon"
+    },
+    "processorVersion": "",
+    "url": "S2B_OPER_MSI_L0__GR_REFS_20221013T143134_S20221011T062613_D01_N02.08",
+    "platformSerialIdentifier": "S2B",
+    "operationalMode": "",
+    "processingCenter": "RS",
+    "timeliness": "S2_L0",
+    "processMode": "NOMINAL"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": null,
+  "t0_pdgs_date": null
+}

@@ -7,7 +7,7 @@ import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
-import eu.csgroup.coprs.ps2.pw.l0c.service.prepare.DatastripManagementService;
+import eu.csgroup.coprs.ps2.pw.l0c.service.prepare.L0cDatastripManagementService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,7 +22,7 @@ class L0cPWInputManagementServiceTest extends AbstractTest {
     private static final String ROOT_FOLDER = "src/test/resources";
 
     @Mock
-    private DatastripManagementService managementService;
+    private L0cDatastripManagementService managementService;
     @Mock
     private L0cPreparationProperties l0cPreparationProperties;
 

@@ -21,7 +21,7 @@ class L0uPWExecutionInputServiceTest extends AbstractTest {
     @Mock
     private CatalogService catalogService;
     @Mock
-    private JobOrderService jobOrderService;
+    private L0uJobOrderService jobOrderService;
     @Mock
     private L0uPreparationProperties l0uPreparationProperties;
 

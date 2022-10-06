@@ -2,9 +2,9 @@ package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.service.pw.PWExecutionInputService;
-import eu.csgroup.coprs.ps2.pw.l0c.model.AuxFile;
-import eu.csgroup.coprs.ps2.pw.l0c.model.Datastrip;
+import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
+import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
+import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +16,18 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class L0cPWExecutionInputService implements PWExecutionInputService<L0cExecutionInput, Datastrip> {
+public class L0cPWExecutionInputService implements PWExecutionInputService<L0cExecutionInput, L0cDatastrip> {
 
-    private final AuxService auxService;
-    private final JobOrderService jobOrderService;
+    private final L0cAuxService auxService;
+    private final L0cJobOrderService jobOrderService;
 
-    public L0cPWExecutionInputService(AuxService auxService, JobOrderService jobOrderService) {
+    public L0cPWExecutionInputService(L0cAuxService auxService, L0cJobOrderService jobOrderService) {
         this.auxService = auxService;
         this.jobOrderService = jobOrderService;
     }
 
     @Override
-    public List<L0cExecutionInput> create(List<Datastrip> datastripList) {
+    public List<L0cExecutionInput> create(List<L0cDatastrip> datastripList) {
 
         log.info("Creating output payload for all ready Datastrips ({})", datastripList.size());
 
@@ -38,7 +38,7 @@ public class L0cPWExecutionInputService implements PWExecutionInputService<L0cEx
         return l0uExecutionInputs;
     }
 
-    private L0cExecutionInput create(Datastrip datastrip) {
+    private L0cExecutionInput create(L0cDatastrip datastrip) {
 
         log.info("Building execution input for Datastrip {}", datastrip.getName());
 
@@ -51,7 +51,7 @@ public class L0cPWExecutionInputService implements PWExecutionInputService<L0cEx
                 .setStopTime(datastrip.getStopTime())
                 .setT0PdgsDate(datastrip.getT0PdgsDate());
 
-        final Map<AuxFile, List<FileInfo>> auxFilesByType = auxService.getAux(datastrip);
+        final Map<L0cAuxFile, List<FileInfo>> auxFilesByType = auxService.getAux(datastrip);
 
         l0cExecutionInput.setFiles(auxFilesByType.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
 

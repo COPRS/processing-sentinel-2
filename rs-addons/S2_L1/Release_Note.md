@@ -71,27 +71,26 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 | requests.cpu                     | CPU request                            |            300m            |            300m            |
 | limits.memory                    | Memory limit                           |           4000Mi           |          24000Mi           |
 | limits.cpu                       | CPU limit                              |           2000m            |           8000m            |
-| secret-refs                      | Name of the secrets to bind            |   s2-l1-mongo,s2-l1-obs    |         s2-l1-obs          |
+| secret-refs                      | Name of the secrets to bind            | [ s2-l1-mongo, s2-l1-obs ] |         s2-l1-obs          |
 | pod-security-context.run-as-user | UID to run the app as                  |            1000            |            1001            |
 
 ### Workers volume mounts
 
-| Worker  |                                   Volume Mounts                                   |                                                                                                      Volumes                                                                                                       |
-|---------|:---------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| pw-l1s  |                       [ { name: dem, mountPath: '/dem' } ]                        |                                                        [ { name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ]                                                         |
-| ew-l1s  | [ { name: shared, mountPath: '/output' }, <br/>{ name: dem, mountPath: '/dem' } ] | [ { name: shared, persistentVolumeClaim: <br/>{ claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
-| ew-l1ab | [ { name: shared, mountPath: '/input' }, <br/>{ name: dem, mountPath: '/dem' } ]  | [ { name: shared, persistentVolumeClaim: <br/>{ claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
-| pw-l1c  | [ { name: shared, mountPath: '/input' }, <br/>{ name: dem, mountPath: '/dem' } ]  | [ { name: shared, persistentVolumeClaim: <br/>{ claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
-| ew-l1c  | [ { name: shared, mountPath: '/input' }, <br/>{ name: dem, mountPath: '/dem' } ]  | [ { name: shared, persistentVolumeClaim: <br/>{ claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
+_Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
+
+| Property                                 |        Description         |                                                                                                      Default                                                                                                       |
+|------------------------------------------|:--------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| deployer.\<APP>.kubernetes.volume-mounts |   List of volume mounts    |                                                                 [ { name: shared, mountPath: '/shared' },<br/> { name: dem, mountPath: '/dem' } ]                                                                  |
+| deployer.\<APP>.kubernetes.volumes       | List of volume definitions | [ { name: shared, persistentVolumeClaim: <br/>{ claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
 
 ### Filter
 
 _Prefix_: app.s2-l1-filter
 
-| Property                                 | Description                                       |                                                Default                                                 |
-|------------------------------------------|---------------------------------------------------|:------------------------------------------------------------------------------------------------------:|
-| spring.cloud.stream.bindings.input.group | Kafka consumer group                              |                                              s2-l1-filter                                              |
-| expression                               | SpEL expression to filter incoming catalog events | (payload.missionId=='S2' and (payload.productFamily=='S2_L0_DS' or payload.productFamily=='S2_L0_GR')) |
+| Property                                 | Description                                       |                                                                        Default                                                                        |
+|------------------------------------------|---------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
+| spring.cloud.stream.bindings.input.group | Kafka consumer group                              |                                                                     s2-l1-filter                                                                      |
+| expression                               | SpEL expression to filter incoming catalog events | (payload.missionId=='S2' and<br> (payload.productFamily=='S2_L0_DS'<br> or payload.productFamily=='S2_L0_GR'<br> or payload.productFamily=='S2_AUX')) |
 
 ### OBS settings
 
@@ -122,7 +121,7 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 | cloud.stream.kafka.bindings.input.consumer.dlq-name                | Name of the dlq topic                  |                          error-warning                          |                          error-warning                          |
 | cloud.stream.kafka.bindings.input.consumer.poll-timeout            | Poll timeout for the Kafka consumer    |                                5                                |                                5                                |
 | cloud.stream.bindings.input.consumer.max-attempts                  | Max number of retries for the consumer |                                1                                |                                1                                |
-| cloud.stream.bindings.input.group                                  | Name of the Kafka consumer group       |                          s2-l0u-\<APP>                          |                          s2-l0u-\<APP>                          |
+| cloud.stream.bindings.input.group                                  | Name of the Kafka consumer group       |                          s2-l1-\<APP>                           |                          s2-l1-\<APP>                           |
 
 ### Catalog
 
@@ -142,7 +141,7 @@ _Apps_: pw-l1s, pw-l1c
 | Property               | Description                 |                        Default                        |
 |------------------------|-----------------------------|:-----------------------------------------------------:|
 | authenticationDatabase | Authentication database     |                         admin                         |
-| database               | Name of the database to use |                     s2-l0u-\<APP>                     |
+| database               | Name of the database to use |                     s1-l1-\<APP>                      |
 | port                   | Port for connection         |                         27017                         |
 | host                   | Server url                  | mongodb-0.mongodb-headless.database.svc.cluster.local |
 
@@ -160,15 +159,34 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 _Prefix_: app.&lt;APP&gt;  
 _Apps_: pw-l1s, pw-l1c
 
-| Property                | Description                                                             |  Default   |
-|-------------------------|-------------------------------------------------------------------------|:----------:|
+| Property                           | Description                                    |  Default  |
+|------------------------------------|------------------------------------------------|:---------:|
+| app.pw-l1s.pw.l1s.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.pw-l1s.pw.l1s.l0Bucket         | Name of the OBS bucket containing L0c files    | rs-s2-l0c |
+| app.pw-l1s.pw.l1s.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
+| app.pw-l1s.pw.l1s.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| app.pw-l1c.pw.l1c.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.pw-l1c.ew.l1c.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
+| app.pw-l1c.ew.l1c.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
 
 ### Execution workers
 
 _Prefix_: app.&lt;APP&gt;  
 _Apps_: ew-l1s, ew-l1ab, ew-l1c
 
-| Property                | Description                                                             |  Default   |
-|-------------------------|-------------------------------------------------------------------------|:----------:|
+| Property                             | Description                                    |  Default  |
+|--------------------------------------|------------------------------------------------|:---------:|
+| app.ew-l1s.ew.l1s.auxBucket          | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1s.ew.l1s.l0Bucket           | Name of the OBS bucket containing L0c files    | rs-s2-l0c |
+| app.ew-l1s.ew.l1s.sharedFolderRoot   | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1s.ew.l1s.demFolderRoot      | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1ab.ew.l1ab.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1ab.ew.l1ab.l1Bucket         | Name of the OBS bucket to store L1ab files     | rs-s2-l1  |
+| app.ew-l1ab.ew.l1ab.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1ab.ew.l1ab.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1c.ew.l1c.auxBucket          | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1c.ew.l1c.l1Bucket           | Name of the OBS bucket to store L1c files      | rs-s2-l1  |
+| app.ew-l1c.ew.l1c.sharedFolderRoot   | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1c.ew.l1c.demFolderRoot      | Path to the folder for DEM files               |   /dem    |
 
 ----

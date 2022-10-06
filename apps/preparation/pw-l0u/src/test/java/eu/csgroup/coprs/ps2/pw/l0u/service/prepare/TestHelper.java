@@ -34,7 +34,7 @@ public final class TestHelper {
             .setSatellite(SATELLITE)
             .setStationCode(STATION_CODE));
 
-    public static final SessionEntity SESSION_ENTITY = new SessionEntity()
+    public static final SessionEntity SESSION_ENTITY = (SessionEntity) new SessionEntity()
             .setName(SESSION_NAME)
             .setStartTime(START_TIME)
             .setStopTime(STOP_TIME)

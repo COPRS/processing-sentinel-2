@@ -25,6 +25,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 class ObsServiceTest extends AbstractTest {
 
@@ -78,6 +79,36 @@ class ObsServiceTest extends AbstractTest {
     @Test
     void exists_fails() {
         assertThrows(ObsException.class, () -> obsService.exists(BUCKET, FOLDER_1_KEY));
+    }
+
+    @Test
+    void exists_all() {
+        // Given
+        final ListObjectsV2Response response1 = ListObjectsV2Response.builder()
+                .isTruncated(true)
+                .nextContinuationToken("token")
+                .contents(Set.of(S3Object.builder().key(FOLDER_1_KEY).build()))
+                .build();
+        final ListObjectsV2Response response2 = ListObjectsV2Response.builder()
+                .isTruncated(false)
+                .continuationToken("token")
+                .contents(Set.of(S3Object.builder().key(FOLDER_2_KEY).build()))
+                .build();
+        when(s3Client.listObjectsV2(any(ListObjectsV2Request.class)))
+                .thenReturn(response1)
+                .thenReturn(response2);
+        // When
+        final Map<String, Boolean> existsByKey = obsService.exists(BUCKET, Set.of(FOLDER_1_KEY, FOLDER_2_KEY));
+        // Then
+        verify(s3Client, times(2)).listObjectsV2(any(ListObjectsV2Request.class));
+        assertEquals(2, existsByKey.size());
+        assertTrue(existsByKey.values().stream().allMatch(Boolean::booleanValue));
+    }
+
+    @Test
+    void exists_all_fails() {
+        final Set<String> keySet = Set.of(FOLDER_1_KEY);
+        assertThrows(ObsException.class, () -> obsService.exists(BUCKET, keySet));
     }
 
     @Test
@@ -220,58 +251,58 @@ class ObsServiceTest extends AbstractTest {
 
     private void mockFileDownloadSuccess() {
         FileDownload fileDownloadSuccess = Mockito.mock(FileDownload.class);
-        Mockito.when(fileDownloadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedFileDownload.class)));
-        Mockito.when(transferManager.downloadFile(any(DownloadFileRequest.class))).thenReturn(fileDownloadSuccess);
+        when(fileDownloadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedFileDownload.class)));
+        when(transferManager.downloadFile(any(DownloadFileRequest.class))).thenReturn(fileDownloadSuccess);
     }
 
     private void mockFileDownloadFailure() {
         FileDownload fileDownloadFailure = Mockito.mock(FileDownload.class);
-        Mockito.when(fileDownloadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
+        when(fileDownloadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
             throw SdkServiceException.builder().message("Nope").build();
         }));
-        Mockito.when(transferManager.downloadFile(any(DownloadFileRequest.class))).thenReturn(fileDownloadFailure);
+        when(transferManager.downloadFile(any(DownloadFileRequest.class))).thenReturn(fileDownloadFailure);
     }
 
     private void mockDirDownloadSuccess() {
         DirectoryDownload directoryDownloadSuccess = Mockito.mock(DirectoryDownload.class);
-        Mockito.when(directoryDownloadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedDirectoryDownload.class)));
-        Mockito.when(transferManager.downloadDirectory(any(DownloadDirectoryRequest.class))).thenReturn(directoryDownloadSuccess);
+        when(directoryDownloadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedDirectoryDownload.class)));
+        when(transferManager.downloadDirectory(any(DownloadDirectoryRequest.class))).thenReturn(directoryDownloadSuccess);
     }
 
     private void mockDirDownloadFailure() {
         DirectoryDownload directoryDownloadFailure = Mockito.mock(DirectoryDownload.class);
-        Mockito.when(directoryDownloadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
+        when(directoryDownloadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
             throw SdkClientException.create("Nope", null);
         }));
-        Mockito.when(transferManager.downloadDirectory(any(DownloadDirectoryRequest.class))).thenReturn(directoryDownloadFailure);
+        when(transferManager.downloadDirectory(any(DownloadDirectoryRequest.class))).thenReturn(directoryDownloadFailure);
     }
 
     private void mockFileUploadSuccess() {
         FileUpload fileUploadSuccess = Mockito.mock(FileUpload.class);
-        Mockito.when(fileUploadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedFileUpload.class)));
-        Mockito.when(transferManager.uploadFile(any(UploadFileRequest.class))).thenReturn(fileUploadSuccess);
+        when(fileUploadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedFileUpload.class)));
+        when(transferManager.uploadFile(any(UploadFileRequest.class))).thenReturn(fileUploadSuccess);
     }
 
     private void mockFileUploadFailure() {
         FileUpload fileUploadFailure = Mockito.mock(FileUpload.class);
-        Mockito.when(fileUploadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
+        when(fileUploadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
             throw SdkServiceException.builder().message("Nope").build();
         }));
-        Mockito.when(transferManager.uploadFile(any(UploadFileRequest.class))).thenReturn(fileUploadFailure);
+        when(transferManager.uploadFile(any(UploadFileRequest.class))).thenReturn(fileUploadFailure);
     }
 
     private void mockDirUploadSuccess() {
         DirectoryUpload directoryUploadSuccess = Mockito.mock(DirectoryUpload.class);
-        Mockito.when(directoryUploadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedDirectoryUpload.class)));
-        Mockito.when(transferManager.uploadDirectory(any(UploadDirectoryRequest.class))).thenReturn(directoryUploadSuccess);
+        when(directoryUploadSuccess.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> Mockito.mock(CompletedDirectoryUpload.class)));
+        when(transferManager.uploadDirectory(any(UploadDirectoryRequest.class))).thenReturn(directoryUploadSuccess);
     }
 
     private void mockDirUploadFailure() {
         DirectoryUpload directoryUploadFailure = Mockito.mock(DirectoryUpload.class);
-        Mockito.when(directoryUploadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
+        when(directoryUploadFailure.completionFuture()).thenReturn(CompletableFuture.supplyAsync(() -> {
             throw SdkClientException.create("Nope", null);
         }));
-        Mockito.when(transferManager.uploadDirectory(any(UploadDirectoryRequest.class))).thenReturn(directoryUploadFailure);
+        when(transferManager.uploadDirectory(any(UploadDirectoryRequest.class))).thenReturn(directoryUploadFailure);
     }
 
 
@@ -302,7 +333,7 @@ class ObsServiceTest extends AbstractTest {
      */
     private void mockListResponseEmpty() {
         final ListObjectsV2Response emptyResponse = ListObjectsV2Response.builder().build();
-        Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(emptyResponse);
+        when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(emptyResponse);
     }
 
     /**
@@ -312,7 +343,7 @@ class ObsServiceTest extends AbstractTest {
      */
     private void mockListResponse() {
         final ListObjectsV2Response response = ListObjectsV2Response.builder().contents(Set.of(S3Object.builder().build())).build();
-        Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response);
+        when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response);
     }
 
     /**
@@ -323,7 +354,7 @@ class ObsServiceTest extends AbstractTest {
     private void mockListResponseFullThenEmpty() {
         final ListObjectsV2Response emptyResponse = ListObjectsV2Response.builder().build();
         final ListObjectsV2Response response = ListObjectsV2Response.builder().contents(Set.of(S3Object.builder().build())).build();
-        Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response).thenReturn(emptyResponse);
+        when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response).thenReturn(emptyResponse);
     }
 
     private void mockListResponseEtags() {
@@ -334,7 +365,7 @@ class ObsServiceTest extends AbstractTest {
                                 S3Object.builder().key("root").build()
                         ))
                 .build();
-        Mockito.when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response);
+        when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response);
     }
 
     private void mockListResponseEtagsMd5() {
@@ -352,9 +383,9 @@ class ObsServiceTest extends AbstractTest {
                                 S3Object.builder().key(FOLDER_2_KEY).build()
                         ))
                 .build();
-        Mockito.when(s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(BUCKET).prefix(FOLDER_1_KEY).build()))
+        when(s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(BUCKET).prefix(FOLDER_1_KEY).build()))
                 .thenReturn(response1);
-        Mockito.when(s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(BUCKET).prefix(FOLDER_2_KEY).build()))
+        when(s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(BUCKET).prefix(FOLDER_2_KEY).build()))
                 .thenReturn(response2);
     }
 

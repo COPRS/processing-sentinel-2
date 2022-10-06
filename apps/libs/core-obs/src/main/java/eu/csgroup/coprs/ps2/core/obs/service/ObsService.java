@@ -21,6 +21,7 @@ import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.core.exception.SdkServiceException;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
+import software.amazon.awssdk.services.s3.model.ListObjectsV2Response;
 import software.amazon.awssdk.services.s3.model.S3Object;
 import software.amazon.awssdk.transfer.s3.*;
 
@@ -34,6 +35,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -42,8 +44,9 @@ import java.util.stream.Collectors;
 @Service
 public class ObsService {
 
-    public static final String DELIMITER = "/";
-    public static final String MD5SUM_SUFFIX = ".md5sum";
+    private static final String DELIMITER = "/";
+    private static final String MD5SUM_SUFFIX = ".md5sum";
+    private static final String ERROR_MESSAGE = "Error occurred during OBS operation: ";
 
     private final S3TransferManager transferManager;
     private final S3Client s3Client;
@@ -61,18 +64,76 @@ public class ObsService {
     }
 
     public boolean exists(String bucket, String key) {
+
+        log.debug("Checking Obs file existence for file {}", key);
+
         boolean exists;
         try {
             exists = s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).maxKeys(1).build()).hasContents();
         } catch (Exception e) {
-            String errorMessage = "Error occurred during OBS operation: " + e.getMessage();
+            String errorMessage = ERROR_MESSAGE + e.getMessage();
             log.error(errorMessage);
             throw new ObsException(errorMessage, e);
         }
         return exists;
     }
 
+    public Map<String, Boolean> exists(String bucket, Set<String> keySet) {
+
+        log.debug("Checking Obs file existence for {} files", keySet.size());
+
+        Map<String, Boolean> existsByKey = keySet.stream().collect(Collectors.toMap(Function.identity(), s -> false));
+
+        final String commonPrefix = StringUtils.getCommonPrefix(keySet.toArray(new String[0]));
+
+        log.debug("Found common prefix {}", commonPrefix);
+
+        ListObjectsV2Request request;
+        ListObjectsV2Response response;
+        String continuationToken = null;
+        boolean isTruncated = true;
+
+        try {
+
+            while (isTruncated && existsByKey.entrySet().stream().anyMatch(entry -> !entry.getValue())) {
+
+                request = ListObjectsV2Request.builder()
+                        .bucket(bucket)
+                        .prefix(commonPrefix)
+                        .continuationToken(continuationToken)
+                        .build();
+                response = s3Client.listObjectsV2(request);
+                isTruncated = response.isTruncated();
+                continuationToken = response.nextContinuationToken();
+
+                final Set<String> foundKeySet = response.contents().stream().map(S3Object::key).collect(Collectors.toSet());
+
+                log.debug("Found {} files", foundKeySet.size());
+
+                existsByKey.entrySet()
+                        .stream()
+                        .filter(entry -> !entry.getValue())
+                        .forEach(entry -> {
+                            if (foundKeySet.stream().anyMatch(foundKey -> foundKey.equals(entry.getKey()) || foundKey.startsWith(entry.getKey() + "/"))) {
+                                existsByKey.put(entry.getKey(), true);
+                            }
+                        });
+            }
+
+        } catch (Exception e) {
+
+            String errorMessage = ERROR_MESSAGE + e.getMessage();
+            log.error(errorMessage);
+            throw new ObsException(errorMessage, e);
+        }
+
+        return existsByKey;
+    }
+
     public Map<String, String> getETags(String bucket, String key) {
+
+        log.debug("Fetching eTag for file {}", key);
+
         try {
             return s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).build())
                     .contents()
@@ -80,7 +141,7 @@ public class ObsService {
                     .filter(s3Object -> !s3Object.key().equals(key))
                     .collect(Collectors.toMap(S3Object::key, s3Object -> StringUtils.remove(s3Object.eTag(), "\"")));
         } catch (Exception e) {
-            String errorMessage = "Error occurred during OBS operation: " + e.getMessage();
+            String errorMessage = ERROR_MESSAGE + e.getMessage();
             log.error(errorMessage);
             throw new ObsException(errorMessage, e);
         }
@@ -128,6 +189,9 @@ public class ObsService {
      * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
      */
     public void download(Set<FileInfo> fileInfoList) {
+
+        log.debug("Downloading {} files using FileInfos", fileInfoList.size());
+
         Mono.when(fileInfoList.stream()
                         .map(fileInfo -> {
                             final String key = fileInfo.getKey();
@@ -185,6 +249,9 @@ public class ObsService {
      * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
      */
     public void upload(Set<FileInfo> fileInfoList) {
+
+        log.debug("Uploading {} files using FileInfos", fileInfoList.size());
+
         Mono.when(fileInfoList.stream()
                         .map(fileInfo -> {
                             final Path sourcePath = Paths.get(fileInfo.getFullLocalPath());
@@ -305,7 +372,7 @@ public class ObsService {
         return Mono.fromFuture(transfer.get().completionFuture())
                 .doFirst(() -> log.info("{} starting {}", type.getName(), info))
                 .timed()
-                .doOnSuccess(completedTransfer -> log.info("{} complete in {} seconds {}", type.getName(), completedTransfer.elapsed().getSeconds(), info))
+                .doOnSuccess(completedTransfer -> log.info("{} complete after {} seconds {}", type.getName(), completedTransfer.elapsed().getSeconds(), info))
                 .doOnError(throwable -> {
                     String message = "Obs error occurred: ";
                     if (throwable instanceof SdkException) {

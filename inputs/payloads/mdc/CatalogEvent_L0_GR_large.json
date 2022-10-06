@@ -1,0 +1,72 @@
+{
+  "uid": "cbcb3cb8-a921-47bf-8d38-b7eec2ccdf3c",
+  "creationDate": "2022-10-04T13:57:02.235Z",
+  "missionId": "S2",
+  "satelliteId": "B",
+  "keyObjectStorage": "S2B_OPER_MSI_L0__GR_REFS_20221004T131455_S20220413T115439_D03_N02.08",
+  "storagePath": "s3://rs-s2-l0c/S2B_OPER_MSI_L0__GR_REFS_20221004T131455_S20220413T115439_D03_N02.08",
+  "productFamily": "S2_L0_GR",
+  "podName": "metadata-1-part1-metadata-extraction-v1-65b87b557b-gcc6n",
+  "allowedActions": [
+    "RESUBMIT"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {},
+  "metadata": {
+    "productFamily": "S2_L0_GR",
+    "productClass": "OPER",
+    "missionId": "S2",
+    "creationTime": "2022-10-04T13:14:55.000000Z",
+    "insertionTime": "2022-10-04T13:57:01.291117Z",
+    "instrumentShortName": "MSI",
+    "satelliteId": "B",
+    "relativeOrbitNumber": "",
+    "productGroupId": "S2B_OPER_MSI_L0__DS_REFS_20221004T131455_S20220413T115356_N02.08",
+    "coordinates": {
+      "orientation": "counterclockwise",
+      "coordinates": [
+        [
+          [
+            -7.67485002311288,
+            60.4537551542515
+          ],
+          [
+            -7.90346060672234,
+            60.0986561753658
+          ],
+          [
+            -7.45343832208769,
+            60.0331142816053
+          ],
+          [
+            -7.2224200398065,
+            60.3870201648379
+          ],
+          [
+            -7.67485002311288,
+            60.4537551542515
+          ]
+        ]
+      ],
+      "type": "polygon"
+    },
+    "processorVersion": "",
+    "productName": "S2B_OPER_MSI_L0__GR_REFS_20221004T131455_S20220413T115439_D03_N02.08",
+    "url": "S2B_OPER_MSI_L0__GR_REFS_20221004T131455_S20220413T115439_D03_N02.08",
+    "orbitNumber": "",
+    "platformSerialIdentifier": "S2B",
+    "qualityInfo": 0,
+    "operationalMode": "",
+    "processingCenter": "RS",
+    "platformShortName": "SENTINEL-2",
+    "qualityStatus": "NOMINAL",
+    "startTime": "2022-04-13T11:54:39.755000Z",
+    "stopTime": "2022-04-13T11:54:39.755000Z",
+    "processMode": "NOMINAL",
+    "productType": "MSI_L0__GR"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": null,
+  "t0_pdgs_date": null
+}

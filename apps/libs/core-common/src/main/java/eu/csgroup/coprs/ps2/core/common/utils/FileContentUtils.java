@@ -81,10 +81,10 @@ public final class FileContentUtils {
      * It may be the first line, and the only one, but that's not guaranteed. At all.
      *
      * @param path         Path to the file
-     * @param charSequence Sequence of characters to look fo
+     * @param charSequence Sequence of characters to look for
      * @return An optional of the line found, if any
      */
-    public static Optional<String> grep(Path path, String charSequence) {
+    public static Optional<String> grepOne(Path path, String charSequence) {
 
         try (Stream<String> lines = Files.lines(path)) {
 
@@ -96,8 +96,26 @@ public final class FileContentUtils {
     }
 
     /**
+     * Returns all lines in the file that contains a specific sequence of characters.
+     *
+     * @param path         Path to the file
+     * @param charSequence Sequence of characters to look for
+     * @return A list of lines as strings
+     */
+    public static List<String> grepAll(Path path, String charSequence) {
+
+        try (Stream<String> lines = Files.lines(path)) {
+
+            return lines.filter(line -> line.contains(charSequence)).toList();
+
+        } catch (IOException e) {
+            throw new FileOperationException("Unable to read file: " + path, e);
+        }
+    }
+
+    /**
      * Extracts the value enclosed in a given xml tag from a file.
-     * Only works when tag is full opened and close, and on a single line.
+     * Only works when tag is fully opened and close, and on a single line.
      *
      * @param xmlPath Path to the xml file
      * @param tag     Tag to look for
@@ -122,7 +140,7 @@ public final class FileContentUtils {
      */
     public static String extractValue(Path filePath, String lineFilter, List<String> deleteRegexList) {
 
-        String line = FileContentUtils.grep(filePath, lineFilter)
+        String line = FileContentUtils.grepOne(filePath, lineFilter)
                 .orElseThrow(() -> new AuxQueryException("Unable to find " + lineFilter + " in file " + filePath));
 
         for (String regex : deleteRegexList) {

@@ -4,13 +4,13 @@ import eu.csgroup.coprs.ps2.core.common.exception.InvalidInputException;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
-import eu.csgroup.coprs.ps2.core.common.service.pw.PWInputManagementService;
+import eu.csgroup.coprs.ps2.core.pw.service.PWInputManagementService;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
-import eu.csgroup.coprs.ps2.pw.l0c.service.prepare.DatastripManagementService;
+import eu.csgroup.coprs.ps2.pw.l0c.service.prepare.L0cDatastripManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -26,10 +26,10 @@ import java.util.UUID;
 @Component
 public class L0cPWInputManagementService implements PWInputManagementService {
 
-    private final DatastripManagementService managementService;
+    private final L0cDatastripManagementService managementService;
     private final L0cPreparationProperties l0cPreparationProperties;
 
-    public L0cPWInputManagementService(DatastripManagementService managementService, L0cPreparationProperties l0cPreparationProperties) {
+    public L0cPWInputManagementService(L0cDatastripManagementService managementService, L0cPreparationProperties l0cPreparationProperties) {
         this.managementService = managementService;
         this.l0cPreparationProperties = l0cPreparationProperties;
     }

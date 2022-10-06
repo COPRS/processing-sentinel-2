@@ -82,7 +82,7 @@ class SessionManagementServiceTest extends AbstractTest {
     @Test
     void getDeletable() {
         // Given
-        when(sessionService.readAll(true)).thenReturn(deletableSessionList);
+        when(sessionService.readAllByJobOrderCreated(true)).thenReturn(deletableSessionList);
         // When
         final List<Session> deletable = sessionManagementService.getDeletable();
         // Then

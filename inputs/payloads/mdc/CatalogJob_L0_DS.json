@@ -1,0 +1,19 @@
+{
+  "uid": "2bb6d710-414b-4198-ac7d-6be2fe044283",
+  "creationDate": "2022-10-04T13:49:35.042550Z",
+  "missionId": "S2",
+  "satelliteId": "B",
+  "keyObjectStorage": "S2B_OPER_MSI_L0__DS_REFS_20221004T131458_S20220413T120211_N02.08",
+  "storagePath": "s3://rs-s2-l0c/S2B_OPER_MSI_L0__DS_REFS_20221004T131458_S20220413T120211_N02.08",
+  "productFamily": "S2_L0_DS",
+  "podName": "s2-l0c-v1-part2-ew-l0c-v1-7b4bdd455d-vssfg",
+  "allowedActions": [
+    "NO_ACTION",
+    "RESTART"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {
+    "t0PdgsDate": "2022-08-09T15:39:41.000000Z"
+  },
+  "metadata": {}
+}

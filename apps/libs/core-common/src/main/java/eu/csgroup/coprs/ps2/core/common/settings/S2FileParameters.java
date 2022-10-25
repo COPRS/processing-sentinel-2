@@ -9,9 +9,9 @@ public final class S2FileParameters {
     public static final String L0U_DS_SUFFIX = "_N00.00";
     public static final String DEM_REGEX = "^.*DEM_GLOBEF.*";
     public static final String AUX_FILE_EXTENSION = ".DBL";
-    public static final String L0C_DS_REGEX = "^S2B_OPER_MSI_L0__DS.*";
-    public static final String L0C_GR_REGEX = "^S2B_OPER_MSI_L0__GR.*";
-    public static final String L0C_GR_REGEX_TEMPLATE = "^S2B_OPER_MSI_L0__GR_.*_DXX.*";
+    public static final String L0C_DS_REGEX = "^S2[A|B]_OPER_MSI_L0__DS.*";
+    public static final String L0C_GR_REGEX = "^S2[A|B]_OPER_MSI_L0__GR.*";
+    public static final String L0C_GR_REGEX_TEMPLATE = "^S2[A|B]_OPER_MSI_L0__GR_.*_DXX.*";
 
     private S2FileParameters() {
     }

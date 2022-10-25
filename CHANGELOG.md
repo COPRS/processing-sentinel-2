@@ -10,6 +10,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.2.0-rc1] - 2022-10-25
+
+### Added
+
+- [#596 - Add missing namespace in the KafkaTopic additional resource](https://github.com/COPRS/rs-issues/issues/596)
+- [#490 - Sentinel-2 Level-1 RS add-on Skeleton](https://github.com/COPRS/rs-issues/issues/490)
+- [#546 - Set timeliness field for L0 RS add-on](https://github.com/COPRS/rs-issues/issues/546)
+- [#572 - Sentinel-2 Level-1 RS add-on Preparation Worker](https://github.com/COPRS/rs-issues/issues/572)
+
 ## [1.1.0-rc1] - 2022-09-27
 
 ### Added

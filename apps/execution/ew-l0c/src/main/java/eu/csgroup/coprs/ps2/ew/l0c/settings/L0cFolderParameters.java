@@ -4,11 +4,10 @@ import java.util.Set;
 
 public final class L0cFolderParameters {
 
-    // -------------------------------------------------------- Workspace ---------------------------------------------------------------------------
-
     public static final String WORKSPACE_PATH = "/workspace"; //NOSONAR
     public static final String JOB_ORDERS_PATH = WORKSPACE_PATH + "/JobOrders";
     public static final String APP_DATA_PATH = WORKSPACE_PATH + "/app_data";
+    public static final String GSE_REPORT_PATH = APP_DATA_PATH + "/step_GSE/launch_01";
     public static final String WP_DATA_PATH = APP_DATA_PATH + "/wp_data";
     public static final String STEPS_DATA_PATH = WORKSPACE_PATH + "/steps_data";
     public static final String DS_PATH = STEPS_DATA_PATH + "/DS";
@@ -37,6 +36,7 @@ public final class L0cFolderParameters {
     public static final Set<String> WORKSPACE_FOLDERS = Set.of(
             JOB_ORDERS_PATH,
             APP_DATA_PATH,
+            GSE_REPORT_PATH,
             WP_DATA_PATH,
             STEPS_DATA_PATH,
             DS_PATH,
@@ -61,13 +61,6 @@ public final class L0cFolderParameters {
             AUX_UT1UTC_PATH,
             OLQC_PATH
     );
-
-    // -------------------------------------------------------- Install files -----------------------------------------------------------------------
-
-    public static final String INSTALL_PATH = "/dpc/app/s2ipf"; //NOSONAR
-    public static final String SCRIPT_VERSION = "05.01.00";
-
-    // ----------------------------------------------------------------------------------------------------------------------------------------------
 
     private L0cFolderParameters() {
     }

@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.0.1-rc1] - 2022-10-27
+
+### Fixed
+
+- [#654 - S2A L0c Execution failed](https://github.com/COPRS/rs-issues/issues/654)
+
 ## [1.0.0] - 2022-09-29
 
 ## [1.0.0-rc3] - 2022-09-22

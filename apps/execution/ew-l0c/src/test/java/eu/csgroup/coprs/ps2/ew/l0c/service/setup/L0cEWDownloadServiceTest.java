@@ -1,6 +1,8 @@
 package eu.csgroup.coprs.ps2.ew.l0c.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
@@ -36,8 +38,8 @@ class L0cEWDownloadServiceTest extends AbstractTest {
     void download() {
         // Given
         final Set<FileInfo> fileInfoSet = Set.of(
-                new FileInfo().setObsName("file1").setType("AUX_UT1UTC").setFullLocalPath("/path/to/file1"),
-                new FileInfo().setObsName("file2").setType("GIP_ATMIMA").setFullLocalPath("/path/to/file2")
+                new FileInfo().setObsName("file1").setProductFamily(ProductFamily.S2_AUX).setAuxProductType(AuxProductType.AUX_UT1UTC).setFullLocalPath("/path/to/file1"),
+                new FileInfo().setObsName("file2").setProductFamily(ProductFamily.S2_AUX).setAuxProductType(AuxProductType.GIP_ATMIMA).setFullLocalPath("/path/to/file2")
         );
 
         try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {

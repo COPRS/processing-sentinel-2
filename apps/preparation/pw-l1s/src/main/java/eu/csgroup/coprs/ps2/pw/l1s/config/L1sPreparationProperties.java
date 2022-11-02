@@ -12,10 +12,24 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("pw.l1s")
 public class L1sPreparationProperties implements PWProperties {
 
+    /**
+     * Name of the OBS bucket containing AUX files
+     */
     private String auxBucket;
+
+    /**
+     * Name of the OBS bucket containing L0c files
+     */
     private String l0Bucket;
+
+    /**
+     * Path to the root of the filesystem shared between L1 containers
+     */
     private String sharedFolderRoot;
-    private String demFolderRoot;
+
+    /**
+     * Minimum number of granules required to start L1 processing chain
+     */
     private long minGrRequired = 48;
 
 }

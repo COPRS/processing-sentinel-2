@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.pw.l1s.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
@@ -11,7 +12,10 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -52,8 +56,9 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
         final Path rootPath = Paths.get(l1sPreparationProperties.getSharedFolderRoot(), datastrip.getFolder());
         final Path inputPath = rootPath.resolve(L1Parameters.INPUT_FOLDER);
 
-        final L1ExecutionInput l0cExecutionInput = new L1ExecutionInput();
-        l0cExecutionInput.setDatastrip(datastrip.getName())
+        final L1ExecutionInput executionInput = new L1ExecutionInput();
+        executionInput.setDatastrip(datastrip.getName())
+                .setDatatakeType(datastrip.getDatatakeType())
                 .setInputFolder(inputPath.toString())
                 .setOutputFolder(rootPath.resolve(L1Parameters.OUTPUT_FOLDER).toString())
                 .setAuxFolder(rootPath.resolve(L1Parameters.AUX_FOLDER).toString())
@@ -64,17 +69,17 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
                 .setT0PdgsDate(datastrip.getT0PdgsDate())
                 .setFiles(new HashSet<>());
 
-        l0cExecutionInput.getFiles().addAll(
+        executionInput.getFiles().addAll(
                 getGRFileInfos(datastrip, inputPath.resolve(L1Parameters.GR_FOLDER))
         );
 
-        l0cExecutionInput.getFiles().addAll(
+        executionInput.getFiles().addAll(
                 auxService.getAux(datastrip).values().stream().flatMap(Collection::stream).collect(Collectors.toSet())
         );
 
         log.info("Finished building execution input for Datastrip {}", datastrip.getName());
 
-        return l0cExecutionInput;
+        return executionInput;
     }
 
     private Set<FileInfo> getGRFileInfos(L1sDatastrip datastrip, Path dsPath) {
@@ -84,7 +89,8 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
                         .setBucket(l1sPreparationProperties.getL0Bucket())
                         .setObsName(gr)
                         .setLocalPath(dsPath.toString())
-                        .setLocalName(gr))
+                        .setLocalName(gr)
+                        .setProductFamily(ProductFamily.S2_L0_GR))
                 .collect(Collectors.toSet());
     }
 

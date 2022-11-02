@@ -1,0 +1,2225 @@
+{
+  "uid": "97783751-df4d-4328-a67e-0b4cb728a9f2",
+  "creationDate": "2022-10-14T14:22:37.642597Z",
+  "missionId": "S2",
+  "satelliteId": "B",
+  "keyObjectStorage": "empty",
+  "storagePath": "empty",
+  "productFamily": "S2_L0_DS",
+  "podName": "s2-l1-572-part1-pw-l1s-v2-55b955747d-x65hc",
+  "allowedActions": [
+    "NO_ACTION",
+    "RESTART"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {
+    "executionInput": {
+      "satellite": "B",
+      "startTime": "2022-10-11T06:40:25.456000Z",
+      "stopTime": "2022-10-11T06:41:19.573000Z",
+      "t0PdgsDate": "1970-01-01T00:00:00.000000Z",
+      "files": [
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_BLINDP_MPC__20170221T000000_V20170101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_BLINDP_MPC__20170221T000000_V20170101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_BLINDP"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_GEOPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_GEOPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_GEOPAR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2SWIR_MPC__20170523T080300_V20170517T090600_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2SWIR_MPC__20170523T080300_V20170517T090600_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2SWIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_G2PARE_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_G2PARE_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_G2PARE"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_RESPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_RESPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_RESPAR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_PRDLOC_MPC__20180301T130000_V20180305T014000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_PRDLOC_MPC__20180301T130000_V20180305T014000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_PRDLOC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_INVLOC_MPC__20170523T080300_V20170322T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_INVLOC_MPC__20170523T080300_V20170322T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_INVLOC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_CLOINV_MPC__20210609T000002_V20210823T030000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_CLOINV_MPC__20210609T000002_V20210823T030000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_CLOINV"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_TILPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_TILPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_TILPAR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2CRCO_MPC__20220120T000002_V20220125T022000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2CRCO_MPC__20220120T000002_V20220125T022000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2CRCO"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2__OPER_GIP_EARMOD_MPC__20210608T000001_V20150622T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2__OPER_GIP_EARMOD_MPC__20210608T000001_V20150622T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_EARMOD"
+        },
+        {
+          "obsName": "S2__OPER_AUX_CAMSFO_ADG__20221010T120000_V20221010T120000_20221012T130000",
+          "bucket": "rs-s2-aux",
+          "localName": "S2__OPER_AUX_CAMSFO_ADG__20221010T120000_V20221010T120000_20221012T130000",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-CAMS",
+          "type": "AUX_CAMSFO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_PROBAS_MPC__20220609T000400_V20150622T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_PROBAS_MPC__20220609T000400_V20150622T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_PROBAS"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_DECOMP_MPC__20121031T075922_V19830101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_DECOMP_MPC__20121031T075922_V19830101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_DECOMP"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103039_V20170101T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103039_V20170101T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103038_V20170101T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103038_V20170101T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103038_V20170101T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103038_V20170101T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2BINN_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2BINN_MPC__20170206T103032_V20170101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2BINN"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_CONVER_MPC__20150710T131444_V20150627T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_CONVER_MPC__20150710T131444_V20150627T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_CONVER"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2__OPER_AUX_UT1UTC_ADG__20221007T000000_V20221007T000000_20231006T000000",
+          "bucket": "rs-s2-aux",
+          "localName": "S2__OPER_AUX_UT1UTC_ADG__20221007T000000_V20221007T000000_20231006T000000",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-IERS",
+          "type": "AUX_UT1UTC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_ECMWFP_MPC__20121031T075922_V19830101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_ECMWFP_MPC__20121031T075922_V19830101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_ECMWFP"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_DATATI_MPC__20170428T123038_V20170322T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_DATATI_MPC__20170428T123038_V20170322T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_DATATI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_LREXTR_MPC__20210608T000001_V20150622T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_LREXTR_MPC__20210608T000001_V20150622T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_LREXTR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EQOG"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2EOB2"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_OLQCPA_MPC__20220715T000042_V20220830T002500_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_OLQCPA_MPC__20220715T000042_V20220830T002500_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_OLQCPA"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_SPAMOD_MPC__20220222T000033_V20220224T001500_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_SPAMOD_MPC__20220222T000033_V20220224T001500_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_SPAMOD"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B8A",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B8A",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DECT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103047_V20170101T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103047_V20170101T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2NOMO_MPC__20170206T103047_V20170101T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2NOMO_MPC__20170206T103047_V20170101T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2NOMO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064032_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2ABCA_MPC__20220920T085300_V20220922T000000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2ABCA_MPC__20220920T085300_V20220922T000000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2ABCA"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_G2PARA_MPC__20220925T000025_V20221004T010000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_G2PARA_MPC__20220925T000025_V20221004T010000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_G2PARA"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_INTDET_MPC__20220120T000010_V20220125T022000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_INTDET_MPC__20220120T000010_V20220125T022000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_INTDET"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_JP2KPA_MPC__20220120T000006_V20220125T022000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_JP2KPA_MPC__20220120T000006_V20220125T022000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_JP2KPA"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2MACO_MPC__20170206T103039_V20170101T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2MACO"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064050_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B01",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B01",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B02",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B02",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B05",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B05",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_MASPAR_MPC__20220120T000002_V20220125T022000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_MASPAR_MPC__20220120T000002_V20220125T022000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_MASPAR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2L2NC"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DENT"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D07_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D07_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B12",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B12",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B11",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B11",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B10",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B10",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D06_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D06_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064054_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064115_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D12_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064101_D12_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2__OPER_AUX_ECMWFD_ADG__20221010T120000_V20221010T210000_20221012T150000",
+          "bucket": "rs-s2-aux",
+          "localName": "S2__OPER_AUX_ECMWFD_ADG__20221010T120000_V20221010T210000_20221012T150000",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-ECMWF",
+          "type": "AUX_ECMWFD"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_CLOPAR_MPC__20220120T000001_V20220125T022000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_CLOPAR_MPC__20220120T000001_V20220125T022000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_CLOPAR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D10_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064119_D10_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D01_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D01_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064025_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D05_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D05_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B09",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B09",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B08",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2PARA_MPC__20220120T000008_V20220125T022000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2PARA_MPC__20220120T000008_V20220125T022000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2PARA"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064039_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064112_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B06",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B06",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_VIEDIR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064029_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B07",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B07",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B04",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B04",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B03",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B03",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2WAFI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064036_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D11_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D11_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D09_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064105_D09_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D04_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064057_D04_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_GIP_R2DEPI_MPC__20200128T000006_V20200204T010000_21000101T000000_B00",
+          "bucket": "rs-s2-aux",
+          "localName": "S2B_OPER_GIP_R2DEPI_MPC__20200128T000006_V20200204T010000_21000101T000000_B00",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux/S2IPF-GIPP",
+          "type": "GIP_R2DEPI"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D02_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064108_D02_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D08_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064047_D08_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        },
+        {
+          "obsName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D03_N02.08",
+          "bucket": "rs-s2-l0c",
+          "localName": "S2B_OPER_MSI_L0__GR_REFS_20221013T143135_S20221011T064043_D03_N02.08",
+          "localPath": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input/GR"
+        }
+      ],
+      "datastrip": "S2B_OPER_MSI_L0__DS_REFS_20221013T143135_S20221011T064025_N02.08",
+      "auxFolder": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/aux",
+      "inputFolder": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/input",
+      "outputFolder": "/shared/e55fe760-9a11-4bb4-996f-5c6f8e7e2ba7/output"
+    }
+  },
+  "metadata": {}
+}

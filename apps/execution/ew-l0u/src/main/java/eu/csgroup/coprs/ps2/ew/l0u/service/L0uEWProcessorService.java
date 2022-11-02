@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProductType;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
-import eu.csgroup.coprs.ps2.core.common.service.processor.EWProcessorService;
+import eu.csgroup.coprs.ps2.core.ew.service.EWProcessorService;
 import eu.csgroup.coprs.ps2.ew.l0u.service.exec.L0uEWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l0u.service.output.L0uEWOutputService;
 import eu.csgroup.coprs.ps2.ew.l0u.service.setup.L0uEWInputService;
@@ -34,7 +34,7 @@ public class L0uEWProcessorService extends EWProcessorService<L0uExecutionInput>
     protected List<TaskMissingOutput> getMissingOutputs(L0uExecutionInput executionInput) {
 
         final JobProcessingTaskMissingOutput dsMissingOutput = buildMissingOutput(
-                MissingOutputProductType.DS, 6, executionInput.getSatellite(), false, IPF_VERSION
+                MissingOutputProductType.L0_DS, 6, executionInput.getSatellite(), false, IPF_VERSION
         );
 
         final JobProcessingTaskMissingOutput hktmMissingOutput = buildMissingOutput(

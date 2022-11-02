@@ -9,12 +9,13 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWExecutionService;
+import eu.csgroup.coprs.ps2.core.ew.service.EWExecutionService;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ScriptUtils;
+import eu.csgroup.coprs.ps2.core.ew.settings.L0EWParameters;
 import eu.csgroup.coprs.ps2.ew.l0c.settings.EWL0cTask;
 import eu.csgroup.coprs.ps2.ew.l0c.settings.L0cFolderParameters;
 import lombok.extern.slf4j.Slf4j;
@@ -138,7 +139,8 @@ public class L0cEWExecutionService implements EWExecutionService<L0cExecutionInp
                 .map(path -> new ScriptWrapper()
                         .setRunId(path.getFileName().toString())
                         .setWorkdir(L0cFolderParameters.WORKSPACE_PATH)
-                        .setCommand(List.of(script, path.toString())))
+                        .setCommand(List.of(script, path.toString()))
+                        .setLogWhitelist(L0EWParameters.INFO_LEVEL_MARKERS))
                 .collect(Collectors.toSet());
 
         ScriptUtils.run(scriptWrapperSet)

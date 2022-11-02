@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("ew.l1c")
 public class L1cExecutionProperties {
 
-    private String auxBucket;
+    /**
+     * Name of the OBS bucket containing L1 files
+     */
     private String l1Bucket;
-    private String sharedFolderRoot;
-    private String demFolderRoot;
 
 }

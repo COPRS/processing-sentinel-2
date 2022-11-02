@@ -7,8 +7,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum MissingOutputProductType {
 
-    GR("MSI_L0__GR"),
-    DS("MSI_L0__DS"),
+    L0_GR("MSI_L0__GR"),
+    L0_DS("MSI_L0__DS"),
+    L1_GR("MSI_L1__GR"),
+    L1_DS("MSI_L1__DS"),
     HKTM("PRD_HKTM"),
     SAD("AUX_SADATA");
 

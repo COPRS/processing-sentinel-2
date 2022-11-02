@@ -1,26 +1,26 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.ew.service.EWDownloadService;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
+import java.util.function.Predicate;
 
 @Slf4j
 @Component
-public class L0uEWDownloadService {
+public class L0uEWDownloadService extends EWDownloadService {
 
-    private final ObsService obsService;
 
     public L0uEWDownloadService(ObsService obsService) {
-        this.obsService = obsService;
+        super(obsService);
     }
 
-    public void download(Set<FileInfo> fileInfoSet) {
-
-        log.info("Downloading files from object storage");
+    @Override
+    protected void prepareStandardFiles(Set<FileInfo> fileInfoSet) {
 
         fileInfoSet.forEach(fileInfo -> {
 
@@ -35,10 +35,16 @@ public class L0uEWDownloadService {
 
             fileInfo.setLocalPath(localPath);
         });
+    }
 
-        obsService.download(fileInfoSet);
+    @Override
+    protected Predicate<FileInfo> customAux() {
+        return fileInfo -> false;
+    }
 
-        log.info("Finished downloading files from object storage");
+    @Override
+    protected void downloadCustomAux(Set<FileInfo> fileInfoSet) {
+        // N/A
     }
 
 }

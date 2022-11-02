@@ -1,7 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l0c.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.ew.l0c.config.L0cExecutionProperties;
@@ -32,7 +31,7 @@ class L0cEWOutputServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        l0cEWOutputService = new L0cEWOutputService(uploadService, messageService, cleanupService, l0cExecutionProperties);
+        l0cEWOutputService = new L0cEWOutputService(messageService, cleanupService, uploadService, l0cExecutionProperties);
     }
 
     @Override

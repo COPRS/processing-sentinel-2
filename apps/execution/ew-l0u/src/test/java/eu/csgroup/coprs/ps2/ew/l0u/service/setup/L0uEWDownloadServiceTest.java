@@ -1,6 +1,7 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import org.junit.jupiter.api.Test;
@@ -35,8 +36,8 @@ class L0uEWDownloadServiceTest extends AbstractTest {
 
         // Given
         final Set<FileInfo> fileInfoSet = Set.of(
-                new FileInfo().setObsName("ch1_foo"),
-                new FileInfo().setObsName("ch2_foo")
+                new FileInfo().setProductFamily(ProductFamily.EDRS_SESSION).setObsName("ch1_foo"),
+                new FileInfo().setProductFamily(ProductFamily.EDRS_SESSION).setObsName("ch2_foo")
         );
 
         // When

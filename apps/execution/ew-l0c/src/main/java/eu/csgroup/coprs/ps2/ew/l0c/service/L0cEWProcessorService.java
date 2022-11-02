@@ -5,9 +5,9 @@ import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProductType;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
-import eu.csgroup.coprs.ps2.core.common.service.processor.EWProcessorService;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.ew.service.EWProcessorService;
 import eu.csgroup.coprs.ps2.ew.l0c.service.exec.L0cEWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l0c.service.output.L0cEWOutputService;
 import eu.csgroup.coprs.ps2.ew.l0c.service.setup.L0cEWInputService;
@@ -38,7 +38,7 @@ public class L0cEWProcessorService extends EWProcessorService<L0cExecutionInput>
     protected List<TaskMissingOutput> getMissingOutputs(L0cExecutionInput executionInput) {
 
         final JobProcessingTaskMissingOutput dsMissingOutput = buildMissingOutput(
-                MissingOutputProductType.DS, 1, executionInput.getSatellite(), true, IPF_VERSION
+                MissingOutputProductType.L0_DS, 1, executionInput.getSatellite(), true, IPF_VERSION
         );
 
         int grCount;
@@ -50,7 +50,7 @@ public class L0cEWProcessorService extends EWProcessorService<L0cExecutionInput>
         }
 
         final JobProcessingTaskMissingOutput grMissingOutput = buildMissingOutput(
-                MissingOutputProductType.GR, grCount, executionInput.getSatellite(), true, IPF_VERSION
+                MissingOutputProductType.L0_GR, grCount, executionInput.getSatellite(), true, IPF_VERSION
         );
 
         return List.of(dsMissingOutput, grMissingOutput);

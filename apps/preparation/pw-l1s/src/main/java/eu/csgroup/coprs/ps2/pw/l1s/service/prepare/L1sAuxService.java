@@ -5,6 +5,7 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Band;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
@@ -67,7 +68,8 @@ public class L1sAuxService {
                 .setKey(auxCatalogData.getKeyObjectStorage())
                 .setLocalPath(auxPath.resolve(auxFile.getFolder().getPath()).toString())
                 .setLocalName(auxCatalogData.getProductName())
-                .setType(productType.name());
+                .setProductFamily(ProductFamily.S2_AUX)
+                .setAuxProductType(productType);
     }
 
 }

@@ -23,6 +23,7 @@ public enum AuxProductType {
     GIP_G2PARA(".xml", false),
     GIP_G2PARE(".xml", false),
     GIP_GEOPAR(".xml", false),
+    GIP_HRTPAR(".xml", false),
     GIP_INTDET(".xml", false),
     GIP_INVLOC(".xml", false),
     GIP_JP2KPA(".xml", false),

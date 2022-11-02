@@ -1,21 +1,19 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
-import eu.csgroup.coprs.ps2.core.common.exception.InvalidInputException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0cJobOrderFields;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.TemplateUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
+import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
-import eu.csgroup.coprs.ps2.core.common.model.l0.L0cJobOrderFields;
 import eu.csgroup.coprs.ps2.pw.l0c.settings.PWL0cTask;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.util.Strings;
@@ -45,16 +43,9 @@ public class L0cJobOrderService {
     @PostConstruct
     public void setup() {
         final String demFolderRoot = l0cPreparationProperties.getDemFolderRoot();
-        try {
-            final List<Path> demFolders = FileOperationUtils.findFolders(Paths.get(demFolderRoot), S2FileParameters.DEM_REGEX);
-            if (demFolders.size() != 1) {
-                throw new InvalidInputException("Invalid DEM files number found in " + demFolderRoot);
-            }
-            demFolder = demFolders.get(0).toString();
-            log.info("Set up JobOrderService with L0U DUMP location: {} and DEM location: {}", l0cPreparationProperties.getInputFolderRoot(), demFolder);
-        } catch (FileOperationException fileOperationException) {
-            throw new InvalidInputException("Unable to parse DEM folder", fileOperationException);
-        }
+        final String globeFolderName = l0cPreparationProperties.getGlobeFolderName();
+        demFolder = Paths.get(demFolderRoot, globeFolderName).toString();
+        log.info("Set up JobOrderService with L0U DUMP location: {} and DEM location: {}", l0cPreparationProperties.getInputFolderRoot(), demFolder);
     }
 
     public Map<String, Map<String, String>> create(L0cDatastrip datastrip, Map<L0cAuxFile, List<FileInfo>> auxFilesByType) {
@@ -75,7 +66,7 @@ public class L0cJobOrderService {
         values.put(L0cJobOrderFields.CREATION_DATE.getPlaceholder(), DateUtils.toDate(Instant.now()));
 
         // DEM input file location is fixed
-        values.put(L0cJobOrderFields.DEM_PATH.getPlaceholder(), demFolder + "/average");
+        values.put(L0cJobOrderFields.DEM_PATH.getPlaceholder(), demFolder);
 
         // Add AUX file info
         values.putAll(extractAuxValues(auxFilesByType));
@@ -83,7 +74,6 @@ public class L0cJobOrderService {
 
         // Compute L0u GR count
         values.put(L0cJobOrderFields.GRANULE_END.getPlaceholder(), String.valueOf(getGRCount(datastrip)));
-
 
         Arrays.stream(PWL0cTask.values())
                 .forEach(pwl0cTask -> {
@@ -95,7 +85,6 @@ public class L0cJobOrderService {
         log.info("Finished creating Job Orders for Datastrip {}", datastrip.getName());
 
         return jobOrders;
-
     }
 
 

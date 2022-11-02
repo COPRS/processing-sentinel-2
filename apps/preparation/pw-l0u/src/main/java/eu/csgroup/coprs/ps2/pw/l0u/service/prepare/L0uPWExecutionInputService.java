@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
@@ -66,7 +67,8 @@ public class L0uPWExecutionInputService implements PWExecutionInputService<L0uEx
                 .stream()
                 .map(sessionCatalogData -> new FileInfo()
                         .setBucket(l0uPreparationProperties.getCaduBucket())
-                        .setKey(sessionCatalogData.getKeyObjectStorage()))
+                        .setKey(sessionCatalogData.getKeyObjectStorage())
+                        .setProductFamily(ProductFamily.EDRS_SESSION))
                 .collect(Collectors.toSet());
     }
 

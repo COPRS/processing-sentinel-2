@@ -52,28 +52,13 @@ class L0cJobOrderServiceTest extends AbstractTest {
     @Test
     void testSetup() throws IllegalAccessException {
         // Given
-        when(l0cPreparationProperties.getDemFolderRoot()).thenReturn(TestHelper.DEM_FULL_PATH);
+        when(l0cPreparationProperties.getDemFolderRoot()).thenReturn(TestHelper.DEM_PATH);
+        when(l0cPreparationProperties.getGlobeFolderName()).thenReturn(TestHelper.DEM_NAME);
         // When
         jobOrderService.setup();
         // Then
         final String demFolder = (String) FieldUtils.readField(jobOrderService, "demFolder", true);
-        assertEquals(TestHelper.DEM_NAME, demFolder);
-    }
-
-    @Test
-    void testSetup_invalid() {
-        // Given
-        when(l0cPreparationProperties.getDemFolderRoot()).thenReturn(TestHelper.DEM_BAD_FULL_PATH);
-        // When Then
-        assertThrows(InvalidInputException.class, () -> jobOrderService.setup());
-    }
-
-    @Test
-    void testSetup_fails() {
-        // Given
-        when(l0cPreparationProperties.getDemFolderRoot()).thenReturn("foo");
-        // When Then
-        assertThrows(InvalidInputException.class, () -> jobOrderService.setup());
+        assertEquals(TestHelper.DEM_FULL_PATH, demFolder);
     }
 
     @Test

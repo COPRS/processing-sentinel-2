@@ -22,6 +22,7 @@ public enum L1sAuxFile {
     GIP_G2PARA(AuxProductType.GIP_G2PARA, L1sAuxFolder.S2IPF_GIPP),
     GIP_G2PARE(AuxProductType.GIP_G2PARE, L1sAuxFolder.S2IPF_GIPP),
     GIP_GEOPAR(AuxProductType.GIP_GEOPAR, L1sAuxFolder.S2IPF_GIPP),
+    GIP_HRTPAR(AuxProductType.GIP_HRTPAR, L1sAuxFolder.S2IPF_GIPP),
     GIP_INTDET(AuxProductType.GIP_INTDET, L1sAuxFolder.S2IPF_GIPP),
     GIP_INVLOC(AuxProductType.GIP_INVLOC, L1sAuxFolder.S2IPF_GIPP),
     GIP_JP2KPA(AuxProductType.GIP_JP2KPA, L1sAuxFolder.S2IPF_GIPP),

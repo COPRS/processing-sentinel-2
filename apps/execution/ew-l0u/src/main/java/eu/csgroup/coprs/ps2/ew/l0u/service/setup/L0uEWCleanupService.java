@@ -1,7 +1,9 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessUtils;
+import eu.csgroup.coprs.ps2.core.ew.service.EWCleanupService;
 import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -13,7 +15,7 @@ import java.util.Set;
 
 @Slf4j
 @Component
-public class L0uEWCleanupService {
+public class L0uEWCleanupService implements EWCleanupService<L0uExecutionInput> {
 
     private static final Set<String> PROCESSES = Set.of(
             "EISPProcessor",
@@ -23,6 +25,7 @@ public class L0uEWCleanupService {
             "launch_telemetry.bash"
     );
 
+    @Override
     public void cleanAndPrepare() {
 
         log.info("Cleaning and setting up workspace");
@@ -35,7 +38,8 @@ public class L0uEWCleanupService {
         log.info("Finished cleaning and setting up workspace");
     }
 
-    public void clean() {
+    @Override
+    public void clean(L0uExecutionInput executionInput) {
 
         log.info("Cleaning up workspace");
 

@@ -1,6 +1,7 @@
 include ":apps:libs:core-common"
 include ":apps:libs:core-obs"
 include ":apps:libs:core-pw"
+include ":apps:libs:core-ew"
 
 include ":apps:preparation:pw-l0u"
 include ":apps:preparation:pw-l0c"

@@ -1,7 +1,27 @@
 # RS Addon : S2_L1
 
-[//]: # (TODO TOC)
+<!-- TOC -->
 
+* [RS Addon : S2_L1](#rs-addon--s2_l1)
+    * [Prerequisites](#prerequisites)
+    * [Deployment](#deployment)
+        * [Principle](#principle)
+        * [Additional resources](#additional-resources)
+        * [Requirements](#requirements)
+    * [Configuration](#configuration)
+        * [Global deployer settings](#global-deployer-settings)
+        * [Workers deployer settings](#workers-deployer-settings)
+        * [Workers volume mounts](#workers-volume-mounts)
+        * [Filter](#filter)
+        * [OBS settings](#obs-settings)
+        * [Kafka settings](#kafka-settings)
+        * [Catalog](#catalog)
+        * [MongoDB](#mongodb)
+        * [Misc](#misc)
+        * [Preparation workers](#preparation-workers)
+        * [Execution workers](#execution-workers)
+
+<!-- TOC -->[//]: # (TODO TOC)
 
 ## Prerequisites
 
@@ -76,12 +96,19 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 
 ### Workers volume mounts
 
-_Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
+_Apps_: pw-l1s, pw-l1c
 
-| Property                                 |        Description         |                                                                                                      Default                                                                                                       |
-|------------------------------------------|:--------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| deployer.\<APP>.kubernetes.volume-mounts |   List of volume mounts    |                                                                 [ { name: shared, mountPath: '/shared' },<br/> { name: dem, mountPath: '/dem' } ]                                                                  |
-| deployer.\<APP>.kubernetes.volumes       | List of volume definitions | [ { name: shared, persistentVolumeClaim: <br/>{ claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
+| Property                                 | Description                |                                                   Default                                                   |
+|------------------------------------------|:---------------------------|:-----------------------------------------------------------------------------------------------------------:|
+| deployer.\<APP>.kubernetes.volume-mounts | List of volume mounts      |                                 [ { name: shared, mountPath: '/shared' } ]                                  |
+| deployer.\<APP>.kubernetes.volumes       | List of volume definitions | [ { name: shared, persistentVolumeClaim:<br> { claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } } ] |
+
+_Apps_: ew-l1s, ew-l1ab, ew-l1c
+
+| Property                                 | Description                |                                                                                                                                                    Default                                                                                                                                                    |
+|------------------------------------------|:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| deployer.\<APP>.kubernetes.volume-mounts | List of volume mounts      |                                                                                                               [ { name: shared, mountPath: '/shared' },<br/> { name: dem, mountPath: '/dem' } ]                                                                                                               |
+| deployer.\<APP>.kubernetes.volumes       | List of volume definitions | [ { name: shared, persistentVolumeClaim:<br> { claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } },<br> { name: dem, persistentVolumeClaim: { claimName: 's2-dem', storageClassName: 'ceph-fs' } },<br> { name: grid, persistentVolumeClaim: { claimName: 's2-grid', storageClassName: 'ceph-fs' } } ] |
 
 ### Filter
 
@@ -165,6 +192,7 @@ _Apps_: pw-l1s, pw-l1c
 | app.pw-l1s.pw.l1s.l0Bucket         | Name of the OBS bucket containing L0c files    | rs-s2-l0c |
 | app.pw-l1s.pw.l1s.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
 | app.pw-l1s.pw.l1s.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+||||
 | app.pw-l1c.pw.l1c.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
 | app.pw-l1c.ew.l1c.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
 | app.pw-l1c.ew.l1c.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
@@ -176,17 +204,26 @@ _Apps_: ew-l1s, ew-l1ab, ew-l1c
 
 | Property                             | Description                                    |  Default  |
 |--------------------------------------|------------------------------------------------|:---------:|
+||||
 | app.ew-l1s.ew.l1s.auxBucket          | Name of the OBS bucket containing AUX files    | rs-s2-aux |
 | app.ew-l1s.ew.l1s.l0Bucket           | Name of the OBS bucket containing L0c files    | rs-s2-l0c |
 | app.ew-l1s.ew.l1s.sharedFolderRoot   | Path to the shared folder for L1 working files |  /shared  |
 | app.ew-l1s.ew.l1s.demFolderRoot      | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1s.ew.l1s.gridFolderRoot     | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1s.ew.l1s.maxParallelTasks   | Maximum number of parallel processing tasks    |     8     |
+||||
 | app.ew-l1ab.ew.l1ab.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
 | app.ew-l1ab.ew.l1ab.l1Bucket         | Name of the OBS bucket to store L1ab files     | rs-s2-l1  |
 | app.ew-l1ab.ew.l1ab.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
 | app.ew-l1ab.ew.l1ab.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1ab.ew.l1ab.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1ab.ew.l1ab.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
+||||
 | app.ew-l1c.ew.l1c.auxBucket          | Name of the OBS bucket containing AUX files    | rs-s2-aux |
 | app.ew-l1c.ew.l1c.l1Bucket           | Name of the OBS bucket to store L1c files      | rs-s2-l1  |
 | app.ew-l1c.ew.l1c.sharedFolderRoot   | Path to the shared folder for L1 working files |  /shared  |
 | app.ew-l1c.ew.l1c.demFolderRoot      | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1c.ew.l1c.gridFolderRoot     | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1c.ew.l1c.maxParallelTasks   | Maximum number of parallel processing tasks    |     8     |
 
 ----

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Ipf_Job_Order>
+        <Ipf_Conf>
+                <Processor_Name>l2a</Processor_Name>
+                <Version>3.0.3</Version>
+                <Stdout_Log_Level>DEBUG</Stdout_Log_Level>
+                <Stderr_Log_Level>DEBUG</Stderr_Log_Level>
+                <Acquisition_Station>@@@ACQUISITION_STATION@@@</Acquisition_Station>
+                <Processing_Station>@@@PROCESSING_STATION@@@</Processing_Station>
+                <Config_Files>
+                        <Conf_File_Name/>
+                </Config_Files>
+          <Dynamic_Processing_Parameters>
+                <Processing_Parameter>
+                        <Name>ARCHIVING_CENTER</Name>
+                        <Value>@@@ARCHIVING_CENTER@@@</Value>
+                </Processing_Parameter>
+                <Processing_Parameter>
+                        <Name>PROCESSING_CENTER</Name>
+                        <Value>@@@PROCESSING_CENTER@@@</Value>
+                </Processing_Parameter>
+         </Dynamic_Processing_Parameters>
+        </Ipf_Conf>
+        <List_of_Ipf_Procs count="1">
+                <Ipf_Proc>
+                        <Task_Name>Sen2Cor</Task_Name>
+                        <Task_Version>3.0.3</Task_Version>
+                        <List_of_Inputs count="3">
+                                <Input>
+                                        <File_Type>MSI_L1C_DS</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@MSI_L1C_DS@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>MSI_L1C_TL</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@MSI_L1C_TL@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>GIP_L2ACSC</File_Type>
+                                        <File_Name_Type>File</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@GIP_L2ACSC@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>GIP_L2ACAC</File_Type>
+                                        <File_Name_Type>File</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@GIP_L2ACAC@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>GIP_L2ACFG</File_Type>
+                                        <File_Name_Type>File</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@GIP_L2ACFG@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>GIP_PROBA2</File_Type>
+                                        <File_Name_Type>File</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@GIP_PROBA2@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>GIP_JP2KPA</File_Type>
+                                        <File_Name_Type>File</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@GIP_JP2KPA@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>GIP_OLQCPA</File_Type>
+                                        <File_Name_Type>File</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@GIP_OLQCPA@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+
+                                <Input>
+                                        <File_Type>SEN2COR_DIR_INSTALL</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@SEN2COR_DIR_INSTALL@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>COMPRESS_TILE_IMAGE_DIR_INSTALL</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@COMPRESS_TILE_IMAGE_DIR_INSTALL@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>FORMAT_METADATA_DS_DIR_INSTALL</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@FORMAT_METADATA_DS_DIR_INSTALL@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>FORMAT_METADATA_TL_DIR_INSTALL</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@FORMAT_METADATA_TL_DIR_INSTALL@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>OLQC_DIR_INSTALL</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@OLQC_DIR_INSTALL@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                                <Input>
+                                        <File_Type>WORKING</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <List_of_File_Names count="1">
+                                                <File_Name>@@@WORKING@@@</File_Name>
+                                        </List_of_File_Names>
+                                </Input>
+                        </List_of_Inputs>
+                        <List_of_Outputs count="2">
+                                <Output mandatory="true">
+                                        <File_Type>MSI_L2A_DS</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <File_Name>@@@MSI_L2A_DS@@@</File_Name>
+                                </Output>
+                                <Output mandatory="true">
+                                        <File_Type>MSI_L2A_TL</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <File_Name>@@@MSI_L2A_TL@@@</File_Name>
+                                </Output>
+                                <Output mandatory="true">
+                                        <File_Type>KPI_L2A</File_Type>
+                                        <File_Name_Type>Directory</File_Name_Type>
+                                        <File_Name>@@@KPI_L2A@@@</File_Name>
+                                </Output>
+                        </List_of_Outputs>
+                </Ipf_Proc>
+        </List_of_Ipf_Procs>
+</Ipf_Job_Order>

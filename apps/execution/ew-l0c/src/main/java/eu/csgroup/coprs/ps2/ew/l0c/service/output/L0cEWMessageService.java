@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWMessageService;
+import eu.csgroup.coprs.ps2.core.ew.service.EWMessageService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

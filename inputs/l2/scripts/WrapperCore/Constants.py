@@ -1,0 +1,17 @@
+# coding=utf-8
+PROCESSING_STATION = "2BPS"
+VERSION = "1.0.0"
+PROCESSOR_LOG_LEVEL = "DEBUG"
+INVENTORY_L2_SOFT_FOLDER = "/usr/local/components/facilities/DPC-CORE-l1l2pack-dpc-software/" \
+                           "DPC-CORE-l1l2pack-dpc-software-3.0.4/l1l2_dpc_software/scripts/"
+INVENTORY_L2_DS_SCRIPT_NAME = "inventory_metadata_l1_l2_ds.sh"
+INVENTORY_L2_GR_SCRIPT_NAME = "inventory_metadata_l1_l2_gr_tl.sh"
+
+IDPSC_EXE_DIR = "/dpc/app/s2ipf"
+DEFAULT_SENSING_START = "1983-01-01T00:00:00Z"
+DEFAULT_SENSING_STOP = "2020-01-01T00:00:00Z"
+DEFAULT_SENSING_START_MS = "1983-01-01T00:00:00.000Z"
+DEFAULT_SENSING_STOP_MS = "2020-01-01T00:00:00.000Z"
+DEFAULT_NB_THREADS = 1
+DEFAULT_AQUISITION_STATION = ""
+DEFAULT_PROCESSOR_NAME = "Chain"

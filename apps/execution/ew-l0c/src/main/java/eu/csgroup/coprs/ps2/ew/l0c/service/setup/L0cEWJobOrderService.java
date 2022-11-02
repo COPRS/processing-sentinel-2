@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.ew.l0c.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWJobOrderService;
+import eu.csgroup.coprs.ps2.core.ew.service.EWJobOrderService;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.ew.l0c.settings.L0cFolderParameters;
 import lombok.extern.slf4j.Slf4j;

@@ -58,9 +58,9 @@ public final class TestHelper {
                             .setLocalName("S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00"))
     );
 
-    public static final String DEM_FULL_PATH = Paths.get("src/test/resources/dem").toAbsolutePath().toString();
-    public static final String DEM_BAD_FULL_PATH = Paths.get("src/test/resources/dem_bad").toAbsolutePath().toString();
-    public static final String DEM_NAME = DEM_FULL_PATH + "/S2__OPER_DEM_GLOBEF_PDMC_20091210T235100_S20091210T235134";
+    public static final String DEM_PATH = Paths.get("src/test/resources/dem").toAbsolutePath().toString();
+    public static final String DEM_NAME = "S2__OPER_DEM_GLOBEF_PDMC_20091210T235100_S20091210T235134";
+    public static final String DEM_FULL_PATH = Paths.get(DEM_PATH, DEM_NAME).toString();
 
     private TestHelper() {
     }

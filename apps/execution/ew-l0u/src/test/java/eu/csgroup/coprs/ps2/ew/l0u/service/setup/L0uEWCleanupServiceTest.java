@@ -58,7 +58,7 @@ class L0uEWCleanupServiceTest extends AbstractTest {
             filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
 
             // When
-            cleanupService.clean();
+            cleanupService.clean(null);
 
             // Then
             processUtilsMockedStatic.verify(() -> ProcessUtils.kill(any()), atLeast(1));

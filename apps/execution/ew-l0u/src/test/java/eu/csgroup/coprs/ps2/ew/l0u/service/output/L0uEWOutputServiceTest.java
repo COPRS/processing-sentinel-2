@@ -33,7 +33,7 @@ class L0uEWOutputServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        l0uEWOutputService = new L0uEWOutputService(uploadService, copyService, messageService, cleanupService, l0uExecutionProperties);
+        l0uEWOutputService = new L0uEWOutputService(messageService, cleanupService, uploadService, copyService, l0uExecutionProperties);
     }
 
     @Override

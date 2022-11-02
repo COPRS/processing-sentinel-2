@@ -53,6 +53,12 @@ class FileContentUtilsTest {
     }
 
     @Test
+    void grepAll_NotFound() {
+        final List<String> grep = FileContentUtils.grepAll(xmlPath, "<Burglop>");
+        assertTrue(grep.isEmpty());
+    }
+
+    @Test
     void extractXmlTagValue() {
         final String breakpoint_enable = FileContentUtils.extractXmlTagValue(xmlPath, "Breakpoint_Enable");
         assertEquals("true", breakpoint_enable);

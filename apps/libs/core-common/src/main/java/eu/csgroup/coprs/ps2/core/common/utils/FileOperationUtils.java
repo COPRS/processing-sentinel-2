@@ -7,6 +7,7 @@ import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -148,6 +149,23 @@ public final class FileOperationUtils {
             Files.move(sourcePath, destinationPath);
         } catch (IOException e) {
             throw new FileOperationException("Unable to move file", e);
+        }
+    }
+
+    /**
+     * Merge files contained in a given folder matching a given regex into a single file
+     *
+     * @param folder Path to the folder containing files to merge
+     * @param target Path to the file resulting from the merge
+     * @param regex  Regular expression to filter files to merge
+     */
+    public static void mergeFiles(Path folder, Path target, String regex) {
+        try (OutputStream outputStream = Files.newOutputStream(target)) {
+            for (Path path : findFilesInTree(folder, regex)) {
+                Files.copy(path, outputStream);
+            }
+        } catch (IOException e) {
+            throw new FileOperationException("Unable to merges files", e);
         }
     }
 

@@ -161,12 +161,13 @@ _Prefix_: app.pw-l0c.mongo
 
 _Prefix_: app.pw-l0c
 
-| Property               | Description                                                            |  Default  |
-|------------------------|------------------------------------------------------------------------|:---------:|
-| spring.profiles.active | Name of the profile to run with (prod or dev)                          |   prod    |
-| pw.l0c.auxBucket       | OBS Bucket holding AUX files                                           | rs-s2-aux |
-| pw.l0c.inputFolderRoot | Path to the folder used as input for L0u files.<br/>Mount to shared fs |  /input   |
-| pw.l0c.demFolderRoot   | Path to the folder holding DEM_GLOBEF files                            |   /dem    |
+| Property               | Description                                                            |    Default     |
+|------------------------|------------------------------------------------------------------------|:--------------:|
+| spring.profiles.active | Name of the profile to run with (prod or dev)                          |      prod      |
+| pw.l0c.auxBucket       | OBS Bucket holding AUX files                                           |   rs-s2-aux    |
+| pw.l0c.inputFolderRoot | Path to the folder used as input for L0u files.<br/>Mount to shared fs |     /input     |
+| pw.l0c.demFolderRoot   | Path to the folder holding DEM_GLOBEF files                            |      /dem      |
+| pw.l0c.globeFolderName | Name of the folder holding DEM_GLOBEF files                            | S2IPF-DEMGLOBE |
 
 ### Execution worker
 

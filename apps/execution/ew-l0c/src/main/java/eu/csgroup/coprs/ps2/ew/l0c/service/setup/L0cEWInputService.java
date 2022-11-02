@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.ew.l0c.service.setup;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWInputService;
+import eu.csgroup.coprs.ps2.core.ew.service.EWInputService;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.ew.l0c.service.exec.L0cEWExecutionService;

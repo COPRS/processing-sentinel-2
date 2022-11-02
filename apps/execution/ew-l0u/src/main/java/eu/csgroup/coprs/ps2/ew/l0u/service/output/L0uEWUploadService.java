@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWUploadService;
+import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;

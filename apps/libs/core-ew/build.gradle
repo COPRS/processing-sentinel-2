@@ -1,0 +1,8 @@
+dependencies {
+
+    implementation project(':apps:libs:core-common')
+    implementation project(':apps:libs:core-obs')
+
+    testImplementation(testFixtures(project(":apps:libs:core-common")))
+
+}

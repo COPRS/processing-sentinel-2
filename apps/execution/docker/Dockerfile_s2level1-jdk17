@@ -22,30 +22,47 @@ USER root
 
 ## Wrapper configuration
 ARG JDK_VERSION
-RUN groupadd -g 1001 wrapper
-RUN adduser -p '*' -d /wrapper -u 1001 -g 1001 wrapper
-RUN chmod 755 /wrapper
+RUN groupadd -g 1001 wrapper  \
+    && adduser -p '*' -d /wrapper -u 1001 -g 1001 wrapper  \
+    && chmod 755 /wrapper
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
     && tar xvf jdk.tar.gz \
     && mv jdk-$JDK_VERSION jdk \
-    && rm jdk.tar.gz
-RUN chown -R wrapper:wrapper /wrapper
+    && rm jdk.tar.gz \
+    && chown -R wrapper:wrapper /wrapper
 
 ## Setup workspace folder
-RUN mkdir -p /workspace
-RUN chmod -R 755 /workspace
-RUN chown -R wrapper:wrapper /workspace
+RUN mkdir -p /workspace \
+    && chmod -R 755 /workspace \
+    && chown -R wrapper:wrapper /workspace
 
-## Setup INPUT folder (on shared volume)
-RUN mkdir -p /input
-RUN chmod -R 755 /input
-RUN chown -R wrapper:wrapper /input
+## Setup SHARED folder (on shared volume)
+RUN mkdir -p /shared  \
+    && chmod -R 755 /shared  \
+    && chown -R wrapper:wrapper /shared
 
-## Setup OUTPUT folder (on shared volume)
-RUN mkdir -p /output
-RUN chmod -R 755 /output
-RUN chown -R wrapper:wrapper /output
+## Orechestrator section
+
+# Use UTC, not EST
+RUN rm -f /etc/localtime  \
+    && ln -s /usr/share/zoneinfo/UTC /etc/localtime
+
+# Create orchestrator root
+RUN mkdir -p /wrapper/orchestrator
+
+# Add sources and deps
+ADD orchestrator/deps.tgz /wrapper/orchestrator/
+ADD orchestrator/orchestrator.tgz /wrapper/orchestrator/
+ADD orchestrator/rs_scripts.tgz /wrapper/orchestrator/
+
+# Configure and install
+RUN rm -rf /usr/share/doc \
+    && rpm -ivh /wrapper/orchestrator/dependencies_orchestrator/python-*.rpm \
+    && cd /wrapper/orchestrator/S2IPF_Orchestrator  \
+    && touch README \
+    && python setup.py install \
+    && chown -R wrapper:wrapper /wrapper
 
 WORKDIR /wrapper
 USER wrapper

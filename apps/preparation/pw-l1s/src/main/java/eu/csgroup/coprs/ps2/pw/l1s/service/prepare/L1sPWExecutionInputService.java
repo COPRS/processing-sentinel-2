@@ -62,12 +62,12 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
                 .setInputFolder(inputPath.toString())
                 .setOutputFolder(rootPath.resolve(L1Parameters.OUTPUT_FOLDER).toString())
                 .setAuxFolder(rootPath.resolve(L1Parameters.AUX_FOLDER).toString())
+                .setFiles(new HashSet<>())
                 .setSatellite(datastrip.getSatellite())
                 .setStation(datastrip.getStationCode())
                 .setStartTime(datastrip.getStartTime())
                 .setStopTime(datastrip.getStopTime())
-                .setT0PdgsDate(datastrip.getT0PdgsDate())
-                .setFiles(new HashSet<>());
+                .setT0PdgsDate(datastrip.getT0PdgsDate());
 
         executionInput.getFiles().addAll(
                 getGRFileInfos(datastrip, inputPath.resolve(L1Parameters.GR_FOLDER))

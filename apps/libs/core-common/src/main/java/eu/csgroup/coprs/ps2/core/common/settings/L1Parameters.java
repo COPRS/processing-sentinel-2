@@ -11,6 +11,7 @@ public final class L1Parameters {
     public static final String AUX_FOLDER = "aux";
     public static final String DS_FOLDER = "DS";
     public static final String GR_FOLDER = "GR";
+    public static final String TMP_DS_SUFFIX = ".L1S";
 
     private L1Parameters() {
     }

@@ -50,12 +50,12 @@ public class L0uPWExecutionInputService implements PWExecutionInputService<L0uEx
         final L0uExecutionInput l0uExecutionInput = new L0uExecutionInput();
         l0uExecutionInput.setSession(sessionName)
                 .setJobOrders(jobOrderService.create(session))
+                .setFiles(getFileInfos(sessionName))
                 .setSatellite(session.getSatellite())
                 .setStation(session.getStationCode())
                 .setStartTime(session.getStartTime())
                 .setStopTime(session.getStopTime())
-                .setT0PdgsDate(session.getT0PdgsDate())
-                .setFiles(getFileInfos(sessionName));
+                .setT0PdgsDate(session.getT0PdgsDate());
 
         log.info("Finished creating output payload for session {}", sessionName);
 

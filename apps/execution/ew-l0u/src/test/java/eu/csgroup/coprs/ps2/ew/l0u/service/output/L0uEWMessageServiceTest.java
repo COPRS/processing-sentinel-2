@@ -6,25 +6,35 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 class L0uEWMessageServiceTest extends AbstractTest {
+
+    @Mock
+    private L0uExecutionProperties executionProperties;
 
     private L0uEWMessageService l0uEWMessageService;
 
     @Override
     public void setup() throws Exception {
-        l0uEWMessageService = new L0uEWMessageService();
+        l0uEWMessageService = new L0uEWMessageService(executionProperties);
+        when(executionProperties.getOutputFolderRoot()).thenReturn("foo");
     }
 
     @Override
@@ -46,17 +56,22 @@ class L0uEWMessageServiceTest extends AbstractTest {
                 ProductFamily.S2_L0_DS, Collections.singleton(new FileInfo())
         );
 
-        // When
-        final Set<ProcessingMessage> messages = l0uEWMessageService.build(l0uExecutionInput, fileInfosByFamily, "outputFolder");
+        try (final MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
 
-        // Then
-        assertEquals(3, messages.size());
-        final List<ProcessingMessage> catalogMessages = messages.stream().filter(processingMessage -> processingMessage.getProductFamily() != null).toList();
-        final List<ProcessingMessage> executionMessages = messages.stream().filter(processingMessage -> processingMessage.getProductFamily() == null).toList();
-        assertEquals(2, catalogMessages.size());
-        assertTrue(catalogMessages.stream().allMatch(processingMessage -> processingMessage.getAdditionalFields().containsKey(MessageParameters.T0_PDGS_DATE_FIELD)));
-        assertEquals(1, executionMessages.size());
-        assertTrue(executionMessages.stream().allMatch(processingMessage -> processingMessage.getAdditionalFields().containsKey(MessageParameters.PREPARATION_INPUT_FIELD)));
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(Collections.emptyList());
+
+            // When
+            final Set<ProcessingMessage> messages = l0uEWMessageService.build(l0uExecutionInput, fileInfosByFamily, "outputFolder");
+
+            // Then
+            assertEquals(3, messages.size());
+            final List<ProcessingMessage> catalogMessages = messages.stream().filter(processingMessage -> processingMessage.getProductFamily() != null).toList();
+            final List<ProcessingMessage> executionMessages = messages.stream().filter(processingMessage -> processingMessage.getProductFamily() == null).toList();
+            assertEquals(2, catalogMessages.size());
+            assertTrue(catalogMessages.stream().allMatch(processingMessage -> processingMessage.getAdditionalFields().containsKey(MessageParameters.T0_PDGS_DATE_FIELD)));
+            assertEquals(1, executionMessages.size());
+            assertTrue(executionMessages.stream().allMatch(processingMessage -> processingMessage.getAdditionalFields().containsKey(MessageParameters.PREPARATION_INPUT_FIELD)));
+        }
     }
 
 }

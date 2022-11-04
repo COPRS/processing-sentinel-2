@@ -20,9 +20,4 @@ public class L1ExecutionInput extends ExecutionInput {
     private String inputFolder;
     private String outputFolder;
 
-    @Override
-    public List<String> listJobOrders() {
-        return Collections.emptyList();
-    }
-
 }

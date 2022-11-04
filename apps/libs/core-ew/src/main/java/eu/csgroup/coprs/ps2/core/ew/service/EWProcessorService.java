@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.core.ew.service;
 
+import eu.csgroup.coprs.ps2.core.common.model.CommonInput;
 import eu.csgroup.coprs.ps2.core.common.model.ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
@@ -12,8 +13,10 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.output.JobProcessingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.service.processor.ProcessorService;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
+import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import org.springframework.util.StringUtils;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -69,11 +72,31 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
         return outputMessageSet;
     }
 
-    protected Set<String> getTaskOutputs(Set<ProcessingMessage> processingMessages) {
-        return processingMessages.stream()
+    protected Set<String> getTaskOutputs(Set<ProcessingMessage> outputMessages) {
+
+        // Adding entries for products going into the catalog
+        final Set<String> taskOutputs = outputMessages.stream()
                 .filter(processingMessage -> StringUtils.hasText(processingMessage.getKeyObjectStorage()))
                 .map(processingMessage -> ObsUtils.keyToName(processingMessage.getKeyObjectStorage()))
                 .collect(Collectors.toSet());
+
+        // Adding products destined for next processing step
+        final Set<String> customOutputs = outputMessages.stream()
+                .filter(processingMessage -> !StringUtils.hasText(processingMessage.getKeyObjectStorage()))
+                .map(processingMessage -> {
+                    Set<String> customInputs = Collections.emptySet();
+                    final CommonInput commonInput = ProcessingMessageUtils.getCommonInput(processingMessage);
+                    if (commonInput != null) {
+                        customInputs = commonInput.getCustomTaskInputs();
+                    }
+                    return customInputs;
+                })
+                .flatMap(Collection::stream)
+                .collect(Collectors.toSet());
+
+        taskOutputs.addAll(customOutputs);
+
+        return taskOutputs;
     }
 
     protected JobProcessingTaskMissingOutput buildMissingOutput(MissingOutputProductType type, Integer count, String satellite, Boolean endToEnd, String ipf) {

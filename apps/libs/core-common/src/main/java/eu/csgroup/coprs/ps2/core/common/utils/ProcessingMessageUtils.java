@@ -1,8 +1,10 @@
 package eu.csgroup.coprs.ps2.core.common.utils;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
+import eu.csgroup.coprs.ps2.core.common.model.CommonInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.EventAction;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
@@ -19,6 +21,7 @@ public final class ProcessingMessageUtils {
     static {
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     public static ProcessingMessage create() {
@@ -68,6 +71,16 @@ public final class ProcessingMessageUtils {
             t0PdgsDate = ProcessingMessageUtils.getAdditionalField(processingMessage, MessageParameters.T0_PDGS_DATE_FIELD, Instant.class);
         }
         return t0PdgsDate;
+    }
+
+    public static CommonInput getCommonInput(ProcessingMessage processingMessage) {
+        CommonInput commonInput = null;
+        if (ProcessingMessageUtils.hasAdditionalField(processingMessage, MessageParameters.PREPARATION_INPUT_FIELD)) {
+            commonInput = ProcessingMessageUtils.getAdditionalField(processingMessage, MessageParameters.PREPARATION_INPUT_FIELD, CommonInput.class);
+        } else if (ProcessingMessageUtils.hasAdditionalField(processingMessage, MessageParameters.EXECUTION_INPUT_FIELD)) {
+            commonInput = ProcessingMessageUtils.getAdditionalField(processingMessage, MessageParameters.EXECUTION_INPUT_FIELD, CommonInput.class);
+        }
+        return commonInput;
     }
 
     private ProcessingMessageUtils() {

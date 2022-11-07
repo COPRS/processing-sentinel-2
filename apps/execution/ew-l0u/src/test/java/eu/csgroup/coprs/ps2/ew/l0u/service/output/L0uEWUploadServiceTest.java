@@ -58,7 +58,7 @@ class L0uEWUploadServiceTest extends AbstractTest {
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(hktmPaths);
 
             // When
-            final Map<ProductFamily, Set<FileInfo>> upload = l0uEWUploadService.upload();
+            final Map<ProductFamily, Set<FileInfo>> upload = l0uEWUploadService.upload(null);
 
             // Then
             assertEquals(2, upload.size());
@@ -80,7 +80,7 @@ class L0uEWUploadServiceTest extends AbstractTest {
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(hktmPaths);
 
             // When Then
-            assertThrows(FileOperationException.class, () -> l0uEWUploadService.upload());
+            assertThrows(FileOperationException.class, () -> l0uEWUploadService.upload(null));
         }
     }
 

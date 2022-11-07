@@ -41,7 +41,7 @@ public class L1sEWDownloadService extends EWDownloadService {
 
         if (!fileInfoSet.isEmpty()) {
 
-            obsService.download(fileInfoSet);
+            obsService.downloadFolders(fileInfoSet);
 
             fileInfoSet.forEach(fileInfo -> {
 

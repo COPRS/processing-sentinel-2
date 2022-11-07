@@ -104,7 +104,7 @@ class LaunchIPF(object):
         self._mode = None
         self._previous_mode = None
         self._chain_name = None
-        self._killtimeout = 3600
+        self._killtimeout = 7200
         self._gsebackupfolder = None
 
     def main(self):

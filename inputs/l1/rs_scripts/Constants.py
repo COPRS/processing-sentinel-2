@@ -1,7 +1,7 @@
 # coding=utf-8
 import logging
 
-PROCESSING_STATION = "2BPS"
+PROCESSING_STATION = "REFS"
 VERSION = "1.0.0"
 PROCESSOR_LOG_LEVEL = "DEBUG"
 

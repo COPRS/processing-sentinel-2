@@ -155,7 +155,7 @@ class InventoryL1B(Inventory):
             FileUtils.create_directory(output_folder_inventory)
         # Create the job orders
         jobs = self.split_granules_jobs(granules_out, inventory_working_dir, output_folder_inventory, datastrip_out,
-                                        acquisition_station, nb_tasks, "L1B")
+                                        acquisition_station, len(granules_out), "L1B")#nb_tasks, "L1B")
         # Launch process
         self._launch_inventory_process(jobs, "GR_L1B", self._gr_inventory_script)
         # Tar the granules

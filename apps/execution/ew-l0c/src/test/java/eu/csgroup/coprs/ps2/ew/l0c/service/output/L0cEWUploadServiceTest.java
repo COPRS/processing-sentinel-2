@@ -59,7 +59,7 @@ class L0cEWUploadServiceTest extends AbstractTest {
                     .thenReturn(grPaths);
 
             // When
-            final Map<ProductFamily, Set<FileInfo>> upload = l0cEWUploadService.upload();
+            final Map<ProductFamily, Set<FileInfo>> upload = l0cEWUploadService.upload(null);
 
             // Then
             assertEquals(2, upload.size());
@@ -82,7 +82,7 @@ class L0cEWUploadServiceTest extends AbstractTest {
                     .thenReturn(grPaths);
 
             // When Then
-            assertThrows(FileOperationException.class, () -> l0cEWUploadService.upload());
+            assertThrows(FileOperationException.class, () -> l0cEWUploadService.upload(null));
         }
     }
 

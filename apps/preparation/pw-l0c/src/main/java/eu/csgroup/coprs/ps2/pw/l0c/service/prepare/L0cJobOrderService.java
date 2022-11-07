@@ -126,7 +126,12 @@ public class L0cJobOrderService {
         Path localAuxPath = tmpFolder.resolve(auxUt1utcFileInfo.getObsName());
         Path dblPath = localAuxPath.resolve(auxUt1utcFileInfo.getObsName() + S2FileParameters.AUX_FILE_EXTENSION);
 
-        obsService.download(auxUt1utcFileInfo.getBucket(), auxUt1utcFileInfo.getKey(), localAuxPath.toString());
+        obsService.downloadFolders(Set.of(
+                new FileInfo()
+                        .setBucket(auxUt1utcFileInfo.getBucket())
+                        .setKey(auxUt1utcFileInfo.getKey())
+                        .setFullLocalPath(localAuxPath.toString())
+        ));
 
         final String extractValue = FileContentUtils.extractValue(dblPath, "TAI-UTC =", List.of("TAI-UTC =", "\\..*", "[ ]*"));
 

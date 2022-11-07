@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Component
-public class L0uEWUploadService extends EWUploadService {
+public class L0uEWUploadService extends EWUploadService<L0uExecutionInput> {
 
     private final L0uExecutionProperties l0uExecutionProperties;
     private final ObsService obsService;
@@ -31,7 +32,7 @@ public class L0uEWUploadService extends EWUploadService {
     }
 
     @Override
-    public Map<ProductFamily, Set<FileInfo>> upload() {
+    public Map<ProductFamily, Set<FileInfo>> upload(L0uExecutionInput executionInput) {
 
         log.info("Uploading AUX files to OBS");
 

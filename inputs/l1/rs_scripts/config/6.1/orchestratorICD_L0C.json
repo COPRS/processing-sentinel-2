@@ -75,7 +75,7 @@
       ],
       [
         "GPS_UTC",
-        "18"
+        "-18"
       ],
       [
         "PARALLEL_ATF_END_MARGIN",
@@ -167,7 +167,7 @@
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
@@ -229,11 +229,11 @@
       ],
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
@@ -249,11 +249,11 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
@@ -641,7 +641,7 @@
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
@@ -683,11 +683,11 @@
     "FORMAT_METADATA_DS_L1A": [
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
@@ -829,7 +829,7 @@
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
@@ -879,7 +879,7 @@
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
@@ -1059,7 +1059,7 @@
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
@@ -1133,7 +1133,7 @@
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",

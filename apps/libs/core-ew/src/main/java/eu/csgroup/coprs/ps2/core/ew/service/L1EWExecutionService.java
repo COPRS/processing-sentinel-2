@@ -9,7 +9,7 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ScriptUtils;
-import eu.csgroup.coprs.ps2.core.ew.config.ExecutionProperties;
+import eu.csgroup.coprs.ps2.core.ew.config.L1ExecutionProperties;
 import eu.csgroup.coprs.ps2.core.ew.model.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.ew.settings.L1EWParameters;
 import lombok.extern.slf4j.Slf4j;
@@ -20,13 +20,13 @@ import java.util.UUID;
 @Slf4j
 public abstract class L1EWExecutionService<T extends ExecutionInput> implements EWExecutionService<T> {
 
-    protected final ExecutionProperties executionProperties;
+    protected final L1ExecutionProperties executionProperties;
 
-    protected L1EWExecutionService(ExecutionProperties executionProperties) {
+    protected L1EWExecutionService(L1ExecutionProperties executionProperties) {
         this.executionProperties = executionProperties;
     }
 
-    protected void runMode(L1ExecutionInput executionInput, UUID parentTaskUid, OrchestratorMode mode, ExecutionProperties executionProperties) {
+    protected void runMode(L1ExecutionInput executionInput, UUID parentTaskUid, OrchestratorMode mode, L1ExecutionProperties executionProperties) {
 
         final String task = mode.getMode();
 

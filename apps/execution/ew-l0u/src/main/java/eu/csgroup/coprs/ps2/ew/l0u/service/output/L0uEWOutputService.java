@@ -36,7 +36,7 @@ public class L0uEWOutputService extends EWOutputService<L0uExecutionInput> {
 
         log.info("Starting post execution tasks");
 
-        final Map<ProductFamily, Set<FileInfo>> auxFileInfosByFamily = uploadService.upload();
+        final Map<ProductFamily, Set<FileInfo>> auxFileInfosByFamily = uploadService.upload(executionInput);
 
         final String outputFolder = copyService.copy();
 

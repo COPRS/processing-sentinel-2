@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class L1sMessageService extends EWMessageService<L1ExecutionInput> {
+public class L1sEWMessageService extends EWMessageService<L1ExecutionInput> {
 
     @Override
     public Set<ProcessingMessage> build(L1ExecutionInput executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
@@ -29,19 +29,21 @@ public class L1sMessageService extends EWMessageService<L1ExecutionInput> {
         log.info("Building outgoing messages");
 
         // Building a single message for L1ab & L1c
-        ProcessingMessage preparationMessage = ProcessingMessageUtils.create();
+        ProcessingMessage processingMessage = ProcessingMessageUtils.create();
+        processingMessage.setSatelliteId(executionInput.getSatellite());
         executionInput.setCustomTaskInputs(getCustomOutputs(executionInput.getOutputFolder()));
-        preparationMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);
+        processingMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);
 
         log.info("Finished building outgoing messages");
 
-        return Set.of(preparationMessage);
+        return Set.of(processingMessage);
     }
 
     private Set<String> getCustomOutputs(String outputFolder) {
         final Path rootPath = Paths.get(outputFolder);
         return FileOperationUtils.findFoldersInTree(rootPath, S2FileParameters.L1_DS_REGEX)
-                .stream().map(path -> path.getFileName().toString() + L1Parameters.TMP_DS_SUFFIX)
+                .stream()
+                .map(path -> path.getFileName().toString() + L1Parameters.TMP_DS_SUFFIX)
                 .collect(Collectors.toSet());
     }
 

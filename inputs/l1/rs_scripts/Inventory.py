@@ -67,9 +67,12 @@ class Inventory(object):
 
     def split_granules_jobs(self, granules, working, output, ds_input, acquisition_station, nb_tasks, granule_type):
         jobs_filenames = []
-        step = int(math.ceil(float(len(granules)) / nb_tasks))
+        real_nb_tasks = nb_tasks
+        if len(granules) < nb_tasks:
+            real_nb_tasks = len(granules)
+        step = int(math.ceil(float(len(granules)) / real_nb_tasks))
         self.logger.debug("Nb granule per instance : "+str(step))
-        for i in range(nb_tasks):
+        for i in range(real_nb_tasks):
             inventory_job_order = os.path.join(working, "JobOrderInventory_"+str(i+1)+".xml")
             if i < nb_tasks:
                 job_granules = granules[i*step:(i+1)*step]

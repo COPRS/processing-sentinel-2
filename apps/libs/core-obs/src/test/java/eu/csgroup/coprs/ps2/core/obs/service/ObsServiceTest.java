@@ -119,54 +119,7 @@ class ObsServiceTest extends AbstractTest {
     }
 
     @Test
-    void downloadFile() {
-        mockIsFile();
-        mockFileDownloadSuccess();
-        obsService.download(BUCKET, FILE_KEY, FILE_PATH);
-        assertTrue(true);
-    }
-
-    @Test
-    void downloadFile_failure() {
-        mockIsFile();
-        mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FILE_KEY, FOLDER_1_PATH));
-    }
-
-    @Test
-    void downloadDirectory() {
-        mockIsFolder();
-        mockDirDownloadSuccess();
-        obsService.download(BUCKET, FOLDER_1_KEY, FOLDER_1_PATH);
-        assertTrue(true);
-    }
-
-    @Test
-    void downloadDirectory_failure() {
-        mockIsFolder();
-        mockDirDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(BUCKET, FOLDER_1_KEY, FOLDER_1_PATH));
-    }
-
-    @Test
-    void downloadBatch() {
-        mockIsFolderThenIsFile();
-        mockDirDownloadSuccess();
-        mockFileDownloadSuccess();
-        obsService.download(BUCKET, KEY_LIST, FOLDER_1_PATH);
-        assertTrue(true);
-    }
-
-    @Test
-    void downloadBatch_failure() {
-        mockIsFolderThenIsFile();
-        mockDirDownloadSuccess();
-        mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(BUCKET, KEY_LIST, FOLDER_1_PATH));
-    }
-
-    @Test
-    void downloadAll() {
+    void download() {
         mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
         mockFileDownloadSuccess();
@@ -175,7 +128,7 @@ class ObsServiceTest extends AbstractTest {
     }
 
     @Test
-    void downloadAll_failure() {
+    void download_failure() {
         mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
         mockFileDownloadFailure();
@@ -183,48 +136,20 @@ class ObsServiceTest extends AbstractTest {
     }
 
     @Test
-    void uploadFile() {
-        mockFileUploadSuccess();
-        obsService.upload(BUCKET, FILE_PATH, FILE_KEY);
+    void downloadFolders() {
+        mockDirDownloadSuccess();
+        obsService.downloadFolders(FILE_INFO_MIXED_SET);
         assertTrue(true);
     }
 
     @Test
-    void uploadFile_failure() {
-        mockFileUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, FILE_PATH, FILE_KEY));
+    void downloadFolders_failure() {
+        mockDirDownloadFailure();
+        assertThrows(ObsException.class, () -> obsService.downloadFolders(FILE_INFO_MIXED_SET));
     }
 
     @Test
-    void uploadDirectory() {
-        mockDirUploadSuccess();
-        obsService.upload(BUCKET, FOLDER_1_PATH, FOLDER_1_KEY);
-        assertTrue(true);
-    }
-
-    @Test
-    void uploadDirectory_failure() {
-        mockDirUploadFailure();
-        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, FOLDER_1_PATH, FOLDER_1_KEY));
-    }
-
-    @Test
-    void uploadBatch() {
-        mockDirUploadSuccess();
-        mockFileUploadSuccess();
-        obsService.upload(BUCKET, PATH_LIST, FOLDER_1_KEY);
-        assertTrue(true);
-    }
-
-    @Test
-    void uploadBatch_failure() {
-        mockDirUploadFailure();
-        mockFileUploadSuccess();
-        assertThrows(ObsException.class, () -> obsService.upload(BUCKET, PATH_LIST, FOLDER_1_KEY));
-    }
-
-    @Test
-    void uploadAll() {
+    void upload() {
         mockDirUploadSuccess();
         mockFileUploadSuccess();
         obsService.upload(FILE_INFO_MIXED_SET);
@@ -232,14 +157,14 @@ class ObsServiceTest extends AbstractTest {
     }
 
     @Test
-    void uploadAll_failure() {
+    void upload_failure() {
         mockDirUploadFailure();
         mockFileUploadSuccess();
         assertThrows(ObsException.class, () -> obsService.upload(FILE_INFO_MIXED_SET));
     }
 
     @Test
-    void uploadAll_WithMd5() {
+    void uploadWithMd5() {
         mockDirUploadSuccess();
         mockFileUploadSuccess();
         mockListResponseEtagsMd5();

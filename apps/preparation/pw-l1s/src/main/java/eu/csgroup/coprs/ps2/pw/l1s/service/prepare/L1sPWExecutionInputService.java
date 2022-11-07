@@ -86,7 +86,7 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
         return datastrip.getAvailableByGR().keySet()
                 .stream()
                 .map(gr -> new FileInfo()
-                        .setBucket(l1sPreparationProperties.getL0Bucket())
+                        .setBucket(l1sPreparationProperties.getL0GRBucket())
                         .setObsName(gr)
                         .setLocalPath(dsPath.toString())
                         .setLocalName(gr)

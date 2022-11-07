@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ExecutionProperties {
+public class L1ExecutionProperties {
 
     /**
      * Name of the OBS bucket containing AUX files
@@ -26,6 +26,16 @@ public class ExecutionProperties {
      * Path to the root of the filesystem containing GRID files
      */
     private String gridFolderRoot;
+
+    /**
+     * Name of the OBS bucket containing L1 DS files
+     */
+    private String l1DSBucket;
+
+    /**
+     * Name of the OBS bucket containing L1 GR files
+     */
+    private String l1GRBucket;
 
     /**
      * Clean workspace after execution.

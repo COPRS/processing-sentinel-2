@@ -33,7 +33,7 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "CREATION_DATE",
@@ -51,7 +51,7 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "CREATION_DATE",
@@ -75,7 +75,7 @@
       ],
       [
         "GPS_UTC",
-        "18"
+        "-18"
       ],
       [
         "PARALLEL_ATF_END_MARGIN",
@@ -163,15 +163,15 @@
     "FORMAT_METADATA_GR_L0C": [
       [
         "ARCHIVING_CENTER",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",
@@ -183,15 +183,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -229,15 +229,15 @@
       ],
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",
@@ -249,15 +249,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -321,7 +321,7 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "CREATION_DATE",
@@ -409,7 +409,7 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "CREATION_DATE",
@@ -525,7 +525,7 @@
     "RADIO_FINALIZE": [
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_BASELINE",
@@ -533,7 +533,7 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ATF_Computation",
@@ -637,15 +637,15 @@
       ],
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",
@@ -657,15 +657,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -683,15 +683,15 @@
     "FORMAT_METADATA_DS_L1A": [
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",
@@ -703,15 +703,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -825,15 +825,15 @@
       ],
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",
@@ -845,15 +845,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -875,15 +875,15 @@
     "FORMAT_METADATA_DS_L1B": [
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",
@@ -895,15 +895,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -1055,15 +1055,15 @@
     "FORMAT_METADATA_DS_L1C": [
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",
@@ -1075,15 +1075,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -1113,15 +1113,15 @@
       ],
       [
         "PROCESSING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_NAME",
-        "EDRS"
+        "REFS"
       ],
       [
         "PROCESSING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "PROCESSING_CENTER_ORG",
@@ -1129,15 +1129,15 @@
       ],
       [
         "ARCHIVING_CENTER",
-        "EDRS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_NAME",
-        "2BPS"
+        "REFS"
       ],
       [
         "ARCHIVING_CENTER_COUNTRY",
-        "Italy"
+        "France"
       ],
       [
         "ARCHIVING_CENTER_ORG",

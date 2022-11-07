@@ -142,7 +142,7 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 | kafka.bootstrap-servers                                            | URL of Kafka server                    | kafka-cluster-kafka-bootstrap<br/>.infra.svc.cluster.local:9092 | kafka-cluster-kafka-bootstrap<br/>.infra.svc.cluster.local:9092 |
 | cloud.stream.kafka.binder.brokers                                  | URL of Kafka server                    | kafka-cluster-kafka-bootstrap<br/>.infra.svc.cluster.local:9092 | kafka-cluster-kafka-bootstrap<br/>.infra.svc.cluster.local:9092 |
 | cloud.stream.kafka.binder.auto-create-topics                       | Enable automatic topic creation        |                              true                               |                              true                               |
-| cloud.stream.kafka.binder.consumer-properties.max.poll.interval.ms | Max poll interval (ms)                 |                                -                                |                             3600000                             |
+| cloud.stream.kafka.binder.consumer-properties.max.poll.interval.ms | Max poll interval (ms)                 |                                -                                |                            14400000                             |
 | cloud.stream.kafka.binder.consumer-properties.max.poll.records     | Max number of records per poll         |                                -                                |                                1                                |
 | cloud.stream.kafka.bindings.input.consumer.enable-dlq              | Enable dlq mechanism                   |                              true                               |                              true                               |
 | cloud.stream.kafka.bindings.input.consumer.dlq-name                | Name of the dlq topic                  |                          error-warning                          |                          error-warning                          |
@@ -186,44 +186,44 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 _Prefix_: app.&lt;APP&gt;  
 _Apps_: pw-l1s, pw-l1c
 
-| Property                           | Description                                    |  Default  |
-|------------------------------------|------------------------------------------------|:---------:|
-| app.pw-l1s.pw.l1s.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.pw-l1s.pw.l1s.l0Bucket         | Name of the OBS bucket containing L0c files    | rs-s2-l0c |
-| app.pw-l1s.pw.l1s.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
-| app.pw-l1s.pw.l1s.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| Property                       | Description                                    |  Default  |
+|--------------------------------|------------------------------------------------|:---------:|
+| app.pw-l1s.pw.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.pw-l1s.pw.l0DSBucket       | Name of the OBS bucket containing L0c DS files | rs-s2-l0c |
+| app.pw-l1s.pw.l0GRBucket       | Name of the OBS bucket containing L0c GR files | rs-s2-l0c |
+| app.pw-l1s.pw.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
 ||||
-| app.pw-l1c.pw.l1c.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.pw-l1c.ew.l1c.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
-| app.pw-l1c.ew.l1c.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| app.pw-l1c.pw.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.pw-l1c.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
 
 ### Execution workers
 
 _Prefix_: app.&lt;APP&gt;  
 _Apps_: ew-l1s, ew-l1ab, ew-l1c
 
-| Property                             | Description                                    |  Default  |
-|--------------------------------------|------------------------------------------------|:---------:|
+| Property                        | Description                                    |  Default  |
+|---------------------------------|------------------------------------------------|:---------:|
 ||||
-| app.ew-l1s.ew.l1s.auxBucket          | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1s.ew.l1s.l0Bucket           | Name of the OBS bucket containing L0c files    | rs-s2-l0c |
-| app.ew-l1s.ew.l1s.sharedFolderRoot   | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1s.ew.l1s.demFolderRoot      | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1s.ew.l1s.gridFolderRoot     | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1s.ew.l1s.maxParallelTasks   | Maximum number of parallel processing tasks    |     8     |
+| app.ew-l1s.ew.auxBucket         | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1s.ew.sharedFolderRoot  | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1s.ew.demFolderRoot     | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1s.ew.gridFolderRoot    | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1s.ew.maxParallelTasks  | Maximum number of parallel processing tasks    |     8     |
 ||||
-| app.ew-l1ab.ew.l1ab.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1ab.ew.l1ab.l1Bucket         | Name of the OBS bucket to store L1ab files     | rs-s2-l1  |
-| app.ew-l1ab.ew.l1ab.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1ab.ew.l1ab.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1ab.ew.l1ab.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1ab.ew.l1ab.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
+| app.ew-l1ab.ew.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1ab.ew.l1DSBucket       | Name of the OBS bucket to store L1ab DS files  | rs-s2-l1  |
+| app.ew-l1ab.ew.l1GRBucket       | Name of the OBS bucket to store L1ab GR files  | rs-s2-l1  |
+| app.ew-l1ab.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1ab.ew.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1ab.ew.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1ab.ew.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
 ||||
-| app.ew-l1c.ew.l1c.auxBucket          | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1c.ew.l1c.l1Bucket           | Name of the OBS bucket to store L1c files      | rs-s2-l1  |
-| app.ew-l1c.ew.l1c.sharedFolderRoot   | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1c.ew.l1c.demFolderRoot      | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1c.ew.l1c.gridFolderRoot     | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1c.ew.l1c.maxParallelTasks   | Maximum number of parallel processing tasks    |     8     |
+| app.ew-l1c.ew.auxBucket         | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1c.ew.l1DSBucket        | Name of the OBS bucket to store L1c DS files   | rs-s2-l1  |
+| app.ew-l1c.ew.l1GRBucket        | Name of the OBS bucket to store L1c GR files   | rs-s2-l1  |
+| app.ew-l1c.ew.sharedFolderRoot  | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1c.ew.demFolderRoot     | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1c.ew.gridFolderRoot    | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1c.ew.maxParallelTasks  | Maximum number of parallel processing tasks    |     8     |
 
 ----

@@ -1,13 +1,14 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.exception.AuxQueryException;
-import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
+import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.pw.l0u.model.AuxValue;
 import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
+import eu.csgroup.coprs.ps2.pw.l0u.model.AuxValue;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
@@ -73,10 +74,14 @@ public class L0uAuxService {
                 );
 
         // Download all files to tmp folder
-        obsService.download(
-                l0uPreparationProperties.getAuxBucket(),
-                keyByAuxValue.values().stream().toList(),
-                tmpFolder);
+        obsService.downloadFolders(keyByAuxValue.values()
+                .stream()
+                .map(key -> new FileInfo()
+                        .setBucket(l0uPreparationProperties.getAuxBucket())
+                        .setKey(key)
+                        .setLocalName(key)
+                        .setLocalPath(tmpFolder))
+                .collect(Collectors.toSet()));
 
         return keyByAuxValue.entrySet()
                 .stream()

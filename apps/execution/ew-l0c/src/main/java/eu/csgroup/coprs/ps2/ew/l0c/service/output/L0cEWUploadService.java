@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l0c.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class L0cEWUploadService extends EWUploadService {
+public class L0cEWUploadService extends EWUploadService<L0cExecutionInput> {
 
     private final L0cExecutionProperties l0cExecutionProperties;
     private final ObsService obsService;
@@ -30,7 +31,7 @@ public class L0cEWUploadService extends EWUploadService {
     }
 
     @Override
-    public Map<ProductFamily, Set<FileInfo>> upload() {
+    public Map<ProductFamily, Set<FileInfo>> upload(L0cExecutionInput executionInput) {
 
         log.info("Uploading L0C files to OBS");
 

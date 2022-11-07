@@ -1,0 +1,67 @@
+package eu.csgroup.coprs.ps2.ew.l1ab.service.output;
+
+import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
+import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
+import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
+import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
+import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
+import eu.csgroup.coprs.ps2.ew.l1ab.config.L1abExecutionProperties;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Service
+public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
+
+    private final L1abExecutionProperties executionProperties;
+    private final ObsService obsService;
+
+    public L1abEWUploadService(L1abExecutionProperties executionProperties, ObsService obsService) {
+        this.executionProperties = executionProperties;
+        this.obsService = obsService;
+    }
+
+    @Override
+    public Map<ProductFamily, Set<FileInfo>> upload(L1ExecutionInput executionInput) {
+
+        log.info("Uploading L1A and/or L1B files to OBS");
+
+        final Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = new EnumMap<>(ProductFamily.class);
+        final Path rootPath = Paths.get(L1Parameters.WORKING_FOLDER_ROOT);
+
+        try {
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1A_DS_ROOT), S2FileParameters.L1A_DS_REGEX, ProductFamily.S2_L1A_DS, executionProperties.getL1DSBucket()));
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1A_GR_ROOT), S2FileParameters.L1A_GR_REGEX, ProductFamily.S2_L1A_GR, executionProperties.getL1GRBucket()));
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1B_DS_ROOT), S2FileParameters.L1B_DS_REGEX, ProductFamily.S2_L1B_DS, executionProperties.getL1DSBucket()));
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1B_GR_ROOT), S2FileParameters.L1B_GR_REGEX, ProductFamily.S2_L1B_GR, executionProperties.getL1GRBucket()));
+            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
+        } catch (Exception e) {
+            throw new FileOperationException("Unable to upload files to OBS", e);
+        }
+
+        log.info("Uploaded L1A and/or L1B files to OBS");
+
+        return fileInfosByFamily;
+    }
+
+    private Map<ProductFamily, Set<FileInfo>> add(Path root, String regex, ProductFamily productFamily, String bucket) {
+        Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = Collections.emptyMap();
+        if (Files.exists(root)) {
+            final List<Path> folders = FileOperationUtils.findFoldersInTree(root, regex);
+            log.info("Found {} {} files", folders.size(), productFamily.name());
+            fileInfosByFamily = Map.of(productFamily, getFileInfoSet(folders, bucket));
+        }
+        return fileInfosByFamily;
+    }
+
+}

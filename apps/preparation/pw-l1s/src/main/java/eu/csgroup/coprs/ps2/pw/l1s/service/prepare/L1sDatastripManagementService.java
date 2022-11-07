@@ -75,9 +75,9 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
             createSharedFolders(datastripFolderPath);
 
-            obsService.download(Set.of(
+            obsService.downloadFolders(Set.of(
                     new FileInfo()
-                            .setBucket(l1sPreparationProperties.getL0Bucket())
+                            .setBucket(l1sPreparationProperties.getL0DSBucket())
                             .setObsURL(storagePath)
                             .setLocalName(datastripName)
                             .setLocalPath(dsFolderPath.toString())));
@@ -116,7 +116,7 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
                 log.info("Datastrip {} is missing {} GR out of {}", datastripName, missingGR.size(), availableByGR.size());
 
-                final Map<String, Boolean> missingAvailableByGR = obsService.exists(l1sPreparationProperties.getL0Bucket(), missingGR);
+                final Map<String, Boolean> missingAvailableByGR = obsService.exists(l1sPreparationProperties.getL0GRBucket(), missingGR);
 
                 log.info("Found {} newly available GR", missingAvailableByGR.entrySet().stream().filter(Map.Entry::getValue).count());
 

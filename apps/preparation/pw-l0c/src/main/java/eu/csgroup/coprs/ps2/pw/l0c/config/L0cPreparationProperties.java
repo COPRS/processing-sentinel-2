@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l0c.config;
 
-import eu.csgroup.coprs.ps2.core.pw.service.PWProperties;
+import eu.csgroup.coprs.ps2.core.pw.config.PWProperties;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;

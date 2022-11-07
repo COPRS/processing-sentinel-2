@@ -12,10 +12,11 @@ subprojects {
 
     bootBuildImage {
         enabled = true
-//        environment = [
-//                "BPE_DELIM_JAVA_TOOL_OPTIONS" : " ",
+        environment = [
+                "BPE_DELIM_JAVA_TOOL_OPTIONS" : " ",
 //                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-Xms512M -Xmx512M"
-//        ]
+                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-XX:MaxDirectMemorySize=32M"
+        ]
     }
 
     bootJar.enabled = true

@@ -34,6 +34,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -132,7 +133,7 @@ public class ObsService {
 
     public Map<String, String> getETags(String bucket, String key) {
 
-        log.debug("Fetching eTag for file {}", key);
+        log.debug("Fetching eTag for file {} in bucket {}", key, bucket);
 
         try {
             return s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).build())
@@ -148,43 +149,8 @@ public class ObsService {
     }
 
     /**
-     * Download a file from the specified key to a given destination OR the content of an obs folder to a local directory
-     *
-     * @param bucket Source bucket
-     * @param key    Key to download from OR name of the s3 folder content to download
-     * @param dest   Path to the destination file OR to the local directory under which to store the downloaded files
-     */
-    public void download(String bucket, String key, String dest) {
-        final Path destPath = Paths.get(dest);
-        if (isFolder(bucket, key)) {
-            doDirDownload(key, bucket, destPath).block();
-        } else {
-            doFileDownload(key, bucket, destPath).block();
-        }
-    }
-
-    /**
-     * Download a list of files or directories to the specified directory root
-     *
-     * @param bucket   Source bucket
-     * @param keyList  List of keys to download
-     * @param destRoot Path to the local directory under which to store the downloaded items
-     */
-    public void download(String bucket, List<String> keyList, String destRoot) {
-        Mono.when(keyList.stream()
-                        .map(key -> {
-                            if (isFolder(bucket, key)) {
-                                return doDirDownload(key, bucket, Paths.get(destRoot, filename(key)));
-                            } else {
-                                return doFileDownload(key, bucket, Paths.get(destRoot, filename(key)));
-                            }
-                        })
-                        .toList())
-                .block();
-    }
-
-    /**
-     * Download a set of files or directories, given their FileInfo
+     * Download a set of files or directories, given their FileInfo.
+     * Checks whether each entry type before downloading, which may be lengthy.
      *
      * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
      */
@@ -208,36 +174,20 @@ public class ObsService {
     }
 
     /**
-     * Upload a single file or directory to the specified key
+     * Download a set of directories, given their FileInfo.
      *
-     * @param bucket Destination bucket
-     * @param source Path to the source item
-     * @param key    Key to upload to
+     * @param fileInfoList List of FileInfo objects, containing source and destination info for each folder
      */
-    public void upload(String bucket, String source, String key) {
-        final Path sourcePath = Paths.get(source);
-        if (Files.isDirectory(sourcePath)) {
-            doDirUpload(sourcePath, bucket, key).block();
-        } else {
-            doFileUpload(sourcePath, bucket, key).block();
-        }
-    }
+    public void downloadFolders(Set<FileInfo> fileInfoList) {
 
-    /**
-     * Upload a list of files or directories to the specified folder key
-     *
-     * @param bucket   Destination bucket
-     * @param pathList List of Path to items to upload
-     * @param rootKey  Root key under which to upload items
-     */
-    public void upload(String bucket, List<Path> pathList, String rootKey) {
-        Mono.when(pathList.stream()
-                        .map(path -> {
-                            if (Files.isDirectory(path)) {
-                                return doDirUpload(path, bucket, destinationPath(rootKey, path));
-                            } else {
-                                return doFileUpload(path, bucket, destinationPath(rootKey, path));
-                            }
+        log.debug("Downloading {} folders using FileInfos", fileInfoList.size());
+
+        Mono.when(fileInfoList.stream()
+                        .map(fileInfo -> {
+                            final String key = fileInfo.getKey();
+                            final String bucket = fileInfo.getBucket();
+                            final Path destinationPath = Paths.get(fileInfo.getFullLocalPath());
+                            return doDirDownload(key, bucket, destinationPath);
                         })
                         .toList())
                 .block();
@@ -369,24 +319,36 @@ public class ObsService {
     }
 
     private Mono<?> doTransfer(Supplier<Transfer> transfer, String info, TransferType type) {
-        return Mono.fromFuture(transfer.get().completionFuture())
-                .doFirst(() -> log.info("{} starting {}", type.getName(), info))
-                .timed()
-                .doOnSuccess(completedTransfer -> log.info("{} complete after {} seconds {}", type.getName(), completedTransfer.elapsed().getSeconds(), info))
-                .doOnError(throwable -> {
-                    String message = "Obs error occurred: ";
-                    if (throwable instanceof SdkException) {
-                        if (throwable instanceof SdkClientException) {
-                            message = "Obs Client Exception occurred: ";
-                        } else if (throwable instanceof SdkServiceException) {
-                            message = "Obs Service Exception occurred: ";
-                        }
-                    }
-                    String errorMessage = String.format("%s failed %s -- Cause: %s", type.getName(), info, message + throwable.getLocalizedMessage());
-                    log.error(errorMessage);
-                    throw new ObsException(errorMessage, throwable);
-                })
-                .retryWhen(getRetrySpec());
+        String startKey = "start";
+        return Mono.deferContextual(context ->
+                        Mono.fromFuture(transfer.get().completionFuture())
+                                .doOnSubscribe(unused -> log.info("{} starting {}", type.getName(), info))
+                                .handle((transfer1, synchronousSink) -> {
+                                    if (transfer1 instanceof CompletedDirectoryTransfer completedDirectoryTransfer && !completedDirectoryTransfer.failedTransfers().isEmpty()) {
+                                        String errorMessage = String.format("%s failed %s -- %s", type.getName(), info, "Some files could not be transferred");
+                                        log.error(errorMessage);
+                                        synchronousSink.error(new ObsException(errorMessage));
+                                    }
+                                })
+                                .doOnSuccess(completedTransfer -> {
+                                    final Duration elapsed = Duration.between(context.<Instant>get(startKey), Instant.now());
+                                    log.info("{} complete after {} seconds {}", type.getName(), elapsed.getSeconds(), info);
+                                })
+                                .doOnError(throwable -> {
+                                    String message = "Obs error occurred: ";
+                                    if (throwable instanceof SdkException) {
+                                        if (throwable instanceof SdkClientException) {
+                                            message = "Obs Client Exception occurred: ";
+                                        } else if (throwable instanceof SdkServiceException) {
+                                            message = "Obs Service Exception occurred: ";
+                                        }
+                                    }
+                                    String errorMessage = String.format("%s failed %s -- Cause: %s", type.getName(), info, message + throwable.getLocalizedMessage());
+                                    log.error(errorMessage);
+                                    throw new ObsException(errorMessage, throwable);
+                                })
+                                .retryWhen(getRetrySpec()))
+                .contextWrite(context -> context.put(startKey, Instant.now()));
     }
 
     private String transferInfo(String bucket, String key, String file) {
@@ -404,14 +366,6 @@ public class ObsService {
         return !s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key + DELIMITER).maxKeys(1).build())
                 .contents()
                 .isEmpty();
-    }
-
-    private String filename(String path) {
-        return Paths.get(path).getFileName().toString();
-    }
-
-    private String destinationPath(String root, Path path) {
-        return root + DELIMITER + path.getFileName().toString();
     }
 
     @Getter

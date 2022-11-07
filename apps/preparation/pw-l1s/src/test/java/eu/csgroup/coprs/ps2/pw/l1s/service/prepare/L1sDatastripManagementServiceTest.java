@@ -94,7 +94,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
         when(datastripService.exists(any())).thenReturn(true);
         when(datastripService.read(any())).thenReturn(waitingDatastrip);
         when(datastripService.update(any())).thenReturn(waitingDatastrip);
-        when(l1sPreparationProperties.getL0Bucket()).thenReturn("bucket");
+        when(l1sPreparationProperties.getL0GRBucket()).thenReturn("bucket");
         when(obsService.exists(anyString(), eq(missingGR))).thenReturn(missingAvailableByGR);
         // When
         datastripManagementService.updateGRComplete(DATASTRIP_NAME);
@@ -112,7 +112,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
             doAnswer(invocation -> {
                 FileUtils.copyDirectoryToDirectory(dsPath.toFile(), new File(TMP_DS_PATH));
                 return null;
-            }).when(obsService).download(anySet());
+            }).when(obsService).downloadFolders(anySet());
             // When
             datastripManagementService.create(DATASTRIP_NAME, "A", Instant.now(), "s3://path/to/storage");
             // Then

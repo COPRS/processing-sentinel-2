@@ -69,8 +69,6 @@
 						<File_Name>/tmp/</File_Name>
 					</List_of_File_Names>
 				</Input>
-				<List_of_Outputs count="0">
-				</List_of_Outputs>
 			</List_of_Inputs>
 		</Ipf_Proc>
 	</List_of_Ipf_Procs>

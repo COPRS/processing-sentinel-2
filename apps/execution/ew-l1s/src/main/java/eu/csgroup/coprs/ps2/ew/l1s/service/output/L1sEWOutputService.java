@@ -16,9 +16,7 @@ public class L1sEWOutputService extends EWOutputService<L1ExecutionInput> {
 
     private final L1sExecutionProperties executionProperties;
 
-    protected L1sEWOutputService(L1sMessageService messageService, L1sEWCleanupService cleanupService,
-            L1sExecutionProperties executionProperties
-    ) {
+    protected L1sEWOutputService(L1sEWMessageService messageService, L1sEWCleanupService cleanupService, L1sExecutionProperties executionProperties) {
         super(messageService, cleanupService);
         this.executionProperties = executionProperties;
     }

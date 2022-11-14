@@ -122,10 +122,21 @@ public final class FileContentUtils {
      * @return The value enclosed in the tag.
      */
     public static String extractXmlTagValue(Path xmlPath, String tag) {
-
         final List<String> deleteRegexList = List.of(".*<" + tag + ">", "</" + tag + ">.*");
+        return extractValue(xmlPath, "<" + tag + ">", deleteRegexList);
+    }
 
-        return extractValue(xmlPath, tag, deleteRegexList);
+    /**
+     * Extracts the values enclosed in a given xml tag from a file.
+     * Only works when tag is fully opened and close.
+     *
+     * @param xmlPath Path to the xml file
+     * @param tag     Tag to look for
+     * @return The values matchin the tag.
+     */
+    public static List<String> extractXmlTagValues(Path xmlPath, String tag) {
+        final List<String> deleteRegexList = List.of(".*<" + tag + ">", "</" + tag + ">.*");
+        return extractValues(xmlPath, "<" + tag + ">", deleteRegexList);
     }
 
     /**
@@ -139,15 +150,32 @@ public final class FileContentUtils {
      * @return The extracted value
      */
     public static String extractValue(Path filePath, String lineFilter, List<String> deleteRegexList) {
-
         String line = FileContentUtils.grepOne(filePath, lineFilter)
                 .orElseThrow(() -> new AuxQueryException("Unable to find " + lineFilter + " in file " + filePath));
-
         for (String regex : deleteRegexList) {
             line = line.replaceAll(regex, "");
         }
-
         return line;
+    }
+
+    /**
+     * Extract values from a file, given a filter to match a specific line, and a list of regular
+     * expressions to remove parts of that line.
+     *
+     * @param filePath        Path to the file
+     * @param lineFilter      A string to filter the line to look for
+     * @param deleteRegexList List of regex to identify parts of the line to be removed
+     * @return The extracted values
+     */
+    public static List<String> extractValues(Path filePath, String lineFilter, List<String> deleteRegexList) {
+        return FileContentUtils.grepAll(filePath, lineFilter).stream()
+                .map(line -> {
+                    for (String regex : deleteRegexList) {
+                        line = line.replaceAll(regex, "");
+                    }
+                    return line;
+                })
+                .toList();
     }
 
     /**

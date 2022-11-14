@@ -20,6 +20,7 @@ class FileContentUtilsTest {
     private static final Path filePath = Paths.get("src/test/resources/fileContentUtilsTest/foo.txt").toAbsolutePath();
     private static final Path testPath = Paths.get("src/test/resources/fileContentUtilsTest/test.txt").toAbsolutePath();
     private static final Path xmlPath = Paths.get("src/test/resources/fileContentUtilsTest/job_order_eisp_ing_typ.xml").toAbsolutePath();
+    private static final Path tileListPath = Paths.get("src/test/resources/fileContentUtilsTest/tile_list_file.xml").toAbsolutePath();
 
     @BeforeEach
     void setup() throws IOException {
@@ -68,6 +69,18 @@ class FileContentUtilsTest {
     void extractValue() {
         final String task_version = FileContentUtils.extractValue(xmlPath, "Task_Version", List.of("^[ ]*", "[ ]$", "^<[^>]*>", "<[^>]*>$"));
         assertEquals("3.0.3", task_version);
+    }
+
+    @Test
+    void extractXmlTagValues() {
+        final List<String> tileList = FileContentUtils.extractXmlTagValues(tileListPath, "Tile_Id");
+        assertEquals(18, tileList.size());
+    }
+
+    @Test
+    void extractValues() {
+        final List<String> tileList = FileContentUtils.extractValues(tileListPath, "<Tile_Id>", List.of("^[ ]*", "[ ]$", "^<[^>]*>", "<[^>]*>$"));
+        assertEquals(18, tileList.size());
     }
 
     @Test

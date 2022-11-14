@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Tile_List xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/dpc/app/s2ipf/GET_TILE_LIST/06.01.00/scripts/../../../schemas/14.08.02/ICD/DICO/1.0/IPF/ipf/File_Tile_List.xsd">
+
+    <Number_Of_Tiles>18</Number_Of_Tiles>
+
+    <List_Tile_Id Tile_Number="1">
+        <Tile_Id>40MDV</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="2">
+        <Tile_Id>40MCU</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="3">
+        <Tile_Id>40MDU</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="4">
+        <Tile_Id>40MEV</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="5">
+        <Tile_Id>40MCV</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="6">
+        <Tile_Id>40MDA</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="7">
+        <Tile_Id>40MEU</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="8">
+        <Tile_Id>40MCA</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="9">
+        <Tile_Id>40MEA</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="10">
+        <Tile_Id>40MDT</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="11">
+        <Tile_Id>40MET</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="12">
+        <Tile_Id>40MCT</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="13">
+        <Tile_Id>40MBU</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="14">
+        <Tile_Id>40MFA</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="15">
+        <Tile_Id>40MBT</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="16">
+        <Tile_Id>40MFV</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="17">
+        <Tile_Id>40MBV</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+    <List_Tile_Id Tile_Number="18">
+        <Tile_Id>40MCB</Tile_Id>
+        <List_Detectors_HR/>
+    </List_Tile_Id>
+
+</Tile_List>

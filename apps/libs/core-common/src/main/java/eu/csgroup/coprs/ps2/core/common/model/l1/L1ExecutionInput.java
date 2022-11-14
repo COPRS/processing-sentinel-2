@@ -16,5 +16,6 @@ public class L1ExecutionInput extends ExecutionInput {
     private String auxFolder;
     private String inputFolder;
     private String outputFolder;
+    private String tile;
 
 }

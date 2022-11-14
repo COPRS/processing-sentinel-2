@@ -10,7 +10,7 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ScriptUtils;
 import eu.csgroup.coprs.ps2.core.ew.config.L1ExecutionProperties;
-import eu.csgroup.coprs.ps2.core.ew.model.OrchestratorMode;
+import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.ew.settings.L1EWParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;

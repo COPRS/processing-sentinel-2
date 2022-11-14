@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l1ab.service.exec;
 
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Level;
-import eu.csgroup.coprs.ps2.core.ew.model.OrchestratorMode;
+import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.ew.service.L1EWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l1ab.config.L1abExecutionProperties;
 import lombok.extern.slf4j.Slf4j;

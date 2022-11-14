@@ -17,7 +17,7 @@ public final class S2FileParameters {
     public static final String L1B_DS_REGEX = "^S2[A|B]_OPER_MSI_L1B_DS_" + JobParameters.PROC_STATION + ".*";
     public static final String L1B_GR_REGEX = "^S2[A|B]_OPER_MSI_L1B_GR_" + JobParameters.PROC_STATION + ".*";
     public static final String L1C_DS_REGEX = "^S2[A|B]_OPER_MSI_L1C_DS_" + JobParameters.PROC_STATION + ".*";
-    public static final String L1C_GR_REGEX = "^S2[A|B]_OPER_MSI_L1C_GR_" + JobParameters.PROC_STATION + ".*";
+    public static final String L1C_TL_REGEX = "^S2[A|B]_OPER_MSI_L1C_TL_" + JobParameters.PROC_STATION + ".*";
 
     private S2FileParameters() {
     }

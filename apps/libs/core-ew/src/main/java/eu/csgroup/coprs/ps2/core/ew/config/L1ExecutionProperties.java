@@ -38,6 +38,11 @@ public class L1ExecutionProperties {
     private String l1GRBucket;
 
     /**
+     * Name of the OBS bucket containing L1 TL files
+     */
+    private String l1TLBucket;
+
+    /**
      * Clean workspace after execution.
      */
     private boolean cleanup = true;

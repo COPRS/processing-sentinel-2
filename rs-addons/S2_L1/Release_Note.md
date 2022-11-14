@@ -220,7 +220,7 @@ _Apps_: ew-l1s, ew-l1ab, ew-l1c
 ||||
 | app.ew-l1c.ew.auxBucket         | Name of the OBS bucket containing AUX files    | rs-s2-aux |
 | app.ew-l1c.ew.l1DSBucket        | Name of the OBS bucket to store L1c DS files   | rs-s2-l1  |
-| app.ew-l1c.ew.l1GRBucket        | Name of the OBS bucket to store L1c GR files   | rs-s2-l1  |
+| app.ew-l1c.ew.l1TLBucket        | Name of the OBS bucket to store L1c TL files   | rs-s2-l1  |
 | app.ew-l1c.ew.sharedFolderRoot  | Path to the shared folder for L1 working files |  /shared  |
 | app.ew-l1c.ew.demFolderRoot     | Path to the folder for DEM files               |   /dem    |
 | app.ew-l1c.ew.gridFolderRoot    | Path to the folder for GRID files              |   /grid   |

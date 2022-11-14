@@ -9,7 +9,7 @@ public final class L1Parameters {
     public static final String L1B_DS_ROOT = "INV_L1B_DS";
     public static final String L1B_GR_ROOT = "INV_L1B_GR";
     public static final String L1C_DS_ROOT = "INV_L1C_DS";
-    public static final String L1C_GR_ROOT = "INV_L1C_GR";
+    public static final String L1C_TL_ROOT = "INV_L1C_TL";
 
     // Folder names inside the shared folder
     public static final String INPUT_FOLDER = "input";

@@ -8,17 +8,19 @@ Go back to the
 # Processing Sentinel 2
 
 <!-- TOC -->
+
 * [Processing Sentinel 2](#processing-sentinel-2)
-  * [Overview](#overview)
-  * [Available RS Addons](#available-rs-addons)
-  * [Installation](#installation)
-    * [Prerequisites](#prerequisites)
-    * [Build](#build)
-    * [Repository content](#repository-content)
-    * [Using Ansible](#using-ansible)
-    * [Manual Install](#manual-install)
-    * [Uninstall](#uninstall)
+    * [Overview](#overview)
+    * [Available RS Addons](#available-rs-addons)
+    * [Installation](#installation)
+        * [Prerequisites](#prerequisites)
+        * [Build](#build)
+        * [Repository content](#repository-content)
+        * [Using Ansible](#using-ansible)
+        * [Manual Install](#manual-install)
+        * [Uninstall](#uninstall)
 * [Copyright and license](#copyright-and-license)
+
 <!-- TOC -->
 
 ## Overview
@@ -34,6 +36,9 @@ Basic workflow :
 
 - The S2_L0U addon consumes Session data to produce basic datastrips/granules, SAD, and HKTM files.
 - The S2_L0C addon uses the output of S2_L0U to produce L0 products.
+- The S2_L1 addon uses L0C products (Datastrips and Granules) to produce:
+    - L1A and/or L1B Datastrips and Granules
+    - L1C Datastrips and Tiles
 
 For more information: [Sentinel 2 website](https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2).
 
@@ -41,6 +46,7 @@ For more information: [Sentinel 2 website](https://sentinels.copernicus.eu/web/s
 
 - [S2_L0U](rs-addons/S2_L0U)
 - [S2_L0C](rs-addons/S2_L0C)
+- [S2_L1](rs-addons/S2_L1)
 
 ## Installation
 
@@ -57,19 +63,18 @@ Each RS-Addon will provide its own specific installation instructions, which may
 ### Build
 
 In order to build the project from source, first clone the GitHub repository :
-
 ```shellsession
 git clone https://github.com/COPRS/processing-sentinel-2.git
 ```
 
-Then build the docker images:
+Then build the docker base images, from the dockerfiles in the execution [docker folder](apps/execution/docker).
 
+Then build all docker images:
 ```shellsession
 ./gradlew clean build bootBuildImage docker
 ```
 
 And finally build the zip files:
-
 ```shellsession
 ./rs-addons/build_addons.sh
 ```
@@ -120,4 +125,6 @@ Using the SCDF GUI, undeploy then destroy all the streams relative to the RS-Add
 
 Copyright (C) 2021-2022, European Space Agency (ESA) https://www.esa.int/
 
-The Reference System Software as a whole is distributed under the Apache License, version 2.0. A copy of this license is available in the [LICENSE](LICENSE) file. Reference System Software depends on third-party components and code snippets released under their own license (obviously, all compatible with the one of the Reference System Software). These dependencies are listed in the [NOTICE](NOTICE.md) file.
+The Reference System Software as a whole is distributed under the Apache License, version 2.0. A copy of this license is available in the [LICENSE](LICENSE) file. Reference System
+Software depends on third-party components and code snippets released under their own license (obviously, all compatible with the one of the Reference System Software). These
+dependencies are listed in the [NOTICE](NOTICE.md) file.

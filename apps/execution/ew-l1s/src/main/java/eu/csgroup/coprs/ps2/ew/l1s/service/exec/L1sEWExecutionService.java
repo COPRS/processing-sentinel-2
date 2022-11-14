@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l1s.service.exec;
 
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
-import eu.csgroup.coprs.ps2.core.ew.model.OrchestratorMode;
+import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.ew.service.L1EWExecutionService;
 import eu.csgroup.coprs.ps2.core.ew.settings.L1EWParameters;
 import eu.csgroup.coprs.ps2.ew.l1s.config.L1sExecutionProperties;

@@ -29,6 +29,8 @@
 - Credentials are available for the MongoDB server
 - Ceph-FS is configured to host the shared storage
 - OBS Buckets are configured for incoming (AUX files and L0c products) and outgoing (L1 products) files
+- A shared volume is accessible and contains the required DEM directories (S2IPF-DEMGLOBE, S2IPF-DEMGEOID, S2IPF-DEMSRTM)
+- A shared volume is accessible and contains the required GRID directories
 
 ## Deployment
 
@@ -45,16 +47,16 @@ The [Additional resources](Executables/additional_resources) will create:
 - A shared volume to store intermediary products
 - Secrets for the preparation and execution workers
 
-### Requirements
+### Sizing
 
-Here are the basic requirements for the main components:
+Here are the basic sizing suggestions for the main components:
 
-| Resource          | Preparation Workers | Execution Workers |
-|-------------------|:-------------------:|:-----------------:|
-| CPU               |        2000m        |       8000m       |
-| Memory            |         4Gi         |       24Gi        |
-| Disk size (local) |          -          |       500GB       |
-| Disk size (Ceph)  |          -          |       500GB       |
+| Resource                | Preparation Workers | Execution Workers (ew-l1sa & ew-l1sb) | Execution Workers (ew-l1ab & ew-l1c) |
+|-------------------------|:-------------------:|:-------------------------------------:|:------------------------------------:|
+| CPU                     |        2000m        |                 8000m                 |                8000m                 |
+| Memory                  |         4Gi         |                 32Gi                  |                 24Gi                 |
+| Disk size (local)       |          -          |                1500GB                 |                500GB                 |
+| Shared disk size (Ceph) |          -          |                3000GB                 |                3000GB                |
 
 ## Configuration
 
@@ -72,7 +74,7 @@ _Prefix_: deployer.*.kubernetes
 ### Workers deployer settings
 
 _Prefix_: deployer.&lt;APP&gt;.kubernetes  
-_Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
+_Apps_: pw-l1s, ew-l1sa, ew-l1sb, ew-l1ab, pw-l1c, ew-l1c
 
 | Property                         | Description                            |      Default (pw-l*)       |      Default (ew-l*)       |
 |----------------------------------|----------------------------------------|:--------------------------:|:--------------------------:|
@@ -103,7 +105,7 @@ _Apps_: pw-l1s, pw-l1c
 | deployer.\<APP>.kubernetes.volume-mounts | List of volume mounts      |                                 [ { name: shared, mountPath: '/shared' } ]                                  |
 | deployer.\<APP>.kubernetes.volumes       | List of volume definitions | [ { name: shared, persistentVolumeClaim:<br> { claimName: 's2-l1-shared', storageClassName: 'ceph-fs' } } ] |
 
-_Apps_: ew-l1s, ew-l1ab, ew-l1c
+_Apps_: ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c
 
 | Property                                 | Description                |                                                                                                                                                    Default                                                                                                                                                    |
 |------------------------------------------|:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -122,7 +124,7 @@ _Prefix_: app.s2-l1-filter
 ### OBS settings
 
 _Prefix_: app.&lt;APP&gt;.obs  
-_Apps_: pw-l1s, ew-l1ab, pw-l1c, ew-l1c
+_Apps_: pw-l1s, ew-l1ab, ew-l1c
 
 | Property        | Description                                      |                         Default                          |
 |-----------------|--------------------------------------------------|:--------------------------------------------------------:|
@@ -132,10 +134,21 @@ _Apps_: pw-l1s, ew-l1ab, pw-l1c, ew-l1c
 | maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |
 | minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |
 
+### Cleanup setting
+
+_Prefix_: app.&lt;APP&gt;.cleanup  
+_Apps_: pw-l1s, ew-l1sa, ew-l1sb, ew-l1ab, pw-l1c, ew-l1c
+
+| Property      | Description                                                                        | Default |
+|---------------|------------------------------------------------------------------------------------|:-------:|
+| localEnabled  | Enable cleaning up the local workspace folder                                      |  true   |
+| sharedEnabled | Enable cleaning up old folders on the shared filesystem                            |  true   |
+| 12            | Number of hours after which folder on the shared filesystem are considered expired |   12    |
+
 ### Kafka settings
 
 _Prefix_: app.&lt;APP&gt;.spring  
-_Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
+_Apps_: pw-l1s, ew-l1sa, ew-l1sb, ew-l1ab, pw-l1c, ew-l1c
 
 | Property                                                           | Description                            |                         Default (pw-l*)                         |                         Default (ew-l*)                         |
 |--------------------------------------------------------------------|----------------------------------------|:---------------------------------------------------------------:|:---------------------------------------------------------------:|
@@ -153,7 +166,7 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 ### Catalog
 
 _Prefix_: app.&lt;APP&gt;.catalog  
-_Apps_: pw-l1s, pw-l1c
+_Apps_: pw-l1s
 
 | Property | Description                               |                                        Default                                         |
 |----------|-------------------------------------------|:--------------------------------------------------------------------------------------:|
@@ -163,7 +176,7 @@ _Apps_: pw-l1s, pw-l1c
 ### MongoDB
 
 _Prefix_: app.&lt;APP&gt;.mongo  
-_Apps_: pw-l1s, pw-l1c
+_Apps_: pw-l1s
 
 | Property               | Description                 |                        Default                        |
 |------------------------|-----------------------------|:-----------------------------------------------------:|
@@ -175,7 +188,7 @@ _Apps_: pw-l1s, pw-l1c
 ### Misc
 
 _Prefix_: app.&lt;APP&gt;  
-_Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
+_Apps_: pw-l1s, ew-l1sa, ew-l1sb, ew-l1ab, pw-l1c, ew-l1c
 
 | Property               | Description                                   | Default |
 |------------------------|-----------------------------------------------|:-------:|
@@ -183,7 +196,6 @@ _Apps_: pw-l1s, ew-l1s, ew-l1ab, pw-l1c, ew-l1c
 
 ### Preparation workers
 
-_Prefix_: app.&lt;APP&gt;  
 _Apps_: pw-l1s, pw-l1c
 
 | Property                       | Description                                    |  Default  |
@@ -192,23 +204,26 @@ _Apps_: pw-l1s, pw-l1c
 | app.pw-l1s.pw.l0DSBucket       | Name of the OBS bucket containing L0c DS files | rs-s2-l0c |
 | app.pw-l1s.pw.l0GRBucket       | Name of the OBS bucket containing L0c GR files | rs-s2-l0c |
 | app.pw-l1s.pw.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
-||||
-| app.pw-l1c.pw.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.pw-l1c.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
 
 ### Execution workers
 
 _Prefix_: app.&lt;APP&gt;  
-_Apps_: ew-l1s, ew-l1ab, ew-l1c
+_Apps_: ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c
 
 | Property                        | Description                                    |  Default  |
 |---------------------------------|------------------------------------------------|:---------:|
 ||||
-| app.ew-l1s.ew.auxBucket         | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1s.ew.sharedFolderRoot  | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1s.ew.demFolderRoot     | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1s.ew.gridFolderRoot    | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1s.ew.maxParallelTasks  | Maximum number of parallel processing tasks    |     8     |
+| app.ew-l1sa.ew.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1sa.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1sa.ew.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1sa.ew.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1sa.ew.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
+||||
+| app.ew-l1sb.ew.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
+| app.ew-l1sb.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
+| app.ew-l1sb.ew.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
+| app.ew-l1sb.ew.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
+| app.ew-l1sb.ew.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
 ||||
 | app.ew-l1ab.ew.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
 | app.ew-l1ab.ew.l1DSBucket       | Name of the OBS bucket to store L1ab DS files  | rs-s2-l1  |

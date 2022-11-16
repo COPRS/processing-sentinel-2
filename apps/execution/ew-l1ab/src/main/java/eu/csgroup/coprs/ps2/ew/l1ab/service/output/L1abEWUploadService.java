@@ -4,6 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
@@ -37,7 +38,7 @@ public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
         log.info("Uploading L1A and/or L1B files to OBS");
 
         final Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = new EnumMap<>(ProductFamily.class);
-        final Path rootPath = Paths.get(L1Parameters.WORKING_FOLDER_ROOT);
+        final Path rootPath = Paths.get(FolderParameters.WORKING_FOLDER_ROOT);
 
         try {
             fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1A_DS_ROOT), S2FileParameters.L1A_DS_REGEX, ProductFamily.S2_L1A_DS, executionProperties.getL1DSBucket()));

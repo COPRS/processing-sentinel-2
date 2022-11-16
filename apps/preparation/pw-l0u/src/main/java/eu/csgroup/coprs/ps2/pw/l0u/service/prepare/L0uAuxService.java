@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 import eu.csgroup.coprs.ps2.core.common.exception.AuxQueryException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
@@ -44,7 +44,7 @@ public class L0uAuxService {
         log.info("Extracting values from AUX files");
 
         Map<AuxValue, String> infoByAuxValue = new EnumMap<>(AuxValue.class);
-        String tmpFolder = PreparationParameters.TMP_DOWNLOAD_FOLDER + "/" + UUID.randomUUID();
+        String tmpFolder = FolderParameters.TMP_DOWNLOAD_FOLDER + "/" + UUID.randomUUID();
 
         Map<AuxValue, Path> auxPathByAuxValue = downloadAuxFiles(satellite, from, to, tmpFolder);
 
@@ -74,7 +74,7 @@ public class L0uAuxService {
                 );
 
         // Download all files to tmp folder
-        obsService.downloadFolders(keyByAuxValue.values()
+        obsService.download(keyByAuxValue.values()
                 .stream()
                 .map(key -> new FileInfo()
                         .setBucket(l0uPreparationProperties.getAuxBucket())

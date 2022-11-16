@@ -11,6 +11,9 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -83,6 +86,31 @@ public final class FileOperationUtils {
         } catch (Exception e) {
             throw new FileOperationException("Unable to delete folder: " + folder, e);
         }
+    }
+
+    public static void deleteExpiredFolders(String rootFolder, int hours) {
+
+        log.info("Cleaning up folders older than {} hours inside folder {}", hours, rootFolder);
+
+        long expiredTime = Instant.now().minus(hours, ChronoUnit.HOURS).toEpochMilli();
+        final List<Path> folders = findFolders(Paths.get(rootFolder), ".*");
+        Set<String> expiredFolders = new HashSet<>();
+
+        folders.forEach(path -> {
+            if (path.toFile().lastModified() < expiredTime) {
+                expiredFolders.add(path.toString());
+            }
+        });
+
+        log.info("Found {} folders to delete", expiredFolders.size());
+
+        try {
+            deleteFolders(expiredFolders);
+        } catch (Exception e) {
+            log.warn("Unable to delete all expired folders");
+        }
+
+        log.info("Finished cleaning up folder {}", rootFolder);
     }
 
     public static void createFolders(Set<String> folderSet) {

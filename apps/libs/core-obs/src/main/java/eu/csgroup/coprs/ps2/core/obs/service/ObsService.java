@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.core.obs.service;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.Md5utils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
@@ -150,35 +150,10 @@ public class ObsService {
 
     /**
      * Download a set of files or directories, given their FileInfo.
-     * Checks whether each entry type before downloading, which may be lengthy.
      *
      * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
      */
     public void download(Set<FileInfo> fileInfoList) {
-
-        log.debug("Downloading {} files using FileInfos", fileInfoList.size());
-
-        Mono.when(fileInfoList.stream()
-                        .map(fileInfo -> {
-                            final String key = fileInfo.getKey();
-                            final String bucket = fileInfo.getBucket();
-                            final Path destinationPath = Paths.get(fileInfo.getFullLocalPath());
-                            if (isFolder(bucket, key)) {
-                                return doDirDownload(key, bucket, destinationPath);
-                            } else {
-                                return doFileDownload(key, bucket, destinationPath);
-                            }
-                        })
-                        .toList())
-                .block();
-    }
-
-    /**
-     * Download a set of directories, given their FileInfo.
-     *
-     * @param fileInfoList List of FileInfo objects, containing source and destination info for each folder
-     */
-    public void downloadFolders(Set<FileInfo> fileInfoList) {
 
         log.debug("Downloading {} folders using FileInfos", fileInfoList.size());
 
@@ -187,7 +162,11 @@ public class ObsService {
                             final String key = fileInfo.getKey();
                             final String bucket = fileInfo.getBucket();
                             final Path destinationPath = Paths.get(fileInfo.getFullLocalPath());
-                            return doDirDownload(key, bucket, destinationPath);
+                            if (fileInfo.isSimpleFile()) {
+                                return doFileDownload(key, bucket, destinationPath);
+                            } else {
+                                return doDirDownload(key, bucket, destinationPath);
+                            }
                         })
                         .toList())
                 .block();
@@ -227,7 +206,7 @@ public class ObsService {
 
         log.info("Creating md5sum files");
 
-        String tmpFolder = PreparationParameters.TMP_DOWNLOAD_FOLDER + FileSystems.getDefault().getSeparator() + UUID.randomUUID();
+        String tmpFolder = FolderParameters.TMP_DOWNLOAD_FOLDER + FileSystems.getDefault().getSeparator() + UUID.randomUUID();
         FileOperationUtils.createFolders(Set.of(tmpFolder));
 
         Set<FileInfo> md5FileInfos = new HashSet<>();
@@ -362,7 +341,7 @@ public class ObsService {
                         new ObsException("Obs operation failed after " + retryBackoffSpec.maxAttempts + " retries", retrySignal.failure()));
     }
 
-    private boolean isFolder(String bucket, String key) {
+    private boolean isFolder(String bucket, String key) { // NOSONAR
         return !s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key + DELIMITER).maxKeys(1).build())
                 .contents()
                 .isEmpty();

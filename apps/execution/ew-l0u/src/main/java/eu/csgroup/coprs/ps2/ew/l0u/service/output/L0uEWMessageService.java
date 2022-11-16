@@ -11,7 +11,6 @@ import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWMessageService;
 import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Path;
@@ -21,8 +20,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
-@Slf4j
 @Component
 public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
 
@@ -32,9 +29,8 @@ public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
         this.executionProperties = executionProperties;
     }
 
-    public Set<ProcessingMessage> build(L0uExecutionInput l0uExecutionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
-
-        log.info("Building outgoing messages");
+    @Override
+    protected Set<ProcessingMessage> doBuild(L0uExecutionInput l0uExecutionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
 
         Set<ProcessingMessage> messages = buildCatalogMessages(fileInfosByFamily, l0uExecutionInput);
 
@@ -54,8 +50,6 @@ public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
                                 .setCustomTaskInputs(getCustomOutputs(outputFolder))
                 );
         messages.add(preparationMessage);
-
-        log.info("Finished building outgoing messages");
 
         return messages;
     }

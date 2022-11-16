@@ -120,32 +120,15 @@ class ObsServiceTest extends AbstractTest {
 
     @Test
     void download() {
-        mockIsFolderThenIsFile();
         mockDirDownloadSuccess();
-        mockFileDownloadSuccess();
         obsService.download(FILE_INFO_MIXED_SET);
         assertTrue(true);
     }
 
     @Test
     void download_failure() {
-        mockIsFolderThenIsFile();
-        mockDirDownloadSuccess();
-        mockFileDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.download(FILE_INFO_MIXED_SET));
-    }
-
-    @Test
-    void downloadFolders() {
-        mockDirDownloadSuccess();
-        obsService.downloadFolders(FILE_INFO_MIXED_SET);
-        assertTrue(true);
-    }
-
-    @Test
-    void downloadFolders_failure() {
         mockDirDownloadFailure();
-        assertThrows(ObsException.class, () -> obsService.downloadFolders(FILE_INFO_MIXED_SET));
+        assertThrows(ObsException.class, () -> obsService.download(FILE_INFO_MIXED_SET));
     }
 
     @Test

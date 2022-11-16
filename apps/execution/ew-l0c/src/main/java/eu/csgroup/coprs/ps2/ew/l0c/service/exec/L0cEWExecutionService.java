@@ -9,6 +9,7 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.ew.service.EWExecutionService;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
@@ -138,7 +139,7 @@ public class L0cEWExecutionService implements EWExecutionService<L0cExecutionInp
         final Set<ScriptWrapper> scriptWrapperSet = jobOrderSet.stream()
                 .map(path -> new ScriptWrapper()
                         .setRunId(path.getFileName().toString())
-                        .setWorkdir(L0cFolderParameters.WORKSPACE_PATH)
+                        .setWorkdir(FolderParameters.WORKING_FOLDER_ROOT)
                         .setCommand(List.of(script, path.toString()))
                         .setLogWhitelist(L0EWParameters.INFO_LEVEL_MARKERS))
                 .collect(Collectors.toSet());

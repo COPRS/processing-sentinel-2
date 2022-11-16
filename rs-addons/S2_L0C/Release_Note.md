@@ -1,23 +1,25 @@
 # RS Addon : S2_L0c
 
 <!-- TOC -->
+
 * [RS Addon : S2_L0c](#rs-addon--s2_l0c)
-  * [Prerequisites](#prerequisites)
-  * [Deployment](#deployment)
-    * [Principle](#principle)
-    * [Additional resources](#additional-resources)
-    * [Requirements](#requirements)
-  * [Configuration](#configuration)
-    * [Global deployer settings](#global-deployer-settings)
-    * [Workers deployer settings](#workers-deployer-settings)
-    * [Filter](#filter)
-    * [OBS settings](#obs-settings)
-    * [Kafka settings](#kafka-settings)
-    * [Preparation worker](#preparation-worker)
-      * [Catalog](#catalog)
-      * [MongoDB](#mongodb)
-      * [Misc](#misc)
-    * [Execution worker](#execution-worker)
+    * [Prerequisites](#prerequisites)
+    * [Deployment](#deployment)
+        * [Principle](#principle)
+        * [Additional resources](#additional-resources)
+        * [Requirements](#requirements)
+    * [Configuration](#configuration)
+        * [Global deployer settings](#global-deployer-settings)
+        * [Workers deployer settings](#workers-deployer-settings)
+        * [Filter](#filter)
+        * [OBS settings](#obs-settings)
+        * [Kafka settings](#kafka-settings)
+        * [Preparation worker](#preparation-worker)
+            * [Catalog](#catalog)
+            * [MongoDB](#mongodb)
+            * [Misc](#misc)
+        * [Execution worker](#execution-worker)
+
 <!-- TOC -->
 
 ## Prerequisites
@@ -117,6 +119,17 @@ _Apps_: pw-l0c, ew-l0c
 | maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |                            10                            |
 | minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |                            5                             |
 
+### Cleanup setting
+
+_Prefix_: app.&lt;APP&gt;.cleanup  
+_Apps_: pw-l0c, ew-l0c
+
+| Property      | Description                                                                        | Default |
+|---------------|------------------------------------------------------------------------------------|:-------:|
+| localEnabled  | Enable cleaning up the local workspace folder                                      |  true   |
+| sharedEnabled | Enable cleaning up old folders on the shared filesystem                            |  true   |
+| 12            | Number of hours after which folder on the shared filesystem are considered expired |   12    |
+
 ### Kafka settings
 
 _Prefix_: app.&lt;APP&gt;.spring  
@@ -178,6 +191,5 @@ _Prefix_: app.ew-l0c
 | spring.profiles.active | Name of the profile to run with (prod or dev)         |   prod    |
 | ew.l0c.dsUploadBucket  | OBS Bucket to upload Datastrip to                     | rs-s2-l0c |
 | ew.l0c.grUploadBucket  | OBS Bucket to upload Granules to                      | rs-s2-l0c |
-| ew.l0c.cleanup         | Enable local and shared disk cleanup after processing |   true    |
 
 ----

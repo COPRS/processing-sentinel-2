@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.config.CleanupProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessUtils;
@@ -12,10 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Set;
 
-
 @Slf4j
 @Component
-public class L0uEWCleanupService implements EWCleanupService<L0uExecutionInput> {
+public class L0uEWCleanupService extends EWCleanupService<L0uExecutionInput> {
 
     private static final Set<String> PROCESSES = Set.of(
             "EISPProcessor",
@@ -25,28 +25,24 @@ public class L0uEWCleanupService implements EWCleanupService<L0uExecutionInput> 
             "launch_telemetry.bash"
     );
 
-    @Override
-    public void cleanAndPrepare() {
-
-        log.info("Cleaning and setting up workspace");
-
-        deleteFolders();
-        killProcesses();
-
-        FileOperationUtils.createFolders(L0uFolderParameters.WORKSPACE_FOLDERS);
-
-        log.info("Finished cleaning and setting up workspace");
+    protected L0uEWCleanupService(CleanupProperties cleanupProperties) {
+        super(cleanupProperties);
     }
 
     @Override
-    public void clean(L0uExecutionInput executionInput) {
+    protected void doPrepare() {
+        FileOperationUtils.createFolders(L0uFolderParameters.WORKSPACE_FOLDERS);
+    }
 
-        log.info("Cleaning up workspace");
-
+    @Override
+    protected void doCleanBefore() {
         deleteFolders();
         killProcesses();
+    }
 
-        log.info("Finished cleaning up workspace");
+    @Override
+    public void doCleanAfter(L0uExecutionInput executionInput) {
+        killProcesses();
     }
 
     private void deleteFolders() {
@@ -62,7 +58,6 @@ public class L0uEWCleanupService implements EWCleanupService<L0uExecutionInput> 
             FileOperationUtils.deleteFolderContent(L0uFolderParameters.INSTALL_OUTPUT_FILES_PATH);
         }
 
-        FileOperationUtils.deleteFolderContent(L0uFolderParameters.WORKSPACE_PATH);
     }
 
     private void killProcesses() {

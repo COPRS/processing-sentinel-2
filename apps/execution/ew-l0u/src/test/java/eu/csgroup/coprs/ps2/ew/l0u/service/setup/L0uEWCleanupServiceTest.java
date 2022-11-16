@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.config.CleanupProperties;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessUtils;
@@ -18,7 +19,7 @@ class L0uEWCleanupServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        cleanupService = new L0uEWCleanupService();
+        cleanupService = new L0uEWCleanupService(new CleanupProperties());
     }
 
     @Override
@@ -37,7 +38,7 @@ class L0uEWCleanupServiceTest extends AbstractTest {
             filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
 
             // When
-            cleanupService.cleanAndPrepare();
+            cleanupService.cleanAndPrepare("foo");
 
             // Then
             processUtilsMockedStatic.verify(() -> ProcessUtils.kill(any()), atLeast(1));
@@ -62,7 +63,6 @@ class L0uEWCleanupServiceTest extends AbstractTest {
 
             // Then
             processUtilsMockedStatic.verify(() -> ProcessUtils.kill(any()), atLeast(1));
-            fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.deleteFiles(any(), any()), atLeast(1));
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.deleteFolderContent(any()), atLeast(1));
         }
     }

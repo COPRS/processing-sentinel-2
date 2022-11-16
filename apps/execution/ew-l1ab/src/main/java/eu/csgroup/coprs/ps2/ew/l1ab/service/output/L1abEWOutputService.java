@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.ew.l1ab.service.output;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.ew.service.L1EWOutputService;
+import eu.csgroup.coprs.ps2.core.ew.service.l1.L1EWOutputService;
 import eu.csgroup.coprs.ps2.ew.l1ab.config.L1abExecutionProperties;
 import eu.csgroup.coprs.ps2.ew.l1ab.service.setup.L1abEWCleanupService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l0c.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.config.CleanupProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWCleanupService;
@@ -12,29 +13,26 @@ import java.util.Set;
 
 @Slf4j
 @Service
-public class L0cEWCleanupService implements EWCleanupService<L0cExecutionInput> {
+public class L0cEWCleanupService extends EWCleanupService<L0cExecutionInput> {
 
-    @Override
-    public void cleanAndPrepare() {
-
-        log.info("Cleaning and setting up workspace");
-
-        FileOperationUtils.deleteFolderContent(L0cFolderParameters.WORKSPACE_PATH);
-        FileOperationUtils.createFolders(L0cFolderParameters.WORKSPACE_FOLDERS);
-
-        log.info("Finished cleaning and setting up workspace");
+    protected L0cEWCleanupService(CleanupProperties cleanupProperties) {
+        super(cleanupProperties);
     }
 
     @Override
-    public void clean(L0cExecutionInput l0cExecutionInput) {
+    protected void doPrepare() {
+        FileOperationUtils.createFolders(L0cFolderParameters.WORKSPACE_FOLDERS);
+    }
 
-        log.info("Cleaning up workspace");
+    @Override
+    protected void doCleanBefore() {
+        //
+    }
 
-        FileOperationUtils.deleteFolderContent(L0cFolderParameters.WORKSPACE_PATH);
-        FileOperationUtils.deleteFolders(Set.of(l0cExecutionInput.getDtFolder()));
-        FileOperationUtils.deleteFolderIfEmpty(Paths.get(l0cExecutionInput.getDtFolder()).getParent().toString());
-
-        log.info("Finished cleaning up workspace");
+    @Override
+    protected void doCleanAfter(L0cExecutionInput executionInput) {
+        FileOperationUtils.deleteFolders(Set.of(executionInput.getDtFolder()));
+        FileOperationUtils.deleteFolderIfEmpty(Paths.get(executionInput.getDtFolder()).getParent().toString());
     }
 
 }

@@ -45,7 +45,7 @@ public abstract class EWDownloadService {
         final Set<FileInfo> stdFiles = new HashSet<>(filesByIsAux.get(false));
         if (!stdFiles.isEmpty()) {
             prepareStandardFiles(stdFiles);
-            obsService.downloadFolders(stdFiles);
+            obsService.download(stdFiles);
         }
 
         final HashSet<FileInfo> auxFiles = new HashSet<>(filesByIsAux.get(true));
@@ -64,7 +64,7 @@ public abstract class EWDownloadService {
 
         if (!fileInfoSet.isEmpty()) {
 
-            obsService.downloadFolders(fileInfoSet);
+            obsService.download(fileInfoSet);
 
             Set<String> trashFolders = new HashSet<>();
 

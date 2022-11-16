@@ -44,7 +44,7 @@ class L0uEWDownloadServiceTest extends AbstractTest {
         l0uEWDownloadService.download(fileInfoSet);
 
         // Then
-        verify(obsService).downloadFolders(fileInfoSet);
+        verify(obsService).download(fileInfoSet);
         assertTrue(fileInfoSet.stream().allMatch(fileInfo -> fileInfo.getLocalPath().contains("/ch_")));
     }
 

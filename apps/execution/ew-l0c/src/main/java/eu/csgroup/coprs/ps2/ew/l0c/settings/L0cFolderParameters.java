@@ -1,15 +1,16 @@
 package eu.csgroup.coprs.ps2.ew.l0c.settings;
 
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
+
 import java.util.Set;
 
 public final class L0cFolderParameters {
 
-    public static final String WORKSPACE_PATH = "/workspace"; //NOSONAR
-    public static final String JOB_ORDERS_PATH = WORKSPACE_PATH + "/JobOrders";
-    public static final String APP_DATA_PATH = WORKSPACE_PATH + "/app_data";
+    public static final String JOB_ORDERS_PATH = FolderParameters.WORKING_FOLDER_ROOT + "/JobOrders";
+    public static final String APP_DATA_PATH = FolderParameters.WORKING_FOLDER_ROOT + "/app_data";
     public static final String GSE_REPORT_PATH = APP_DATA_PATH + "/step_GSE/launch_01";
     public static final String WP_DATA_PATH = APP_DATA_PATH + "/wp_data";
-    public static final String STEPS_DATA_PATH = WORKSPACE_PATH + "/steps_data";
+    public static final String STEPS_DATA_PATH = FolderParameters.WORKING_FOLDER_ROOT + "/steps_data";
     public static final String DS_PATH = STEPS_DATA_PATH + "/DS";
     public static final String GR_PATH = STEPS_DATA_PATH + "/GR";
     public static final String GR_DB_PATH = GR_PATH + "/DB1";

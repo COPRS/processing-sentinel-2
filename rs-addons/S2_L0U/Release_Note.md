@@ -135,6 +135,17 @@ _Apps_: pw-l0u, ew-l0u
 | maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |                            10                            |
 | minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |                            5                             |
 
+### Cleanup setting
+
+_Prefix_: app.&lt;APP&gt;.cleanup  
+_Apps_: pw-l0u, ew-l0u
+
+| Property      | Description                                                                        | Default |
+|---------------|------------------------------------------------------------------------------------|:-------:|
+| localEnabled  | Enable cleaning up the local workspace folder                                      |  true   |
+| sharedEnabled | Enable cleaning up old folders on the shared filesystem                            |  true   |
+| 12            | Number of hours after which folder on the shared filesystem are considered expired |   12    |
+
 ### Kafka settings
 
 _Prefix_: app.&lt;APP&gt;.spring  
@@ -195,6 +206,5 @@ _Prefix_: app.ew-l0u
 | ew.l0u.sadUploadBucket  | OBS Bucket to upload SAD files to                                       | rs-s2-aux  |
 | ew.l0u.htmUploadBucket  | OBS Bucket to upload HKTM files to                                      | rs-s2-hktm |
 | ew.l0u.outputFolderRoot | Path to the folder used as output for L0u files.<br/>Mount to shared fs |  /output   |
-| ew.l0u.cleanup          | Enable local disk cleanup after processing                              |    true    |
 
 ----

@@ -16,15 +16,8 @@ import java.util.Set;
 public class L1abEWMessageService extends EWMessageService<L1ExecutionInput> {
 
     @Override
-    public Set<ProcessingMessage> build(L1ExecutionInput executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
-
-        log.info("Building outgoing messages");
-
-        Set<ProcessingMessage> messages = buildCatalogMessages(fileInfosByFamily, executionInput);
-
-        log.info("Finished building outgoing messages");
-
-        return messages;
+    protected Set<ProcessingMessage> doBuild(L1ExecutionInput executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
+        return buildCatalogMessages(fileInfosByFamily, executionInput);
     }
 
 }

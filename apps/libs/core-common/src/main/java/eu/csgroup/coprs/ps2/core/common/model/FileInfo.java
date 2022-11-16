@@ -27,6 +27,8 @@ public class FileInfo {
     private ProductFamily productFamily;
     private AuxProductType auxProductType;
 
+    boolean isSimpleFile;
+
     @JsonIgnore
     public FileInfo setFullLocalPath(String fullLocalPath) {
         final Path path = Paths.get(fullLocalPath);

@@ -2,8 +2,8 @@ package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cJobOrderFields;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
-import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
@@ -122,11 +122,11 @@ public class L0cJobOrderService {
 
         log.debug("Fetching GPS_UTC value");
 
-        Path tmpFolder = Paths.get(PreparationParameters.TMP_DOWNLOAD_FOLDER + "/" + UUID.randomUUID());
+        Path tmpFolder = Paths.get(FolderParameters.TMP_DOWNLOAD_FOLDER + "/" + UUID.randomUUID());
         Path localAuxPath = tmpFolder.resolve(auxUt1utcFileInfo.getObsName());
         Path dblPath = localAuxPath.resolve(auxUt1utcFileInfo.getObsName() + S2FileParameters.AUX_FILE_EXTENSION);
 
-        obsService.downloadFolders(Set.of(
+        obsService.download(Set.of(
                 new FileInfo()
                         .setBucket(auxUt1utcFileInfo.getBucket())
                         .setKey(auxUt1utcFileInfo.getKey())

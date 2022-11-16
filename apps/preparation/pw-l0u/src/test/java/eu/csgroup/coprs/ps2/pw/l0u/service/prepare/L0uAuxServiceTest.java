@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
@@ -23,7 +23,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 class L0uAuxServiceTest extends AbstractTest {
@@ -38,7 +39,7 @@ class L0uAuxServiceTest extends AbstractTest {
     private static final String AUX_FOLDER = "aux";
     private static final UUID AUX_UID = UUID.randomUUID();
     private static final Path AUX_PATH = Paths.get("src/test/resources/" + AUX_FOLDER);
-    private static final Path TMP_PATH = Paths.get(PreparationParameters.TMP_DOWNLOAD_FOLDER, AUX_UID.toString());
+    private static final Path TMP_PATH = Paths.get(FolderParameters.TMP_DOWNLOAD_FOLDER, AUX_UID.toString());
 
 
     @Mock

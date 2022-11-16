@@ -75,7 +75,7 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
             createSharedFolders(datastripFolderPath);
 
-            obsService.downloadFolders(Set.of(
+            obsService.download(Set.of(
                     new FileInfo()
                             .setBucket(l1sPreparationProperties.getL0DSBucket())
                             .setObsURL(storagePath)

@@ -10,6 +10,7 @@ include ":apps:preparation:pw-l1c"
 
 include ":apps:execution:ew-l0u"
 include ":apps:execution:ew-l0c"
-include ":apps:execution:ew-l1s"
+include ":apps:execution:ew-l1sa"
+include ":apps:execution:ew-l1sb"
 include ":apps:execution:ew-l1ab"
 include ":apps:execution:ew-l1c"

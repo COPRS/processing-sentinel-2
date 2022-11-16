@@ -31,9 +31,4 @@ public class L0cExecutionProperties {
      */
     private String grUploadBucket;
 
-    /**
-     * Clean workspace after execution.
-     */
-    private boolean cleanup = true;
-
 }

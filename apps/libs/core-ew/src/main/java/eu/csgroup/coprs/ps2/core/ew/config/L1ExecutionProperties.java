@@ -43,11 +43,6 @@ public class L1ExecutionProperties {
     private String l1TLBucket;
 
     /**
-     * Clean workspace after execution.
-     */
-    private boolean cleanup = true;
-
-    /**
      * Maximum number of parallel processing tasks
      */
     private int maxParallelTasks = 8;

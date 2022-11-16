@@ -48,7 +48,7 @@ class L0cEWDownloadServiceTest extends AbstractTest {
             l0cEWDownloadService.download(fileInfoSet);
 
             // Then
-            verify(obsService).downloadFolders(fileInfoSet);
+            verify(obsService).download(fileInfoSet);
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.move(any(), any()), times(2));
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.deleteFolders(any()));
         }

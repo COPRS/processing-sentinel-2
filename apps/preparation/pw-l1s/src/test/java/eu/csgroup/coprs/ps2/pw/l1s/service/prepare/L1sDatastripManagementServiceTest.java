@@ -112,7 +112,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
             doAnswer(invocation -> {
                 FileUtils.copyDirectoryToDirectory(dsPath.toFile(), new File(TMP_DS_PATH));
                 return null;
-            }).when(obsService).downloadFolders(anySet());
+            }).when(obsService).download(anySet());
             // When
             datastripManagementService.create(DATASTRIP_NAME, "A", Instant.now(), "s3://path/to/storage");
             // Then

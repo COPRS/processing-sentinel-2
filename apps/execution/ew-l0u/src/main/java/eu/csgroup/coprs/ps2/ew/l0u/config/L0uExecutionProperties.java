@@ -26,9 +26,4 @@ public class L0uExecutionProperties {
      */
     private String outputFolderRoot = "/output";
 
-    /**
-     * Clean workspace after execution.
-     */
-    private boolean cleanup = true;
-
 }

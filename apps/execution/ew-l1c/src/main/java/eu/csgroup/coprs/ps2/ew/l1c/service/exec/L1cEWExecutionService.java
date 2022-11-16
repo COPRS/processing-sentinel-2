@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l1c.service.exec;
 
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
-import eu.csgroup.coprs.ps2.core.ew.service.L1EWExecutionService;
+import eu.csgroup.coprs.ps2.core.ew.service.l1.L1EWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l1c.config.L1cExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

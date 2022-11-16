@@ -68,7 +68,8 @@ public class L0uPWExecutionInputService implements PWExecutionInputService<L0uEx
                 .map(sessionCatalogData -> new FileInfo()
                         .setBucket(l0uPreparationProperties.getCaduBucket())
                         .setKey(sessionCatalogData.getKeyObjectStorage())
-                        .setProductFamily(ProductFamily.EDRS_SESSION))
+                        .setProductFamily(ProductFamily.EDRS_SESSION)
+                        .setSimpleFile(true))
                 .collect(Collectors.toSet());
     }
 

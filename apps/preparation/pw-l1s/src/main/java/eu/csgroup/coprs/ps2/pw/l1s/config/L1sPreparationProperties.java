@@ -13,16 +13,6 @@ import org.springframework.context.annotation.Configuration;
 public class L1sPreparationProperties extends L1PreparationProperties {
 
     /**
-     * Name of the OBS bucket containing L0c DS files
-     */
-    private String l0DSBucket;
-
-    /**
-     * Name of the OBS bucket containing L0c DS files
-     */
-    private String l0GRBucket;
-
-    /**
      * Minimum number of granules required to start L1 processing chain
      */
     private long minGrRequired = 48;

@@ -9,8 +9,8 @@ import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.ew.l1ab.config.L1abExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +24,11 @@ import java.util.stream.Collectors;
 @Service
 public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
 
-    private final L1abExecutionProperties executionProperties;
+    private final ObsBucketProperties bucketProperties;
     private final ObsService obsService;
 
-    public L1abEWUploadService(L1abExecutionProperties executionProperties, ObsService obsService) {
-        this.executionProperties = executionProperties;
+    public L1abEWUploadService(ObsBucketProperties bucketProperties, ObsService obsService) {
+        this.bucketProperties = bucketProperties;
         this.obsService = obsService;
     }
 
@@ -41,10 +41,10 @@ public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
         final Path rootPath = Paths.get(FolderParameters.WORKING_FOLDER_ROOT);
 
         try {
-            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1A_DS_ROOT), S2FileParameters.L1A_DS_REGEX, ProductFamily.S2_L1A_DS, executionProperties.getL1DSBucket()));
-            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1A_GR_ROOT), S2FileParameters.L1A_GR_REGEX, ProductFamily.S2_L1A_GR, executionProperties.getL1GRBucket()));
-            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1B_DS_ROOT), S2FileParameters.L1B_DS_REGEX, ProductFamily.S2_L1B_DS, executionProperties.getL1DSBucket()));
-            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1B_GR_ROOT), S2FileParameters.L1B_GR_REGEX, ProductFamily.S2_L1B_GR, executionProperties.getL1GRBucket()));
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1A_DS_ROOT), S2FileParameters.L1A_DS_REGEX, ProductFamily.S2_L1A_DS, bucketProperties.getL1DSBucket()));
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1A_GR_ROOT), S2FileParameters.L1A_GR_REGEX, ProductFamily.S2_L1A_GR, bucketProperties.getL1GRBucket()));
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1B_DS_ROOT), S2FileParameters.L1B_DS_REGEX, ProductFamily.S2_L1B_DS, bucketProperties.getL1DSBucket()));
+            fileInfosByFamily.putAll(add(rootPath.resolve(L1Parameters.L1B_GR_ROOT), S2FileParameters.L1B_GR_REGEX, ProductFamily.S2_L1B_GR, bucketProperties.getL1GRBucket()));
             obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);

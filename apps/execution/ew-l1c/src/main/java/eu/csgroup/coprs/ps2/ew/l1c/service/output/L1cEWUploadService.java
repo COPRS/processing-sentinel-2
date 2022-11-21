@@ -9,8 +9,8 @@ import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.ew.l1c.config.L1cExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -24,11 +24,11 @@ import java.util.stream.Collectors;
 @Service
 public class L1cEWUploadService extends EWUploadService<L1ExecutionInput> {
 
-    private final L1cExecutionProperties executionProperties;
+    private final ObsBucketProperties bucketProperties;
     private final ObsService obsService;
 
-    public L1cEWUploadService(L1cExecutionProperties executionProperties, ObsService obsService) {
-        this.executionProperties = executionProperties;
+    public L1cEWUploadService(ObsBucketProperties bucketProperties, ObsService obsService) {
+        this.bucketProperties = bucketProperties;
         this.obsService = obsService;
     }
 
@@ -48,11 +48,11 @@ public class L1cEWUploadService extends EWUploadService<L1ExecutionInput> {
 
             if (StringUtils.hasText(executionInput.getTile())) {
                 productFamily = ProductFamily.S2_L1C_TL;
-                bucket = executionProperties.getL1TLBucket();
+                bucket = bucketProperties.getL1TLBucket();
                 folders = FileOperationUtils.findFolders(rootPath.resolve(L1Parameters.L1C_TL_ROOT), S2FileParameters.L1C_TL_REGEX);
             } else {
                 productFamily = ProductFamily.S2_L1C_DS;
-                bucket = executionProperties.getL1DSBucket();
+                bucket = bucketProperties.getL1DSBucket();
                 folders = FileOperationUtils.findFolders(rootPath.resolve(L1Parameters.L1C_DS_ROOT), S2FileParameters.L1C_DS_REGEX);
             }
 

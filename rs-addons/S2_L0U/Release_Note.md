@@ -127,13 +127,17 @@ _Prefix_: deployer.router-output-l0u.kubernetes
 _Prefix_: app.&lt;APP&gt;.obs  
 _Apps_: pw-l0u, ew-l0u
 
-| Property        | Description                                      |                     Default (pw-l0u)                     |                     Default (ew-l0u)                     |
-|-----------------|--------------------------------------------------|:--------------------------------------------------------:|:--------------------------------------------------------:|
-| endpoint        | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
-| region          | OBS Region                                       |                        eu-west-0                         |                        eu-west-0                         |
-| maxConcurrency  | Maximum number of concurrent network connections |                            50                            |                            50                            |
-| maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |                            10                            |
-| minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |                            5                             |
+| Property        | Description                                      |                         Default                          |
+|-----------------|--------------------------------------------------|:--------------------------------------------------------:|
+| endpoint        | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
+| region          | OBS Region                                       |                        eu-west-0                         |
+| maxConcurrency  | Maximum number of concurrent network connections |                            50                            |
+| maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |
+| minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |
+| auxBucket       | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
+| sessionBucket   | Bucket where sessions files are stored           |                     rs-session-files                     |
+| sadBucket       | Name of the OBS bucket containing SAD files      |                        rs-s2-aux                         |
+| hktmBucket      | Name of the OBS bucket containing HKTM files     |                        rs-s2-hktm                        |
 
 ### Cleanup setting
 
@@ -193,8 +197,6 @@ _Prefix_: app.pw-l0u
 | Property               | Description                                                |     Default      |
 |------------------------|------------------------------------------------------------|:----------------:|
 | spring.profiles.active | Name of the profile to run with (prod or dev)              |       prod       |
-| pw.l0u.auxBucket       | OBS Bucket holding AUX files                               |    rs-s2-aux     |
-| pw.l0u.caduBucket      | OBS Bucket holding session files (DSIB, DSDB)              | rs-session-files |
 
 ### Execution worker
 
@@ -203,8 +205,6 @@ _Prefix_: app.ew-l0u
 | Property                | Description                                                             |  Default   |
 |-------------------------|-------------------------------------------------------------------------|:----------:|
 | spring.profiles.active  | Name of the profile to run with (prod or dev)                           |    prod    |
-| ew.l0u.sadUploadBucket  | OBS Bucket to upload SAD files to                                       | rs-s2-aux  |
-| ew.l0u.htmUploadBucket  | OBS Bucket to upload HKTM files to                                      | rs-s2-hktm |
 | ew.l0u.outputFolderRoot | Path to the folder used as output for L0u files.<br/>Mount to shared fs |  /output   |
 
 ----

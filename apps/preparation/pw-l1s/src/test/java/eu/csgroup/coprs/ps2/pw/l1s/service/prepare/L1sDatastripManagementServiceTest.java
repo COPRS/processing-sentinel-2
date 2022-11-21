@@ -4,6 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
@@ -45,6 +46,8 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
     private L1sPreparationProperties l1sPreparationProperties;
     @Mock
     private ObsService obsService;
+    @Mock
+    private ObsBucketProperties bucketProperties;
 
     @InjectMocks
     private L1sDatastripManagementService datastripManagementService;
@@ -80,7 +83,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
         deletableDatastripList = List.of(deletableDatastrip);
         missingAuxDatastripList = List.of(missingAuxDatastrip);
 
-        datastripManagementService = new L1sDatastripManagementService(catalogService, datastripService, l1sPreparationProperties, obsService);
+        datastripManagementService = new L1sDatastripManagementService(catalogService, datastripService, l1sPreparationProperties, obsService, bucketProperties);
     }
 
     @Override
@@ -94,7 +97,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
         when(datastripService.exists(any())).thenReturn(true);
         when(datastripService.read(any())).thenReturn(waitingDatastrip);
         when(datastripService.update(any())).thenReturn(waitingDatastrip);
-        when(l1sPreparationProperties.getL0GRBucket()).thenReturn("bucket");
+        when(bucketProperties.getL0GRBucket()).thenReturn("bucket");
         when(obsService.exists(anyString(), eq(missingGR))).thenReturn(missingAvailableByGR);
         // When
         datastripManagementService.updateGRComplete(DATASTRIP_NAME);

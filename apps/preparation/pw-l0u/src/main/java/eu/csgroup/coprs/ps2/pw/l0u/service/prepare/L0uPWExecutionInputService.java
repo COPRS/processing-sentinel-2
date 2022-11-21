@@ -4,8 +4,8 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
-import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,12 @@ public class L0uPWExecutionInputService implements PWExecutionInputService<L0uEx
 
     private final CatalogService catalogService;
     private final L0uJobOrderService jobOrderService;
-    private final L0uPreparationProperties l0uPreparationProperties;
+    private final ObsBucketProperties bucketProperties;
 
-    public L0uPWExecutionInputService(CatalogService catalogService, L0uJobOrderService jobOrderService, L0uPreparationProperties l0uPreparationProperties) {
+    public L0uPWExecutionInputService(CatalogService catalogService, L0uJobOrderService jobOrderService, ObsBucketProperties bucketProperties) {
         this.catalogService = catalogService;
         this.jobOrderService = jobOrderService;
-        this.l0uPreparationProperties = l0uPreparationProperties;
+        this.bucketProperties = bucketProperties;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class L0uPWExecutionInputService implements PWExecutionInputService<L0uEx
         return catalogService.retrieveSessionData(sessionName)
                 .stream()
                 .map(sessionCatalogData -> new FileInfo()
-                        .setBucket(l0uPreparationProperties.getCaduBucket())
+                        .setBucket(bucketProperties.getSessionBucket())
                         .setKey(sessionCatalogData.getKeyObjectStorage())
                         .setProductFamily(ProductFamily.EDRS_SESSION)
                         .setSimpleFile(true))

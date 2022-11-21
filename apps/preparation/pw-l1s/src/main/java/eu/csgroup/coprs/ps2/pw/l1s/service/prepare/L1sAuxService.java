@@ -8,9 +8,10 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.Band;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
-import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sAuxFile;
+import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +30,12 @@ public class L1sAuxService {
 
     private final CatalogService catalogService;
     private final L1sPreparationProperties l1sPreparationProperties;
+    private final ObsBucketProperties bucketProperties;
 
-    public L1sAuxService(CatalogService catalogService, L1sPreparationProperties l1sPreparationProperties) {
+    public L1sAuxService(CatalogService catalogService, L1sPreparationProperties l1sPreparationProperties, ObsBucketProperties bucketProperties) {
         this.catalogService = catalogService;
         this.l1sPreparationProperties = l1sPreparationProperties;
+        this.bucketProperties = bucketProperties;
     }
 
     public Map<L1sAuxFile, List<FileInfo>> getAux(L1sDatastrip datastrip) {
@@ -64,7 +67,7 @@ public class L1sAuxService {
 
                         .orElseThrow(() -> new AuxQueryException("No AUX file of type " + productType.name() + " found for Datastrip " + datastrip.getName()));
         return new FileInfo()
-                .setBucket(l1sPreparationProperties.getAuxBucket())
+                .setBucket(bucketProperties.getAuxBucket())
                 .setKey(auxCatalogData.getKeyObjectStorage())
                 .setLocalPath(auxPath.resolve(auxFile.getFolder().getPath()).toString())
                 .setLocalName(auxCatalogData.getProductName())

@@ -6,6 +6,7 @@ import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DatastripUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
 import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
@@ -34,11 +35,15 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
     private final L1sPreparationProperties l1sPreparationProperties;
     private final ObsService obsService;
+    private final ObsBucketProperties bucketProperties;
 
-    public L1sDatastripManagementService(CatalogService catalogService, L1sDatastripService itemService, L1sPreparationProperties l1sPreparationProperties, ObsService obsService) {
+    public L1sDatastripManagementService(CatalogService catalogService, L1sDatastripService itemService, L1sPreparationProperties l1sPreparationProperties, ObsService obsService,
+            ObsBucketProperties bucketProperties
+    ) {
         super(catalogService, itemService);
         this.l1sPreparationProperties = l1sPreparationProperties;
         this.obsService = obsService;
+        this.bucketProperties = bucketProperties;
     }
 
 
@@ -77,7 +82,7 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
             obsService.download(Set.of(
                     new FileInfo()
-                            .setBucket(l1sPreparationProperties.getL0DSBucket())
+                            .setBucket(bucketProperties.getL0DSBucket())
                             .setObsURL(storagePath)
                             .setLocalName(datastripName)
                             .setLocalPath(dsFolderPath.toString())));
@@ -116,7 +121,7 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
                 log.info("Datastrip {} is missing {} GR out of {}", datastripName, missingGR.size(), availableByGR.size());
 
-                final Map<String, Boolean> missingAvailableByGR = obsService.exists(l1sPreparationProperties.getL0GRBucket(), missingGR);
+                final Map<String, Boolean> missingAvailableByGR = obsService.exists(bucketProperties.getL0GRBucket(), missingGR);
 
                 log.info("Found {} newly available GR", missingAvailableByGR.entrySet().stream().filter(Map.Entry::getValue).count());
 

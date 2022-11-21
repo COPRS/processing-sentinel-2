@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,14 +24,14 @@ class L0cAuxServiceTest extends AbstractTest {
     @Mock
     private CatalogService catalogService;
     @Mock
-    private L0cPreparationProperties l0cPreparationProperties;
+    private ObsBucketProperties bucketProperties;
 
     @InjectMocks
     private L0cAuxService auxService;
 
     @Override
     public void setup() throws Exception {
-        auxService = new L0cAuxService(catalogService, l0cPreparationProperties);
+        auxService = new L0cAuxService(catalogService, bucketProperties);
     }
 
     @Override

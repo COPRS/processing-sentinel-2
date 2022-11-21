@@ -6,8 +6,8 @@ import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.AuxValue;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 public class L0uAuxService {
 
     private final CatalogService catalogService;
-    private final L0uPreparationProperties l0uPreparationProperties;
+    private final ObsBucketProperties bucketProperties;
     private final ObsService obsService;
 
-    public L0uAuxService(CatalogService catalogService, L0uPreparationProperties l0uPreparationProperties, ObsService obsService) {
+    public L0uAuxService(CatalogService catalogService, ObsBucketProperties bucketProperties, ObsService obsService) {
         this.catalogService = catalogService;
-        this.l0uPreparationProperties = l0uPreparationProperties;
+        this.bucketProperties = bucketProperties;
         this.obsService = obsService;
     }
 
@@ -77,7 +77,7 @@ public class L0uAuxService {
         obsService.download(keyByAuxValue.values()
                 .stream()
                 .map(key -> new FileInfo()
-                        .setBucket(l0uPreparationProperties.getAuxBucket())
+                        .setBucket(bucketProperties.getAuxBucket())
                         .setKey(key)
                         .setLocalName(key)
                         .setLocalPath(tmpFolder))

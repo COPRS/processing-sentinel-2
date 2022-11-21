@@ -8,11 +8,6 @@ import lombok.Setter;
 public class L1ExecutionProperties {
 
     /**
-     * Name of the OBS bucket containing AUX files
-     */
-    private String auxBucket;
-
-    /**
      * Path to the root of the filesystem shared between L1 containers
      */
     private String sharedFolderRoot;
@@ -26,21 +21,6 @@ public class L1ExecutionProperties {
      * Path to the root of the filesystem containing GRID files
      */
     private String gridFolderRoot;
-
-    /**
-     * Name of the OBS bucket containing L1 DS files
-     */
-    private String l1DSBucket;
-
-    /**
-     * Name of the OBS bucket containing L1 GR files
-     */
-    private String l1GRBucket;
-
-    /**
-     * Name of the OBS bucket containing L1 TL files
-     */
-    private String l1TLBucket;
 
     /**
      * Maximum number of parallel processing tasks

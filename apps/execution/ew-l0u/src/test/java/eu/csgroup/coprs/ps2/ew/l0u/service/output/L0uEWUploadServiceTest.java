@@ -5,9 +5,9 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.doThrow;
 class L0uEWUploadServiceTest extends AbstractTest {
 
     @Mock
-    private L0uExecutionProperties l0uExecutionProperties;
+    private ObsBucketProperties bucketProperties;
     @Mock
     private ObsService obsService;
 
@@ -37,7 +37,7 @@ class L0uEWUploadServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        l0uEWUploadService = new L0uEWUploadService(l0uExecutionProperties, obsService);
+        l0uEWUploadService = new L0uEWUploadService(bucketProperties, obsService);
     }
 
     @Override

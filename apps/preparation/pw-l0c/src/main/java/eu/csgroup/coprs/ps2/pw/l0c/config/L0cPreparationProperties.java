@@ -27,9 +27,4 @@ public class L0cPreparationProperties implements PWProperties {
      */
     private String globeFolderName = "S2IPF-DEMGLOBE";
 
-    /**
-     * Bucket where AUX files are stored
-     */
-    private String auxBucket;
-
 }

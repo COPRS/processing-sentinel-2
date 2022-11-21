@@ -4,11 +4,11 @@ import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.ew.l0c.config.L0cExecutionProperties;
 import eu.csgroup.coprs.ps2.ew.l0c.settings.L0cFolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,11 +22,11 @@ import java.util.stream.Collectors;
 @Service
 public class L0cEWUploadService extends EWUploadService<L0cExecutionInput> {
 
-    private final L0cExecutionProperties l0cExecutionProperties;
+    private final ObsBucketProperties bucketProperties;
     private final ObsService obsService;
 
-    public L0cEWUploadService(L0cExecutionProperties l0cExecutionProperties, ObsService obsService) {
-        this.l0cExecutionProperties = l0cExecutionProperties;
+    public L0cEWUploadService(ObsBucketProperties bucketProperties, ObsService obsService) {
+        this.bucketProperties = bucketProperties;
         this.obsService = obsService;
     }
 
@@ -48,8 +48,8 @@ public class L0cEWUploadService extends EWUploadService<L0cExecutionInput> {
             log.info("Found {} DS files", dsFolders.size());
             log.info("Found {} GR files", grFolders.size());
 
-            fileInfosByFamily.put(ProductFamily.S2_L0_DS, getFileInfoSet(dsFolders, l0cExecutionProperties.getDsUploadBucket()));
-            fileInfosByFamily.put(ProductFamily.S2_L0_GR, getFileInfoSet(grFolders, l0cExecutionProperties.getGrUploadBucket()));
+            fileInfosByFamily.put(ProductFamily.S2_L0_DS, getFileInfoSet(dsFolders, bucketProperties.getL0DSBucket()));
+            fileInfosByFamily.put(ProductFamily.S2_L0_GR, getFileInfoSet(grFolders, bucketProperties.getL0GRBucket()));
 
             obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
 

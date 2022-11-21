@@ -12,16 +12,6 @@ import org.springframework.context.annotation.Configuration;
 public class L0uExecutionProperties {
 
     /**
-     * Name of the OBS bucket to upload L0U SAD files to
-     */
-    private String sadUploadBucket;
-
-    /**
-     * Name of the OBS bucket to upload L0U HKTM files to
-     */
-    private String hktmUploadBucket;
-
-    /**
      * Folder to store produced DS/GR. Mount-point to shared disk.
      */
     private String outputFolderRoot = "/output";

@@ -4,6 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
@@ -25,10 +26,12 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
 
     private final L1sPreparationProperties l1sPreparationProperties;
     private final L1sAuxService auxService;
+    private final ObsBucketProperties bucketProperties;
 
-    public L1sPWExecutionInputService(L1sPreparationProperties l1sPreparationProperties, L1sAuxService auxService) {
+    public L1sPWExecutionInputService(L1sPreparationProperties l1sPreparationProperties, L1sAuxService auxService, ObsBucketProperties bucketProperties) {
         this.l1sPreparationProperties = l1sPreparationProperties;
         this.auxService = auxService;
+        this.bucketProperties = bucketProperties;
     }
 
     @Override
@@ -86,7 +89,7 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
         return datastrip.getAvailableByGR().keySet()
                 .stream()
                 .map(gr -> new FileInfo()
-                        .setBucket(l1sPreparationProperties.getL0GRBucket())
+                        .setBucket(bucketProperties.getL0GRBucket())
                         .setObsName(gr)
                         .setLocalPath(dsPath.toString())
                         .setLocalName(gr)

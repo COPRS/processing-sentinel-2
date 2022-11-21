@@ -5,8 +5,8 @@ import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.AuxValue;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -45,7 +45,7 @@ class L0uAuxServiceTest extends AbstractTest {
     @Mock
     private CatalogService catalogService;
     @Mock
-    private L0uPreparationProperties l0uPreparationProperties;
+    private ObsBucketProperties bucketProperties;
     @Mock
     private ObsService obsService;
 
@@ -54,7 +54,7 @@ class L0uAuxServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        auxService = new L0uAuxService(catalogService, l0uPreparationProperties, obsService);
+        auxService = new L0uAuxService(catalogService, bucketProperties, obsService);
         FileSystemUtils.copyRecursively(AUX_PATH, TMP_PATH);
     }
 
@@ -68,7 +68,7 @@ class L0uAuxServiceTest extends AbstractTest {
 
         // Given
         mockCatalog();
-        when(l0uPreparationProperties.getAuxBucket()).thenReturn("bucket");
+        when(bucketProperties.getAuxBucket()).thenReturn("bucket");
 
         try (MockedStatic<UUID> uuidMockedStatic = Mockito.mockStatic(UUID.class)) {
             uuidMockedStatic.when(UUID::randomUUID).thenReturn(AUX_UID);

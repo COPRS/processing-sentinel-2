@@ -21,14 +21,4 @@ public class L0cExecutionProperties {
      */
     private String demFolderRoot = "/dem";
 
-    /**
-     * Name of the OBS bucket to upload DS L0C products to
-     */
-    private String dsUploadBucket;
-
-    /**
-     * Name of the OBS bucket to upload GR L0C products to
-     */
-    private String grUploadBucket;
-
 }

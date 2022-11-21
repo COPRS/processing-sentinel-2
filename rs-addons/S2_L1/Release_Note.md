@@ -21,7 +21,7 @@
         * [Preparation workers](#preparation-workers)
         * [Execution workers](#execution-workers)
 
-<!-- TOC -->[//]: # (TODO TOC)
+<!-- TOC -->
 
 ## Prerequisites
 
@@ -133,6 +133,15 @@ _Apps_: pw-l1s, ew-l1ab, ew-l1c
 | maxConcurrency  | Maximum number of concurrent network connections |                            50                            |
 | maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |
 | minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |
+| auxBucket       | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
+| sessionBucket   | Bucket where sessions files are stored           |                     rs-session-files                     |
+| sadBucket       | Name of the OBS bucket containing SAD files      |                        rs-s2-aux                         |
+| hktmBucket      | Name of the OBS bucket containing HKTM files     |                        rs-s2-hktm                        |
+| l0DSBucket      | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
+| l0GRBucket      | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
+| l1DSBucket      | Name of the OBS bucket containing L1 DS files    |                         rs-s2-l1                         |
+| l1GRBucket      | Name of the OBS bucket containing L1 GR files    |                         rs-s2-l1                         |
+| l1TLBucket      | Name of the OBS bucket containing L1 TL files    |                         rs-s2-l1                         |
 
 ### Cleanup setting
 
@@ -200,45 +209,18 @@ _Apps_: pw-l1s, pw-l1c
 
 | Property                       | Description                                    |  Default  |
 |--------------------------------|------------------------------------------------|:---------:|
-| app.pw-l1s.pw.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.pw-l1s.pw.l0DSBucket       | Name of the OBS bucket containing L0c DS files | rs-s2-l0c |
-| app.pw-l1s.pw.l0GRBucket       | Name of the OBS bucket containing L0c GR files | rs-s2-l0c |
 | app.pw-l1s.pw.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
 
 ### Execution workers
 
-_Prefix_: app.&lt;APP&gt;  
+_Prefix_: app.&lt;APP&gt.ew;  
 _Apps_: ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c
 
-| Property                        | Description                                    |  Default  |
-|---------------------------------|------------------------------------------------|:---------:|
-||||
-| app.ew-l1sa.ew.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1sa.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1sa.ew.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1sa.ew.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1sa.ew.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
-||||
-| app.ew-l1sb.ew.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1sb.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1sb.ew.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1sb.ew.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1sb.ew.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
-||||
-| app.ew-l1ab.ew.auxBucket        | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1ab.ew.l1DSBucket       | Name of the OBS bucket to store L1ab DS files  | rs-s2-l1  |
-| app.ew-l1ab.ew.l1GRBucket       | Name of the OBS bucket to store L1ab GR files  | rs-s2-l1  |
-| app.ew-l1ab.ew.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1ab.ew.demFolderRoot    | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1ab.ew.gridFolderRoot   | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1ab.ew.maxParallelTasks | Maximum number of parallel processing tasks    |     8     |
-||||
-| app.ew-l1c.ew.auxBucket         | Name of the OBS bucket containing AUX files    | rs-s2-aux |
-| app.ew-l1c.ew.l1DSBucket        | Name of the OBS bucket to store L1c DS files   | rs-s2-l1  |
-| app.ew-l1c.ew.l1TLBucket        | Name of the OBS bucket to store L1c TL files   | rs-s2-l1  |
-| app.ew-l1c.ew.sharedFolderRoot  | Path to the shared folder for L1 working files |  /shared  |
-| app.ew-l1c.ew.demFolderRoot     | Path to the folder for DEM files               |   /dem    |
-| app.ew-l1c.ew.gridFolderRoot    | Path to the folder for GRID files              |   /grid   |
-| app.ew-l1c.ew.maxParallelTasks  | Maximum number of parallel processing tasks    |     8     |
+| Property         | Description                                    | Default |
+|------------------|------------------------------------------------|:-------:|
+| sharedFolderRoot | Path to the shared folder for L1 working files | /shared |
+| demFolderRoot    | Path to the folder for DEM files               |  /dem   |
+| gridFolderRoot   | Path to the folder for GRID files              |  /grid  |
+| maxParallelTasks | Maximum number of parallel processing tasks    |    8    |
 
 ----

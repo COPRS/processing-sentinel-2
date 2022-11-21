@@ -7,7 +7,7 @@ import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Band;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import lombok.extern.slf4j.Slf4j;
@@ -25,11 +25,11 @@ import java.util.stream.Collectors;
 public class L0cAuxService {
 
     private final CatalogService catalogService;
-    private final L0cPreparationProperties l0cPreparationProperties;
+    private final ObsBucketProperties bucketProperties;
 
-    public L0cAuxService(CatalogService catalogService, L0cPreparationProperties l0cPreparationProperties) {
+    public L0cAuxService(CatalogService catalogService, ObsBucketProperties bucketProperties) {
         this.catalogService = catalogService;
-        this.l0cPreparationProperties = l0cPreparationProperties;
+        this.bucketProperties = bucketProperties;
     }
 
     public Map<L0cAuxFile, List<FileInfo>> getAux(L0cDatastrip datastrip) {
@@ -60,7 +60,7 @@ public class L0cAuxService {
                         .orElseThrow(() -> new AuxQueryException("No AUX file of type " + productType.name() + " found for Datastrip " + datastrip.getName()));
 
         return new FileInfo()
-                .setBucket(l0cPreparationProperties.getAuxBucket())
+                .setBucket(bucketProperties.getAuxBucket())
                 .setKey(auxCatalogData.getKeyObjectStorage())
                 .setLocalPath(auxFile.getFolder().getPath() + "/" + productType)
                 .setLocalName(auxCatalogData.getProductName())

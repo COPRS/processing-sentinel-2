@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l1s.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.processing.DatatakeType;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
@@ -9,7 +10,6 @@ import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
-import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastripEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -33,15 +33,15 @@ import java.util.stream.Stream;
 @Transactional
 public class L1sDatastripManagementService extends PWItemManagementService<L1sDatastrip, L1sDatastripEntity, L1sDatastripService> {
 
-    private final L1sPreparationProperties l1sPreparationProperties;
+    private final SharedProperties sharedProperties;
     private final ObsService obsService;
     private final ObsBucketProperties bucketProperties;
 
-    public L1sDatastripManagementService(CatalogService catalogService, L1sDatastripService itemService, L1sPreparationProperties l1sPreparationProperties, ObsService obsService,
+    public L1sDatastripManagementService(CatalogService catalogService, L1sDatastripService itemService, SharedProperties sharedProperties, ObsService obsService,
             ObsBucketProperties bucketProperties
     ) {
         super(catalogService, itemService);
-        this.l1sPreparationProperties = l1sPreparationProperties;
+        this.sharedProperties = sharedProperties;
         this.obsService = obsService;
         this.bucketProperties = bucketProperties;
     }
@@ -75,7 +75,7 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
             log.info("Creating Datastrip entry for {}", datastripName);
 
             final String datastripFolder = UUID.randomUUID().toString();
-            final Path datastripFolderPath = Paths.get(l1sPreparationProperties.getSharedFolderRoot()).resolve(datastripFolder);
+            final Path datastripFolderPath = Paths.get(sharedProperties.getSharedFolderRoot()).resolve(datastripFolder);
             final Path dsFolderPath = datastripFolderPath.resolve(L1Parameters.INPUT_FOLDER).resolve(L1Parameters.DS_FOLDER);
 
             createSharedFolders(datastripFolderPath);

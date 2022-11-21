@@ -1,10 +1,10 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
-import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
@@ -20,10 +20,10 @@ import java.util.UUID;
 @Component
 public class L0uEWCopyService {
 
-    private final L0uExecutionProperties l0uExecutionProperties;
+    private final SharedProperties sharedProperties;
 
-    public L0uEWCopyService(L0uExecutionProperties l0uExecutionProperties) {
-        this.l0uExecutionProperties = l0uExecutionProperties;
+    public L0uEWCopyService(SharedProperties sharedProperties) {
+        this.sharedProperties = sharedProperties;
     }
 
     public String copy() {
@@ -31,7 +31,7 @@ public class L0uEWCopyService {
         log.info("Copying output files to shared disk");
 
         final String uuid = UUID.randomUUID().toString();
-        final Path destPath = Paths.get(l0uExecutionProperties.getOutputFolderRoot(), uuid);
+        final Path destPath = Paths.get(sharedProperties.getSharedFolderRoot(), uuid);
         final Path rootPath = Paths.get(L0uFolderParameters.L0U_DUMP_PATH);
 
         final List<Path> dtFolders = FileOperationUtils.findFolders(rootPath, S2FileParameters.DT_REGEX);

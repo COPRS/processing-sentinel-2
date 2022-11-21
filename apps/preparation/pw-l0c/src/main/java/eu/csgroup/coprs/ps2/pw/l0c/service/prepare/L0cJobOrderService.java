@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cJobOrderFields;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
@@ -10,7 +11,6 @@ import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.TemplateUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import eu.csgroup.coprs.ps2.pw.l0c.settings.PWL0cTask;
@@ -32,20 +32,20 @@ public class L0cJobOrderService {
 
     private String demFolder;
 
-    private final L0cPreparationProperties l0cPreparationProperties;
+    private final SharedProperties sharedProperties;
     private final ObsService obsService;
 
-    public L0cJobOrderService(L0cPreparationProperties l0cPreparationProperties, ObsService obsService) {
-        this.l0cPreparationProperties = l0cPreparationProperties;
+    public L0cJobOrderService(SharedProperties sharedProperties, ObsService obsService) {
+        this.sharedProperties = sharedProperties;
         this.obsService = obsService;
     }
 
     @PostConstruct
     public void setup() {
-        final String demFolderRoot = l0cPreparationProperties.getDemFolderRoot();
-        final String globeFolderName = l0cPreparationProperties.getGlobeFolderName();
+        final String demFolderRoot = sharedProperties.getDemFolderRoot();
+        final String globeFolderName = sharedProperties.getGlobeFolderName();
         demFolder = Paths.get(demFolderRoot, globeFolderName).toString();
-        log.info("Set up JobOrderService with L0U DUMP location: {} and DEM location: {}", l0cPreparationProperties.getInputFolderRoot(), demFolder);
+        log.info("Set up JobOrderService with L0U DUMP location: {} and DEM location: {}", sharedProperties.getSharedFolderRoot(), demFolder);
     }
 
     public Map<String, Map<String, String>> create(L0cDatastrip datastrip, Map<L0cAuxFile, List<FileInfo>> auxFilesByType) {

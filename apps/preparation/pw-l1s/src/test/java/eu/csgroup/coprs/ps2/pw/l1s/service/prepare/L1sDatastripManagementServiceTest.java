@@ -1,12 +1,12 @@
 package eu.csgroup.coprs.ps2.pw.l1s.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
     @Mock
     private L1sDatastripService datastripService;
     @Mock
-    private L1sPreparationProperties l1sPreparationProperties;
+    private SharedProperties sharedProperties;
     @Mock
     private ObsService obsService;
     @Mock
@@ -83,7 +83,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
         deletableDatastripList = List.of(deletableDatastrip);
         missingAuxDatastripList = List.of(missingAuxDatastrip);
 
-        datastripManagementService = new L1sDatastripManagementService(catalogService, datastripService, l1sPreparationProperties, obsService, bucketProperties);
+        datastripManagementService = new L1sDatastripManagementService(catalogService, datastripService, sharedProperties, obsService, bucketProperties);
     }
 
     @Override
@@ -108,7 +108,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
     @Test
     void create() throws IOException {
         // Given
-        when(l1sPreparationProperties.getSharedFolderRoot()).thenReturn("/tmp");
+        when(sharedProperties.getSharedFolderRoot()).thenReturn("/tmp");
         when(datastripService.create(any(), any(), any(), any(), any(), any(), any())).thenReturn(new L1sDatastrip());
         try (MockedStatic<UUID> uuidMockedStatic = Mockito.mockStatic(UUID.class)) {
             uuidMockedStatic.when(UUID::randomUUID).thenReturn(AUX_UID);

@@ -213,7 +213,7 @@ _Apps_: pw-l1s, pw-l1c
 
 ### Execution workers
 
-_Prefix_: app.&lt;APP&gt.ew;  
+_Prefix_: app.&lt;APP&gt;.ps2;  
 _Apps_: ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c
 
 | Property         | Description                                    | Default |

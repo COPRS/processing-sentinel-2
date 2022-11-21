@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
@@ -10,7 +11,6 @@ import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWMessageService;
-import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Path;
@@ -23,10 +23,10 @@ import java.util.stream.Collectors;
 @Component
 public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
 
-    private final L0uExecutionProperties executionProperties;
+    private final SharedProperties sharedProperties;
 
-    public L0uEWMessageService(L0uExecutionProperties executionProperties) {
-        this.executionProperties = executionProperties;
+    public L0uEWMessageService(SharedProperties sharedProperties) {
+        this.sharedProperties = sharedProperties;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
     }
 
     private Set<String> getCustomOutputs(String outputFolder) {
-        final Path l0uPath = Paths.get(executionProperties.getOutputFolderRoot(), outputFolder);
+        final Path l0uPath = Paths.get(sharedProperties.getSharedFolderRoot(), outputFolder);
         return FileOperationUtils.findFolders(l0uPath, S2FileParameters.DT_REGEX)
                 .stream()
                 .map(path -> FileOperationUtils.findFolders(path.resolve("DS"), S2FileParameters.L0U_DS_REGEX))

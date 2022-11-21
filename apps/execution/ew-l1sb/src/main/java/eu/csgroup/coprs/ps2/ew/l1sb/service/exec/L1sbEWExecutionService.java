@@ -1,11 +1,11 @@
 package eu.csgroup.coprs.ps2.ew.l1sb.service.exec;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.l1.L1EWExecutionService;
 import eu.csgroup.coprs.ps2.core.ew.settings.L1EWParameters;
-import eu.csgroup.coprs.ps2.ew.l1sb.config.L1sbExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,8 @@ import java.util.UUID;
 @Service
 public class L1sbEWExecutionService extends L1EWExecutionService<L1ExecutionInput> {
 
-    public L1sbEWExecutionService(L1sbExecutionProperties executionProperties) {
-        super(executionProperties);
+    public L1sbEWExecutionService(SharedProperties sharedProperties) {
+        super(sharedProperties);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class L1sbEWExecutionService extends L1EWExecutionService<L1ExecutionInpu
         // Mode depends on whether we need the Grid files or not
         Path gridFileListPath = Paths.get(executionInput.getOutputFolder(), L1EWParameters.GRI_FILE_LIST_PATH);
         OrchestratorMode nextMode = FileContentUtils.grepAll(gridFileListPath, "<GRI_").isEmpty() ? OrchestratorMode.L1B_NO_GRI : OrchestratorMode.L1B;
-        runMode(executionInput, parentTaskUid, nextMode, executionProperties);
+        runMode(executionInput, parentTaskUid, nextMode);
 
         log.info("Finished L1s processing");
     }

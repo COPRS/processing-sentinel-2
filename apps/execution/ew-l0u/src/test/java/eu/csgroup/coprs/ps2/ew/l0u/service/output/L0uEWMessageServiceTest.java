@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
@@ -7,7 +8,6 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
-import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
@@ -27,14 +27,14 @@ import static org.mockito.Mockito.when;
 class L0uEWMessageServiceTest extends AbstractTest {
 
     @Mock
-    private L0uExecutionProperties executionProperties;
+    private SharedProperties sharedProperties;
 
     private L0uEWMessageService l0uEWMessageService;
 
     @Override
     public void setup() throws Exception {
-        l0uEWMessageService = new L0uEWMessageService(executionProperties);
-        when(executionProperties.getOutputFolderRoot()).thenReturn("foo");
+        l0uEWMessageService = new L0uEWMessageService(sharedProperties);
+        when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
     }
 
     @Override

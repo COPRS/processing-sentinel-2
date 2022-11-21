@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l1s.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.exception.AuxQueryException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
@@ -9,7 +10,6 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
-import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sAuxFile;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import lombok.extern.slf4j.Slf4j;
@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 public class L1sAuxService {
 
     private final CatalogService catalogService;
-    private final L1sPreparationProperties l1sPreparationProperties;
+    private final SharedProperties sharedProperties;
     private final ObsBucketProperties bucketProperties;
 
-    public L1sAuxService(CatalogService catalogService, L1sPreparationProperties l1sPreparationProperties, ObsBucketProperties bucketProperties) {
+    public L1sAuxService(CatalogService catalogService, SharedProperties sharedProperties, ObsBucketProperties bucketProperties) {
         this.catalogService = catalogService;
-        this.l1sPreparationProperties = l1sPreparationProperties;
+        this.sharedProperties = sharedProperties;
         this.bucketProperties = bucketProperties;
     }
 
@@ -59,7 +59,7 @@ public class L1sAuxService {
 
     private FileInfo getFileInfo(L1sAuxFile auxFile, L1sDatastrip datastrip, String bandIndexId) {
 
-        final Path auxPath = Paths.get(l1sPreparationProperties.getSharedFolderRoot(), datastrip.getFolder(), L1Parameters.AUX_FOLDER);
+        final Path auxPath = Paths.get(sharedProperties.getSharedFolderRoot(), datastrip.getFolder(), L1Parameters.AUX_FOLDER);
         final AuxProductType productType = auxFile.getAuxProductType();
 
         final AuxCatalogData auxCatalogData =

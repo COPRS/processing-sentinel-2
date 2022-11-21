@@ -1,9 +1,9 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
-import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -23,14 +23,14 @@ import static org.mockito.Mockito.when;
 class L0uEWCopyServiceTest extends AbstractTest {
 
     @Mock
-    private L0uExecutionProperties l0uExecutionProperties;
+    private SharedProperties sharedProperties;
 
     @InjectMocks
     private L0uEWCopyService copyService;
 
     @Override
     public void setup() throws Exception {
-        copyService = new L0uEWCopyService(l0uExecutionProperties);
+        copyService = new L0uEWCopyService(sharedProperties);
     }
 
     @Override
@@ -42,7 +42,7 @@ class L0uEWCopyServiceTest extends AbstractTest {
     void copy() {
 
         // Given
-        when(l0uExecutionProperties.getOutputFolderRoot()).thenReturn("foo");
+        when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
 
         try (
                 MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
@@ -65,7 +65,7 @@ class L0uEWCopyServiceTest extends AbstractTest {
     void copy_error() {
 
         // Given
-        when(l0uExecutionProperties.getOutputFolderRoot()).thenReturn("foo");
+        when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
 
         try (
                 MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);

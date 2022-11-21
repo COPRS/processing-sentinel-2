@@ -1,12 +1,12 @@
 package eu.csgroup.coprs.ps2.pw.l1s.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
-import eu.csgroup.coprs.ps2.pw.l1s.config.L1sPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,12 +24,12 @@ import java.util.stream.Collectors;
 @Service
 public class L1sPWExecutionInputService implements PWExecutionInputService<L1ExecutionInput, L1sDatastrip> {
 
-    private final L1sPreparationProperties l1sPreparationProperties;
+    private final SharedProperties sharedProperties;
     private final L1sAuxService auxService;
     private final ObsBucketProperties bucketProperties;
 
-    public L1sPWExecutionInputService(L1sPreparationProperties l1sPreparationProperties, L1sAuxService auxService, ObsBucketProperties bucketProperties) {
-        this.l1sPreparationProperties = l1sPreparationProperties;
+    public L1sPWExecutionInputService(SharedProperties sharedProperties, L1sAuxService auxService, ObsBucketProperties bucketProperties) {
+        this.sharedProperties = sharedProperties;
         this.auxService = auxService;
         this.bucketProperties = bucketProperties;
     }
@@ -40,7 +40,7 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
         log.info("Creating output payload for all ready Datastrips ({})", itemList.size());
 
         final List<L1sDatastrip> eligibleDatastrips = itemList.stream()
-                .filter(datastrip -> datastrip.getAvailableByGR().size() >= l1sPreparationProperties.getMinGrRequired())
+                .filter(datastrip -> datastrip.getAvailableByGR().size() >= sharedProperties.getMinGrRequired())
                 .toList();
 
         final List<L1ExecutionInput> l1ExecutionInputs = eligibleDatastrips.stream()
@@ -56,7 +56,7 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
 
         log.info("Building execution input for Datastrip {}", datastrip.getName());
 
-        final Path rootPath = Paths.get(l1sPreparationProperties.getSharedFolderRoot(), datastrip.getFolder());
+        final Path rootPath = Paths.get(sharedProperties.getSharedFolderRoot(), datastrip.getFolder());
         final Path inputPath = rootPath.resolve(L1Parameters.INPUT_FOLDER);
 
         final L1ExecutionInput executionInput = new L1ExecutionInput();

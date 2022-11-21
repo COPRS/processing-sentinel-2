@@ -74,27 +74,27 @@ _Prefix_: deployer.*.kubernetes
 _Prefix_: deployer.&lt;APP&gt;.kubernetes  
 _Apps_: pw-l0u, ew-l0u
 
-| Property                         | Description                            |      Default (pw-l0u)      |                                               Default (ew-l0u)                                                |
-|----------------------------------|----------------------------------------|:--------------------------:|:-------------------------------------------------------------------------------------------------------------:|
-| liveness-probe-delay             | Probe delay for liveness (seconds)     |             10             |                                                      10                                                       |
-| liveness-probe-path              | Probe path for liveness                | /actuator/health/liveness  |                                           /actuator/health/liveness                                           |
-| liveness-probe-period            | Probe interval for liveness (seconds)  |             60             |                                                      60                                                       |
-| liveness-probe-port              | Port for liveness probe                |            8080            |                                                     8080                                                      |
-| liveness-probe-timeout           | Timeout for liveness (seconds)         |             60             |                                                      60                                                       |
-| max-terminated-error-restarts    | Max number of restarts on error        |             3              |                                                       3                                                       |
-| readiness-probe-delay            | Probe delay for readiness (seconds)    |             60             |                                                      60                                                       |
-| readiness-probe-path             | Probe path for readiness               | /actuator/health/readiness |                                          /actuator/health/readiness                                           |
-| readiness-probe-period           | Probe interval for readiness (seconds) |             60             |                                                      60                                                       |
-| readiness-probe-port             | Port for readiness probe               |            8080            |                                                     8080                                                      |
-| readiness-probe-timeout          | Timeout for readiness (seconds)        |             20             |                                                      20                                                       |
-| requests.memory                  | Memory requets                         |           2000Mi           |                                                    2000Mi                                                     |
-| requests.cpu                     | CPU request                            |            300m            |                                                     300m                                                      |
-| limits.memory                    | Memory limit                           |           4000Mi           |                                                    24000Mi                                                    |
-| limits.cpu                       | CPU limit                              |           2000m            |                                                     8000m                                                     |
-| secret-refs                      | Name of the secret to bind             |         s2-l0u-pw          |                                                   s2-l0u-ew                                                   |
-| pod-security-context.run-as-user | UID to run the app as                  |            1000            |                                                     1001                                                      |
-| volume-mounts                    | Volume mounts                          |             -              |                                  [ { name: output, mountPath: '/output' } ]                                   |
-| volumes                          | Volumes                                |             -              | [ { name: output, persistentVolumeClaim: <br/>{ claimName: 's2-l0u-output', storageClassName: 'ceph-fs' } } ] |
+| Property                         | Description                            |      Default (pw-l0u)      |                                               Default (ew-l0u)                                               |
+|----------------------------------|----------------------------------------|:--------------------------:|:------------------------------------------------------------------------------------------------------------:|
+| liveness-probe-delay             | Probe delay for liveness (seconds)     |             10             |                                                      10                                                      |
+| liveness-probe-path              | Probe path for liveness                | /actuator/health/liveness  |                                          /actuator/health/liveness                                           |
+| liveness-probe-period            | Probe interval for liveness (seconds)  |             60             |                                                      60                                                      |
+| liveness-probe-port              | Port for liveness probe                |            8080            |                                                     8080                                                     |
+| liveness-probe-timeout           | Timeout for liveness (seconds)         |             60             |                                                      60                                                      |
+| max-terminated-error-restarts    | Max number of restarts on error        |             3              |                                                      3                                                       |
+| readiness-probe-delay            | Probe delay for readiness (seconds)    |             60             |                                                      60                                                      |
+| readiness-probe-path             | Probe path for readiness               | /actuator/health/readiness |                                          /actuator/health/readiness                                          |
+| readiness-probe-period           | Probe interval for readiness (seconds) |             60             |                                                      60                                                      |
+| readiness-probe-port             | Port for readiness probe               |            8080            |                                                     8080                                                     |
+| readiness-probe-timeout          | Timeout for readiness (seconds)        |             20             |                                                      20                                                      |
+| requests.memory                  | Memory requets                         |           2000Mi           |                                                    2000Mi                                                    |
+| requests.cpu                     | CPU request                            |            300m            |                                                     300m                                                     |
+| limits.memory                    | Memory limit                           |           4000Mi           |                                                   24000Mi                                                    |
+| limits.cpu                       | CPU limit                              |           2000m            |                                                    8000m                                                     |
+| secret-refs                      | Name of the secret to bind             |         s2-l0u-pw          |                                                  s2-l0u-ew                                                   |
+| pod-security-context.run-as-user | UID to run the app as                  |            1000            |                                                     1001                                                     |
+| volume-mounts                    | Volume mounts                          |             -              |                                  [ { name: shared, mountPath: '/shared' } ]                                  |
+| volumes                          | Volumes                                |             -              | [ { name: shared, persistentVolumeClaim: <br/>{ claimName: 's2-l0-shared', storageClassName: 'ceph-fs' } } ] |
 
 ### Filter
 
@@ -202,9 +202,9 @@ _Prefix_: app.pw-l0u
 
 _Prefix_: app.ew-l0u
 
-| Property                | Description                                                             |  Default   |
-|-------------------------|-------------------------------------------------------------------------|:----------:|
-| spring.profiles.active  | Name of the profile to run with (prod or dev)                           |    prod    |
-| ew.l0u.outputFolderRoot | Path to the folder used as output for L0u files.<br/>Mount to shared fs |  /output   |
+| Property               | Description                                                             | Default |
+|------------------------|-------------------------------------------------------------------------|:-------:|
+| spring.profiles.active | Name of the profile to run with (prod or dev)                           |  prod   |
+| ps2.sharedFolderRoot   | Path to the folder used as output for L0u files.<br/>Mount to shared fs | /shared |
 
 ----

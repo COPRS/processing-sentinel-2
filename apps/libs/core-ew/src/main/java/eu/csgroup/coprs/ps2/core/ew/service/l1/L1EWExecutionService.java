@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.core.ew.service.l1;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.exception.ScriptExecutionException;
 import eu.csgroup.coprs.ps2.core.common.model.ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
@@ -10,7 +11,6 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ScriptUtils;
-import eu.csgroup.coprs.ps2.core.ew.config.L1ExecutionProperties;
 import eu.csgroup.coprs.ps2.core.ew.service.EWExecutionService;
 import eu.csgroup.coprs.ps2.core.ew.settings.L1EWParameters;
 import lombok.extern.slf4j.Slf4j;
@@ -22,13 +22,13 @@ import java.util.UUID;
 @Slf4j
 public abstract class L1EWExecutionService<T extends ExecutionInput> implements EWExecutionService<T> {
 
-    protected final L1ExecutionProperties executionProperties;
+    protected final SharedProperties sharedProperties;
 
-    protected L1EWExecutionService(L1ExecutionProperties executionProperties) {
-        this.executionProperties = executionProperties;
+    protected L1EWExecutionService(SharedProperties sharedProperties) {
+        this.sharedProperties = sharedProperties;
     }
 
-    protected void runMode(L1ExecutionInput executionInput, UUID parentTaskUid, OrchestratorMode mode, L1ExecutionProperties executionProperties) {
+    protected void runMode(L1ExecutionInput executionInput, UUID parentTaskUid, OrchestratorMode mode) {
 
         final String task = mode.getMode();
 
@@ -47,12 +47,12 @@ public abstract class L1EWExecutionService<T extends ExecutionInput> implements 
                     L1EWParameters.SCRIPT_NAME,
                     "-m", task,
                     "-a", executionInput.getAuxFolder(),
-                    "-s", executionProperties.getDemFolderRoot(),
-                    "-g", executionProperties.getGridFolderRoot(),
+                    "-s", sharedProperties.getDemFolderRoot(),
+                    "-g", sharedProperties.getGridFolderRoot(),
                     "-i", executionInput.getInputFolder(),
                     "-w", FolderParameters.WORKING_FOLDER_ROOT,
                     "-o", executionInput.getOutputFolder(),
-                    "-p", String.valueOf(executionProperties.getMaxParallelTasks()),
+                    "-p", String.valueOf(sharedProperties.getMaxParallelTasks()),
                     "--exeversionfile", L1EWParameters.VERSION_FILE
             ));
 

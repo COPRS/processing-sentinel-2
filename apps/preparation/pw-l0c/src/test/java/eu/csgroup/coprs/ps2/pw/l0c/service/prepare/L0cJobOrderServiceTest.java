@@ -1,9 +1,9 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -29,7 +29,7 @@ class L0cJobOrderServiceTest extends AbstractTest {
     private static final Path TMP_PATH = Paths.get(FolderParameters.TMP_DOWNLOAD_FOLDER, AUX_UID.toString());
 
     @Mock
-    private L0cPreparationProperties l0cPreparationProperties;
+    private SharedProperties sharedProperties;
     @Mock
     private ObsService obsService;
 
@@ -38,7 +38,7 @@ class L0cJobOrderServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        jobOrderService = new L0cJobOrderService(l0cPreparationProperties, obsService);
+        jobOrderService = new L0cJobOrderService(sharedProperties, obsService);
         FileSystemUtils.copyRecursively(AUX_PATH, TMP_PATH);
     }
 
@@ -50,8 +50,8 @@ class L0cJobOrderServiceTest extends AbstractTest {
     @Test
     void testSetup() throws IllegalAccessException {
         // Given
-        when(l0cPreparationProperties.getDemFolderRoot()).thenReturn(TestHelper.DEM_PATH);
-        when(l0cPreparationProperties.getGlobeFolderName()).thenReturn(TestHelper.DEM_NAME);
+        when(sharedProperties.getDemFolderRoot()).thenReturn(TestHelper.DEM_PATH);
+        when(sharedProperties.getGlobeFolderName()).thenReturn(TestHelper.DEM_NAME);
         // When
         jobOrderService.setup();
         // Then

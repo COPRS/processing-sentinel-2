@@ -1,8 +1,8 @@
 package eu.csgroup.coprs.ps2.ew.l1sa.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.ew.service.EWSetupService;
-import eu.csgroup.coprs.ps2.ew.l1sa.config.L1saExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +12,12 @@ public class L1saEWSetupService implements EWSetupService<L1ExecutionInput> {
 
     private final L1saEWCleanupService cleanupService;
     private final L1saEWDownloadService downloadService;
-    private final L1saExecutionProperties executionProperties;
+    private final SharedProperties sharedProperties;
 
-    public L1saEWSetupService(L1saEWCleanupService cleanupService, L1saEWDownloadService downloadService, L1saExecutionProperties executionProperties) {
+    public L1saEWSetupService(L1saEWCleanupService cleanupService, L1saEWDownloadService downloadService, SharedProperties sharedProperties) {
         this.cleanupService = cleanupService;
         this.downloadService = downloadService;
-        this.executionProperties = executionProperties;
+        this.sharedProperties = sharedProperties;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class L1saEWSetupService implements EWSetupService<L1ExecutionInput> {
 
         log.info("Starting setup ...");
 
-        cleanupService.cleanAndPrepare(executionProperties.getSharedFolderRoot());
+        cleanupService.cleanAndPrepare(sharedProperties.getSharedFolderRoot());
         downloadService.download(executionInput.getFiles());
 
         log.info("Finished setup.");

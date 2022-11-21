@@ -1,8 +1,8 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.ew.l0u.config.L0uExecutionProperties;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,14 +20,14 @@ class L0uEWSetupServiceTest extends AbstractTest {
     @Mock
     private L0uEWDownloadService downloadService;
     @Mock
-    private L0uExecutionProperties executionProperties;
+    private SharedProperties sharedProperties;
 
     @InjectMocks
     private L0uEWSetupService l0uEWSetupService;
 
     @Override
     public void setup() throws Exception {
-        l0uEWSetupService = new L0uEWSetupService(cleanupService, jobOrderService, downloadService, executionProperties);
+        l0uEWSetupService = new L0uEWSetupService(cleanupService, jobOrderService, downloadService, sharedProperties);
     }
 
     @Override
@@ -38,7 +38,7 @@ class L0uEWSetupServiceTest extends AbstractTest {
     @Test
     void testSetup() {
         // When
-        when(executionProperties.getOutputFolderRoot()).thenReturn("foo");
+        when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
         // When
         l0uEWSetupService.setup(new L0uExecutionInput());
         // Then

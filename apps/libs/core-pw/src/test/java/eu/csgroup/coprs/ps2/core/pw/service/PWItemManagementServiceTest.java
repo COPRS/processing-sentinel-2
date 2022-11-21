@@ -4,7 +4,6 @@ import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.core.pw.config.PWProperties;
 import eu.csgroup.coprs.ps2.core.pw.model.PWItem;
 import eu.csgroup.coprs.ps2.core.pw.model.helper.Item;
 import eu.csgroup.coprs.ps2.core.pw.model.helper.ItemEntity;
@@ -27,8 +26,6 @@ class PWItemManagementServiceTest extends AbstractTest {
 
     @Mock
     private CatalogService catalogService;
-    @Mock
-    private PWProperties pwProperties;
     @Mock
     private PWItemService<Item, ItemEntity> itemService;
 

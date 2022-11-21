@@ -1,9 +1,9 @@
 package eu.csgroup.coprs.ps2.ew.l1c.service.exec;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.ew.service.l1.L1EWExecutionService;
-import eu.csgroup.coprs.ps2.ew.l1c.config.L1cExecutionProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -18,8 +18,8 @@ public class L1cEWExecutionService extends L1EWExecutionService<L1ExecutionInput
     private static final List<OrchestratorMode> DS_TASKS = List.of(OrchestratorMode.OLQC_L1CDS);
     private static final List<OrchestratorMode> TL_TASKS = List.of(OrchestratorMode.L1C_TILE);
 
-    protected L1cEWExecutionService(L1cExecutionProperties executionProperties) {
-        super(executionProperties);
+    protected L1cEWExecutionService(SharedProperties sharedProperties) {
+        super(sharedProperties);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class L1cEWExecutionService extends L1EWExecutionService<L1ExecutionInput
 
         List<OrchestratorMode> tasks = StringUtils.hasText(executionInput.getTile()) ? TL_TASKS : DS_TASKS;
 
-        tasks.forEach(orchestratorMode -> runMode(executionInput, parentTaskUid, orchestratorMode, executionProperties));
+        tasks.forEach(orchestratorMode -> runMode(executionInput, parentTaskUid, orchestratorMode));
 
         log.info("Finished L1c processing");
     }

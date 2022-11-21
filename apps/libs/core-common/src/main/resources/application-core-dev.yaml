@@ -8,9 +8,17 @@ chain:
   name: s2-chain
   version: 1
 
+ps2:
+  sharedFolderRoot: "/shared"
+  demFolderRoot: "/dem"
+  globeFolderName: "S2IPF-DEMGLOBE"
+  gridFolderRoot: "/grid"
+  minGrRequired: 48
+  maxParallelTasks: 8
+
 spring:
-  #  kafka:
-  #    bootstrap-servers: localhost:9092
+  kafka:
+    bootstrap-servers: localhost:9092
   cloud:
     stream:
       #      function:
@@ -19,18 +27,21 @@ spring:
         binder:
           brokers: localhost:9092
           auto-create-topics: true
+          consumer-properties:
+            max.poll.interval.ms: 3600000
+            max.poll.records: 1
         bindings:
           input:
             consumer:
               enable-dlq: true
               dlq-name: error-warning
-              poll-timeout: 10
+              poll-timeout: 5
               ack-mode: record
       bindings:
         input:
           group: ${spring.application.name}
           consumer:
-            max-attempts: 3
+            max-attempts: 1
 
 management:
   endpoints:

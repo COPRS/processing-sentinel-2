@@ -111,19 +111,19 @@ _Prefix_: app.filter-input-l0c
 _Prefix_: app.&lt;APP&gt;.obs  
 _Apps_: pw-l0c, ew-l0c
 
-| Property        | Description                                      |                     Default (pw-l0c)                     |
-|-----------------|--------------------------------------------------|:--------------------------------------------------------:|
-| endpoint        | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
-| region          | OBS Region                                       |                        eu-west-0                         |
-| maxConcurrency  | Maximum number of concurrent network connections |                            50                            |
-| maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |
-| minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |
-| auxBucket       | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
-| sessionBucket   | Bucket where sessions files are stored           |                     rs-session-files                     |
-| sadBucket       | Name of the OBS bucket containing SAD files      |                        rs-s2-aux                         |
-| hktmBucket      | Name of the OBS bucket containing HKTM files     |                        rs-s2-hktm                        |
-| l0DSBucket      | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
-| l0GRBucket      | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
+| Property             | Description                                      |                     Default (pw-l0c)                     |
+|----------------------|--------------------------------------------------|:--------------------------------------------------------:|
+| endpoint             | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
+| region               | OBS Region                                       |                        eu-west-0                         |
+| maxConcurrency       | Maximum number of concurrent network connections |                            50                            |
+| maxThroughput        | Maximum throughput for OBS transfers (Gb)        |                            10                            |
+| minimumPartSize      | Minimum part size for multipart transfers (MB)   |                            5                             |
+| bucket.auxBucket     | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
+| bucket.sessionBucket | Bucket where sessions files are stored           |                     rs-session-files                     |
+| bucket.sadBucket     | Name of the OBS bucket containing SAD files      |                        rs-s2-aux                         |
+| bucket.hktmBucket    | Name of the OBS bucket containing HKTM files     |                        rs-s2-hktm                        |
+| bucket.l0DSBucket    | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
+| bucket.l0GRBucket    | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
 
 app.*.obs.l0DSBucket=rs-s2-l0c
 app.*.obs.l0GRBucket=rs-s2-l0c

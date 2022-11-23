@@ -10,6 +10,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.3.0-rc1] - 2022-11-23
+
+### Added
+
+- [#573 - Sentinel-2 Level 1 RS addon Execution Worker Shared Context](https://github.com/COPRS/rs-issues/issues/573)
+- [#574 - Sentinel-2 Level 1 RS addon Execution Worker L1AB](https://github.com/COPRS/rs-issues/issues/574)
+- [#576 - Sentinel-2 Level 1 RS addon Preparation Worker L1C](https://github.com/COPRS/rs-issues/issues/576)
+- [#575 - Sentinel-2 Level 1 RS addon Execution Worker L1C](https://github.com/COPRS/rs-issues/issues/575)
+- Documentation for Level 1 RS addon
+
+### Changed
+
+- Rework some rs-addon configuration parameters
+
+### Fixed
+
+- [#654 - S2a L0c Execution fails](https://github.com/COPRS/rs-issues/issues/654)
+- [#664 - L0u DS are missing in the END processing trace](https://github.com/COPRS/rs-issues/issues/664)
+
 ## [1.2.0-rc1] - 2022-10-25
 
 ### Added

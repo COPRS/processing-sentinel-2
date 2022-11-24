@@ -1,12 +1,12 @@
 {
-  "uid": "4f231b8a-da05-43ad-87ce-0755660b748e",
-  "creationDate": "2022-11-07T14:37:07.065Z",
+  "uid": "9770950d-8a37-4a21-a049-b655e45317ca",
+  "creationDate": "2022-11-21T18:22:53.282Z",
   "missionId": "S2",
   "satelliteId": "B",
-  "keyObjectStorage": "S2B_OPER_MSI_L0__DS_REFS_20221107T134501_S20221011T062334_N02.08",
-  "storagePath": "s3://rs-s2-l0c/S2B_OPER_MSI_L0__DS_REFS_20221107T134501_S20221011T062334_N02.08",
+  "keyObjectStorage": "S2B_OPER_MSI_L0__DS_REFS_20221121T173346_S20221011T062334_N02.08",
+  "storagePath": "s3://rs-s2-l0c/S2B_OPER_MSI_L0__DS_REFS_20221121T173346_S20221011T062334_N02.08",
   "productFamily": "S2_L0_DS",
-  "podName": "metadata-1-part1-metadata-extraction-v1-65b87b557b-ktjdp",
+  "podName": "metadata-part1-metadata-extraction-v12-747976d486-rv9s7",
   "allowedActions": [
     "RESUBMIT"
   ],
@@ -14,11 +14,11 @@
   "additionalFields": {},
   "metadata": {
     "productFamily": "S2_L0_DS",
-    "creationTime": "2022-11-07T13:45:01.000000Z",
-    "insertionTime": "2022-11-07T14:37:07.059821Z",
+    "creationTime": "2022-11-21T17:33:46.000000Z",
+    "insertionTime": "2022-11-21T18:22:53.276919Z",
     "instrumentShortName": "MSI",
     "productGroupId": "GS2B_20221011T061759_029232_N02.08",
-    "productName": "S2B_OPER_MSI_L0__DS_REFS_20221107T134501_S20221011T062334_N02.08",
+    "productName": "S2B_OPER_MSI_L0__DS_REFS_20221121T173346_S20221011T062334_N02.08",
     "orbitNumber": "029232",
     "qualityInfo": 454,
     "platformShortName": "SENTINEL-2",
@@ -1955,7 +1955,7 @@
       "type": "polygon"
     },
     "processorVersion": "",
-    "url": "S2B_OPER_MSI_L0__DS_REFS_20221107T134501_S20221011T062334_N02.08",
+    "url": "S2B_OPER_MSI_L0__DS_REFS_20221121T173346_S20221011T062334_N02.08",
     "platformSerialIdentifier": "S2B",
     "operationalMode": "INS-NOBS",
     "processingCenter": "RS",

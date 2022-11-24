@@ -55,7 +55,10 @@ public final class TestHelper {
                             .setLocalName("S2__OPER_AUX_UT1UTC_PDMC_20220407T000000_V20220408T000000_20230407T000000")),
             L0cAuxFile.GIP_ATMIMA, List.of(
                     new FileInfo().setObsName("S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00")
-                            .setLocalName("S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00"))
+                            .setLocalName("S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00")),
+            L0cAuxFile.GIP_DATATI, List.of(
+                    new FileInfo().setObsName("S2B_OPER_GIP_DATATI_MPC__20170428T123038_V20170322T000000_21000101T000000_B00")
+                            .setLocalName("S2B_OPER_GIP_DATATI_MPC__20170428T123038_V20170322T000000_21000101T000000_B00"))
     );
 
     public static final String DEM_PATH = Paths.get("src/test/resources/dem").toAbsolutePath().toString();

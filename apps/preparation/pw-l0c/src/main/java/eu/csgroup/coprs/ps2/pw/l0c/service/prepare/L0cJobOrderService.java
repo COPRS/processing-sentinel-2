@@ -70,7 +70,7 @@ public class L0cJobOrderService {
 
         // Add AUX file info
         values.putAll(extractAuxValues(auxFilesByType));
-        values.put(L0cJobOrderFields.GPS_UTC.getPlaceholder(), getGpsUtc(auxFilesByType.get(L0cAuxFile.AUX_UT1UTC).get(0)));
+        values.put(L0cJobOrderFields.GPS_UTC.getPlaceholder(), getGpsUtc(auxFilesByType));
 
         // Compute L0u GR count
         values.put(L0cJobOrderFields.GRANULE_END.getPlaceholder(), String.valueOf(getGRCount(datastrip)));
@@ -118,24 +118,35 @@ public class L0cJobOrderService {
         return auxValues;
     }
 
-    private String getGpsUtc(FileInfo auxUt1utcFileInfo) {
+    private String getGpsUtc(Map<L0cAuxFile, List<FileInfo>> auxFilesByType) {
 
         log.debug("Fetching GPS_UTC value");
 
+        FileInfo auxUt1utcFileInfo = auxFilesByType.get(L0cAuxFile.AUX_UT1UTC).get(0);
+        FileInfo gipDatatiFileInfo = auxFilesByType.get(L0cAuxFile.GIP_DATATI).get(0);
+
         Path tmpFolder = Paths.get(FolderParameters.TMP_DOWNLOAD_FOLDER + "/" + UUID.randomUUID());
-        Path localAuxPath = tmpFolder.resolve(auxUt1utcFileInfo.getObsName());
-        Path dblPath = localAuxPath.resolve(auxUt1utcFileInfo.getObsName() + S2FileParameters.AUX_FILE_EXTENSION);
+
+        Path ut1utcLocalAuxPath = tmpFolder.resolve(auxUt1utcFileInfo.getObsName());
+        Path ut1utcDblPath = ut1utcLocalAuxPath.resolve(auxUt1utcFileInfo.getObsName() + S2FileParameters.AUX_FILE_EXTENSION);
+        Path gipDatatiLocalAuxPath = tmpFolder.resolve(gipDatatiFileInfo.getObsName());
+        Path gipDatatiDblPath = gipDatatiLocalAuxPath.resolve(gipDatatiFileInfo.getObsName() + S2FileParameters.AUX_FILE_EXTENSION);
 
         obsService.download(Set.of(
                 new FileInfo()
                         .setBucket(auxUt1utcFileInfo.getBucket())
                         .setKey(auxUt1utcFileInfo.getKey())
-                        .setFullLocalPath(localAuxPath.toString())
+                        .setFullLocalPath(ut1utcLocalAuxPath.toString()),
+                new FileInfo()
+                        .setBucket(gipDatatiFileInfo.getBucket())
+                        .setKey(gipDatatiFileInfo.getKey())
+                        .setFullLocalPath(gipDatatiLocalAuxPath.toString())
         ));
 
-        final String extractValue = FileContentUtils.extractValue(dblPath, "TAI-UTC =", List.of("TAI-UTC =", "\\..*", "[ ]*"));
+        final String taiUtcValue = FileContentUtils.extractValue(ut1utcDblPath, "TAI-UTC =", List.of("TAI-UTC =", "\\..*", "[ ]*"));
+        final String gpsTimeTaiValue = FileContentUtils.extractValue(gipDatatiDblPath, "GPS_TIME_TAI", List.of(".*<GPS_TIME_TAI[^>]*>-", "</GPS_TIME_TAI>"));
 
-        Integer value = Integer.parseInt(extractValue) - 19;
+        Integer value = Integer.parseInt(gpsTimeTaiValue) - Integer.parseInt(taiUtcValue);
 
         if (!FileUtils.deleteQuietly(tmpFolder.toFile())) {
             log.warn("Unable to delete temp folder {}", tmpFolder);

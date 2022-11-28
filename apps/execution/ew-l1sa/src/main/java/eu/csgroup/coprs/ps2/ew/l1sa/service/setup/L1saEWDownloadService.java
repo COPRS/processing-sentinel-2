@@ -26,11 +26,6 @@ public class L1saEWDownloadService extends EWDownloadService {
     }
 
     @Override
-    protected void prepareStandardFiles(Set<FileInfo> fileInfoSet) {
-        // N/A
-    }
-
-    @Override
     protected Predicate<FileInfo> customAux() {
         return fileInfo -> fileInfo.getAuxProductType().equals(AuxProductType.AUX_CAMSFO)
                 || fileInfo.getAuxProductType().equals(AuxProductType.AUX_ECMWFD);

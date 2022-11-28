@@ -1,11 +1,13 @@
 package eu.csgroup.coprs.ps2.core.ew.service;
 
 import eu.csgroup.coprs.ps2.core.common.exception.ProcessingException;
-import eu.csgroup.coprs.ps2.core.ew.model.helper.Input;
+import eu.csgroup.coprs.ps2.core.common.model.CommonInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TraceLogger;
+import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
+import eu.csgroup.coprs.ps2.core.ew.model.helper.Input;
 import nl.altindag.log.LogCaptor;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -51,7 +53,6 @@ class EWProcessorServiceTest extends AbstractTest {
         outputMessageSet = Set.of(ProcessingMessageUtils.create());
 
         input = podamFactory.manufacturePojo(Input.class);
-        when(inputService.extract(inputMessage)).thenReturn(input);
     }
 
     @Override
@@ -63,6 +64,7 @@ class EWProcessorServiceTest extends AbstractTest {
     void processMessage_nominal() {
         // Given
         when(outputService.output(input)).thenReturn(outputMessageSet);
+        when(inputService.extract(inputMessage)).thenReturn(input);
 
         // When
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {
@@ -87,6 +89,7 @@ class EWProcessorServiceTest extends AbstractTest {
         // Given
         when(outputService.output(input)).thenReturn(outputMessageSet);
         when(outputService.output(input)).thenThrow(new ProcessingException("Nope"));
+        when(inputService.extract(inputMessage)).thenReturn(input);
 
         // When
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {
@@ -102,6 +105,21 @@ class EWProcessorServiceTest extends AbstractTest {
             assertEquals(2, logCaptor.getLogs().size());
             assertEquals(1, logCaptor.getLogs().stream().filter(s -> s.contains("ERROR")).count());
         }
+    }
+
+    @Test
+    void getTaskOutputs() {
+
+        // Given
+        final ProcessingMessage catalogMessage = ProcessingMessageUtils.create().setKeyObjectStorage("foo");
+        final ProcessingMessage inputMessage = ProcessingMessageUtils.create();
+        inputMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, new CommonInput());
+
+        // When
+        final Set<String> taskOutputs = processorService.getTaskOutputs(Set.of(catalogMessage, inputMessage));
+
+        // Then
+        assertEquals(1, taskOutputs.size());
     }
 
 }

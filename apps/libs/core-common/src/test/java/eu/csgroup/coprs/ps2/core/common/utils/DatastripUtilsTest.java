@@ -17,6 +17,8 @@ class DatastripUtilsTest {
             Paths.get("src/test/resources/datastripUtilsTest/S2B_OPER_MSI_L0__DS_REFS_20220629T125610_S20220413T115356_N02.08").toAbsolutePath();
     private static final Path l0uDatastripPath =
             Paths.get("src/test/resources/datastripUtilsTest/S2B_OPER_MSI_L0U_DS_REFS_20220614T090618_S20220413T114741_N00.00").toAbsolutePath();
+    private static final Path l1DatastripPath =
+            Paths.get("src/test/resources/datastripUtilsTest/S2B_OPER_MSI_L1C_DS_REFS_20221124T170956_S20221011T064025_N04.00").toAbsolutePath();
 
     @Test
     void getDatastripTimes_L0u() {
@@ -59,6 +61,15 @@ class DatastripUtilsTest {
     }
 
     @Test
+    void getTLList() {
+
+        final List<String> grList = DatastripUtils.getTLList(l1DatastripPath);
+
+        assertEquals(18, grList.size());
+        assertTrue(grList.stream().allMatch(s -> s.startsWith("S2B_")));
+    }
+
+    @Test
     void getDatatakeType_L0u() {
 
         final DatatakeType datatakeType = DatastripUtils.getDatatakeType(l0uDatastripPath);
@@ -73,5 +84,7 @@ class DatastripUtilsTest {
 
         assertEquals(DatatakeType.NOBS, datatakeType);
     }
+
+
 
 }

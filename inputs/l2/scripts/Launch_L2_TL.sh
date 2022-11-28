@@ -4,11 +4,11 @@ launch_step_python() {
   echo "Launching python: $*"
   python "$@"
   ret=$?
-  if [ $ret -ne 0 ]; then
-    echo "Error while launching code $ret , retry once"
-    python "$@"
-    ret=$?
-  fi
+#  if [ $ret -ne 0 ]; then
+#    echo "Error while launching code $ret , retry once"
+#    python "$@"
+#    ret=$?
+#  fi
   if [ $ret -ne 0 ]; then
     echo "Error while launching code $ret ..."
     return 1
@@ -65,11 +65,11 @@ if [ -z ${LOGLVL+x} ]; then
 fi
 
 # CFI PATHS
-SEN2COR_PATH=/home/Sen2Cor-02.10.02-Linux64/
-COMPRESS_TILE_IMAGE_PATH=/dpc/app/CompressTileImage/05.01.00/
-FORMAT_METADATA_DS_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_DS_L2A/06.00.00/
-FORMAT_METADATA_TL_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_TILE_L2A/06.00.00/
-OLQC_PATH=/dpc/app/s2ipf/OLQC/05.01.00/
+SEN2COR_PATH=/home/Sen2Cor-02.10.03-Linux64/
+COMPRESS_TILE_IMAGE_PATH=/dpc/app/CompressTileImage/06.01.00/
+FORMAT_METADATA_DS_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_DS_L2A/06.01.00/
+FORMAT_METADATA_TL_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_TILE_L2A/06.01.00/
+OLQC_PATH=/dpc/app/s2ipf/OLQC/06.01.00/
 
 
 mkdir -p "${WORK_DIR}"
@@ -188,39 +188,17 @@ NEW_GIP_JP2KAK=${GIP_JP2KPA}
 #fi
 
 # Exctract L1C DS and TL
-echo "$(date +%Y%m%d%H%M) : Extracting TL tar "
-if [ -f "$PRODUCT_L1C_TL" ];then
-  mkdir -p "${TEMP_WORK}"/TL
-  tar xf "${PRODUCT_L1C_TL}" -C "${TEMP_WORK}"/TL/
-  retVal=$?
-  echo "RetVal detar "$retVal
-  if [ $retVal -ne 0 ]; then
-    echo "$(date +%Y%m%d%H%M) : Failed to decompress $PROD"
-    exit 1
-  fi
-else
-  echo "$(date +%Y%m%d%H%M) : Product no more reachable $PRODUCT_L1C_TL"
-  exit 1
-fi
+#if [ -d "$PRODUCT_L1C_TL" ];then
+#  echo "$(date +%Y%m%d%H%M) : Failed to decompress $PROD"
+#    exit 1
+#  fi
+#else
+#  echo "$(date +%Y%m%d%H%M) : Product no more reachable $PRODUCT_L1C_TL"
+#  exit 1
+#fi
 
-WORK_TL=$(find_one_file "${TEMP_WORK}/TL/" "S2*L1C_TL*")
-
-if [ -f "$PRODUCT_L1C_DS" ];then
-   echo "$(date +%Y%m%d%H%M) : Extracting DS tar "
-   mkdir -p "${TEMP_WORK}/DS"
-   tar xf "${PRODUCT_L1C_DS}" -C "${TEMP_WORK}/DS/"
-   retVal=$?
-   echo "RetVal detar "$retVal
-  if [ $retVal -ne 0 ]; then
-    echo "$(date +%Y%m%d%H%M) : Failed to decompress $PRODUCT_L1C_DS"
-    exit 1
-  fi
-else
-  echo "$(date +%Y%m%d%H%M) : Product no more reachable $PRODUCT_L1C_DS"
-  exit 1
-fi
-
-WORK_DS=$(find_one_file "${TEMP_WORK}"/DS/ S2*L1C_DS*)
+WORK_TL="$PRODUCT_L1C_TL"
+WORK_DS="$PRODUCT_L1C_DS"
 MTD=$(find "${WORK_DS}" -maxdepth 2 -type f -name "*MTD_L1C_DS*xml")
 if [ -z "$MTD" ]; then
   echo "No MTD found under $WORK_DS"

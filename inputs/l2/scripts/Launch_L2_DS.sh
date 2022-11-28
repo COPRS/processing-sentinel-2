@@ -4,12 +4,12 @@ launch_step_python() {
   echo "Launching python: $*"
   python "$@"
   ret=$?
-  if [ $ret -ne 0 ]; then
-    echo "Error while launching code $ret , retry once"
-    #remove_work "${TEMP_}"/*
-    python "$@"
-    ret=$?
-  fi
+#  if [ $ret -ne 0 ]; then
+#    echo "Error while launching code $ret , retry once"
+#    #remove_work "${TEMP_}"/*
+#    python "$@"
+#    ret=$?
+#  fi
   if [ $ret -ne 0 ]; then
     echo "Error while launching code $ret ..."
     return 1
@@ -51,11 +51,11 @@ CUR_DIR="$(
 )"
 
 # CFI PATHS
-SEN2COR_PATH=/home/Sen2Cor-02.10.02-Linux64/
-COMPRESS_TILE_IMAGE_PATH=/dpc/app/CompressTileImage/05.01.00/
-FORMAT_METADATA_DS_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_DS_L2A/06.00.00/
-FORMAT_METADATA_TL_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_TILE_L2A/06.00.00/
-OLQC_PATH=/dpc/app/s2ipf/OLQC/05.01.00/
+SEN2COR_PATH=/home/Sen2Cor-02.10.03-Linux64/
+COMPRESS_TILE_IMAGE_PATH=/dpc/app/CompressTileImage/06.01.00/
+FORMAT_METADATA_DS_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_DS_L2A/06.01.00/
+FORMAT_METADATA_TL_L2A_PATH=/dpc/app/s2ipf/FORMAT_METADATA_TILE_L2A/06.01.00/
+OLQC_PATH=/dpc/app/s2ipf/OLQC/06.01.00/
 
 
 if [[ ! -d "${WORK_DIR}" ]]; then
@@ -152,9 +152,7 @@ sed -i 's+<Force_Exit_On_DEM_Error>.*</Force_Exit_On_DEM_Error>+<Force_Exit_On_D
 sed -i 's+<Nr_Threads>.*</Nr_Threads>+<Nr_Threads>1</Nr_Threads>+' "${NEW_GIP_L2CFG}"
 
 # Exctract L1C DS
-mkdir -p "${TEMP_WORK}"/DS
-tar xf "${PRODUCT_L1C_DS}" -C "${TEMP_WORK}"/DS/
-WORK_DS=$(find_one_file "${TEMP_WORK}"/DS/ "S2*L1C_DS*")
+WORK_DS="${PRODUCT_L1C_DS}"
 MTD=$(find "${WORK_DS}" -maxdepth 2 -type f -name "*MTD_L1C_DS*xml")
 if [ -z "$MTD" ]; then
   echo "No MTD found under ${WORK_DS}"

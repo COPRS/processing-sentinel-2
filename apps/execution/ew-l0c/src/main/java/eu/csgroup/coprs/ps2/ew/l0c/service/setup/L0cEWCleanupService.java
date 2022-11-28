@@ -25,11 +25,6 @@ public class L0cEWCleanupService extends EWCleanupService<L0cExecutionInput> {
     }
 
     @Override
-    protected void doCleanBefore() {
-        //
-    }
-
-    @Override
     protected void doCleanAfter(L0cExecutionInput executionInput) {
         FileOperationUtils.deleteFolders(Set.of(executionInput.getDtFolder()));
         FileOperationUtils.deleteFolderIfEmpty(Paths.get(executionInput.getDtFolder()).getParent().toString());

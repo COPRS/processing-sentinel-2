@@ -16,18 +16,18 @@ import java.util.Set;
 @Slf4j
 public abstract class EWMessageService<T extends ExecutionInput> {
 
-    public Set<ProcessingMessage> build(T executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
+    public Set<ProcessingMessage> build(T executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder) {
 
         log.info("Building outgoing messages");
 
-        Set<ProcessingMessage> messages = doBuild(executionInput, fileInfosByFamily, options);
+        Set<ProcessingMessage> messages = doBuild(executionInput, fileInfosByFamily, outputFolder);
 
         log.info("Finished building outgoing messages");
 
         return messages;
     }
 
-    protected abstract Set<ProcessingMessage> doBuild(T executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options);
+    protected abstract Set<ProcessingMessage> doBuild(T executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder);
 
     protected Set<ProcessingMessage> buildCatalogMessages(Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, T executionInput) {
 

@@ -30,12 +30,11 @@ public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
     }
 
     @Override
-    protected Set<ProcessingMessage> doBuild(L0uExecutionInput l0uExecutionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
+    protected Set<ProcessingMessage> doBuild(L0uExecutionInput l0uExecutionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder) {
 
         Set<ProcessingMessage> messages = buildCatalogMessages(fileInfosByFamily, l0uExecutionInput);
 
         // Building a single message for L0C preparation
-        final String outputFolder = options[0];
         ProcessingMessage preparationMessage = ProcessingMessageUtils.create();
         preparationMessage
                 .getAdditionalFields()

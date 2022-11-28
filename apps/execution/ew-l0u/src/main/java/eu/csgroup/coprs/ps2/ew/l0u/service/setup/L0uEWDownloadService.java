@@ -8,12 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.Set;
-import java.util.function.Predicate;
 
 @Slf4j
 @Component
 public class L0uEWDownloadService extends EWDownloadService {
-
 
     public L0uEWDownloadService(ObsService obsService) {
         super(obsService);
@@ -35,16 +33,6 @@ public class L0uEWDownloadService extends EWDownloadService {
 
             fileInfo.setLocalPath(localPath);
         });
-    }
-
-    @Override
-    protected Predicate<FileInfo> customAux() {
-        return fileInfo -> false;
-    }
-
-    @Override
-    protected void downloadCustomAux(Set<FileInfo> fileInfoSet) {
-        // N/A
     }
 
 }

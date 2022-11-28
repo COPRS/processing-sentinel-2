@@ -1,6 +1,6 @@
 #### Build image from pre-built image
 
-FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2-ipf-l0u-jdk17:3.0.1
+FROM s2-ipf-l0u-jdk17
 
 USER root
 

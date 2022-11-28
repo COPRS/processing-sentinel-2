@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -17,6 +18,6 @@ public class CommonInput {
     private Instant startTime;
     private Instant stopTime;
     private Instant t0PdgsDate;
-    private Set<String> customTaskInputs;
+    private Set<String> customTaskInputs = new HashSet<>();
 
 }

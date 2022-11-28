@@ -5,7 +5,7 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
-import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
@@ -49,11 +49,11 @@ public class L1cEWUploadService extends EWUploadService<L1ExecutionInput> {
             if (StringUtils.hasText(executionInput.getTile())) {
                 productFamily = ProductFamily.S2_L1C_TL;
                 bucket = bucketProperties.getL1TLBucket();
-                folders = FileOperationUtils.findFolders(rootPath.resolve(L1Parameters.L1C_TL_ROOT), S2FileParameters.L1C_TL_REGEX);
+                folders = FileOperationUtils.findFolders(rootPath.resolve(L12Parameters.L1C_TL_ROOT), S2FileParameters.L1C_TL_REGEX);
             } else {
                 productFamily = ProductFamily.S2_L1C_DS;
                 bucket = bucketProperties.getL1DSBucket();
-                folders = FileOperationUtils.findFolders(rootPath.resolve(L1Parameters.L1C_DS_ROOT), S2FileParameters.L1C_DS_REGEX);
+                folders = FileOperationUtils.findFolders(rootPath.resolve(L12Parameters.L1C_DS_ROOT), S2FileParameters.L1C_DS_REGEX);
             }
 
             fileInfosByFamily.put(productFamily, getFileInfoSet(folders, bucket));

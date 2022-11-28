@@ -76,6 +76,15 @@ jobs:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PWD }}
 
+      - name: Build base docker images
+        run: |
+          cd apps/execution/docker
+          docker build . -f Dockerfile_s2-ipf-l0u-jdk17 -t s2-ipf-l0u-jdk17
+          docker build . -f Dockerfile_s2level0-jdk17 -t s2level0-jdk17
+          docker build . -f Dockerfile_s2level1-jdk17 -t s2level1-jdk17
+          docker build . -f Dockerfile_s2level2-jdk17 -t s2level2-jdk17
+          cd -
+
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:

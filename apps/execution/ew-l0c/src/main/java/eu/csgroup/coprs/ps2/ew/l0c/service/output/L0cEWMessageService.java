@@ -14,7 +14,7 @@ import java.util.Set;
 public class L0cEWMessageService extends EWMessageService<L0cExecutionInput> {
 
     @Override
-    protected Set<ProcessingMessage> doBuild(L0cExecutionInput l0cExecutionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String... options) {
+    protected Set<ProcessingMessage> doBuild(L0cExecutionInput l0cExecutionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder) {
         return buildCatalogMessages(fileInfosByFamily, l0cExecutionInput);
     }
 

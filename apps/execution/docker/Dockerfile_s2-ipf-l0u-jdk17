@@ -26,34 +26,33 @@ USER root
 ## Wrapper configuration
 ARG JDK_VERSION
 ARG INV_INSTALL
-RUN groupadd -g 1001 wrapper
-RUN adduser -p '*' -d /wrapper -u 1001 -g 1001 wrapper
-RUN usermod -a -G ops2pdgs wrapper
-RUN chmod -R 775 $INV_INSTALL
-RUN chmod 755 /wrapper
+RUN userdel ops2pdgs \
+    && groupadd -g 1000 wrapper \
+    && adduser -p '*' -d /wrapper -u 1000 -g 1000 wrapper \
+    && chmod -R 775 $INV_INSTALL
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
     && tar xvf jdk.tar.gz \
     && mv jdk-$JDK_VERSION jdk \
-    && rm jdk.tar.gz
-RUN chown -R wrapper:wrapper /wrapper
+    && rm jdk.tar.gz \
+    && chown -R wrapper:wrapper /wrapper \
+    && chmod -R 775 /wrapper
 
 # Set config values
 ARG INV_INSTALL
 ARG PROC_STATION
-RUN sed -i 's+<center>.*</center>+<center>'"$PROC_STATION"'</center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.xml
-RUN sed -i 's+<archiving_center>.*</archiving_center>+<archiving_center>'"$PROC_STATION"'</archiving_center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.xml
+RUN sed -i 's+<center>.*</center>+<center>'"$PROC_STATION"'</center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.xml \
+    && sed -i 's+<archiving_center>.*</archiving_center>+<archiving_center>'"$PROC_STATION"'</archiving_center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.xml
 
 ## Setup workspace folder
-RUN mkdir -p /workspace
-RUN chmod -R 755 /workspace
-RUN chown -R wrapper:wrapper /workspace
+RUN mkdir -p /workspace \
+    && chmod -R 775 /workspace \
+    && chown -R wrapper:wrapper /workspace
 
-## Setup OUTPUT folder (on shared volume)
-RUN mkdir -p /output
-RUN chmod -R 755 /output
-RUN chown -R wrapper:wrapper /output
+## Setup shared folder (on shared volume)
+RUN mkdir -p /shared \
+    && chmod -R 775 /shared \
+    && chown -R wrapper:wrapper /shared
 
 WORKDIR /wrapper
 USER wrapper
-

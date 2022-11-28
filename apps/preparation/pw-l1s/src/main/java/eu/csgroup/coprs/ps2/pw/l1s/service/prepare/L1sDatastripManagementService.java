@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.processing.DatatakeType;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DatastripUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
@@ -76,7 +76,7 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
             final String datastripFolder = UUID.randomUUID().toString();
             final Path datastripFolderPath = Paths.get(sharedProperties.getSharedFolderRoot()).resolve(datastripFolder);
-            final Path dsFolderPath = datastripFolderPath.resolve(L1Parameters.INPUT_FOLDER).resolve(L1Parameters.DS_FOLDER);
+            final Path dsFolderPath = datastripFolderPath.resolve(L12Parameters.INPUT_FOLDER).resolve(L12Parameters.DS_FOLDER);
 
             createSharedFolders(datastripFolderPath);
 
@@ -149,11 +149,11 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
     private void createSharedFolders(Path folderPath) {
         final Set<Path> folderPaths = Set.of(
-                folderPath.resolve(L1Parameters.INPUT_FOLDER),
-                folderPath.resolve(L1Parameters.INPUT_FOLDER).resolve(L1Parameters.DS_FOLDER),
-                folderPath.resolve(L1Parameters.INPUT_FOLDER).resolve(L1Parameters.GR_FOLDER),
-                folderPath.resolve(L1Parameters.OUTPUT_FOLDER),
-                folderPath.resolve(L1Parameters.AUX_FOLDER)
+                folderPath.resolve(L12Parameters.INPUT_FOLDER),
+                folderPath.resolve(L12Parameters.INPUT_FOLDER).resolve(L12Parameters.DS_FOLDER),
+                folderPath.resolve(L12Parameters.INPUT_FOLDER).resolve(L12Parameters.GR_FOLDER),
+                folderPath.resolve(L12Parameters.OUTPUT_FOLDER),
+                folderPath.resolve(L12Parameters.AUX_FOLDER)
         );
         FileOperationUtils.createFolders(folderPaths.stream().map(Path::toString).collect(Collectors.toSet()));
     }

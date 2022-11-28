@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.pw.l1s.service.prepare;
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
@@ -31,7 +31,7 @@ import static org.mockito.Mockito.*;
 class L1sDatastripManagementServiceTest extends AbstractTest {
 
     private static final UUID AUX_UID = UUID.randomUUID();
-    private static final String TMP_DS_PATH = "/tmp/" + AUX_UID + "/" + L1Parameters.INPUT_FOLDER + "/" + L1Parameters.DS_FOLDER;
+    private static final String TMP_DS_PATH = "/tmp/" + AUX_UID + "/" + L12Parameters.INPUT_FOLDER + "/" + L12Parameters.DS_FOLDER;
     private static final Path dsPath = Paths.get("src/test/resources/datastripManagementServiceTest/S2B_OPER_MSI_L0__DS_REFS_20220629T125610_S20220413T115356_N02.08");
     private static final String DATASTRIP_NAME = "S2B_OPER_MSI_L0__DS_REFS_20220629T125610_S20220413T115356_N02.08";
     private static final Map<String, Boolean> availableByGR = Map.of("foo", true, "bar", false, "foobar", false);

@@ -43,10 +43,16 @@ public abstract class EWCleanupService<T extends ExecutionInput> {
         log.info("Finished cleaning up workspace");
     }
 
-    protected abstract void doPrepare();
+    protected void doPrepare() {
+        // By default, nothing to do
+    }
 
-    protected abstract void doCleanBefore();
+    protected void doCleanBefore() {
+        // By default, nothing to do
+    }
 
-    protected abstract void doCleanAfter(T executionInput);
+    protected void doCleanAfter(T executionInput) {
+        // By default, nothing to do
+    }
 
 }

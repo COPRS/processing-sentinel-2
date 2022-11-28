@@ -22,25 +22,25 @@ USER root
 
 ## Wrapper configuration
 ARG JDK_VERSION
-RUN groupadd -g 1001 wrapper
-RUN adduser -p '*' -d /wrapper -u 1001 -g 1001 wrapper
-RUN chmod 755 /wrapper
+RUN groupadd -g 1000 wrapper \
+    && adduser -p '*' -d /wrapper -u 1000 -g 1000 wrapper
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
     && tar xvf jdk.tar.gz \
     && mv jdk-$JDK_VERSION jdk \
-    && rm jdk.tar.gz
-RUN chown -R wrapper:wrapper /wrapper
+    && rm jdk.tar.gz \
+    && chown -R wrapper:wrapper /wrapper \
+    && chmod -R 775 /wrapper
 
 ## Setup workspace folder
-RUN mkdir -p /workspace
-RUN chmod -R 755 /workspace
-RUN chown -R wrapper:wrapper /workspace
+RUN mkdir -p /workspace \
+    && chmod -R 775 /workspace \
+    && chown -R wrapper:wrapper /workspace
 
-## Setup INPUT folder (on shared volume)
-RUN mkdir -p /input
-RUN chmod -R 755 /input
-RUN chown -R wrapper:wrapper /input
+## Setup dhared folder (on shared volume)
+RUN mkdir -p /shared \
+    && chmod -R 775 /shared \
+    && chown -R wrapper:wrapper /shared
 
 WORKDIR /wrapper
 USER wrapper

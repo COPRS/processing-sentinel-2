@@ -16,6 +16,7 @@ import eu.csgroup.coprs.ps2.core.ew.settings.L1EWParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,7 +44,7 @@ public abstract class L1EWExecutionService<T extends ExecutionInput> implements 
 
         try {
 
-            List<String> command = new java.util.ArrayList<>(List.of(
+            List<String> command = new ArrayList<>(List.of(
                     L1EWParameters.SCRIPT_NAME,
                     "-m", task,
                     "-a", executionInput.getAuxFolder(),

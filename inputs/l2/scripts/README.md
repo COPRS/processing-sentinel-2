@@ -35,21 +35,21 @@ The same L2A Datastrip has to be used for all tiles of the datastrip or you will
 
 ***PRODUCT_L1C_DS***
 
-L1C Datastrip tar file
+L1C Datastrip folder
 
 ### TL Mode
 
 ***PRODUCT_L1C_TL***
 
-L1C Tile tar file
+L1C Tile folder
 
 ***PRODUCT_L1C_DS***
 
-L1C Datastrip tar file
+L1C Datastrip folder
 
 ***PRODUCT_L2A_DS***
 
-L2A Datastrip tar file
+L2A Datastrip folder
 
 ### General
 

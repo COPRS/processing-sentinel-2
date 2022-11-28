@@ -8,7 +8,7 @@ import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Band;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.L1Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sAuxFile;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
@@ -59,12 +59,11 @@ public class L1sAuxService {
 
     private FileInfo getFileInfo(L1sAuxFile auxFile, L1sDatastrip datastrip, String bandIndexId) {
 
-        final Path auxPath = Paths.get(sharedProperties.getSharedFolderRoot(), datastrip.getFolder(), L1Parameters.AUX_FOLDER);
+        final Path auxPath = Paths.get(sharedProperties.getSharedFolderRoot(), datastrip.getFolder(), L12Parameters.AUX_FOLDER);
         final AuxProductType productType = auxFile.getAuxProductType();
 
         final AuxCatalogData auxCatalogData =
                 catalogService.retrieveLatestAuxData(productType, datastrip.getSatellite(), datastrip.getStartTime(), datastrip.getStopTime(), bandIndexId)
-
                         .orElseThrow(() -> new AuxQueryException("No AUX file of type " + productType.name() + " found for Datastrip " + datastrip.getName()));
         return new FileInfo()
                 .setBucket(bucketProperties.getAuxBucket())

@@ -3,7 +3,7 @@ PROCESSING_STATION = "2BPS"
 VERSION = "1.0.0"
 PROCESSOR_LOG_LEVEL = "DEBUG"
 INVENTORY_L2_SOFT_FOLDER = "/usr/local/components/facilities/DPC-CORE-l1l2pack-dpc-software/" \
-                           "DPC-CORE-l1l2pack-dpc-software-3.0.4/l1l2_dpc_software/scripts/"
+                           "DPC-CORE-l1l2pack-dpc-software-6.1.0/l1l2_dpc_software/scripts/"
 INVENTORY_L2_DS_SCRIPT_NAME = "inventory_metadata_l1_l2_ds.sh"
 INVENTORY_L2_GR_SCRIPT_NAME = "inventory_metadata_l1_l2_gr_tl.sh"
 

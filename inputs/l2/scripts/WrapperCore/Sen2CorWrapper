@@ -7,7 +7,7 @@ if [ $# -lt 2 ]; then
     exit 1
 fi
 
-export PYTHONPATH=/dpc/app/CompressTileImage/01.00.03/lib/python/:$PYTHONPATH
+export PYTHONPATH=/dpc/app/CompressTileImage/06.01.00/lib/python/:$PYTHONPATH
 
 export PATH=${KAKADU_PATH}:$PATH
 

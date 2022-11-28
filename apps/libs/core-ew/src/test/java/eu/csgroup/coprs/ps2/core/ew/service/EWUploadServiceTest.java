@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.core.ew.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.ew.model.helper.Input;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -14,8 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class EWUploadServiceTest extends AbstractTest {
 
-    private EWUploadService uploadService;
+    private EWUploadService<Input> uploadService;
 
+    @SuppressWarnings("unchecked")
     @Override
     public void setup() throws Exception {
         uploadService = Mockito.mock(EWUploadService.class, Mockito.CALLS_REAL_METHODS);

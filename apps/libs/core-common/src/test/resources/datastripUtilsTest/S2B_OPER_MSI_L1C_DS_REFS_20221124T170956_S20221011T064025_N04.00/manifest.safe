@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<xfdu:XFDU xmlns:xfdu="urn:ccsds:schema:xfdu:1" version="esa/safe/sentinel-1.0/sentinel-2/msi/archive_l0_datastrip" xmlns:gml="http://www.opengis.net/gml" xmlns:safe="http://www.esa.int/safe/sentinel-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ccsds:schema:xfdu:1 /dpc/app/s2ipf/FORMAT_METADATA_GR_L0C/01.09.00/scripts/../../../xmlschemas/SAFE/xsd/int/esa/safe/sentinel-1.0/xfdu.xsd">
+
+  <informationPackageMap>
+    <xfdu:contentUnit dmdID="acquisitionPeriod platform" pdiID="processing" textInfo="SENTINEL-2 MSI Level-1C_Datastrip PDI" unitType="Product_Level-1C">
+      <xfdu:contentUnit ID="S2_Level-1C_Datastrip_Metadata_Unit" repID="S2_Level-1C_Datastrip_Schema" unitType="Metadata Unit">
+        <dataObjectPointer dataObjectID="S2_Level-1C_Datastrip_Metadata"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="IMG_DATA" textInfo="Image Data container">
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="QI_DATA" textInfo="Quality control container">
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="ANC_DATA" textInfo="Ancilliary datas">
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="AUX_DATA" textInfo="Auxilliary datas">
+      </xfdu:contentUnit>
+    </xfdu:contentUnit>
+
+  </informationPackageMap>
+
+  <metadataSection>
+    <metadataObject ID="platform" category="DMD" classification="DESCRIPTION">
+      <metadataWrap>
+        <xmlData>
+          <safe:platform>
+            <safe:nssdcIdentifier>2012-000B</safe:nssdcIdentifier>
+            <safe:familyName>Sentinel</safe:familyName>
+            <safe:number>2B</safe:number>
+            <safe:instrument>
+              <safe:familyName abbreviation="MSI">Multi-Spectral Instrument</safe:familyName>
+              <safe:mode identifier="INS-NOBS">Nominal_Observation</safe:mode>
+            </safe:instrument>
+          </safe:platform>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="processing" category="PDI" classification="PROVENANCE">
+      <metadataWrap>
+        <xmlData>
+          <safe:processing name="Archiving of PDI Level-1C Granule Product" start="2022-11-24T19:01:05.130284Z">
+            <safe:facility country="Italy" name="REFS" organisation="ESA" site="REFS"/>
+            <safe:resource name="unknown" role="PDI Level-1C Datastrip Product">
+              <safe:processing name="L1C Processing of Raw Data" start="2022-11-24T17:09:56.000000Z">
+                <safe:facility country="Italy" name="REFS" organisation="ESA" site="EDRS">
+                  <safe:resource name=".//ANC_DATA/" role="Ancillary data"/>
+                  <safe:resource name="S2__OPER_AUX_UT1UTC_PDMC_20221007T000000_V20221007T000000_20231006T000000" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_ATMSAD_MPC__20170324T155501_V20170306T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_LREXTR_MPC__20210608T000001_V20150622T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_PROBAS_MPC__20220609T000400_V20150622T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_INVLOC_MPC__20170523T080300_V20170322T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_OLQCPA_MPC__20220715T000042_V20220830T002500_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_BLINDP_MPC__20170221T000000_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_CLOINV_MPC__20210609T000002_V20210823T030000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_CLOPAR_MPC__20220120T000001_V20220125T022000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_CONVER_MPC__20150710T131444_V20150627T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_DATATI_MPC__20170428T123038_V20170322T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_DECOMP_MPC__20121031T075922_V19830101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2__OPER_GIP_EARMOD_MPC__20210608T000001_V20150622T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_ECMWFP_MPC__20121031T075922_V19830101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_G2PARA_MPC__20220925T000025_V20221004T010000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_G2PARE_MPC__20170206T103032_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_GEOPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_INTDET_MPC__20220120T000010_V20220125T022000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_JP2KPA_MPC__20220120T000006_V20220125T022000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_MASPAR_MPC__20220120T000002_V20220125T022000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_PRDLOC_MPC__20180301T130000_V20180305T014000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2ABCA_MPC__20220920T085300_V20220922T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2BINN_MPC__20170206T103032_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2CRCO_MPC__20220120T000002_V20220125T022000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DECT_MPC__20170206T103038_V20170101T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103038_V20170101T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103038_V20170101T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103039_V20170101T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DENT_MPC__20170206T103040_V20170101T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2DEPI_MPC__20200128T000006_V20200204T010000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EOB2_MPC__20170517T113826_V20170101T000005_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2EQOG_MPC__20220920T085300_V20220922T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103039_V20170101T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2L2NC_MPC__20170206T103040_V20170101T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2NOMO_MPC__20170206T103047_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2PARA_MPC__20220120T000008_V20220125T022000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2SWIR_MPC__20170523T080300_V20170517T090600_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103047_V20170101T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103040_V20170101T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2WAFI_MPC__20170206T103039_V20170101T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_RESPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_SPAMOD_MPC__20220222T000033_V20220224T001500_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_TILPAR_MPC__20170206T103032_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B10" role="Auxiliary data"/>
+                </safe:facility>
+              </safe:processing>
+            </safe:resource>
+          </safe:processing>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="acquisitionPeriod" category="DMD" classification="DESCRIPTION">
+      <metadataWrap>
+        <xmlData>
+          <safe:acquisitionPeriod startTime="2022-10-11T06:40:25.455999Z"/>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="measurementOrbitReference" category="DMD" classification="DESCRIPTION">
+      <metadataWrap>
+        <xmlData>
+          <safe:orbitReference>
+            <safe:orbitNumber type="start" groundTrackDirection="unknown">GS2B_20221011T064029_029232_N04.00</safe:orbitNumber>
+            <safe:relativeOrbitNumber type="start">34</safe:relativeOrbitNumber>
+          </safe:orbitReference>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="measurementFrameSet" category="DMD" classification="DESCRIPTION">
+
+    </metadataObject>
+    <metadataObject ID="S2_Level-1C_Datastrip_Information" category="DMD" classification="DESCRIPTION">
+      <dataObjectPointer dataObjectID="S2_Level-1C_Datastrip_Metadata"/>
+    </metadataObject>
+    <metadataObject ID="S2_Level-1C_Datastrip_Schema" category="REP" classification="SYNTAX">
+      <metadataReference href="rep_info/S2_Level-1C_Datastrip_Metadata.xsd" locatorType="URL" mimeType="text/xml" vocabularyName="SDF"/>
+    </metadataObject>
+    <metadataObject ID="Inventory_Metadata_Schema" category="REP" classification="SYNTAX">
+      <metadataReference href="rep_info/Inventory_Metadata.xsd" locatorType="URL" mimeType="text/xml" vocabularyName="SDF"/>
+    </metadataObject>
+    <metadataObject ID="OLQC_Report_Schema" category="REP" classification="SYNTAX">
+      <metadataReference href="rep_info/OLQC_Report.xsd" locatorType="URL" mimeType="text/xml" vocabularyName="SDF"/>
+    </metadataObject>
+  </metadataSection>
+
+  <dataObjectSection>
+    <dataObject ID="S2_Level-1C_Datastrip_Metadata"  repID="S2_Level-1C_Datastrip_Schema">
+      <byteStream mimeType="text/xml" size="3490027">
+        <fileLocation href="./S2B_OPER_MTD_L1C_DS_REFS_20221124T170956_S20221011T064025.xml" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">7BE7710B3C4F9750C70D7AC8A44AC67A621D2BCB446CFF2E1AB6EF15926140F4</checksum>
+      </byteStream>
+    </dataObject>
+
+  </dataObjectSection>
+
+</xfdu:XFDU>

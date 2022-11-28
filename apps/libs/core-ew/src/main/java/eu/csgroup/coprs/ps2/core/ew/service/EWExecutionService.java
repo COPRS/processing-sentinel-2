@@ -19,7 +19,7 @@ public interface EWExecutionService<T extends ExecutionInput> {
         taskReport.begin("Start " + getLevel() + " processing");
 
         try {
-            processing(executionInput, parentTaskUid);
+            processing(executionInput, taskReport.getUid());
         } catch (Exception e) {
             taskReport.error(e.getLocalizedMessage());
             throw e;

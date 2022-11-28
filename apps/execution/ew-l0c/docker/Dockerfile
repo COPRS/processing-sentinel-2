@@ -1,6 +1,6 @@
 #### Build image from pre-built image
 
-FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2level0-jdk17:5.1.0
+FROM s2level0-jdk17
 
 USER root
 

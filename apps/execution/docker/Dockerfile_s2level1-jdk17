@@ -22,24 +22,24 @@ USER root
 
 ## Wrapper configuration
 ARG JDK_VERSION
-RUN groupadd -g 1001 wrapper  \
-    && adduser -p '*' -d /wrapper -u 1001 -g 1001 wrapper  \
-    && chmod 755 /wrapper
+RUN groupadd -g 1000 wrapper  \
+    && adduser -p '*' -d /wrapper -u 1000 -g 1000 wrapper
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
     && tar xvf jdk.tar.gz \
     && mv jdk-$JDK_VERSION jdk \
     && rm jdk.tar.gz \
-    && chown -R wrapper:wrapper /wrapper
+    && chown -R wrapper:wrapper /wrapper \
+    && chmod -R 775 /wrapper
 
 ## Setup workspace folder
 RUN mkdir -p /workspace \
-    && chmod -R 755 /workspace \
+    && chmod -R 775 /workspace \
     && chown -R wrapper:wrapper /workspace
 
 ## Setup SHARED folder (on shared volume)
 RUN mkdir -p /shared  \
-    && chmod -R 755 /shared  \
+    && chmod -R 775 /shared  \
     && chown -R wrapper:wrapper /shared
 
 ## Orechestrator section
@@ -54,7 +54,7 @@ RUN mkdir -p /wrapper/orchestrator
 # Add sources and deps
 ADD orchestrator/deps.tgz /wrapper/orchestrator/
 ADD orchestrator/orchestrator.tgz /wrapper/orchestrator/
-ADD orchestrator/rs_scripts.tgz /wrapper/orchestrator/
+ADD orchestrator/l1_scripts.tgz /wrapper/orchestrator/
 
 # Configure and install
 RUN rm -rf /usr/share/doc \

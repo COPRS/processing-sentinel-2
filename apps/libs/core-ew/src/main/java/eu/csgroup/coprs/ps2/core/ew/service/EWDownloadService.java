@@ -26,12 +26,6 @@ public abstract class EWDownloadService {
         this.obsService = obsService;
     }
 
-    protected abstract void prepareStandardFiles(Set<FileInfo> fileInfoSet);
-
-    protected abstract Predicate<FileInfo> customAux();
-
-    protected abstract void downloadCustomAux(Set<FileInfo> fileInfoSet);
-
     public void download(Set<FileInfo> fileInfoSet) {
 
         log.info("Downloading {} files from object storage", fileInfoSet.size());
@@ -60,6 +54,15 @@ public abstract class EWDownloadService {
         log.info("Finished downloading files from object storage");
     }
 
+    protected void prepareStandardFiles(Set<FileInfo> fileInfoSet) {
+        // By default, nothing to do
+    }
+
+    protected Predicate<FileInfo> customAux() {
+        // By default, there's no custom aux
+        return fileInfo -> false;
+    }
+
     protected void downloadStandardAux(Set<FileInfo> fileInfoSet) {
 
         if (!fileInfoSet.isEmpty()) {
@@ -81,6 +84,10 @@ public abstract class EWDownloadService {
 
             FileOperationUtils.deleteFolders(trashFolders);
         }
+    }
+
+    protected void downloadCustomAux(Set<FileInfo> fileInfoSet) {
+        // By default, nothing to do
     }
 
 }

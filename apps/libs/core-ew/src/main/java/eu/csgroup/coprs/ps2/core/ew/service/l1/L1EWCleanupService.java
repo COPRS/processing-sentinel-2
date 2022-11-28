@@ -13,19 +13,4 @@ public abstract class L1EWCleanupService extends EWCleanupService<L1ExecutionInp
         super(cleanupProperties);
     }
 
-    @Override
-    protected void doPrepare() {
-        //
-    }
-
-    @Override
-    protected void doCleanBefore() {
-        //
-    }
-
-    @Override
-    protected void doCleanAfter(L1ExecutionInput executionInput) {
-        //
-    }
-
 }

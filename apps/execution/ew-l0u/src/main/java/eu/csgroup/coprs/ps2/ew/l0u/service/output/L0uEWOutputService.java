@@ -2,19 +2,16 @@ package eu.csgroup.coprs.ps2.ew.l0u.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.ew.service.EWOutputService;
 import eu.csgroup.coprs.ps2.ew.l0u.service.setup.L0uEWCleanupService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Set;
 
 
-@Slf4j
-@Component
+@Service
 public class L0uEWOutputService extends EWOutputService<L0uExecutionInput> {
 
     private final L0uEWUploadService uploadService;
@@ -28,21 +25,13 @@ public class L0uEWOutputService extends EWOutputService<L0uExecutionInput> {
     }
 
     @Override
-    public Set<ProcessingMessage> output(L0uExecutionInput executionInput) {
+    protected Map<ProductFamily, Set<FileInfo>> upload(L0uExecutionInput executionInput) {
+        return uploadService.upload(executionInput);
+    }
 
-        log.info("Starting post execution tasks");
-
-        final Map<ProductFamily, Set<FileInfo>> auxFileInfosByFamily = uploadService.upload(executionInput);
-
-        final String outputFolder = copyService.copy();
-
-        final Set<ProcessingMessage> messages = messageService.build(executionInput, auxFileInfosByFamily, outputFolder);
-
-        cleanupService.clean(executionInput);
-
-        log.info("Finished post execution tasks");
-
-        return messages;
+    @Override
+    protected String copy() {
+        return copyService.copy();
     }
 
 }

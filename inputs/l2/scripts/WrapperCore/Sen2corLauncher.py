@@ -79,7 +79,7 @@ def create_JobOrder_OLQC(gip_probas, gip_olqcpa, persistent, products, working, 
     da_Config_Files = JobOrderReader.Config_FilesType()
     da_conf.set_Config_Files(da_Config_Files)
     da_conf.set_Processor_Name("Chain")
-    da_conf.set_Version("02.08.00")
+    da_conf.set_Version("02.10.03")
     da_conf.set_Test(False)
     da_conf.set_Acquisition_Station("MSI")
     da_conf.set_Processing_Station("MSI")
@@ -137,7 +137,7 @@ def create_JobOrder_OLQC(gip_probas, gip_olqcpa, persistent, products, working, 
     procs = JobOrderReader.List_of_Ipf_ProcsType()
     proc = JobOrderReader.Ipf_Proc()
     proc.set_Task_Name("OLQC")
-    proc.set_Task_Version("01.00.00")
+    proc.set_Task_Version("06.01.00")
     proc.set_List_of_Inputs(da_inputs)
     proc.set_List_of_Outputs(da_outputs)
     procs.add_Ipf_Proc(proc)
@@ -162,14 +162,14 @@ def create_JobOrder_FORMAT_METADATA_TL_L2A(arch_center, proc_baseline, proc_cent
 
     parameters = []
     parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER", arch_center))
-    #parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_NAME", "2BPS"))
-    #parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_COUNTRY", "Italy"))
-    #parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_ORG", "ESA"))
+    parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_NAME", "REFS"))
+    parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_COUNTRY", "France"))
+    parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_ORG", "ESA"))
     parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_BASELINE", proc_baseline))
     parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER", proc_center))
-    #parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_NAME", "2BPS"))
-    #parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_COUNTRY", "Italy"))
-    #parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_ORG", "ESA"))
+    parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_NAME", "REFS"))
+    parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_COUNTRY", "France"))
+    parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_ORG", "ESA"))
     parameters.append(JobOrderReader.Processing_Parameter("FAKE_MODE", "false"))
     parameters.append(JobOrderReader.Processing_Parameter("VALIDATE_SCHEMA", "false"))
     parameters.append(JobOrderReader.Processing_Parameter("PARALLEL_TILE", "false"))
@@ -180,7 +180,7 @@ def create_JobOrder_FORMAT_METADATA_TL_L2A(arch_center, proc_baseline, proc_cent
     da_Config_Files = JobOrderReader.Config_FilesType()
     da_conf.set_Config_Files(da_Config_Files)
     da_conf.set_Processor_Name("Chain")
-    da_conf.set_Version("02.08.00")
+    da_conf.set_Version("02.10.03")
     da_conf.set_Test(False)
     da_conf.set_Acquisition_Station(acquisition_station)
     da_conf.set_Processing_Station(proc_center)
@@ -245,7 +245,7 @@ def create_JobOrder_FORMAT_METADATA_TL_L2A(arch_center, proc_baseline, proc_cent
     procs = JobOrderReader.List_of_Ipf_ProcsType()
     proc = JobOrderReader.Ipf_Proc()
     proc.set_Task_Name("FORMAT_METADATA_TILE_L2A")
-    proc.set_Task_Version("04.04.01")
+    proc.set_Task_Version("06.01.00")
     proc.set_List_of_Inputs(da_inputs)
     proc.set_List_of_Outputs(da_outputs)
     procs.add_Ipf_Proc(proc)
@@ -269,14 +269,14 @@ def create_JobOrder_FORMAT_METADATA_DS_L2A(arch_center, proc_baseline, proc_cent
 
     parameters = []
     parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER", arch_center))
-    #parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_NAME", "2BPS"))
-    #parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_COUNTRY", "Italy"))
-    #parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_ORG", "ESA"))
+    parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_NAME", "REFS"))
+    parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_COUNTRY", "France"))
+    parameters.append(JobOrderReader.Processing_Parameter("ARCHIVING_CENTER_ORG", "ESA"))
     parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_BASELINE", proc_baseline))
     parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER", proc_center))
-    #parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_NAME", "2BPS"))
-    #parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_COUNTRY", "Italy"))
-    #parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_ORG", "ESA"))
+    parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_NAME", "REFS"))
+    parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_COUNTRY", "France"))
+    parameters.append(JobOrderReader.Processing_Parameter("PROCESSING_CENTER_ORG", "ESA"))
     parameters.append(JobOrderReader.Processing_Parameter("FAKE_MODE", "false"))
     parameters.append(JobOrderReader.Processing_Parameter("VALIDATE_SCHEMA", "false"))
     parameters.append(JobOrderReader.Processing_Parameter("TRACE", "false"))
@@ -285,7 +285,7 @@ def create_JobOrder_FORMAT_METADATA_DS_L2A(arch_center, proc_baseline, proc_cent
     da_Config_Files = JobOrderReader.Config_FilesType()
     da_conf.set_Config_Files(da_Config_Files)
     da_conf.set_Processor_Name("Chain")
-    da_conf.set_Version("02.09.00")
+    da_conf.set_Version("06.01.00")
     da_conf.set_Test(False)
     da_conf.set_Acquisition_Station(acquisition_station)
     da_conf.set_Processing_Station(proc_center)
@@ -343,7 +343,7 @@ def create_JobOrder_FORMAT_METADATA_DS_L2A(arch_center, proc_baseline, proc_cent
     procs = JobOrderReader.List_of_Ipf_ProcsType()
     proc = JobOrderReader.Ipf_Proc()
     proc.set_Task_Name("FORMAT_METADATA_DS_L2A")
-    proc.set_Task_Version("04.04.01")
+    proc.set_Task_Version("06.01.00")
     proc.set_List_of_Inputs(da_inputs)
     proc.set_List_of_Outputs(da_outputs)
     procs.add_Ipf_Proc(proc)
@@ -364,10 +364,13 @@ def create_tile_list_file(filename, tile_id):
     tile_list_file = open(filename, "w")
     tile_list_file.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>")
     tile_list_file.write(
-        "<Tile_List xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"/dpc/app/s2ipf/GET_TILE_LIST/04.04.00/scripts/../../../schemas/04.04.00/ICD/DICO/1.0/IPF/ipf/File_Tile_List.xsd\">")
+        "<Tile_List xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+        "xsi:noNamespaceSchemaLocation=\"/dpc/app/s2ipf/GET_TILE_LIST/06.01.00/scripts/../../../"
+        "schemas/06.01.00/ICD/DICO/1.0/IPF/ipf/File_Tile_List.xsd\">")
     tile_list_file.write("<Number_Of_Tiles>1</Number_Of_Tiles>")
     tile_list_file.write("<List_Tile_Id Tile_Number=\"1\">")
     tile_list_file.write("<Tile_Id>" + tile_id + "</Tile_Id>")
+    tile_list_file.write("<List_Detectors_HR/>")
     tile_list_file.write("</List_Tile_Id>")
     tile_list_file.write("</Tile_List>")
     tile_list_file.close()
@@ -412,7 +415,7 @@ def main():
 
     job_options = job.get_Ipf_Conf().get_Dynamic_Processing_Parameters().get_Processing_Parameter()
 
-    processing_baseline = None
+    processing_baseline = "04.00"
     archiving_center = None
     processing_center = None
     resolution = None
@@ -645,7 +648,7 @@ def main():
         work_format_ds = os.path.join(work, "format_mdt_ds_" + dateoflogs)
         FileUtils.create_directory(work_format_ds)
         # Create the JobOrder
-        job_order_content = create_JobOrder_FORMAT_METADATA_DS_L2A(archiving_center, "04.00", processing_center,
+        job_order_content = create_JobOrder_FORMAT_METADATA_DS_L2A(archiving_center, processing_baseline, processing_center,
                                                                    gip_jp2, gip_olqc,
                                                                    work_ds, ds_reception_station, ds_sensing_start,
                                                                    ds_sensing_stop,
@@ -734,11 +737,11 @@ def main():
         template_idp_infos = os.path.join(os.path.dirname(os.path.realpath(__file__)),
                                           "idp_infos.xml")
         idp_info_hdl = IdpInfos.IdpInfos(template_idp_infos)
-        idp_info_hdl.add("Sen2Cor", "02.10.00")
-        idp_info_hdl.add("OLQC", "05.00.00")
-        idp_info_hdl.add("CompressTileImage", "05.00.00")
-        idp_info_hdl.add("FORMAT_METADATA_DS_L2A", "05.00.01")
-        idp_info_hdl.add("FORMAT_METADATA_TILE_L2A", "05.00.01")
+        idp_info_hdl.add("Sen2Cor", "02.10.03")
+        idp_info_hdl.add("OLQC", "06.01.00")
+        idp_info_hdl.add("CompressTileImage", "06.01.00")
+        idp_info_hdl.add("FORMAT_METADATA_DS_L2A", "06.01.00")
+        idp_info_hdl.add("FORMAT_METADATA_TILE_L2A", "06.01.00")
         idp_info_hdl.write_to_file(kpi_idp_infos)
         # End
         print("L2A DS done in : " + str(
@@ -967,7 +970,7 @@ def main():
         create_tile_list_file(tile_list_file, tile_id)
 
         # Create the JobOrder
-        job_order_content = create_JobOrder_FORMAT_METADATA_TL_L2A(archiving_center, "04.00", processing_center,
+        job_order_content = create_JobOrder_FORMAT_METADATA_TL_L2A(archiving_center, processing_baseline, processing_center,
                                                                    tile_list_file,
                                                                    gip_jp2, gip_olqc,
                                                                    work_tl, ds_reception_station, ds_sensing_start,

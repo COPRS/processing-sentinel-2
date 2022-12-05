@@ -48,7 +48,7 @@ public class L0uEWUploadService extends EWUploadService<L0uExecutionInput> {
             log.info("Found {} SAD files", sadFolders.size());
             log.info("Found {} HKTM files", hktmFolders.size());
 
-            fileInfosByFamily.put(ProductFamily.S2_AUX, getFileInfoSet(sadFolders, bucketProperties.getSadBucket()));
+            fileInfosByFamily.put(ProductFamily.S2_SAD, getFileInfoSet(sadFolders, bucketProperties.getSadBucket()));
             fileInfosByFamily.put(ProductFamily.S2_HKTM, getFileInfoSet(hktmFolders, bucketProperties.getHktmBucket()));
 
             obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()));

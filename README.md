@@ -39,6 +39,7 @@ Basic workflow :
 - The S2_L1 addon uses L0C products (Datastrips and Granules) to produce:
     - L1A and/or L1B Datastrips and Granules
     - L1C Datastrips and Tiles
+- The S2_L2 addon uses the output of the S2_L1 addon (L1C Datastrips and Tiles) to produce L2A Datastrips and Tiles
 
 For more information: [Sentinel 2 website](https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2).
 
@@ -47,6 +48,7 @@ For more information: [Sentinel 2 website](https://sentinels.copernicus.eu/web/s
 - [S2_L0U](rs-addons/S2_L0U)
 - [S2_L0C](rs-addons/S2_L0C)
 - [S2_L1](rs-addons/S2_L1)
+- [S2_L2](rs-addons/S2_L2)
 
 ## Installation
 

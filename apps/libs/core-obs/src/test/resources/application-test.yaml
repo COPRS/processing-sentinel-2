@@ -1,0 +1,14 @@
+server:
+  port: 8169
+
+obs:
+  endpoint: "https://s3.sbg.cloud.ovh.net"
+  region: "SBG"
+  access-key: CHANGEME
+  secret-key: CHANGEME
+  maxConcurrency: 5
+  maxThroughput: 1
+  minimumPartSize: 5
+  max-retries: 1
+  bucket:
+    auxBucket: foo

@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.core.common.model.processing;
 
+import eu.csgroup.coprs.ps2.core.common.config.ChainProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,9 @@ public class ProcessingMessage {
     @NotBlank
     @ToString.Include
     private String creationDate;
+
+    @NotBlank
+    private String rsChainVersion = ChainProperties.getChainVersion();
 
     // Sentinel Mission Name
     // “S1” | “S2” | “S3” | ""

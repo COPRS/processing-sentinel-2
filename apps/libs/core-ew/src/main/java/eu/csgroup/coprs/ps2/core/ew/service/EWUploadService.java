@@ -8,11 +8,12 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public abstract class EWUploadService<T extends ExecutionInput> {
 
-    public abstract Map<ProductFamily, Set<FileInfo>> upload(T executionInput);
+    public abstract Map<ProductFamily, Set<FileInfo>> upload(T executionInput, UUID parentUid);
 
     protected Set<FileInfo> getFileInfoSet(List<Path> folderPathList, String bucket) {
         return folderPathList

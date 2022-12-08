@@ -44,7 +44,7 @@ class L0uEWOutputServiceTest extends AbstractTest {
         final Set<ProcessingMessage> messages = Set.of(new ProcessingMessage());
         when(messageService.build(any(), any(), any())).thenReturn(messages);
         // When
-        final Set<ProcessingMessage> output = l0uEWOutputService.output(new L0uExecutionInput());
+        final Set<ProcessingMessage> output = l0uEWOutputService.output(new L0uExecutionInput(), null);
         // Then
         assertEquals(messages, output);
     }

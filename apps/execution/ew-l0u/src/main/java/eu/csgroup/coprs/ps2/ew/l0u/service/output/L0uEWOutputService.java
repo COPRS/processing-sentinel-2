@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Service
@@ -25,8 +26,8 @@ public class L0uEWOutputService extends EWOutputService<L0uExecutionInput> {
     }
 
     @Override
-    protected Map<ProductFamily, Set<FileInfo>> upload(L0uExecutionInput executionInput) {
-        return uploadService.upload(executionInput);
+    protected Map<ProductFamily, Set<FileInfo>> upload(L0uExecutionInput executionInput, UUID parentUid) {
+        return uploadService.upload(executionInput, parentUid);
     }
 
     @Override

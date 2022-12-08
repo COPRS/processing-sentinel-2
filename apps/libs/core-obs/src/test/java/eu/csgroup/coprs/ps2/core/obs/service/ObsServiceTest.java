@@ -151,7 +151,7 @@ class ObsServiceTest extends AbstractTest {
         mockDirUploadSuccess();
         mockFileUploadSuccess();
         mockListResponseEtagsMd5();
-        obsService.uploadWithMd5(FILE_INFO_FOLDER_SET);
+        obsService.uploadWithMd5(FILE_INFO_FOLDER_SET, null);
         assertTrue(true);
     }
 

@@ -39,11 +39,10 @@ class L0cEWOutputServiceTest extends AbstractTest {
     @Test
     void output() {
         // Given
-        // Given
         final Set<ProcessingMessage> messages = Set.of(new ProcessingMessage());
         when(messageService.build(any(), any(), any())).thenReturn(messages);
         // When
-        final Set<ProcessingMessage> output = l0cEWOutputService.output(new L0cExecutionInput());
+        final Set<ProcessingMessage> output = l0cEWOutputService.output(new L0cExecutionInput(), null);
         // Then
         assertEquals(messages, output);
     }

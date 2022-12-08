@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 @Slf4j
@@ -32,11 +33,11 @@ public class L1saEWDownloadService extends EWDownloadService {
     }
 
     @Override
-    protected void downloadCustomAux(Set<FileInfo> fileInfoSet) {
+    protected void downloadCustomAux(Set<FileInfo> fileInfoSet, UUID parentUid) {
 
         if (!fileInfoSet.isEmpty()) {
 
-            obsService.download(fileInfoSet);
+            obsService.download(fileInfoSet, parentUid);
 
             fileInfoSet.forEach(fileInfo -> {
 

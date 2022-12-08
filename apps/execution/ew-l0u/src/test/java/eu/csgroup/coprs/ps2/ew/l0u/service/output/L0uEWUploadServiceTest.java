@@ -58,7 +58,7 @@ class L0uEWUploadServiceTest extends AbstractTest {
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(hktmPaths);
 
             // When
-            final Map<ProductFamily, Set<FileInfo>> upload = l0uEWUploadService.upload(null);
+            final Map<ProductFamily, Set<FileInfo>> upload = l0uEWUploadService.upload(null, null);
 
             // Then
             assertEquals(2, upload.size());
@@ -72,7 +72,7 @@ class L0uEWUploadServiceTest extends AbstractTest {
         final List<Path> sadPaths = List.of(Paths.get("foo"));
         final List<Path> hktmPaths = List.of(Paths.get("bar"));
 
-        doThrow(ObsException.class).when(obsService).uploadWithMd5(any());
+        doThrow(ObsException.class).when(obsService).uploadWithMd5(any(), any());
 
         try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
 
@@ -80,7 +80,7 @@ class L0uEWUploadServiceTest extends AbstractTest {
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(hktmPaths);
 
             // When Then
-            assertThrows(FileOperationException.class, () -> l0uEWUploadService.upload(null));
+            assertThrows(FileOperationException.class, () -> l0uEWUploadService.upload(null, null));
         }
     }
 

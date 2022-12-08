@@ -6,6 +6,8 @@ import eu.csgroup.coprs.ps2.core.ew.service.EWSetupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class L0cEWSetupService implements EWSetupService<L0cExecutionInput> {
@@ -25,13 +27,13 @@ public class L0cEWSetupService implements EWSetupService<L0cExecutionInput> {
     }
 
     @Override
-    public void setup(L0cExecutionInput l0cExecutionInput) {
+    public void setup(L0cExecutionInput l0cExecutionInput, UUID parentUid) {
 
         log.info("Starting setup ...");
 
         cleanupService.cleanAndPrepare(sharedProperties.getSharedFolderRoot());
         jobOrderService.saveJobOrders(l0cExecutionInput);
-        downloadService.download(l0cExecutionInput.getFiles());
+        downloadService.download(l0cExecutionInput.getFiles(), parentUid);
 
         log.info("Finished setup.");
     }

@@ -59,7 +59,7 @@ class L0cEWUploadServiceTest extends AbstractTest {
                     .thenReturn(grPaths);
 
             // When
-            final Map<ProductFamily, Set<FileInfo>> upload = l0cEWUploadService.upload(null);
+            final Map<ProductFamily, Set<FileInfo>> upload = l0cEWUploadService.upload(null, null);
 
             // Then
             assertEquals(2, upload.size());
@@ -73,7 +73,7 @@ class L0cEWUploadServiceTest extends AbstractTest {
         final List<Path> dsPaths = List.of(Paths.get("foo"));
         final List<Path> grPaths = List.of(Paths.get("bar"));
 
-        doThrow(ObsException.class).when(obsService).uploadWithMd5(any());
+        doThrow(ObsException.class).when(obsService).uploadWithMd5(any(), any());
 
         try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
 
@@ -82,7 +82,7 @@ class L0cEWUploadServiceTest extends AbstractTest {
                     .thenReturn(grPaths);
 
             // When Then
-            assertThrows(FileOperationException.class, () -> l0cEWUploadService.upload(null));
+            assertThrows(FileOperationException.class, () -> l0cEWUploadService.upload(null, null));
         }
     }
 

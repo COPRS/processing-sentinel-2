@@ -23,6 +23,9 @@ public class EndTask extends AbstractTask {
     private TaskQuality quality;
     private List<TaskMissingOutput> missingOutput;
 
+    private Double dataRateMebibytesSec;
+    private Double dataVolumeMebibytes;
+
     public EndTask() {
         this.setEvent(TaskEvent.END);
         this.setOutput(new EmptyTaskOutput());

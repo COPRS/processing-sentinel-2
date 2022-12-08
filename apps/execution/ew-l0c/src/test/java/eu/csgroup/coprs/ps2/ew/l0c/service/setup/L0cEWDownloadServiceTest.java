@@ -45,10 +45,10 @@ class L0cEWDownloadServiceTest extends AbstractTest {
         try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
 
             // When
-            l0cEWDownloadService.download(fileInfoSet);
+            l0cEWDownloadService.download(fileInfoSet, null);
 
             // Then
-            verify(obsService).download(fileInfoSet);
+            verify(obsService).download(fileInfoSet, null);
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.move(any(), any()), times(2));
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.deleteFolders(any()));
         }

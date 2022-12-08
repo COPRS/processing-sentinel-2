@@ -63,7 +63,7 @@ class EWProcessorServiceTest extends AbstractTest {
     @Test
     void processMessage_nominal() {
         // Given
-        when(outputService.output(input)).thenReturn(outputMessageSet);
+        when(outputService.output(eq(input), any())).thenReturn(outputMessageSet);
         when(inputService.extract(inputMessage)).thenReturn(input);
 
         // When
@@ -73,9 +73,9 @@ class EWProcessorServiceTest extends AbstractTest {
 
             // Then
             verify(inputService).extract(inputMessage);
-            verify(setupService).setup(input);
+            verify(setupService).setup(eq(input), any());
             verify(executionService).execute(eq(input), any());
-            verify(outputService).output(input);
+            verify(outputService).output(eq(input), any());
 
             assertEquals(outputMessageSet, output);
 
@@ -87,8 +87,7 @@ class EWProcessorServiceTest extends AbstractTest {
     @Test
     void processMessage_error() {
         // Given
-        when(outputService.output(input)).thenReturn(outputMessageSet);
-        when(outputService.output(input)).thenThrow(new ProcessingException("Nope"));
+        when(outputService.output(eq(input), any())).thenThrow(new ProcessingException("Nope"));
         when(inputService.extract(inputMessage)).thenReturn(input);
 
         // When
@@ -98,9 +97,9 @@ class EWProcessorServiceTest extends AbstractTest {
 
             // Then
             verify(inputService).extract(inputMessage);
-            verify(setupService).setup(input);
+            verify(setupService).setup(eq(input), any());
             verify(executionService).execute(eq(input), any());
-            verify(outputService).output(input);
+            verify(outputService).output(eq(input), any());
 
             assertEquals(2, logCaptor.getLogs().size());
             assertEquals(1, logCaptor.getLogs().stream().filter(s -> s.contains("ERROR")).count());

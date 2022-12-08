@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -26,7 +23,7 @@ public abstract class EWDownloadService {
         this.obsService = obsService;
     }
 
-    public void download(Set<FileInfo> fileInfoSet) {
+    public void download(Set<FileInfo> fileInfoSet, UUID parentUid) {
 
         log.info("Downloading {} files from object storage", fileInfoSet.size());
 
@@ -39,7 +36,7 @@ public abstract class EWDownloadService {
         final Set<FileInfo> stdFiles = new HashSet<>(filesByIsAux.get(false));
         if (!stdFiles.isEmpty()) {
             prepareStandardFiles(stdFiles);
-            obsService.download(stdFiles);
+            obsService.download(stdFiles, parentUid);
         }
 
         final HashSet<FileInfo> auxFiles = new HashSet<>(filesByIsAux.get(true));
@@ -47,8 +44,8 @@ public abstract class EWDownloadService {
             final Map<Boolean, List<FileInfo>> auxByIsCustom = auxFiles
                     .stream()
                     .collect(Collectors.partitioningBy(customAux()));
-            downloadStandardAux(new HashSet<>(auxByIsCustom.get(false)));
-            downloadCustomAux(new HashSet<>(auxByIsCustom.get(true)));
+            downloadStandardAux(new HashSet<>(auxByIsCustom.get(false)), parentUid);
+            downloadCustomAux(new HashSet<>(auxByIsCustom.get(true)), parentUid);
         }
 
         log.info("Finished downloading files from object storage");
@@ -63,11 +60,11 @@ public abstract class EWDownloadService {
         return fileInfo -> false;
     }
 
-    protected void downloadStandardAux(Set<FileInfo> fileInfoSet) {
+    protected void downloadStandardAux(Set<FileInfo> fileInfoSet, UUID parentUid) {
 
         if (!fileInfoSet.isEmpty()) {
 
-            obsService.download(fileInfoSet);
+            obsService.download(fileInfoSet, parentUid);
 
             Set<String> trashFolders = new HashSet<>();
 
@@ -86,7 +83,7 @@ public abstract class EWDownloadService {
         }
     }
 
-    protected void downloadCustomAux(Set<FileInfo> fileInfoSet) {
+    protected void downloadCustomAux(Set<FileInfo> fileInfoSet, UUID parentUid) {
         // By default, nothing to do
     }
 

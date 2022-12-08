@@ -41,11 +41,11 @@ class L0cEWSetupServiceTest extends AbstractTest {
         final L0cExecutionInput executionInput = new L0cExecutionInput();
         when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
         // When
-        l0cEWSetupService.setup(executionInput);
+        l0cEWSetupService.setup(executionInput, null);
         // Then
         verify(cleanupService).cleanAndPrepare("foo");
         verify(jobOrderService).saveJobOrders(executionInput);
-        verify(downloadService).download(any());
+        verify(downloadService).download(any(), any());
     }
 
 }

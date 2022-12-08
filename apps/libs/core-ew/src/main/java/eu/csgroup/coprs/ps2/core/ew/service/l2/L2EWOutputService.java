@@ -10,6 +10,7 @@ import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 public abstract class L2EWOutputService extends EWOutputService<L2ExecutionInput> {
 
@@ -23,8 +24,8 @@ public abstract class L2EWOutputService extends EWOutputService<L2ExecutionInput
     }
 
     @Override
-    protected Map<ProductFamily, Set<FileInfo>> upload(L2ExecutionInput executionInput) {
-        return uploadService.upload(executionInput);
+    protected Map<ProductFamily, Set<FileInfo>> upload(L2ExecutionInput executionInput, UUID parentUid) {
+        return uploadService.upload(executionInput, parentUid);
     }
 
 }

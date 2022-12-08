@@ -56,8 +56,6 @@ public class L2PWInputManagementService implements PWInputManagementService {
                     taskReport.end(product + " is DS, creating datastrip");
                 }
                 case S2_L1C_TL -> {
-                    // TODO need to know if we have this in catalog event for L1C_TL
-                    // or workaround searching in DB for matching DS - doable but painful
                     final String datastripName = ProcessingMessageUtils.getMetadata(
                             processingMessage,
                             MessageParameters.PRODUCT_GROUP_ID_FIELD,

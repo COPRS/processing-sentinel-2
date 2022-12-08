@@ -11,7 +11,9 @@ public enum ReportTask {
     JOB_GENERATOR("JobGenerator"),
     JOB_PROCESSING("JobProcessing"),
     PROCESSING("Processing"),
-    PROCESSING_TASK("ProcessingTask");
+    PROCESSING_TASK("ProcessingTask"),
+    OBS_READ("ObsRead"),
+    OBS_WRITE("ObsWrite");
 
     private final String name;
 

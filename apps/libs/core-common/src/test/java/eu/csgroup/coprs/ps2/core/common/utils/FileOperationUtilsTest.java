@@ -19,12 +19,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FileOperationUtilsTest {
 
-
     private static final Path ROOT_PATH = Paths.get("src/test/resources/fileOperationUtilsTest").toAbsolutePath();
     private static final Path DUMP_PATH = ROOT_PATH.resolve("L0U_DUMP").toAbsolutePath();
     private static final Path COPY_PATH = ROOT_PATH.resolve("L0U_DUMP_COPY").toAbsolutePath();
     private static final Path MERGE_PATH = ROOT_PATH.resolve("merge").toAbsolutePath();
     private static final Path MERGE_FILE = ROOT_PATH.resolve("S2D_MERGED").toAbsolutePath();
+    private static final Path FOO_FILE = ROOT_PATH.resolve("foo").toAbsolutePath();
 
     @BeforeEach
     void setUp() throws IOException {
@@ -152,6 +152,13 @@ class FileOperationUtilsTest {
     void merge() {
         FileOperationUtils.mergeFiles(MERGE_PATH, MERGE_FILE, "S2D.*");
         assertTrue(Files.exists(MERGE_FILE));
+    }
+
+    @Test
+    void getSize() {
+        final Set<String> paths = Set.of(DUMP_PATH.toString(), MERGE_PATH.toString(), FOO_FILE.toString());
+        final long size = FileOperationUtils.getSize(paths);
+        assertEquals(12L, size);
     }
 
 }

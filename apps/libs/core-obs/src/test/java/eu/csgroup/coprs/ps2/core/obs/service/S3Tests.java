@@ -2,19 +2,20 @@ package eu.csgroup.coprs.ps2.core.obs.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractSpringBootTest;
+import eu.csgroup.coprs.ps2.core.common.test.TestUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileSystemUtils;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -118,7 +119,7 @@ class S3Tests extends AbstractSpringBootTest { // NOSONAR
     @Order(6)
     void uploadFolder() throws IOException {
         // Given
-        createFiles(TMP_DIR, SMALL_FILE_PREFIX, 1000, 100);
+        TestUtils.createFiles(TMP_DIR, SMALL_FILE_PREFIX, 1000, 100);
         final String folderKey = StringUtils.substringAfterLast(TMP_DIR, "/");
         // When
         obsService.upload(Set.of(new FileInfo().setBucket(bucketProperties.getAuxBucket()).setKey(folderKey).setFullLocalPath(TMP_DIR)));
@@ -139,7 +140,7 @@ class S3Tests extends AbstractSpringBootTest { // NOSONAR
 
     private Set<FileInfo> createFilesAndFileInfo(String bucket, String rootPath, String prefix, int count, long size) throws IOException {
 
-        final Set<Path> files = createFiles(rootPath, prefix, count, size);
+        final Set<Path> files = TestUtils.createFiles(rootPath, prefix, count, size);
 
         return files
                 .stream()
@@ -149,31 +150,6 @@ class S3Tests extends AbstractSpringBootTest { // NOSONAR
                                 .setKey(StringUtils.substringAfterLast(file.toString(), "/"))
                                 .setFullLocalPath(file.toString()))
                 .collect(Collectors.toSet());
-    }
-
-    private Set<Path> createFiles(String rootPath, String prefix, int count, long size) throws IOException {
-
-        final String format = "%0" + String.valueOf(count).length() + "d";
-
-        Set<Path> pathSet = new HashSet<>();
-
-        String name;
-        Path path;
-        for (int i = 0; i < count; i++) {
-            name = prefix + String.format(format, i);
-            path = Path.of(rootPath, name);
-            createFile(path, size);
-            pathSet.add(path);
-        }
-        return pathSet;
-    }
-
-    private void createFile(Path path, long size) throws IOException {
-        File file = path.toFile();
-        file.createNewFile();
-        RandomAccessFile raf = new RandomAccessFile(file, "rw");
-        raf.setLength(size);
-        raf.close();
     }
 
 }

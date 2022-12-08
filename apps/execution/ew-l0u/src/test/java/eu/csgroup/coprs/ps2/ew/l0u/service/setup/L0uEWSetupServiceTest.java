@@ -40,11 +40,11 @@ class L0uEWSetupServiceTest extends AbstractTest {
         // When
         when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
         // When
-        l0uEWSetupService.setup(new L0uExecutionInput());
+        l0uEWSetupService.setup(new L0uExecutionInput(), null);
         // Then
         verify(cleanupService).cleanAndPrepare("foo");
         verify(jobOrderService).saveJobOrders(any());
-        verify(downloadService).download(any());
+        verify(downloadService).download(any(), any());
     }
 
 }

@@ -2,11 +2,13 @@ package eu.csgroup.coprs.ps2.core.obs.service;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.Md5utils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
+import eu.csgroup.coprs.ps2.core.obs.utils.ObsTraceUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -148,16 +150,20 @@ public class ObsService {
         }
     }
 
+    public void download(Set<FileInfo> fileInfoSet, UUID parentUid) {
+        ObsTraceUtils.traceTransfer(fileInfoSet, ReportTask.OBS_READ, parentUid, this::download);
+    }
+
     /**
      * Download a set of files or directories, given their FileInfo.
      *
-     * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
+     * @param fileInfoSet List of FileInfo objects, containing source and destination info for each file
      */
-    public void download(Set<FileInfo> fileInfoList) {
+    public void download(Set<FileInfo> fileInfoSet) {
 
-        log.debug("Downloading {} folders using FileInfos", fileInfoList.size());
+        log.debug("Downloading {} folders using FileInfos", fileInfoSet.size());
 
-        Mono.when(fileInfoList.stream()
+        Mono.when(fileInfoSet.stream()
                         .map(fileInfo -> {
                             final String key = fileInfo.getKey();
                             final String bucket = fileInfo.getBucket();
@@ -172,16 +178,20 @@ public class ObsService {
                 .block();
     }
 
+    public void upload(Set<FileInfo> fileInfoSet, UUID parentUid) {
+        ObsTraceUtils.traceTransfer(fileInfoSet, ReportTask.OBS_WRITE, parentUid, this::upload);
+    }
+
     /**
      * Upload a set of files or folders, given their FileInfo
      *
-     * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
+     * @param fileInfoSet List of FileInfo objects, containing source and destination info for each file
      */
-    public void upload(Set<FileInfo> fileInfoList) {
+    public void upload(Set<FileInfo> fileInfoSet) {
 
-        log.debug("Uploading {} files using FileInfos", fileInfoList.size());
+        log.debug("Uploading {} files using FileInfos", fileInfoSet.size());
 
-        Mono.when(fileInfoList.stream()
+        Mono.when(fileInfoSet.stream()
                         .map(fileInfo -> {
                             final Path sourcePath = Paths.get(fileInfo.getFullLocalPath());
                             if (sourcePath.toFile().isDirectory()) {
@@ -195,14 +205,16 @@ public class ObsService {
     }
 
     /**
-     * Upload a set of folders, given their FileInfo, and create the matching md5sum files according to ICD
+     * Upload a set of folders, given their FileInfo, and create the matching md5sum files according to ICD.
+     * Create an ObsWrite trace relative to the download.
      *
-     * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
+     * @param fileInfoSet List of FileInfo objects, containing source and destination info for each file
+     * @param parentUid   UUID of the parent task
      */
-    public void uploadWithMd5(Set<FileInfo> fileInfoList) {
+    public void uploadWithMd5(Set<FileInfo> fileInfoSet, UUID parentUid) {
 
-        log.info("Uploading {} folders to OBS", fileInfoList.size());
-        upload(fileInfoList);
+        log.info("Uploading {} folders to OBS", fileInfoSet.size());
+        upload(fileInfoSet, parentUid);
 
         log.info("Creating md5sum files");
 
@@ -211,7 +223,7 @@ public class ObsService {
 
         Set<FileInfo> md5FileInfos = new HashSet<>();
 
-        fileInfoList.forEach(fileInfo -> {
+        fileInfoSet.forEach(fileInfo -> {
 
             final Path localPath = Paths.get(fileInfo.getFullLocalPath());
             final Path md5sumPath = Paths.get(tmpFolder).resolve(localPath.getFileName() + MD5SUM_SUFFIX);
@@ -242,7 +254,7 @@ public class ObsService {
         });
 
         log.info("Uploading md5sum files");
-        upload(md5FileInfos);
+        upload(md5FileInfos, parentUid);
 
         if (!FileUtils.deleteQuietly(new File(tmpFolder))) {
             log.warn("Unable to delete temp folder {}", tmpFolder);

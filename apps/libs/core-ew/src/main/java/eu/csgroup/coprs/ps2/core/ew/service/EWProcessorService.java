@@ -53,11 +53,11 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
 
         try {
 
-            setupService.setup(executionInput);
+            setupService.setup(executionInput, taskReport.getUid());
 
             executionService.execute(executionInput, taskReport.getUid());
 
-            outputMessageSet = outputService.output(executionInput);
+            outputMessageSet = outputService.output(executionInput, taskReport.getUid());
 
             taskReport.end(
                     "End Job Processing",

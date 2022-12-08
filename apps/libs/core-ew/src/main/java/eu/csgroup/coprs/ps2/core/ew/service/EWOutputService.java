@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 @Slf4j
 public abstract class EWOutputService<T extends ExecutionInput> {
@@ -20,11 +21,11 @@ public abstract class EWOutputService<T extends ExecutionInput> {
         this.cleanupService = cleanupService;
     }
 
-    public Set<ProcessingMessage> output(T executionInput) {
+    public Set<ProcessingMessage> output(T executionInput, UUID parentUid) {
 
         log.info("Starting post execution tasks");
 
-        final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = upload(executionInput);
+        final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = upload(executionInput, parentUid);
 
         final String outputFolder = copy();
 
@@ -37,7 +38,7 @@ public abstract class EWOutputService<T extends ExecutionInput> {
         return messages;
     }
 
-    protected abstract Map<ProductFamily, Set<FileInfo>> upload(T executionInput);
+    protected abstract Map<ProductFamily, Set<FileInfo>> upload(T executionInput, UUID parentUid);
 
     protected String copy() {
         // By default, noting to do

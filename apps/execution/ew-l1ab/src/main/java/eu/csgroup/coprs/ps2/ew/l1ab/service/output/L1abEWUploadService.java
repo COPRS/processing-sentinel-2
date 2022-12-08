@@ -33,7 +33,7 @@ public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
     }
 
     @Override
-    public Map<ProductFamily, Set<FileInfo>> upload(L1ExecutionInput executionInput) {
+    public Map<ProductFamily, Set<FileInfo>> upload(L1ExecutionInput executionInput, UUID parentUid) {
 
         log.info("Uploading L1A and/or L1B files to OBS");
 
@@ -45,7 +45,7 @@ public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
             fileInfosByFamily.putAll(add(rootPath.resolve(L12Parameters.L1A_GR_ROOT), S2FileParameters.L1A_GR_REGEX, ProductFamily.S2_L1A_GR, bucketProperties.getL1GRBucket()));
             fileInfosByFamily.putAll(add(rootPath.resolve(L12Parameters.L1B_DS_ROOT), S2FileParameters.L1B_DS_REGEX, ProductFamily.S2_L1B_DS, bucketProperties.getL1DSBucket()));
             fileInfosByFamily.putAll(add(rootPath.resolve(L12Parameters.L1B_GR_ROOT), S2FileParameters.L1B_GR_REGEX, ProductFamily.S2_L1B_GR, bucketProperties.getL1GRBucket()));
-            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
+            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()), parentUid);
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);
         }

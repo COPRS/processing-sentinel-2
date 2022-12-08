@@ -10,6 +10,7 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.task.BeginTask;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.EndTask;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.TaskStatus;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,64 +63,70 @@ public class TaskReport {
     }
 
     public void end(String message) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, null, null, null);
-    }
-
-    public void end(String message, TaskOutput output) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, output, null, null);
+        end(new EndWrapper()
+                .setLevel(TraceLevel.INFO)
+                .setStatus(TaskStatus.OK)
+                .setMessage(message));
     }
 
     public void end(String message, TaskOutput output, List<TaskMissingOutput> missingOutputs) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, output, null, missingOutputs);
+        end(new EndWrapper()
+                .setLevel(TraceLevel.INFO)
+                .setStatus(TaskStatus.OK)
+                .setMessage(message)
+                .setOutput(output)
+                .setMissingOutputs(missingOutputs));
     }
 
-    public void end(String message, TaskOutput output, TaskQuality quality) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, output, quality, null);
-    }
-
-    public void end(String message, TaskOutput output, TaskQuality quality, List<TaskMissingOutput> missingOutputs) {
-        end(TraceLevel.INFO, TaskStatus.OK, message, output, quality, missingOutputs);
+    public void end(String message, Double dataRateMebibytesSec, Double dataVolumeMebibytes) {
+        end(new EndWrapper()
+                .setLevel(TraceLevel.INFO)
+                .setStatus(TaskStatus.OK)
+                .setMessage(message)
+                .setDataRateMebibytesSec(dataRateMebibytesSec)
+                .setDataVolumeMebibytes(dataVolumeMebibytes));
     }
 
     public void warning(String message) {
-        end(TraceLevel.WARNING, TaskStatus.OK, message, null, null, null);
-    }
-
-    public void warning(String message, TaskOutput output) {
-        end(TraceLevel.WARNING, TaskStatus.OK, message, output, null, null);
-    }
-
-    public void warning(String message, TaskOutput output, TaskQuality quality) {
-        end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality, null);
-    }
-
-    public void warning(String message, TaskOutput output, TaskQuality quality, List<TaskMissingOutput> missingOutputs) {
-        end(TraceLevel.WARNING, TaskStatus.OK, message, output, quality, missingOutputs);
+        end(new EndWrapper()
+                .setLevel(TraceLevel.WARNING)
+                .setStatus(TaskStatus.OK)
+                .setMessage(message));
     }
 
     public void error(String message) {
-        end(TraceLevel.ERROR, TaskStatus.NOK, message, null, null, null);
+        end(new EndWrapper()
+                .setLevel(TraceLevel.ERROR)
+                .setStatus(TaskStatus.NOK)
+                .setMessage(message));
     }
 
     public void error(String message, List<TaskMissingOutput> missingOutputs) {
-        end(TraceLevel.ERROR, TaskStatus.NOK, message, null, null, missingOutputs);
+        end(new EndWrapper()
+                .setLevel(TraceLevel.ERROR)
+                .setStatus(TaskStatus.NOK)
+                .setMessage(message)
+                .setMissingOutputs(missingOutputs));
     }
 
-    private void end(TraceLevel level, TaskStatus status, String message, TaskOutput output, TaskQuality quality, List<TaskMissingOutput> missingOutputs) {
+    private void end(EndWrapper wrapper) {
 
         final Double duration = Duration.between(start, Instant.now()).toMillis() / 1000.0;
 
         final EndTask endTask = new EndTask();
 
-        if (output != null) {
-            endTask.setOutput(output);
-        }
-        if (quality != null) {
-            endTask.setQuality(quality);
-        }
-        endTask.setMissingOutput(missingOutputs);
+        endTask.setDataRateMebibytesSec(wrapper.getDataRateMebibytesSec());
+        endTask.setDataVolumeMebibytes(wrapper.getDataVolumeMebibytes());
 
-        endTask.setStatus(status)
+        if (wrapper.getOutput() != null) {
+            endTask.setOutput(wrapper.getOutput());
+        }
+        if (wrapper.getQuality() != null) {
+            endTask.setQuality(wrapper.getQuality());
+        }
+        endTask.setMissingOutput(wrapper.getMissingOutputs());
+
+        endTask.setStatus(wrapper.getStatus())
                 .setDurationInSeconds(duration)
                 .setUid(uid)
                 .setName(taskName)
@@ -127,11 +134,27 @@ public class TaskReport {
                 .setInput(input);
 
         final Trace trace = new Trace()
-                .setHeader(new Header().setLevel(level))
-                .setMessage(new Message().setContent(message))
+                .setHeader(new Header().setLevel(wrapper.getLevel()))
+                .setMessage(new Message().setContent(wrapper.getMessage()))
                 .setTask(endTask);
 
         TraceLogger.log(trace);
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    private static class EndWrapper {
+
+        private TraceLevel level;
+        private TaskStatus status;
+        private String message;
+        private TaskOutput output;
+        private TaskQuality quality;
+        private List<TaskMissingOutput> missingOutputs;
+        private Double dataRateMebibytesSec;
+        private Double dataVolumeMebibytes;
+
     }
 
 }

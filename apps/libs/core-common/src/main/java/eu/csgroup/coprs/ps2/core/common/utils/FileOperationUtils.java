@@ -197,6 +197,23 @@ public final class FileOperationUtils {
         }
     }
 
+    public static long getSize(Set<String> paths) {
+        long size = 0;
+        try {
+            for (String path : paths) {
+                final File file = Path.of(path).toFile();
+                if (file.isFile()) {
+                    size += FileUtils.sizeOf(file);
+                } else {
+                    size += FileUtils.sizeOfDirectory(file);
+                }
+            }
+        } catch (Exception e) {
+            throw new FileOperationException("Unable to compute files size", e);
+        }
+        return size;
+    }
+
     private FileOperationUtils() {
     }
 

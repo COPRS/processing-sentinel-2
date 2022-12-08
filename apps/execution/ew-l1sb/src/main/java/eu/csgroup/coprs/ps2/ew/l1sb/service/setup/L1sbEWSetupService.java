@@ -6,6 +6,8 @@ import eu.csgroup.coprs.ps2.core.ew.service.EWSetupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class L1sbEWSetupService implements EWSetupService<L1ExecutionInput> {
@@ -19,7 +21,7 @@ public class L1sbEWSetupService implements EWSetupService<L1ExecutionInput> {
     }
 
     @Override
-    public void setup(L1ExecutionInput executionInput) {
+    public void setup(L1ExecutionInput executionInput, UUID parentUid) {
 
         log.info("Starting setup ...");
 

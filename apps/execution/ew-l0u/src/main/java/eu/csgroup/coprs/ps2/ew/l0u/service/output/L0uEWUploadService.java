@@ -32,7 +32,7 @@ public class L0uEWUploadService extends EWUploadService<L0uExecutionInput> {
     }
 
     @Override
-    public Map<ProductFamily, Set<FileInfo>> upload(L0uExecutionInput executionInput) {
+    public Map<ProductFamily, Set<FileInfo>> upload(L0uExecutionInput executionInput, UUID parentUid) {
 
         log.info("Uploading AUX files to OBS");
 
@@ -51,7 +51,7 @@ public class L0uEWUploadService extends EWUploadService<L0uExecutionInput> {
             fileInfosByFamily.put(ProductFamily.S2_SAD, getFileInfoSet(sadFolders, bucketProperties.getSadBucket()));
             fileInfosByFamily.put(ProductFamily.S2_HKTM, getFileInfoSet(hktmFolders, bucketProperties.getHktmBucket()));
 
-            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()));
+            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()), parentUid);
 
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);

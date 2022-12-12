@@ -28,8 +28,7 @@ public class L1cPWInputManagementService {
         try {
             executionInput = extract(processingMessage);
             taskReport.end("Successfully extracted processing input");
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             taskReport.error("Error managing input for message " + processingMessage);
             throw e;
         }

@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.pw.l2.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l2.model.L2Datastrip;

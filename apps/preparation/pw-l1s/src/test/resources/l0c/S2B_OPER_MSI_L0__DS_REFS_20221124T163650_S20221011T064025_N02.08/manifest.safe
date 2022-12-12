@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<xfdu:XFDU xmlns:xfdu="urn:ccsds:schema:xfdu:1" version="esa/safe/sentinel-1.0/sentinel-2/msi/archive_l0_datastrip" xmlns:gml="http://www.opengis.net/gml" xmlns:safe="http://www.esa.int/safe/sentinel-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ccsds:schema:xfdu:1 /dpc/app/s2ipf/FORMAT_METADATA_GR_L0C/01.09.00/scripts/../../../xmlschemas/SAFE/xsd/int/esa/safe/sentinel-1.0/xfdu.xsd">
+
+  <informationPackageMap>
+    <xfdu:contentUnit dmdID="acquisitionPeriod platform" pdiID="processing" textInfo="SENTINEL-2 MSI Level-0_Datastrip PDI" unitType="Product_Level-0">
+      <xfdu:contentUnit ID="S2_Level-0_Datastrip_Metadata_Unit" repID="S2_Level-0_Datastrip_Schema" unitType="Metadata Unit">
+        <dataObjectPointer dataObjectID="S2_Level-0_Datastrip_Metadata"/>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="IMG_DATA" textInfo="Image Data container">
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="QI_DATA" textInfo="Quality control container">
+        <xfdu:contentUnit ID="QLK_L0_Band04_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="QLK_L0_Band04_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="QLK_L0_Band11_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="QLK_L0_Band11_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="QLK_L0_Band02_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="QLK_L0_Band02_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="QLK_L0_Band10_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="QLK_L0_Band10_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="QLK_L0_Band03_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="QLK_L0_Band03_Data"/>
+        </xfdu:contentUnit>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="ANC_DATA" textInfo="Ancilliary datas">
+        <xfdu:contentUnit ID="ANC11121_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11121_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11112_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11112_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11113_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11113_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11126_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11126_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11105_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11105_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11117_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11117_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11122_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11122_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11116_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11116_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11125_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11125_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11110_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11110_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC48224_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC48224_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11124_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11124_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11118_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11118_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11119_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11119_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11106_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11106_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC48223_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC48223_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11108_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11108_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC09123_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC09123_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11111_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11111_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC48227_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC48227_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC48225_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC48225_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC48226_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC48226_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11109_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11109_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11120_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11120_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC48218_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC48218_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC37105_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC37105_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC38105_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC38105_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11115_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11115_Data"/>
+        </xfdu:contentUnit>
+        <xfdu:contentUnit ID="ANC11114_Unit" unitType="Data Unit">
+          <dataObjectPointer dataObjectID="ANC11114_Data"/>
+        </xfdu:contentUnit>
+      </xfdu:contentUnit>
+      <xfdu:contentUnit ID="AUX_DATA" textInfo="Auxilliary datas">
+      </xfdu:contentUnit>
+    </xfdu:contentUnit>
+
+  </informationPackageMap>
+
+  <metadataSection>
+    <metadataObject ID="platform" category="DMD" classification="DESCRIPTION">
+      <metadataWrap>
+        <xmlData>
+          <safe:platform>
+            <safe:nssdcIdentifier>2012-000B</safe:nssdcIdentifier>
+            <safe:familyName>Sentinel</safe:familyName>
+            <safe:number>2B</safe:number>
+            <safe:instrument>
+              <safe:familyName abbreviation="MSI">Multi-Spectral Instrument</safe:familyName>
+              <safe:mode identifier="INS-NOBS">Nominal_Observation</safe:mode>
+            </safe:instrument>
+          </safe:platform>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="processing" category="PDI" classification="PROVENANCE">
+      <metadataWrap>
+        <xmlData>
+          <safe:processing name="Archiving of PDI Level-0 Granule Product" start="2022-11-24T16:39:06.000000Z">
+            <safe:facility country="unknown" name="unknown" organisation="unknown" site="REFS"/>
+            <safe:resource name="unknown" role="PDI Level-0 Datastrip Product">
+              <safe:processing name="L0 Processing of Raw Data" start="2022-11-24T16:36:50.000000Z">
+                <safe:facility country="unknown" name="unknown" organisation="unknown" site="REFS">
+                  <safe:resource name=".//ANC_DATA/" role="Ancillary data"/>
+                  <safe:resource name="S2__OPER_AUX_UT1UTC_PDMC_20221007T000000_V20221007T000000_20231006T000000" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_R2ABCA_MPC__20220920T085300_V20220922T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_CLOINV_MPC__20210609T000002_V20210823T030000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_DATATI_MPC__20170428T123038_V20170322T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_ATMIMA_MPC__20170206T103051_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_ATMSAD_MPC__20170324T155501_V20170306T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_LREXTR_MPC__20210608T000001_V20150622T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_SPAMOD_MPC__20220222T000033_V20220224T001500_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B01" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B02" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B03" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B04" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B05" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B06" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B07" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B08" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B09" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B10" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B11" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B12" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_VIEDIR_MPC__20170512T114736_V20170322T000000_21000101T000000_B8A" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_BLINDP_MPC__20170221T000000_V20170101T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_JP2KPA_MPC__20220120T000006_V20220125T022000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_PROBAS_MPC__20220609T000400_V20150622T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_INVLOC_MPC__20170523T080300_V20170322T000000_21000101T000000_B00" role="Auxiliary data"/>
+                  <safe:resource name="S2B_OPER_GIP_OLQCPA_MPC__20220715T000042_V20220830T002500_21000101T000000_B00" role="Auxiliary data"/>
+                </safe:facility>
+              </safe:processing>
+            </safe:resource>
+          </safe:processing>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="acquisitionPeriod" category="DMD" classification="DESCRIPTION">
+      <metadataWrap>
+        <xmlData>
+          <safe:acquisitionPeriod startTime="2022-10-11T06:40:25.455999Z"/>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="measurementOrbitReference" category="DMD" classification="DESCRIPTION">
+      <metadataWrap>
+        <xmlData>
+          <safe:orbitReference>
+            <safe:orbitNumber type="start" groundTrackDirection="unknown">GS2B_20221011T064029_029232_N02.08</safe:orbitNumber>
+            <safe:relativeOrbitNumber type="start">34</safe:relativeOrbitNumber>
+          </safe:orbitReference>
+        </xmlData>
+      </metadataWrap>
+
+    </metadataObject>
+    <metadataObject ID="measurementFrameSet" category="DMD" classification="DESCRIPTION">
+
+    </metadataObject>
+    <metadataObject ID="S2_Level-0_Datastrip_Information" category="DMD" classification="DESCRIPTION">
+      <dataObjectPointer dataObjectID="S2_Level-0_Datastrip_Metadata"/>
+    </metadataObject>
+    <metadataObject ID="S2_Level-0_Datastrip_Schema" category="REP" classification="SYNTAX">
+      <metadataReference href="rep_info/S2_Level-0_Datastrip_Metadata.xsd" locatorType="URL" mimeType="text/xml" vocabularyName="SDF"/>
+    </metadataObject>
+    <metadataObject ID="Inventory_Metadata_Schema" category="REP" classification="SYNTAX">
+      <metadataReference href="rep_info/Inventory_Metadata.xsd" locatorType="URL" mimeType="text/xml" vocabularyName="SDF"/>
+    </metadataObject>
+    <metadataObject ID="OLQC_Report_Schema" category="REP" classification="SYNTAX">
+      <metadataReference href="rep_info/OLQC_Report.xsd" locatorType="URL" mimeType="text/xml" vocabularyName="SDF"/>
+    </metadataObject>
+  </metadataSection>
+
+  <dataObjectSection>
+    <dataObject ID="S2_Level-0_Datastrip_Metadata"  repID="S2_Level-0_Datastrip_Schema">
+      <byteStream mimeType="text/xml" size="3586384">
+        <fileLocation href="./S2B_OPER_MTD_L0__DS_REFS_20221124T163650_S20221011T064025.xml" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">3C325141E45B991E782195EC21BB24FC4B98F26877FE7DD32057DB92A37E1279</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="QLK_L0_Band04_Data" >
+      <byteStream mimeType="image/jpeg" size="1119474">
+        <fileLocation href="./QI_DATA/S2B_OPER_QLK_L0__DS_REFS_20221124T163650_S20221011T064025_B04.jp2" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">D7C60A78C231F746F74FEF715D608A891608109BDA845D3D65BF8093A9B09463</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="QLK_L0_Band11_Data" >
+      <byteStream mimeType="image/jpeg" size="1140105">
+        <fileLocation href="./QI_DATA/S2B_OPER_QLK_L0__DS_REFS_20221124T163650_S20221011T064025_B11.jp2" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">80627C82D2F3E59676ACF1FDD91CD0530F8DC4C6A4069C27A61758272767FA21</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="QLK_L0_Band02_Data" >
+      <byteStream mimeType="image/jpeg" size="1088171">
+        <fileLocation href="./QI_DATA/S2B_OPER_QLK_L0__DS_REFS_20221124T163650_S20221011T064025_B02.jp2" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">B821CC3E8825CD1A3DAEEF75FD271DFC5AFD7417F5EE05196FF4C5D2E182B7DB</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="QLK_L0_Band10_Data" >
+      <byteStream mimeType="image/jpeg" size="357600">
+        <fileLocation href="./QI_DATA/S2B_OPER_QLK_L0__DS_REFS_20221124T163650_S20221011T064025_B10.jp2" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">0489765211C24478DC939130E0C682037F002889C20EA23C38AF826B7649BA46</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="QLK_L0_Band03_Data" >
+      <byteStream mimeType="image/jpeg" size="1116451">
+        <fileLocation href="./QI_DATA/S2B_OPER_QLK_L0__DS_REFS_20221124T163650_S20221011T064025_B03.jp2" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">FE126CE48D2B4DDFC277669F257E7E8B7973340AE792BEEBCED3798FF46A9244</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11121_Data" >
+      <byteStream mimeType="application/octet-stream" size="91932">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11121_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">5B9F2F86AE8C47B150546FF28E30E5F1721F2AD61B6776C8E567765E8B2C634D</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11112_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11112_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">F12766A1C0CDADDCA530368CD5DA71D800E152CB776CA06B681882A047BC17D1</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11113_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11113_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">7EB248A3BD21E2BD6532DED055498139E1A8A9B4D0D7B5F0C843FDE690A8B39E</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11126_Data" >
+      <byteStream mimeType="application/octet-stream" size="13536">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11126_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">7D682F2A0B0700043EA7507E687B69030EBBB168EB9FB4ADA0DF89DEF3F01D60</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11105_Data" >
+      <byteStream mimeType="application/octet-stream" size="20727">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11105_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">24BEAFA076F802FBA1AF3930C62AD870C735D2D789B25A176B89A05654F9E036</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11117_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11117_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">682723D1983DF156D99C197CDD415019BBEDDFC838ABF06693D7003818E23C2D</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11122_Data" >
+      <byteStream mimeType="application/octet-stream" size="17907">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11122_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">2873C96EA0AEA75E54EC01A5D8F9AF2B516F0C3E59EB3A2F9DFB380126D826CA</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11116_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11116_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">EA836CDB9D5CFD18112D7845463670AEB41154C27564338AD31714CB9E604CA0</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11125_Data" >
+      <byteStream mimeType="application/octet-stream" size="13536">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11125_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">E9A9C8F9FF638F50279FEAAB84A92402722B4DD693BE76164AD49FE4145A70FB</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11110_Data" >
+      <byteStream mimeType="application/octet-stream" size="14805">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11110_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">D0AE3BFEE376E5CA813694348D2F73E9A28A513C94BF52D116918CAFA85B762D</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC48224_Data" >
+      <byteStream mimeType="application/octet-stream" size="3360">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S48224_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">542C553250BFF0305501AE3FA0A559FF1DA81AEF0999FE038203694DAF6D0E37</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11124_Data" >
+      <byteStream mimeType="application/octet-stream" size="13536">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11124_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">46CCB6BC8498082FD9496571BAD703478A64639B3865DD5108E3C8971BE2459D</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11118_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11118_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">9B289EA0CE1E72550AE6EF42FCE79A15D4D2745A66C7302F23DC4465901A1539</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11119_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11119_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">AECE4D05B1078636CEA849B47BC38686BBD8CA63FBE2F6B9EDE092912637FBC7</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11106_Data" >
+      <byteStream mimeType="application/octet-stream" size="11139">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11106_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">E5D5364C68E98355AB70A9955190839C61A46CCB396A68536BE3D5CDF363EEEC</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC48223_Data" >
+      <byteStream mimeType="application/octet-stream" size="14840">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S48223_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">1AC8CADDA24BD21590A0713FD52B2D051C8CD7CE51B979179BA213067FB0F24B</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11108_Data" >
+      <byteStream mimeType="application/octet-stream" size="20727">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11108_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">4C1C29214D8AA94E5CAF4D636E41128ED0CB2934275D21D202D74960ABFF3C83</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC09123_Data" >
+      <byteStream mimeType="application/octet-stream" size="1515">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S09123_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">4D88045CE931E595A7D5FA98D98502AC08EB81A6F5DADE0300614F24DE918B94</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11111_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11111_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">D8A42C79428C6EB87BCE70DA30CE9270416276D95726FD5BD3651C213BCC1C4F</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC48227_Data" >
+      <byteStream mimeType="application/octet-stream" size="5280">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S48227_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">C1EA5092F8EADED631407BDDA511A4B8B4C89C0F181747F17F74161517F35CCE</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC48225_Data" >
+      <byteStream mimeType="application/octet-stream" size="4752">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S48225_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">E431FDACAC57B335F5C37760C15863BF8F003CA0D9A0F11288298B35930DB788</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC48226_Data" >
+      <byteStream mimeType="application/octet-stream" size="2432">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S48226_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">62068E121BFE488010EEA7814C714CCAE1C7274439BA487CC45E3DFE43630868</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11109_Data" >
+      <byteStream mimeType="application/octet-stream" size="11139">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11109_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">B8BFA308818F9AC457E6245F7D8A3C59844A5DF9EF33219A6E23F9079A4D0471</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11120_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11120_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">26248B251C8BD33708189636DEDD29882173D1914FA5525528837628555E1FFB</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC48218_Data" >
+      <byteStream mimeType="application/octet-stream" size="11280">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S48218_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">497AA7D1732220DBA0F5F412D03C678C07BC71DCD15D94B152103574C9FB5CF5</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC37105_Data" >
+      <byteStream mimeType="application/octet-stream" size="111390">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S37105_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">69C13863BADC0D4E6792EF5EB7E7A59B17116A21AF406C4A78EE99177E6483BD</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC38105_Data" >
+      <byteStream mimeType="application/octet-stream" size="111390">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S38105_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">4C18A208A0E343C87B5A199C715D6F330FD2F4468F8325A41D1E3135C50DF7DE</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11115_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11115_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">061C5B00F8D4A187D2DB697E33788DBFA9B904697FE86DC10D98D34FEF4BD899</checksum>
+      </byteStream>
+    </dataObject>
+    <dataObject ID="ANC11114_Data" >
+      <byteStream mimeType="application/octet-stream" size="20445">
+        <fileLocation href="./ANC_DATA/S2B_OPER_AUX_S11114_REFS_20221124T163650_V20221011T064029_20221011T064149_A000034_WF_LN.bin" locatorType="URL"/>
+        <checksum checksumName="SHA3-256">0D582B101DB7AB4ED42C9898A866911FCBC49E512E296B7BD8510D9F604C6D9C</checksum>
+      </byteStream>
+    </dataObject>
+
+  </dataObjectSection>
+
+</xfdu:XFDU>

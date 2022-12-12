@@ -38,7 +38,7 @@ public class L0cEWProcessorService extends EWProcessorService<L0cExecutionInput>
     protected List<TaskMissingOutput> getMissingOutputs(L0cExecutionInput executionInput) {
 
         final JobProcessingTaskMissingOutput dsMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L0_DS, 1, executionInput.getSatellite(), true, IPF_VERSION
+                MissingOutputProductType.L0_DS, 1, executionInput.getSatellite(), 0, true, IPF_VERSION
         );
 
         int grCount;
@@ -50,7 +50,7 @@ public class L0cEWProcessorService extends EWProcessorService<L0cExecutionInput>
         }
 
         final JobProcessingTaskMissingOutput grMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L0_GR, grCount, executionInput.getSatellite(), true, IPF_VERSION
+                MissingOutputProductType.L0_GR, grCount, executionInput.getSatellite(), 0, true, IPF_VERSION
         );
 
         return List.of(dsMissingOutput, grMissingOutput);

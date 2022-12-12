@@ -99,7 +99,7 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
         return taskOutputs;
     }
 
-    protected JobProcessingTaskMissingOutput buildMissingOutput(MissingOutputProductType type, Integer count, String satellite, Boolean endToEnd, String ipf) {
+    protected JobProcessingTaskMissingOutput buildMissingOutput(MissingOutputProductType type, Integer count, String satellite, int level, Boolean endToEnd, String ipf) {
         return new JobProcessingTaskMissingOutput()
                 .setEndToEndProductBoolean(endToEnd)
                 .setEstimatedCountInteger(count)
@@ -107,8 +107,7 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
                         new ProductMetadata()
                                 .setProductTypeString(type.getType())
                                 .setPlatformSerialIdentifierString(satellite)
-                                .setProcessingLevelInteger(0)
-                                .setProductConsolidatedBoolean(true)
+                                .setProcessingLevelInteger(level)
                                 .setProductConsolidatedBoolean(endToEnd)
                                 .setProcessorVersionString(ipf)
                 );

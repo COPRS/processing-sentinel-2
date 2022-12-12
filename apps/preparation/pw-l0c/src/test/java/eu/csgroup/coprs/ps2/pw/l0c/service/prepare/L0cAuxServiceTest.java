@@ -1,6 +1,8 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
@@ -25,13 +27,15 @@ class L0cAuxServiceTest extends AbstractTest {
     private CatalogService catalogService;
     @Mock
     private ObsBucketProperties bucketProperties;
+    @Mock
+    private SharedProperties sharedProperties;
 
     @InjectMocks
     private L0cAuxService auxService;
 
     @Override
     public void setup() throws Exception {
-        auxService = new L0cAuxService(catalogService, bucketProperties);
+        auxService = new L0cAuxService(catalogService, bucketProperties, sharedProperties);
     }
 
     @Override
@@ -47,7 +51,7 @@ class L0cAuxServiceTest extends AbstractTest {
         when(catalogService.retrieveLatestAuxData(any(), any(), any(), any(), any())).thenReturn(Optional.of(auxCatalogData));
 
         // When
-        final Map<L0cAuxFile, List<FileInfo>> filesByAux = auxService.getAux(TestHelper.DATASTRIP);
+        final Map<AuxProductType, List<FileInfo>> filesByAux = auxService.getAux(TestHelper.UPDATED_DATASTRIP);
 
         // Then
         assertEquals(14, filesByAux.size());

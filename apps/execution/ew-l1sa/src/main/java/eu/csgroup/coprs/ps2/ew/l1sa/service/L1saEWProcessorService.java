@@ -35,13 +35,13 @@ public class L1saEWProcessorService extends EWProcessorService<L1ExecutionInput>
     protected List<TaskMissingOutput> getMissingOutputs(L1ExecutionInput executionInput) {
 
         final JobProcessingTaskMissingOutput dsMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L1_DS, 1, executionInput.getSatellite(), false, IPF_VERSION
+                MissingOutputProductType.L1A_DS, 1, executionInput.getSatellite(), 1, false, IPF_VERSION
         );
 
         int grCount = (int) executionInput.getFiles().stream().filter(fileInfo -> fileInfo.getProductFamily().equals(ProductFamily.S2_L0_GR)).count();
 
         final JobProcessingTaskMissingOutput grMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L1_GR, grCount, executionInput.getSatellite(), false, IPF_VERSION
+                MissingOutputProductType.L1A_GR, grCount, executionInput.getSatellite(), 1, false, IPF_VERSION
         );
 
         return List.of(dsMissingOutput, grMissingOutput);

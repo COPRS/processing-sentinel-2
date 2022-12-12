@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.core.ew.service.l2;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.ew.service.EWCleanupService;
 import eu.csgroup.coprs.ps2.core.ew.service.EWMessageService;

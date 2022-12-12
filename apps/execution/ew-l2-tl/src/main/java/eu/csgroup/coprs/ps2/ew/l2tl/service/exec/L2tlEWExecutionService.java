@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.ew.l2tl.service.exec;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;

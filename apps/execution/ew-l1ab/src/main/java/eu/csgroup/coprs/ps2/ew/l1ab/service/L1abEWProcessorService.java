@@ -2,7 +2,6 @@ package eu.csgroup.coprs.ps2.ew.l1ab.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Level;
-import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProductType;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
@@ -16,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,23 +37,24 @@ public class L1abEWProcessorService extends EWProcessorService<L1ExecutionInput>
     @Override
     protected List<TaskMissingOutput> getMissingOutputs(L1ExecutionInput executionInput) {
 
-        final JobProcessingTaskMissingOutput dsMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L1_DS, 1, executionInput.getSatellite(), true, IPF_VERSION
-        );
+        List<TaskMissingOutput> missingOutputs = new ArrayList<>();
 
-        int grCount = 0;
         if (executionInput.getDatatakeType().getLevelList().contains(Level.L1A)) {
-            grCount += FileOperationUtils.findFoldersInTree(Paths.get(executionInput.getOutputFolder()), S2FileParameters.L1A_GR_REGEX).size();
+
+            missingOutputs.add(buildMissingOutput(MissingOutputProductType.L1A_DS, 1, executionInput.getSatellite(), 1, true, IPF_VERSION));
+
+            int grCountA = FileOperationUtils.findFoldersInTree(Paths.get(executionInput.getOutputFolder()), S2FileParameters.L1A_GR_REGEX).size();
+            missingOutputs.add(buildMissingOutput(MissingOutputProductType.L1A_GR, grCountA, executionInput.getSatellite(), 1, true, IPF_VERSION));
         }
         if (executionInput.getDatatakeType().getLevelList().contains(Level.L1B)) {
-            grCount += FileOperationUtils.findFoldersInTree(Paths.get(executionInput.getOutputFolder()), S2FileParameters.L1B_GR_REGEX).size();
+
+            missingOutputs.add(buildMissingOutput(MissingOutputProductType.L1B_DS, 1, executionInput.getSatellite(), 1, true, IPF_VERSION));
+
+            int grCountB = FileOperationUtils.findFoldersInTree(Paths.get(executionInput.getOutputFolder()), S2FileParameters.L1B_GR_REGEX).size();
+            missingOutputs.add(buildMissingOutput(MissingOutputProductType.L1B_GR, grCountB, executionInput.getSatellite(), 1, true, IPF_VERSION));
         }
 
-        final JobProcessingTaskMissingOutput grMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L1_GR, grCount, executionInput.getSatellite(), true, IPF_VERSION
-        );
-
-        return List.of(dsMissingOutput, grMissingOutput);
+        return missingOutputs;
     }
 
 }

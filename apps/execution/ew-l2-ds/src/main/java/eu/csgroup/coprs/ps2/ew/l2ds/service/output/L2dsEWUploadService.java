@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l2ds.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;

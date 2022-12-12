@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.core.ew.service.l2;
 
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;

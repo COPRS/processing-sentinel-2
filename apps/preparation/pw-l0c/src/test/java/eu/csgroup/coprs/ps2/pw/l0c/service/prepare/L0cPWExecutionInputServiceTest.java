@@ -1,9 +1,9 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -40,7 +40,7 @@ class L0cPWExecutionInputServiceTest extends AbstractTest {
 
         // Given
         when(auxService.getAux(any())).thenReturn(Map.of(
-                L0cAuxFile.GIP_ATMIMA, List.of(new FileInfo())
+                AuxProductType.GIP_ATMIMA, List.of(new FileInfo())
         ));
         when(jobOrderService.create(any(), any())).thenReturn(Collections.emptyMap());
 

@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l2.service.output;
 
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.pw.service.PWMessageService;
 import org.springframework.stereotype.Service;
 

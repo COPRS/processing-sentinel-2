@@ -1,7 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l2ds.service;
 
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProductType;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.ew.service.EWProcessorService;
@@ -32,12 +31,7 @@ public class L2dsEWProcessorService extends EWProcessorService<L2ExecutionInput>
 
     @Override
     protected List<TaskMissingOutput> getMissingOutputs(L2ExecutionInput executionInput) {
-
-        final JobProcessingTaskMissingOutput missingOutput = buildMissingOutput(
-                MissingOutputProductType.L2_DS, 1, executionInput.getSatellite(), true, IPF_VERSION
-        );
-
-        return List.of(missingOutput);
+        return List.of(buildMissingOutput(MissingOutputProductType.L2A_DS, 1, executionInput.getSatellite(), 2, true, IPF_VERSION));
     }
 
 }

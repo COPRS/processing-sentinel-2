@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cJobOrderFields;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
@@ -48,7 +49,7 @@ public class L0cJobOrderService {
         log.info("Set up JobOrderService with L0U DUMP location: {} and DEM location: {}", sharedProperties.getSharedFolderRoot(), demFolder);
     }
 
-    public Map<String, Map<String, String>> create(L0cDatastrip datastrip, Map<L0cAuxFile, List<FileInfo>> auxFilesByType) {
+    public Map<String, Map<String, String>> create(L0cDatastrip datastrip, Map<AuxProductType, List<FileInfo>> auxFilesByType) {
 
         log.info("Creating Job Orders for Datastrip {}", datastrip.getName());
 
@@ -94,14 +95,14 @@ public class L0cJobOrderService {
         return FileOperationUtils.countFiles(Paths.get(datastrip.getFolder()).getParent().resolve("GR/DB1")) / JobParameters.BAND_COUNT;
     }
 
-    private Map<String, String> extractAuxValues(Map<L0cAuxFile, List<FileInfo>> auxFilesByType) {
+    private Map<String, String> extractAuxValues(Map<AuxProductType, List<FileInfo>> auxFilesByType) {
 
         Map<String, String> auxValues = new HashMap<>();
 
-        auxFilesByType.forEach((auxFile, fileInfoList) -> {
+        auxFilesByType.forEach((auxProductType, fileInfoList) -> {
 
-            final String placeHolder = auxFile.getPlaceHolder();
-            final String extension = auxFile.getAuxProductType().getExtension();
+            final String placeHolder = L0cAuxFile.valueOf(auxProductType.name()).getPlaceHolder();
+            final String extension = auxProductType.getExtension();
 
             if (!Strings.isEmpty(placeHolder) && !CollectionUtils.isEmpty(fileInfoList)) {
 
@@ -118,12 +119,12 @@ public class L0cJobOrderService {
         return auxValues;
     }
 
-    private String getGpsUtc(Map<L0cAuxFile, List<FileInfo>> auxFilesByType) {
+    private String getGpsUtc(Map<AuxProductType, List<FileInfo>> auxFilesByType) {
 
         log.debug("Fetching GPS_UTC value");
 
-        FileInfo auxUt1utcFileInfo = auxFilesByType.get(L0cAuxFile.AUX_UT1UTC).get(0);
-        FileInfo gipDatatiFileInfo = auxFilesByType.get(L0cAuxFile.GIP_DATATI).get(0);
+        FileInfo auxUt1utcFileInfo = auxFilesByType.get(AuxProductType.AUX_UT1UTC).get(0);
+        FileInfo gipDatatiFileInfo = auxFilesByType.get(AuxProductType.GIP_DATATI).get(0);
 
         Path tmpFolder = Paths.get(FolderParameters.TMP_DOWNLOAD_FOLDER + "/" + UUID.randomUUID());
 

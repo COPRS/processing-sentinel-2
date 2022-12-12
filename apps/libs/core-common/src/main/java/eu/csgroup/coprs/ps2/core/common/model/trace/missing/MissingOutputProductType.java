@@ -9,11 +9,14 @@ public enum MissingOutputProductType {
 
     L0_GR("MSI_L0__GR"),
     L0_DS("MSI_L0__DS"),
-    L1_GR("MSI_L1__GR"),
-    L1_DS("MSI_L1__DS"),
-    L1_TL("MSI_L1__TL"),
-    L2_DS("MSI_L2__DS"),
-    L2_TL("MSI_L2__TL"),
+    L1A_GR("MSI_L1A_GR"),
+    L1A_DS("MSI_L1A_DS"),
+    L1B_GR("MSI_L1B_GR"),
+    L1B_DS("MSI_L1B_DS"),
+    L1C_DS("MSI_L1C_DS"),
+    L1C_TL("MSI_L1C_TL"),
+    L2A_DS("MSI_L2A_DS"),
+    L2A_TL("MSI_L2A_TL"),
     HKTM("PRD_HKTM"),
     SAD("AUX_SADATA");
 

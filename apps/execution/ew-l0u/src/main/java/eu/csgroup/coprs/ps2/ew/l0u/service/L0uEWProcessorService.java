@@ -34,15 +34,15 @@ public class L0uEWProcessorService extends EWProcessorService<L0uExecutionInput>
     protected List<TaskMissingOutput> getMissingOutputs(L0uExecutionInput executionInput) {
 
         final JobProcessingTaskMissingOutput dsMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L0_DS, 6, executionInput.getSatellite(), false, IPF_VERSION
+                MissingOutputProductType.L0_DS, 6, executionInput.getSatellite(), 0, false, IPF_VERSION
         );
 
         final JobProcessingTaskMissingOutput hktmMissingOutput = buildMissingOutput(
-                MissingOutputProductType.HKTM, 1, executionInput.getSatellite(), false, IPF_VERSION
+                MissingOutputProductType.HKTM, 1, executionInput.getSatellite(), 0, false, IPF_VERSION
         );
 
         final JobProcessingTaskMissingOutput sadMissingOutput = buildMissingOutput(
-                MissingOutputProductType.SAD, 2, executionInput.getSatellite(), false, IPF_VERSION
+                MissingOutputProductType.SAD, 2, executionInput.getSatellite(), 0, false, IPF_VERSION
         );
 
         return List.of(dsMissingOutput, hktmMissingOutput, sadMissingOutput);

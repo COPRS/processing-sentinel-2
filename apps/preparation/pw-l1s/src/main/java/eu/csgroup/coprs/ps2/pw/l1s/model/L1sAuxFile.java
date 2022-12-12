@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l1s.model;
 
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxFile;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxFolder;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import lombok.AllArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum L1sAuxFile {
+public enum L1sAuxFile implements AuxFile {
 
     AUX_CAMSFO(AuxProductType.AUX_CAMSFO, AuxFolder.S2IPF_CAMS),
     AUX_ECMWFD(AuxProductType.AUX_ECMWFD, AuxFolder.S2IPF_ECMWF),

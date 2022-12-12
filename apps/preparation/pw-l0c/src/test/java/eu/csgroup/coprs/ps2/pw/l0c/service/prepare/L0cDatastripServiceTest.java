@@ -61,7 +61,6 @@ class L0cDatastripServiceTest extends AbstractTest {
         assertEquals(TestHelper.T0_PDGS_DATE, create.getT0PdgsDate());
         assertNotNull(create.getAvailableByAux());
         assertTrue(create.getAvailableByAux().values().stream().noneMatch(Boolean::booleanValue));
-        assertEquals(TestHelper.DATASTRIP_NAME, create.getName());
     }
 
     @Test

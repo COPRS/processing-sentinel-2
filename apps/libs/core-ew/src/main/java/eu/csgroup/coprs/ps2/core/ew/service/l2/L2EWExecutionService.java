@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.core.ew.service.l2;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.exception.ScriptExecutionException;
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;

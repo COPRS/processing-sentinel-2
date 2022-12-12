@@ -29,7 +29,6 @@ public class L1cPWProcessorService extends ProcessorService {
     @Override
     protected Set<ProcessingMessage> processMessage(ProcessingMessage processingMessage) {
 
-
         final L1ExecutionInput executionInput = inputManagementService.manageInput(processingMessage);
 
         final Set<String> tileSet = tileManagementService.listTiles(executionInput);

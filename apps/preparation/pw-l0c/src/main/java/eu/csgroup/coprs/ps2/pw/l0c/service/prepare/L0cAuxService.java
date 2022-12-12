@@ -1,72 +1,26 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.common.exception.AuxQueryException;
-import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
-import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
-import eu.csgroup.coprs.ps2.core.common.model.processing.Band;
-import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
+import eu.csgroup.coprs.ps2.core.pw.service.PWAuxService;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 @Slf4j
 @Service
-public class L0cAuxService {
+public class L0cAuxService extends PWAuxService<L0cDatastrip> {
 
-    private final CatalogService catalogService;
-    private final ObsBucketProperties bucketProperties;
-
-    public L0cAuxService(CatalogService catalogService, ObsBucketProperties bucketProperties) {
-        this.catalogService = catalogService;
-        this.bucketProperties = bucketProperties;
+    public L0cAuxService(CatalogService catalogService, ObsBucketProperties bucketProperties, SharedProperties sharedProperties) {
+        super(catalogService, bucketProperties, sharedProperties);
     }
 
-    public Map<L0cAuxFile, List<FileInfo>> getAux(L0cDatastrip datastrip) {
-
-        return Arrays.stream(L0cAuxFile.values()).collect(Collectors.toMap(
-                Function.identity(),
-                auxFile -> {
-
-                    final List<FileInfo> fileInfoList = new ArrayList<>();
-
-                    if (auxFile.getAuxProductType().isBandDependent()) {
-                        Band.allBandIndexIds().forEach(bandIndexId -> fileInfoList.add(getFileInfo(auxFile, datastrip, bandIndexId)));
-                    } else {
-                        fileInfoList.add(getFileInfo(auxFile, datastrip, null));
-                    }
-
-                    return fileInfoList;
-                }
-        ));
-    }
-
-    private FileInfo getFileInfo(L0cAuxFile auxFile, L0cDatastrip datastrip, String bandIndexId) {
-
-        final AuxProductType productType = auxFile.getAuxProductType();
-
-        final AuxCatalogData auxCatalogData =
-                catalogService.retrieveLatestAuxData(productType, datastrip.getSatellite(), datastrip.getStartTime(), datastrip.getStopTime(), bandIndexId)
-                        .orElseThrow(() -> new AuxQueryException("No AUX file of type " + productType.name() + " found for Datastrip " + datastrip.getName()));
-
-        return new FileInfo()
-                .setBucket(bucketProperties.getAuxBucket())
-                .setKey(auxCatalogData.getKeyObjectStorage())
-                .setLocalPath(auxFile.getFolder().getPath() + "/" + productType)
-                .setLocalName(auxCatalogData.getProductName())
-                .setProductFamily(ProductFamily.S2_AUX)
-                .setAuxProductType(productType);
-
+    @Override
+    protected String getAuxPath(AuxProductType auxProductType, L0cDatastrip item) {
+        return L0cAuxFile.valueOf(auxProductType.name()).getFolder().getPath() + "/" + auxProductType.name();
     }
 
 }

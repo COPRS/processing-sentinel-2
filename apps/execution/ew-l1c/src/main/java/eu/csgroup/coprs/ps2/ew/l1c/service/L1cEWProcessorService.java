@@ -32,8 +32,8 @@ public class L1cEWProcessorService extends EWProcessorService<L1ExecutionInput> 
 
     @Override
     protected List<TaskMissingOutput> getMissingOutputs(L1ExecutionInput executionInput) {
-        MissingOutputProductType type = StringUtils.hasText(executionInput.getTile()) ? MissingOutputProductType.L1_TL : MissingOutputProductType.L1_DS;
-        return List.of(buildMissingOutput(type, 1, executionInput.getSatellite(), true, IPF_VERSION));
+        MissingOutputProductType type = StringUtils.hasText(executionInput.getTile()) ? MissingOutputProductType.L1C_TL : MissingOutputProductType.L1C_DS;
+        return List.of(buildMissingOutput(type, 1, executionInput.getSatellite(), 1, true, IPF_VERSION));
     }
 
 }

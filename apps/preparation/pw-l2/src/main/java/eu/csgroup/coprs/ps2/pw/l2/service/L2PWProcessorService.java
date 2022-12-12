@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.pw.l2.service;
 
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.pw.service.PWProcessorService;
 import eu.csgroup.coprs.ps2.pw.l2.model.L2Datastrip;
 import eu.csgroup.coprs.ps2.pw.l2.model.L2DatastripEntity;

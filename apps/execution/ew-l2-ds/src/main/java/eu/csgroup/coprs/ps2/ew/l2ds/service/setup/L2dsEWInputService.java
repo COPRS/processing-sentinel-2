@@ -1,6 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l2ds.service.setup;
 
-import eu.csgroup.coprs.ps2.core.common.model.l1.L2ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.ew.service.l2.L2EWInputService;
 import org.springframework.stereotype.Service;
 

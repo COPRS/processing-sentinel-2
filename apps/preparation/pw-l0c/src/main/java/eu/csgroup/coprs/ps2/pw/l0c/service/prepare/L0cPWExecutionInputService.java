@@ -1,9 +1,9 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
-import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class L0cPWExecutionInputService implements PWExecutionInputService<L0cEx
                 .setStopTime(datastrip.getStopTime())
                 .setT0PdgsDate(datastrip.getT0PdgsDate());
 
-        final Map<L0cAuxFile, List<FileInfo>> auxFilesByType = auxService.getAux(datastrip);
+        final Map<AuxProductType, List<FileInfo>> auxFilesByType = auxService.getAux(datastrip);
 
         l0cExecutionInput.setFiles(auxFilesByType.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
 

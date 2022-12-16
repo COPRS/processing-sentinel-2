@@ -13,6 +13,7 @@
         * [Workers deployer settings](#workers-deployer-settings)
         * [Filter](#filter)
         * [OBS settings](#obs-settings)
+        * [Cleanup setting](#cleanup-setting)
         * [Kafka settings](#kafka-settings)
         * [Preparation worker](#preparation-worker)
             * [Catalog](#catalog)
@@ -30,8 +31,7 @@
 - SCDF is configured with this standard application : filter
 - Ceph-FS is configured to host the shared storage
 - OBS Buckets are configured for outgoing files (L0c Datastrips and Granules)
-- A shared volume is accessible and contains the required DEM_GLOBEF directory  
-  (e.g.: S2__OPER_DEM_GLOBEF_PDMC_20091210T235100_S20091210T235134.DBL)
+- A shared volume is accessible and contains the required DEM_GLOBEF directory (S2IPF-DEMGLOBE)
 
 ## Deployment
 
@@ -187,7 +187,7 @@ _Prefix_: app.pw-l0c
 |------------------------|------------------------------------------------------------------------|:--------------:|
 | spring.profiles.active | Name of the profile to run with (prod or dev)                          |      prod      |
 | ps2.sharedFolderRoot   | Path to the folder used as input for L0u files.<br/>Mount to shared fs |    /shared     |
-| ps2.demFolderRoot      | Path to the folder holding DEM_GLOBEF files                            |      /dem      |
+| ps2.demFolderRoot      | Path to the folder holding DEM_GLOBEF folder                           |      /dem      |
 | ps2.globeFolderName    | Name of the folder holding DEM_GLOBEF files                            | S2IPF-DEMGLOBE |
 
 ### Execution worker

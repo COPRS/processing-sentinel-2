@@ -41,4 +41,9 @@ public class SharedProperties {
      */
     private int maxParallelTasks = 8;
 
+    /**
+     * Timeout in seconds for each orchestrator step to complete (for L1)
+     */
+    private int killTimeout = 7200;
+
 }

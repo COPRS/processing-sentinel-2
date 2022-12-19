@@ -54,7 +54,8 @@ public abstract class L1EWExecutionService<T extends ExecutionInput> implements 
                     "-w", FolderParameters.WORKING_FOLDER_ROOT,
                     "-o", executionInput.getOutputFolder(),
                     "-p", String.valueOf(sharedProperties.getMaxParallelTasks()),
-                    "--exeversionfile", L1EWParameters.VERSION_FILE
+                    "--exeversionfile", L1EWParameters.VERSION_FILE,
+                    "-k", String.valueOf(sharedProperties.getKillTimeout())
             ));
 
             if (StringUtils.hasText(executionInput.getTile())) {

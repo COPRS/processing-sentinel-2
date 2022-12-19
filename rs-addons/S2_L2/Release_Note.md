@@ -52,12 +52,12 @@ The [Additional resources](Executables/additional_resources) will create:
 
 Here are the basic sizing suggestions for the main components:
 
-| Resource                | Preparation Workers | Execution Workers (ew-l1sa & ew-l1sb) |
-|-------------------------|:-------------------:|:-------------------------------------:|
-| CPU                     |        2000m        |                 8000m                 |
-| Memory                  |         4Gi         |                 32Gi                  |
-| Disk size (local)       |          -          |                 500GB                 |
-| Shared disk size (Ceph) |          -          |                 500GB                 |
+| Resource                | Preparation Worker | Execution Worker |
+|-------------------------|:------------------:|:----------------:|
+| CPU                     |       2000m        |      8000m       |
+| Memory                  |        4Gi         |       32Gi       |
+| Disk size (local)       |         -          |      500GB       |
+| Shared disk size (Ceph) |         -          |      500GB       |
 
 ## Configuration
 
@@ -90,9 +90,9 @@ _Apps_: pw-l2, ew-l2-ds, ew-l2-tl
 | readiness-probe-period        | Probe interval for readiness (seconds) |             60             |             60             |
 | readiness-probe-port          | Port for readiness probe               |            8080            |            8080            |
 | readiness-probe-timeout       | Timeout for readiness (seconds)        |             20             |             20             |
-| requests.memory               | Memory requets                         |           2000Mi           |           2000Mi           |
-| requests.cpu                  | CPU request                            |            300m            |            300m            |
-| limits.memory                 | Memory limit                           |           4000Mi           |          24000Mi           |
+| requests.memory               | Memory requets                         |           1000Mi           |           2000Mi           |
+| limits.memory                 | Memory limit                           |           4000Mi           |          32000Mi           |
+| requests.cpu                  | CPU request                            |            300m            |           1000m            |
 | limits.cpu                    | CPU limit                              |           2000m            |           8000m            |
 | secret-refs                   | Name of the secrets to bind            | [ s2-l2-mongo, s2-l2-obs ] |         s2-l2-obs          |
 | podSecurityContext            | Security Context                       |     {runAsUser: 1000}      |     {runAsUser: 1000}      |

@@ -1,8 +1,8 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.5' apply false
+    id 'org.springframework.boot' version '2.7.6' apply false
     id 'io.spring.dependency-management' version '1.1.0' apply false
-    id 'io.freefair.lombok' version '6.5.1' apply false
+    id 'io.freefair.lombok' version '6.6.1' apply false
     id 'com.palantir.docker' version '0.34.0' apply false
     id 'org.sonarqube' version '3.5.0.2730'
     id 'jacoco'
@@ -63,10 +63,11 @@ subprojects {
 
     ext {
         // Libs
-        springCloudVersion = "2021.0.4"
-        amazonSDKVersion = "2.18.8"
-        amazonSDKS3Version = "2.18.8-PREVIEW"
+        springCloudVersion = "2021.0.5"
+        amazonSDKVersion = "2.18.39"
+        amazonSDKS3Version = "2.18.39-PREVIEW"
         apacheCommonsLangVersion = "3.12.0"
+        apacheCommonsCompressVersion = "1.21"
         apacheCommonsIOVersion = "2.11.0"
         apacheCommonsCodecVersion = "1.15"
         prometheusRsocketVersion = "1.5.0"
@@ -104,7 +105,7 @@ subprojects {
         implementation "org.springframework.boot:spring-boot-starter-webflux"
 
         implementation "org.apache.commons:commons-lang3:${apacheCommonsLangVersion}"
-        implementation "org.apache.commons:commons-compress:1.21"
+        implementation "org.apache.commons:commons-compress:${apacheCommonsCompressVersion}"
         implementation "commons-codec:commons-codec:${apacheCommonsCodecVersion}"
         implementation "commons-io:commons-io:${apacheCommonsIOVersion}"
         implementation "org.mapstruct:mapstruct:${mapstructVersion}"

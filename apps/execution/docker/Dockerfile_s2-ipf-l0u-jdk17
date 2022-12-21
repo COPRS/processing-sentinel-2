@@ -3,8 +3,7 @@
 ARG INV_INSTALL="/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.3"
 ARG PROC_STATION=REFS
 
-ARG JDK_URI=https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz
-ARG JDK_VERSION=17.0.2
+ARG JDK_URI=https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
 
 #### Fetch JDK
 
@@ -24,7 +23,6 @@ FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2-ipf-l0u:3.0.1
 USER root
 
 ## Wrapper configuration
-ARG JDK_VERSION
 ARG INV_INSTALL
 RUN userdel ops2pdgs \
     && groupadd -g 1000 wrapper \
@@ -33,7 +31,7 @@ RUN userdel ops2pdgs \
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
     && tar xvf jdk.tar.gz \
-    && mv jdk-$JDK_VERSION jdk \
+    && mv jdk-* jdk \
     && rm jdk.tar.gz \
     && chown -R wrapper:wrapper /wrapper \
     && chmod -R 775 /wrapper

@@ -1,7 +1,6 @@
 #### Setup
 
-ARG JDK_URI=https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz
-ARG JDK_VERSION=17.0.2
+ARG JDK_URI=https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
 
 #### Fetch JDK
 
@@ -21,13 +20,12 @@ FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2level1:6.1.0
 USER root
 
 ## Wrapper configuration
-ARG JDK_VERSION
-RUN groupadd -g 1000 wrapper  \
+RUN groupadd -g 1000 wrapper \
     && adduser -p '*' -d /wrapper -u 1000 -g 1000 wrapper
 COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
     && tar xvf jdk.tar.gz \
-    && mv jdk-$JDK_VERSION jdk \
+    && mv jdk-* jdk \
     && rm jdk.tar.gz \
     && chown -R wrapper:wrapper /wrapper \
     && chmod -R 775 /wrapper

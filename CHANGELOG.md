@@ -10,6 +10,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.4.0-rc1] - 2023-01-04
+
+### Added
+
+- [#492 - Sentinel-2 Level-2 RS add-on](https://github.com/COPRS/rs-issues/issues/492)
+- [#514 - Expose S2 pending processing as gauge metric](https://github.com/COPRS/rs-issues/issues/514)
+- [#537 - Add rsChainVersion field in Processing Message](https://github.com/COPRS/rs-issues/issues/537)
+- [#736 - Add ObsRead and ObsWrite traces](https://github.com/COPRS/rs-issues/issues/736)
+- Misc documentation update
+
+### Changed
+
+- Update jdk version used by wrappers
+- Update libraries versions
+
+### Fixed
+
+- [#734 - Set proper product family for SADATA](https://github.com/COPRS/rs-issues/issues/734)
+
 ## [1.3.0-rc1] - 2022-11-23
 
 ### Added

@@ -5,7 +5,7 @@
 ### Document properties
 
 |                 |                                                                                                    |
-|----------------:|----------------------------------------------------------------------------------------------------|
+| --------------: | -------------------------------------------------------------------------------------------------- |
 |   **Reference** | CSGF-CSC-RS-PRD-ADDPS2                                                                             |
 |       **Issue** | 1.2                                                                                                |
 |  **Issue date** | 21 Nov 2022                                                                                        |
@@ -24,7 +24,7 @@ For the moment, there is only the level 0 available because the level 1 & 2 are 
 ### Document Change Log
 
 | Issue/Revision |    Date     | Change Requests                                         | Observations            |
-|:--------------:|:-----------:|---------------------------------------------------------|-------------------------|
+| :------------: | :---------: | ------------------------------------------------------- | ----------------------- |
 |  1.0 draft 1   | 06 Sep 2022 |                                                         | First issue of document |
 |  1.0 draft 2   | 16 Sep 2022 | Update document based on feedbacks from internal review |                         |
 |  1.2 draft 1   | 21 Nov 2022 | Update document for Level 1                             |                         |
@@ -49,6 +49,7 @@ For the moment, there is only the level 0 available because the level 1 & 2 are 
       - [S2\_L0U](#s2_l0u)
       - [S2\_L0C](#s2_l0c)
       - [S2\_L1](#s2_l1)
+      - [S2\_L2](#s2_l2)
 
 ## Introduction
 
@@ -65,7 +66,7 @@ The Architecture Design Document is applicable to the processing of Sentinel 2, 
 #### Applicable documents
 
 | Reference                | Issue no | Title of document                                                 |
-|--------------------------|:--------:|-------------------------------------------------------------------|
+| ------------------------ | :------: | ----------------------------------------------------------------- |
 | COPRS-ICD-ADST-001144532 |   5.0    | Interface Control Document Processing Message format              |
 | COPRS-ICD-ADST-001133963 |   5.0    | Interface Control Document  Reference System add-on               |
 | CORPS-ICD-ADST-001139201 |   6.0    | Interface Control Document Reference System core                  |
@@ -77,16 +78,18 @@ The Architecture Design Document is applicable to the processing of Sentinel 2, 
 #### Reference documents
 
 |       Acronym       |        Reference         | Issue no | Title of document                                  |
-|:-------------------:|:------------------------:|:--------:|----------------------------------------------------|
+| :-----------------: | :----------------------: | :------: | -------------------------------------------------- |
 | [ SVVD PS2 COPRS ]  | CSGF-CSC-RS-TST-SVVD-PS2 |   1.0    | Software Verification and Validation Test Document |
 | [ ADD INFRA COPRS ] |  CSGF-CSC-RS-PRD-ADDINF  |   2.0    | Architecture & Design Document Infrastructure      |
 
 #### Glossary
 
 | Term | Definition                                     |
-|------|------------------------------------------------|
+| ---- | ---------------------------------------------- |
 | ADD  | Architecture Design Document                   |
+| DS   | Datastrip                                      |
 | ECSS | European Cooperation for Space Standardization |
+| GR   | Granules                                       |
 | HMI  | Human Machine Interface                        |
 | ICD  | Interface Control Document                     |
 | L0   | Level 0                                        |
@@ -97,6 +100,7 @@ The Architecture Design Document is applicable to the processing of Sentinel 2, 
 | PRIP | Production Interface Delivery Points           |
 | SCDF | Spring Cloud Data Flow                         |
 | SDD  | Software Design Document                       |
+| TL   | Tiles                                          |
 
 ## Software Design
 
@@ -112,21 +116,48 @@ The S2 **L**evel **0** (L0) processing is then composed of 2 rs-addons :
 
 - The S2_L0U addon consumes Session data and auxiliary files to produce basic datastrips/granules, SAD, and HKTM files.
 - The S2_L0C addon uses the output of S2_L0U and and auxiliary files to produce L0 products.
+- The S2_L1 addon uses the output of S2_L0C, auxiliary files, DEMs and GRID to produce L1 products.
+- The S2_L2 addon uses the output of S2_L1, auxiliary files and DEMs to produce L2 products.
 
 The input of one rs-addon is always a message in a kafka topic from the Metadata Catalog (with the exeption of the S2 L0C rs-addons). This message is commonly called a *catalog event* and is generated by the rs-core [Metadata](https://github.com/COPRS/production-common/tree/release/1.5.0/processing-common/metadata) from the production-common's repository. This message must be compliant with the ICD Processing Message format.
 
 When new data is available, new messages are published in kafka and the rs-addon uses a SCDF filter to trigger or not new processings based on the mission (Sentinel 1, 2 or 3) and the level (L1, L1 or L2).
 
-The output of one rs-addon is one or more intermediate and/or end-user products :
+The processing of the L1 and/or L2 depends of the datatake type as described in the picture below:
+
+![Datatake Type](../../inputs/media/DatatakeType.png)
+
+**Values**: INS-NOBS (nominal observation), INS-EOBS (extended observation), INS-DASC (dark signal calibration), INS-ABSR (absolute radiometry calibration), INS-VIC (vicarious calibration), INS-RAW (raw measurement), INS-TST (test mode)
+
+The output of one rs-addon is one or more [intermediate and/or end-user products][fn_s2_products] :
 
 - S2_L0U
   - PRD_HKTM
   - AUX_SADATA
   - Unconsolidated Datastrip(s)
   - Unconsolidated Granules
-- S2_L0C
+- [S2_L0C][fn_s2_l0]
   - Consolidated Datastrip(s)
   - Consolidated Granules
+- [S2_L1A][fn_s2_l1a]
+  - Datastrip(s)
+  - Granules
+- [S2_L1B][fn_s2_l1b]
+  - Datastrip(s)
+  - Granules
+- [S2_L1C][fn_s2_l1c]
+  - Datastrip(s)
+  - Tiles
+- [S2_L2A][fn_s2_l2a]
+  - Datastrip(s)
+  - Tiles
+
+[fn_s2_products]: https://sentinel.esa.int/web/sentinel/user-guides/sentinel-2-msi/processing-levels "Sentinel 2 Processing Levels"
+[fn_s2_l0]: https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-0-processing "Level-0 Consolidation Processing"
+[fn_s2_l1a]: https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-1a-processing "Level-1A Processing Overview"
+[fn_s2_l1b]: https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-1b-processing "Level-1B Processing Overview"
+[fn_s2_l1c]: https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-1c-processing "Level-1C Processing Overview"
+[fn_s2_l2a]: https://sentinel.esa.int/web/sentinel/technical-guides/sentinel-2-msi/level-2a-processing "Level 2A Processing Overview"
 
 The rs-addon uploads the end-user products in the object storage, publishes new messages in kafka. Then, several rs-cores handle the products, add them in the metadata catalog and publish them in the PRIP so an end-user can download them.
 
@@ -248,3 +279,43 @@ sequenceDiagram
 ```
 
 *Missing Outputs*: If the L1S1, L1SB or the L1AB processing fails, the number of missing outputs for datatstrips and granules is the same as the number of L0c datastrips and granules used as input. If a L1C processing fails, the number of missing outputs for tiles is 1, as the tiles are processed one by one.
+
+#### S2_L2
+
+Here below's the S2 L2 workflow schema:
+
+![S2 L2 rs-addon](../../inputs/media/RS_Addon_L2.png)
+
+Here below's a sequence diagram ([click here in case it is not rendering](https://mermaid.live/edit#pako:eNqdlEtv2zAQhP_KgoeiAVIE9VEoDLS2L4HSBpGD9GDAWIlrSynFVSmqaRDkv3cpyQ_5gbbxxbQ8Mxx-JPWiMtakIlXTz4ZsRtMC1w7LhQX5WHpa1qOlGS0fOf0wHt8-QDKCeBS1Xx8nME2u5jGUVNe4prozbUSiv2G75umXCCaO0BMgSA6wA9QaPqXualzYqvE1eAa0QL-L2hd2HVTHWeRRo0dICF2Ww4Std2wMuQjuQvnaA1aV48oVYa7P99-7jPPGwYpimRt4dTrj1JruKx00x6UNcwXXnN4R6ufu0UHGbtZJTtkP8DlKeWOgx9GiQSfAfmFhMDXUxZDV3eBb-kiZh8SzE_CDxCk_WcOoQ3lYOS7BSMHO9pWlsCvWebvSvRbd9kjn4z2c9UPZa9l2abAnO6oxEA-avOvPS2dMclmdPmcM4GA6uxnihFvHmZw0Yb2Duuc7TNnJhS9BOAIHFIfm4WIieHCFMGn_PSXPJM9wu-0RVLu5-ssA71vhxSnr9tc8jrbPD27RebTBtEUboM7jv0ENlrdAnceHKf8BtTWfhbopPZT_C9R5fKEuVUmuxELLm-slBC2U1ClpoSIZalphY_xCLeyrSJv2os50ISVUtEJT06XCxnPybDMVedfQRtS__XrV6x_dJo6f)):
+
+```mermaid
+sequenceDiagram
+    new_s2_l2_job->>PW S2 L2: S2 L1C DS/TL messages
+    PW S2 L2->>MongoDB: Create a job or add <br/>inputs to an existing job
+    PW S2 L2->>Metadata Search Controller: Request appropriate AUX
+    Metadata Search Controller->>PW S2 L2: List of appropriate AUX
+    PW S2 L2->>MongoDB: Update existing job
+    loop JobReady
+        PW S2 L2->>PW S2 L2: Check that all inputs <br/>are available
+    end
+    Object Storage->>PW S2 L2: Download AUX from list
+    Note right of PW S2 L2: Create Jobs
+    PW S2 L2->>EW S2 L2 DS: Send Jobs
+    Object Storage->>EW S2 L2 DS: Download AUX & L1C DS
+    Shared Storage->>EW S2 L2 DS: Read DEM
+    loop Job Processing
+        EW S2 L2 DS->>EW S2 L2 DS: Processing the data
+    end
+    EW S2 L2 DS->>Object Storage: Write L2 DS
+    EW S2 L2 DS->>catalog job: processing message (L2 DS)
+    EW S2 L2 DS->>EW S2 L2 TL: S2 L2 DS messages
+    Object Storage->>EW S2 L2 TL: Download L1C TL
+    Shared Storage->>EW S2 L2 TL: Read DEM
+    loop Job Processing
+        EW S2 L2 TL->>EW S2 L2 TL: Processing the data
+    end
+    EW S2 L2 TL->>Object Storage: Write L2 TL
+    EW S2 L2 TL->>catalog job: processing message (L2 TL)
+```
+
+*Missing Outputs*: If the L2A processing fails, the number of missing outputs for datatstrips and tiles is the same as the number of L1C datastrips and tiles used as input.

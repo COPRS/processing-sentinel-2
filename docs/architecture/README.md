@@ -124,7 +124,10 @@ The input of one rs-addon is always a message in a kafka topic from the Metadata
 When new data is available, new messages are published in kafka and the rs-addon uses a SCDF filter to trigger or not new processings based on the mission (Sentinel 1, 2 or 3) and the level (L1, L1 or L2).
 
 The processing of the L1 and/or L2 depends of the datatake type as described in the picture below:
+
 ![Datatake Type](../../inputs/media/DatatakeType.png)
+
+**Values**: INS-NOBS (nominal observation), INS-EOBS (extended observation), INS-DASC (dark signal calibration), INS-ABSR (absolute radiometry calibration), INS-VIC (vicarious calibration), INS-RAW (raw measurement), INS-TST (test mode)
 
 The output of one rs-addon is one or more [intermediate and/or end-user products][fn_s2_products] :
 

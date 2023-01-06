@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -52,9 +53,13 @@ class L0cEWUploadServiceTest extends AbstractTest {
         final List<Path> dsPaths = List.of(Paths.get("foo"));
         final List<Path> grPaths = List.of(Paths.get("bar"));
 
-        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
+        try (
+                MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);
+                MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+        ) {
 
-            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any()))
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any()))
                     .thenReturn(dsPaths)
                     .thenReturn(grPaths);
 
@@ -75,9 +80,13 @@ class L0cEWUploadServiceTest extends AbstractTest {
 
         doThrow(ObsException.class).when(obsService).uploadWithMd5(any(), any());
 
-        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
+        try (
+                MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);
+                MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)
+        ) {
 
-            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any()))
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any()))
                     .thenReturn(dsPaths)
                     .thenReturn(grPaths);
 

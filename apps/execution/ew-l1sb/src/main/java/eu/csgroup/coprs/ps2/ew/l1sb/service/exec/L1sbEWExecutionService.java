@@ -2,9 +2,9 @@ package eu.csgroup.coprs.ps2.ew.l1sb.service.exec;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
+import eu.csgroup.coprs.ps2.core.common.model.l01.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
-import eu.csgroup.coprs.ps2.core.ew.service.l1.L1EWExecutionService;
+import eu.csgroup.coprs.ps2.core.ew.service.l01.L01EWExecutionService;
 import eu.csgroup.coprs.ps2.core.ew.settings.L1EWParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class L1sbEWExecutionService extends L1EWExecutionService<L1ExecutionInput> {
+public class L1sbEWExecutionService extends L01EWExecutionService<L1ExecutionInput> {
 
     public L1sbEWExecutionService(SharedProperties sharedProperties) {
         super(sharedProperties);

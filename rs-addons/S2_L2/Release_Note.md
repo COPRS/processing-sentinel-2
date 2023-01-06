@@ -232,7 +232,6 @@ _Apps_: ew-l2-ds, ew-l2-tl
 |------------------|------------------------------------------------|:-------:|
 | sharedFolderRoot | Path to the shared folder for L1 working files | /shared |
 | demFolderRoot    | Path to the folder for DEM files               |  /dem   |
-| gridFolderRoot   | Path to the folder for GRID files              |  /grid  |
 | maxParallelTasks | Maximum number of parallel processing tasks    |    8    |
 
 ----

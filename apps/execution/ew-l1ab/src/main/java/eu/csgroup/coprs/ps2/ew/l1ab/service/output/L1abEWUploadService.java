@@ -55,14 +55,6 @@ public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
         return fileInfosByFamily;
     }
 
-    private Map<ProductFamily, Set<FileInfo>> add(Path root, String regex, ProductFamily productFamily, String bucket) {
-        Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = Collections.emptyMap();
-        if (Files.exists(root)) {
-            final List<Path> folders = FileOperationUtils.findFoldersInTree(root, regex);
-            log.info("Found {} {} files", folders.size(), productFamily.name());
-            fileInfosByFamily = Map.of(productFamily, getFileInfoSet(folders, bucket));
-        }
-        return fileInfosByFamily;
-    }
+
 
 }

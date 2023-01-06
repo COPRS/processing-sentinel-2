@@ -43,8 +43,7 @@ class L0cDatastripServiceTest extends AbstractTest {
         when(datastripEntityRepository.save(any())).thenAnswer(invocation -> invocation.getArgument(0));
         // When
         final L0cDatastrip create = datastripService.create(
-                TestHelper.DATASTRIP_NAME,
-                TestHelper.FOLDER,
+                TestHelper.DATASTRIP_PATH,
                 TestHelper.START_TIME,
                 TestHelper.STOP_TIME,
                 TestHelper.SATELLITE,
@@ -53,7 +52,8 @@ class L0cDatastripServiceTest extends AbstractTest {
         // Then
         assertNotNull(create);
         assertEquals(TestHelper.DATASTRIP_NAME, create.getName());
-        assertEquals(TestHelper.FOLDER, create.getFolder());
+        assertEquals(TestHelper.DS_FOLDER, create.getFolder());
+        assertEquals(TestHelper.DT_FOLDER, create.getDtFolder());
         assertEquals(TestHelper.START_TIME, create.getStartTime());
         assertEquals(TestHelper.STOP_TIME, create.getStopTime());
         assertEquals(TestHelper.SATELLITE, create.getSatellite());
@@ -69,8 +69,7 @@ class L0cDatastripServiceTest extends AbstractTest {
         mockExists(true);
         // When Then
         assertThrows(MongoDBException.class, () -> datastripService.create(
-                TestHelper.DATASTRIP_NAME,
-                TestHelper.FOLDER,
+                TestHelper.DATASTRIP_PATH,
                 TestHelper.START_TIME,
                 TestHelper.STOP_TIME,
                 TestHelper.SATELLITE,
@@ -89,7 +88,8 @@ class L0cDatastripServiceTest extends AbstractTest {
         // Then
         assertNotNull(update);
         assertEquals(TestHelper.DATASTRIP_NAME, update.getName());
-        assertEquals(TestHelper.FOLDER, update.getFolder());
+        assertEquals(TestHelper.DS_FOLDER, update.getFolder());
+        assertEquals(TestHelper.DT_FOLDER, update.getDtFolder());
         assertEquals(TestHelper.START_TIME, update.getStartTime());
         assertEquals(TestHelper.STOP_TIME, update.getStopTime());
         assertEquals(TestHelper.SATELLITE, update.getSatellite());

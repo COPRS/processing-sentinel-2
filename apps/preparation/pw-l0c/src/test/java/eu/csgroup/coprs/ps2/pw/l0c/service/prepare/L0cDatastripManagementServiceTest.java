@@ -124,11 +124,11 @@ class L0cDatastripManagementServiceTest extends AbstractTest {
     @Test
     void create() {
         // Given
-        when(datastripService.create(any(), any(), any(), any(), any(), any(), any())).thenReturn(new L0cDatastrip());
+        when(datastripService.create(any(), any(), any(), any(), any(), any())).thenReturn(new L0cDatastrip());
         // When
-        datastripManagementService.create(Paths.get(TestHelper.FOLDER, TestHelper.DATASTRIP_NAME), TestHelper.SATELLITE, TestHelper.STATION_CODE, TestHelper.T0_PDGS_DATE);
+        datastripManagementService.create(Paths.get(TestHelper.DS_FOLDER, TestHelper.DATASTRIP_NAME), TestHelper.SATELLITE, TestHelper.STATION_CODE, TestHelper.T0_PDGS_DATE);
         // Then
-        verify(datastripService).create(any(), any(), any(), any(), any(), any(), any());
+        verify(datastripService).create(any(), any(), any(), any(), any(), any());
     }
 
     private void mockAuxCatalogResponse() {

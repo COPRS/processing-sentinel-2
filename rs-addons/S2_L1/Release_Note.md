@@ -189,7 +189,7 @@ _Apps_: pw-l1s
 | Property               | Description                 |                        Default                        |
 |------------------------|-----------------------------|:-----------------------------------------------------:|
 | authenticationDatabase | Authentication database     |                         admin                         |
-| database               | Name of the database to use |                     s1-l1-\<APP>                      |
+| database               | Name of the database to use |                     s2-l1-\<APP>                      |
 | port                   | Port for connection         |                         27017                         |
 | host                   | Server url                  | mongodb-0.mongodb-headless.database.svc.cluster.local |
 

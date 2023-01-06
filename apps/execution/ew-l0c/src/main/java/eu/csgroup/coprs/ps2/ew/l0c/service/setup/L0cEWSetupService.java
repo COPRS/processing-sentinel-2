@@ -13,15 +13,11 @@ import java.util.UUID;
 public class L0cEWSetupService implements EWSetupService<L0cExecutionInput> {
 
     private final L0cEWCleanupService cleanupService;
-    private final L0cEWJobOrderService jobOrderService;
     private final L0cEWDownloadService downloadService;
     private final SharedProperties sharedProperties;
 
-    public L0cEWSetupService(L0cEWCleanupService cleanupService, L0cEWJobOrderService jobOrderService, L0cEWDownloadService downloadService,
-            SharedProperties sharedProperties
-    ) {
+    public L0cEWSetupService(L0cEWCleanupService cleanupService, L0cEWDownloadService downloadService, SharedProperties sharedProperties) {
         this.cleanupService = cleanupService;
-        this.jobOrderService = jobOrderService;
         this.downloadService = downloadService;
         this.sharedProperties = sharedProperties;
     }
@@ -32,7 +28,6 @@ public class L0cEWSetupService implements EWSetupService<L0cExecutionInput> {
         log.info("Starting setup ...");
 
         cleanupService.cleanAndPrepare(sharedProperties.getSharedFolderRoot());
-        jobOrderService.saveJobOrders(l0cExecutionInput);
         downloadService.download(l0cExecutionInput.getFiles(), parentUid);
 
         log.info("Finished setup.");

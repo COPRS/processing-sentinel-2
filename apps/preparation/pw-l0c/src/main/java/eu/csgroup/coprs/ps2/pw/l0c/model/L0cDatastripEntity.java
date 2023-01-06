@@ -12,5 +12,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class L0cDatastripEntity extends PWItemEntity {
 
     private String folder;
+    private String dtFolder;
 
 }

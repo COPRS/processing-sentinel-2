@@ -3,6 +3,8 @@ package eu.csgroup.coprs.ps2.core.common.settings;
 public final class L12Parameters {
 
     // Folders inside the workspace folder
+    public static final String L0C_DS_ROOT = "INV_L0C_DS";
+    public static final String L0C_GR_ROOT = "INV_L0C_GR";
     public static final String L1A_DS_ROOT = "INV_L1A_DS";
     public static final String L1A_GR_ROOT = "INV_L1A_GR";
     public static final String L1B_DS_ROOT = "INV_L1B_DS";

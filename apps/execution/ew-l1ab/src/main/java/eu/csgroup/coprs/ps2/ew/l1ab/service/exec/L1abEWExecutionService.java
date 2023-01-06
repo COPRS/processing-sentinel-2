@@ -2,9 +2,9 @@ package eu.csgroup.coprs.ps2.ew.l1ab.service.exec;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
+import eu.csgroup.coprs.ps2.core.common.model.l01.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Level;
-import eu.csgroup.coprs.ps2.core.ew.service.l1.L1EWExecutionService;
+import eu.csgroup.coprs.ps2.core.ew.service.l01.L01EWExecutionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class L1abEWExecutionService extends L1EWExecutionService<L1ExecutionInput> {
+public class L1abEWExecutionService extends L01EWExecutionService<L1ExecutionInput> {
 
     private static final List<OrchestratorMode> L1A_TASKS = List.of(OrchestratorMode.L1A_FORMAT_DS, OrchestratorMode.L1A_FORMAT_GR);
     private static final List<OrchestratorMode> L1B_TASKS = List.of(OrchestratorMode.OLQC_L1BDS, OrchestratorMode.L1B_FORMAT_GR);

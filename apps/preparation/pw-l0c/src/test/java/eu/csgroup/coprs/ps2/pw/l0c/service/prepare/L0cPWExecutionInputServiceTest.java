@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -19,15 +18,13 @@ class L0cPWExecutionInputServiceTest extends AbstractTest {
 
     @Mock
     private L0cAuxService auxService;
-    @Mock
-    private L0cJobOrderService jobOrderService;
 
     @InjectMocks
     private L0cPWExecutionInputService executionInputService;
 
     @Override
     public void setup() throws Exception {
-        executionInputService = new L0cPWExecutionInputService(auxService, jobOrderService);
+        executionInputService = new L0cPWExecutionInputService(auxService);
     }
 
     @Override
@@ -42,14 +39,12 @@ class L0cPWExecutionInputServiceTest extends AbstractTest {
         when(auxService.getAux(any())).thenReturn(Map.of(
                 AuxProductType.GIP_ATMIMA, List.of(new FileInfo())
         ));
-        when(jobOrderService.create(any(), any())).thenReturn(Collections.emptyMap());
 
         // When
         final List<L0cExecutionInput> executionInputs = executionInputService.create(List.of(TestHelper.DATASTRIP, TestHelper.UPDATED_DATASTRIP));
 
         // Then
         verify(auxService, times(2)).getAux(any());
-        verify(jobOrderService, times(2)).create(any(), any());
     }
 
 }

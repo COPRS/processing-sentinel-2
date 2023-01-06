@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,21 +47,19 @@ public class L2PWExecutionInputService implements PWExecutionInputService<L2Exec
         final Path inputPath = rootPath.resolve(L12Parameters.INPUT_FOLDER);
 
         final L2ExecutionInput executionInput = new L2ExecutionInput();
-        executionInput.setDatastrip(datastrip.getName())
+        executionInput
                 .setTileList(datastrip.getAvailableByTL().keySet().stream().toList())
+                .setDatastrip(datastrip.getName())
                 .setInputFolder(inputPath.toString())
                 .setOutputFolder(rootPath.resolve(L12Parameters.OUTPUT_FOLDER).toString())
                 .setAuxFolder(rootPath.resolve(L12Parameters.AUX_FOLDER).toString())
-                .setFiles(new HashSet<>())
                 .setSatellite(datastrip.getSatellite())
                 .setStation(datastrip.getStationCode())
                 .setStartTime(datastrip.getStartTime())
                 .setStopTime(datastrip.getStopTime())
                 .setT0PdgsDate(datastrip.getT0PdgsDate());
 
-        executionInput.getFiles().addAll(
-                auxService.getAux(datastrip).values().stream().flatMap(Collection::stream).collect(Collectors.toSet())
-        );
+        executionInput.setFiles(auxService.getAux(datastrip).values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
 
         log.info("Finished building execution input for Datastrip {}", datastrip.getName());
 

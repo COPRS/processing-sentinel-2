@@ -50,8 +50,8 @@ RUN rm -f /etc/localtime  \
 RUN mkdir -p /wrapper/orchestrator
 
 # Add sources and deps
-ADD orchestrator/deps.tgz /wrapper/orchestrator/
-ADD orchestrator/l2_scripts.tgz /wrapper/orchestrator/
+ADD inputs/orchestrator/deps.tgz /wrapper/orchestrator/
+ADD inputs/l2/l2_scripts.tgz /wrapper/orchestrator/
 
 # Configure and install
 RUN rm -rf /usr/share/doc \
@@ -59,7 +59,7 @@ RUN rm -rf /usr/share/doc \
     && chown -R wrapper:wrapper /wrapper \
     && chown -R wrapper:wrapper /home/Sen2Cor-02.10.03-Linux64
 
-# Add f***ing exiftool
+# Add exiftool
 RUN curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo \
     && yum -y install perl \
     && yum -y install perl-devel \

@@ -6,6 +6,7 @@ import eu.csgroup.coprs.ps2.pw.l0c.model.L0cAuxFile;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastripEntity;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -16,8 +17,12 @@ import java.util.stream.Collectors;
 
 public final class TestHelper {
 
+    public static final Path DT_PATH = Path.of("src/test/resources/l0u_output/DT35").toAbsolutePath();
+    public static final String DT_FOLDER = DT_PATH.toString();
+    public static final Path DS_PATH = DT_PATH.resolve("DS");
+    public static final String DS_FOLDER = DS_PATH.toString();
     public static final String DATASTRIP_NAME = "S2B_OPER_MSI_L0U_DS_REFS_20220614T090618_S20220413T114741_N00.00";
-    public static final String FOLDER = Paths.get("src/test/resources/l0u_output/DT35/DS").toAbsolutePath().toString();
+    public static final Path DATASTRIP_PATH = DS_PATH.resolve(DATASTRIP_NAME);
     public static final Instant START_TIME = Instant.now().minus(60, ChronoUnit.DAYS);
     public static final Instant STOP_TIME = Instant.now().minus(30, ChronoUnit.DAYS);
     public static final String SATELLITE = "B";
@@ -25,7 +30,8 @@ public final class TestHelper {
     public static final Instant T0_PDGS_DATE = Instant.now().minus(2, ChronoUnit.HOURS);
 
     public static final L0cDatastrip DATASTRIP = ((L0cDatastrip) new L0cDatastrip()
-            .setFolder(FOLDER)
+            .setFolder(DS_FOLDER)
+            .setDtFolder(DT_FOLDER)
             .setName(DATASTRIP_NAME)
             .setAvailableByAux(Arrays.stream(L0cAuxFile.values()).collect(Collectors.toMap(auxFile -> auxFile.getAuxProductType().name(), o -> false)))
             .setStartTime(START_TIME)
@@ -35,7 +41,8 @@ public final class TestHelper {
             .setStationCode(STATION_CODE));
 
     public static final L0cDatastripEntity DATASTRIP_ENTITY = (L0cDatastripEntity) new L0cDatastripEntity()
-            .setFolder(FOLDER)
+            .setFolder(DS_FOLDER)
+            .setDtFolder(DT_FOLDER)
             .setName(DATASTRIP_NAME)
             .setAvailableByAux(Arrays.stream(L0cAuxFile.values()).collect(Collectors.toMap(auxFile -> auxFile.getAuxProductType().name(), o -> false)))
             .setStartTime(START_TIME)
@@ -45,7 +52,8 @@ public final class TestHelper {
             .setStationCode(STATION_CODE);
 
     public static final L0cDatastrip UPDATED_DATASTRIP = ((L0cDatastrip) new L0cDatastrip()
-            .setFolder(FOLDER)
+            .setFolder(DS_FOLDER)
+            .setDtFolder(DT_FOLDER)
             .setName(DATASTRIP_NAME)
             .setAvailableByAux(Arrays.stream(L0cAuxFile.values()).collect(Collectors.toMap(auxFile -> auxFile.getAuxProductType().name(), o -> true)))
             .setStartTime(START_TIME)

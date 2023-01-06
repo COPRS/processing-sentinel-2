@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.file.Path;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -26,7 +27,9 @@ public class L0cDatastripService extends PWItemService<L0cDatastrip, L0cDatastri
     }
 
 
-    public L0cDatastrip create(String datastripName, String folder, Instant startTime, Instant stopTime, String satellite, String stationCode, Instant t0PdgsDate) {
+    public L0cDatastrip create(Path datastripPath, Instant startTime, Instant stopTime, String satellite, String stationCode, Instant t0PdgsDate) {
+
+        final String datastripName = datastripPath.getFileName().toString();
 
         log.info("Creating Datastrip: {}", datastripName);
 
@@ -36,7 +39,8 @@ public class L0cDatastripService extends PWItemService<L0cDatastrip, L0cDatastri
 
         L0cDatastripEntity datastripEntity = new L0cDatastripEntity();
         datastripEntity
-                .setFolder(folder)
+                .setFolder(datastripPath.getParent().toString())
+                .setDtFolder(datastripPath.getParent().getParent().toString())
                 .setName(datastripName)
                 .setStartTime(startTime)
                 .setStopTime(stopTime)

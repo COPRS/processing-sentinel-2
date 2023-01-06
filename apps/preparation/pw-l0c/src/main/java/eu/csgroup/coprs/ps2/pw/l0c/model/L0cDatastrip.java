@@ -10,5 +10,6 @@ import lombok.Setter;
 public class L0cDatastrip extends PWItem {
 
     private String folder;
+    private String dtFolder;
 
 }

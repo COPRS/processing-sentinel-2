@@ -1,28 +1,45 @@
 #### Setup
 
 ARG JDK_URI=https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+ARG ORCHESTRATOR_GIT_URL=https://github.com/CS-SI/S2IPF_Orchestrator.git
+ARG LAUNCHER_GIT_URL=https://github.com/CS-SI/S2IPF_Orchestrator_Launcher.git
+ARG ORCHESTRATOR_TAG=03.00.00
+ARG LAUNCHER_TAG=1.0.0
 
-#### Fetch JDK
+#### Fetch external inputs
 
-FROM ubuntu:focal AS jdk
+FROM ubuntu:focal AS input
 
+# JDK
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y ca-certificates curl \
-    && rm -rf /var/lib/apt/lists/*
-
+    && apt-get install --no-install-recommends -y ca-certificates curl
 ARG JDK_URI
 RUN curl -L $JDK_URI > jdk.tar.gz
 
+# Orchestrator & launcher
+ARG ORCHESTRATOR_GIT_URL
+ARG LAUNCHER_GIT_URL
+ARG ORCHESTRATOR_TAG
+ARG LAUNCHER_TAG
+RUN apt-get install -y git \
+    && git clone $ORCHESTRATOR_GIT_URL S2IPF_Orchestrator \
+    && git clone $LAUNCHER_GIT_URL scripts \
+    && cd S2IPF_Orchestrator \
+    && git checkout $ORCHESTRATOR_TAG \
+    && cd .. \
+    && cd scripts \
+    && git checkout $LAUNCHER_TAG
+
 #### Build image from IPF
 
-FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2level0:5.1.0
+FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2level0:6.1.0
 
 USER root
 
 ## Wrapper configuration
 RUN groupadd -g 1000 wrapper \
     && adduser -p '*' -d /wrapper -u 1000 -g 1000 wrapper
-COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
+COPY --from=input jdk.tar.gz /wrapper/jdk.tar.gz
 RUN cd /wrapper \
     && tar xvf jdk.tar.gz \
     && mv jdk-* jdk \
@@ -35,10 +52,43 @@ RUN mkdir -p /workspace \
     && chmod -R 775 /workspace \
     && chown -R wrapper:wrapper /workspace
 
-## Setup dhared folder (on shared volume)
-RUN mkdir -p /shared \
-    && chmod -R 775 /shared \
+## Setup SHARED folder (on shared volume)
+RUN mkdir -p /shared  \
+    && chmod -R 775 /shared  \
     && chown -R wrapper:wrapper /shared
+
+## Orechestrator section
+
+# Use UTC, not EST
+RUN rm -f /etc/localtime  \
+    && ln -s /usr/share/zoneinfo/UTC /etc/localtime
+
+# Create orchestrator root
+RUN mkdir -p /wrapper/orchestrator
+
+# Add sources and deps
+ADD inputs/orchestrator/deps.tgz /wrapper/orchestrator/
+COPY --from=input S2IPF_Orchestrator /wrapper/orchestrator/S2IPF_Orchestrator
+COPY --from=input scripts /wrapper/orchestrator/scripts
+
+# Configure and install
+RUN rm -rf /usr/share/doc \
+    && rpm -ivh /wrapper/orchestrator/dependencies_orchestrator/python-*.rpm \
+    && cd /wrapper/orchestrator/S2IPF_Orchestrator  \
+    && touch README \
+    && python setup.py install \
+    && chown -R wrapper:wrapper /wrapper
+
+# Add exiftool
+RUN curl https://www.getpagespeed.com/files/centos6-eol.repo --output /etc/yum.repos.d/CentOS-Base.repo \
+    && yum -y install perl \
+    && yum -y install perl-devel \
+    && cd /wrapper/orchestrator/dependencies_orchestrator \
+    && tar -xzvf Image-ExifTool-12.50.tar.gz \
+    && cd Image-ExifTool-12.50 \
+    && perl Makefile.PL \
+    && make test \
+    && make install
 
 WORKDIR /wrapper
 USER wrapper

@@ -52,7 +52,7 @@ public final class L0uFolderParameters {
 
     // -------------------------------------------------------- Install files -----------------------------------------------------------------------
 
-    public static final String INSTALL_PATH = "/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.3"; //NOSONAR
+    public static final String INSTALL_PATH = "/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.4"; //NOSONAR
     public static final String INSTALL_CONF_PATH = INSTALL_PATH + "/ingestion/conf";
     public static final String INSTALL_SCRIPT_PATH = INSTALL_PATH + "/ingestion/scripts";
     public static final String INSTALL_ARCHIVE_PATH = INSTALL_CONF_PATH + "/DATA/archive";

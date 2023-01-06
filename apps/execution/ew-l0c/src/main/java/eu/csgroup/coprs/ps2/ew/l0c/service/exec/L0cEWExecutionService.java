@@ -1,180 +1,38 @@
 package eu.csgroup.coprs.ps2.ew.l0c.service.exec;
 
-import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
-import eu.csgroup.coprs.ps2.core.common.exception.ProcessingException;
-import eu.csgroup.coprs.ps2.core.common.exception.ScriptExecutionException;
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.l0.L0cJobOrderFields;
-import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
-import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
-import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
-import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
-import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
-import eu.csgroup.coprs.ps2.core.ew.service.EWExecutionService;
-import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
-import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
-import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
-import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
-import eu.csgroup.coprs.ps2.core.common.utils.ScriptUtils;
-import eu.csgroup.coprs.ps2.core.ew.settings.L0EWParameters;
-import eu.csgroup.coprs.ps2.ew.l0c.settings.EWL0cTask;
-import eu.csgroup.coprs.ps2.ew.l0c.settings.L0cFolderParameters;
+import eu.csgroup.coprs.ps2.core.common.model.l01.OrchestratorMode;
+import eu.csgroup.coprs.ps2.core.ew.service.l01.L01EWExecutionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
-public class L0cEWExecutionService implements EWExecutionService<L0cExecutionInput> {
+public class L0cEWExecutionService extends L01EWExecutionService<L0cExecutionInput> {
 
-    private static final List<EWL0cTask> PART_1_TASKS = List.of(
-            EWL0cTask.GSE,
-            EWL0cTask.INIT_L0C_L0,
-            EWL0cTask.FORMAT_ISP
-    );
-    private static final List<EWL0cTask> PART_2_TASKS = List.of(
-            EWL0cTask.QL_GEO,
-            EWL0cTask.QL_CLOUD_MASK,
-            EWL0cTask.FORMAT_METADATA_GR_L0C,
-            EWL0cTask.FORMAT_IMG_QL_L0,
-            EWL0cTask.OLQC_L0CGR,
-            EWL0cTask.FORMAT_METADATA_DS_L0C,
-            EWL0cTask.OLQC_L0CDS
-    );
-    private static final String INDEX_PLACEHOLDER = "XX";
+    private static final List<OrchestratorMode> L0C_TASKS = List.of(OrchestratorMode.L0C, OrchestratorMode.OLQC_L0DS, OrchestratorMode.OLQC_L0GR);
+
+    public L0cEWExecutionService(SharedProperties sharedProperties) {
+        super(sharedProperties);
+    }
 
     @Override
-    public void processing(L0cExecutionInput l0cExecutionInput, UUID parentTaskUid) {
+    public void processing(L0cExecutionInput executionInput, UUID parentTaskUid) {
 
-        log.info("Starting L0C processing");
+        log.info("Starting L0c processing");
 
-        Map<String, String> values = new HashMap<>();
+        L0C_TASKS.forEach(orchestratorMode -> runMode(executionInput, parentTaskUid, orchestratorMode));
 
-        String satellite = Mission.S2.name() + l0cExecutionInput.getSatellite();
-
-        getApplicableTasks(PART_1_TASKS, l0cExecutionInput).forEach(task -> runTask(task, values, parentTaskUid, satellite));
-
-        values.put(L0cJobOrderFields.L0_DS_NAME.getPlaceholder(), getL0DSName());
-
-        for (int i = 0; i < JobParameters.BAND_COUNT; i++) {
-            final String index = String.format("%02d", i + 1);
-            final List<String> l0GRList = getL0GRList(index);
-            values.put(L0cJobOrderFields.L0_GR_COUNT.getPlaceholder().replace(INDEX_PLACEHOLDER, index), String.valueOf(l0GRList.size()));
-            values.put(L0cJobOrderFields.L0_GR_LIST.getPlaceholder().replace(INDEX_PLACEHOLDER, index), buildXmlValue(l0GRList));
-        }
-
-        getApplicableTasks(PART_2_TASKS, l0cExecutionInput).forEach(task -> runTask(task, values, parentTaskUid, satellite));
-
-        log.info("Finished L0C processing");
+        log.info("Finished L0c processing");
     }
 
     @Override
     public String getLevel() {
         return "L0c";
-    }
-
-    private void runTask(EWL0cTask task, Map<String, String> values, UUID parentTaskUid, String satellite) {
-
-        final String taskName = task.getL0CTask().getTaskName();
-
-        log.info("Running task {}", taskName);
-
-        TaskReport taskReport = new TaskReport()
-                .setTaskName(ReportTask.PROCESSING_TASK.getName())
-                .setSatellite(satellite)
-                .setParentUid(parentTaskUid);
-
-        taskReport.begin("Start task " + task.getScript());
-
-        try {
-
-            Set<Path> jobOrderSet = extractJobOrders(task, values);
-
-            runJobOrdersForTask(taskName, task.getScript(), jobOrderSet);
-
-            taskReport.end("End task " + task.getScript());
-
-        } catch (Exception e) {
-            taskReport.error(e.getLocalizedMessage());
-            throw e;
-        }
-
-        log.info("Finished running task {}", taskName);
-    }
-
-    private Set<Path> extractJobOrders(EWL0cTask task, Map<String, String> values) {
-
-        Path jobOrdersFolderPath = Paths.get(L0cFolderParameters.JOB_ORDERS_PATH, task.getL0CTask().name());
-
-        Set<Path> jobOrderSet = new HashSet<>();
-
-        try (final Stream<Path> jobOrders = Files.list(jobOrdersFolderPath)) {
-
-            jobOrders.forEach(jobOrder -> {
-                if (values.size() != 0) {
-                    log.debug("Replacing values in Job Order {}", jobOrder);
-                    FileContentUtils.replaceInFile(jobOrder, values);
-                }
-                jobOrderSet.add(jobOrder);
-            });
-
-        } catch (IOException e) {
-            throw new FileOperationException("Unable to access Job Orders for task " + task.name(), e);
-        }
-
-        return jobOrderSet;
-    }
-
-    private void runJobOrdersForTask(String task, String script, Set<Path> jobOrderSet) {
-
-        log.info("Executing {} Job Order(s) for task {}", jobOrderSet.size(), task);
-
-        final Set<ScriptWrapper> scriptWrapperSet = jobOrderSet.stream()
-                .map(path -> new ScriptWrapper()
-                        .setRunId(path.getFileName().toString())
-                        .setWorkdir(FolderParameters.WORKING_FOLDER_ROOT)
-                        .setCommand(List.of(script, path.toString()))
-                        .setLogWhitelist(L0EWParameters.INFO_LEVEL_MARKERS))
-                .collect(Collectors.toSet());
-
-        ScriptUtils.run(scriptWrapperSet)
-                .forEach((id, exitCode) -> {
-                    if (exitCode != 0) {
-                        throw new ScriptExecutionException("Error while executing Job Order " + id);
-                    }
-                });
-
-        log.info("Finished executing Job Order(s) for task {}", task);
-    }
-
-    private String getL0DSName() {
-        return FileOperationUtils.findFolders(Paths.get(L0cFolderParameters.DS_PATH), S2FileParameters.L0C_DS_REGEX)
-                .stream()
-                .findAny()
-                .orElseThrow(() -> new ProcessingException("Unable to find L0 DS"))
-                .toString();
-    }
-
-    private List<String> getL0GRList(String index) {
-        return FileOperationUtils.findFolders(Paths.get(L0cFolderParameters.GR_DB_PATH), S2FileParameters.L0C_GR_REGEX_TEMPLATE.replace(INDEX_PLACEHOLDER, index))
-                .stream()
-                .map(Path::toString)
-                .toList();
-    }
-
-    private String buildXmlValue(List<String> fileList) {
-        return fileList.stream().map(s -> "<File_Name>" + s + "</File_Name>").collect(Collectors.joining("\n"));
-    }
-
-    public static List<EWL0cTask> getApplicableTasks(List<EWL0cTask> taskList, L0cExecutionInput l0cExecutionInput) {
-        return taskList.stream().filter(task -> task.getL0CTask().getSatellites().contains(l0cExecutionInput.getSatellite())).toList();
     }
 
 }

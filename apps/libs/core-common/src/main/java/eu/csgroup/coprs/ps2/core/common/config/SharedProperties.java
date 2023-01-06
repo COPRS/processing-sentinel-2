@@ -22,11 +22,6 @@ public class SharedProperties {
     private String demFolderRoot = "/dem";
 
     /**
-     * Folder where DEM_GLOBEF files are stored.
-     */
-    private String globeFolderName = "S2IPF-DEMGLOBE";
-
-    /**
      * Path to the root of the filesystem containing GRID files
      */
     private String gridFolderRoot = "/grid";

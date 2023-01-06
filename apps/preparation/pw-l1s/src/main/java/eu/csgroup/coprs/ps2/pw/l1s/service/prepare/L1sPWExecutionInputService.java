@@ -60,8 +60,9 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
         final Path inputPath = rootPath.resolve(L12Parameters.INPUT_FOLDER);
 
         final L1ExecutionInput executionInput = new L1ExecutionInput();
-        executionInput.setDatastrip(datastrip.getName())
+        executionInput
                 .setDatatakeType(datastrip.getDatatakeType())
+                .setDatastrip(datastrip.getName())
                 .setInputFolder(inputPath.toString())
                 .setOutputFolder(rootPath.resolve(L12Parameters.OUTPUT_FOLDER).toString())
                 .setAuxFolder(rootPath.resolve(L12Parameters.AUX_FOLDER).toString())

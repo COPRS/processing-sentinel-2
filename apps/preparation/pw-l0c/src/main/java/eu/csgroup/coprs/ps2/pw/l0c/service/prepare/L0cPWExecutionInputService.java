@@ -1,17 +1,15 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
-import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -19,11 +17,9 @@ import java.util.stream.Collectors;
 public class L0cPWExecutionInputService implements PWExecutionInputService<L0cExecutionInput, L0cDatastrip> {
 
     private final L0cAuxService auxService;
-    private final L0cJobOrderService jobOrderService;
 
-    public L0cPWExecutionInputService(L0cAuxService auxService, L0cJobOrderService jobOrderService) {
+    public L0cPWExecutionInputService(L0cAuxService auxService) {
         this.auxService = auxService;
-        this.jobOrderService = jobOrderService;
     }
 
     @Override
@@ -42,20 +38,22 @@ public class L0cPWExecutionInputService implements PWExecutionInputService<L0cEx
 
         log.info("Building execution input for Datastrip {}", datastrip.getName());
 
+        final Path dtFolderPath = Path.of(datastrip.getDtFolder());
+
         final L0cExecutionInput l0cExecutionInput = new L0cExecutionInput();
-        l0cExecutionInput.setDatastrip(datastrip.getName())
-                .setDtFolder(Paths.get(datastrip.getFolder()).getParent().toString())
+        l0cExecutionInput
+                .setDtFolder(dtFolderPath.toString())
+                .setDatastrip(datastrip.getName())
+                .setInputFolder(datastrip.getDtFolder())
+                .setOutputFolder(dtFolderPath.resolve(L12Parameters.OUTPUT_FOLDER).toString())
+                .setAuxFolder(dtFolderPath.resolve(L12Parameters.AUX_FOLDER).toString())
                 .setSatellite(datastrip.getSatellite())
                 .setStation(datastrip.getStationCode())
                 .setStartTime(datastrip.getStartTime())
                 .setStopTime(datastrip.getStopTime())
                 .setT0PdgsDate(datastrip.getT0PdgsDate());
 
-        final Map<AuxProductType, List<FileInfo>> auxFilesByType = auxService.getAux(datastrip);
-
-        l0cExecutionInput.setFiles(auxFilesByType.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
-
-        l0cExecutionInput.setJobOrders(jobOrderService.create(datastrip, auxFilesByType));
+        l0cExecutionInput.setFiles(auxService.getAux(datastrip).values().stream().flatMap(Collection::stream).collect(Collectors.toSet()));
 
         log.info("Finished building execution input for Datastrip {}", datastrip.getName());
 

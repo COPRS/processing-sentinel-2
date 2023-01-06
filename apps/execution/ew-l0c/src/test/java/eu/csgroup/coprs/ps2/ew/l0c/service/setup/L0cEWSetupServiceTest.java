@@ -16,8 +16,6 @@ class L0cEWSetupServiceTest extends AbstractTest {
     @Mock
     private L0cEWCleanupService cleanupService;
     @Mock
-    private L0cEWJobOrderService jobOrderService;
-    @Mock
     private L0cEWDownloadService downloadService;
     @Mock
     private SharedProperties sharedProperties;
@@ -27,7 +25,7 @@ class L0cEWSetupServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        l0cEWSetupService = new L0cEWSetupService(cleanupService, jobOrderService, downloadService, sharedProperties);
+        l0cEWSetupService = new L0cEWSetupService(cleanupService, downloadService, sharedProperties);
     }
 
     @Override
@@ -44,7 +42,6 @@ class L0cEWSetupServiceTest extends AbstractTest {
         l0cEWSetupService.setup(executionInput, null);
         // Then
         verify(cleanupService).cleanAndPrepare("foo");
-        verify(jobOrderService).saveJobOrders(executionInput);
         verify(downloadService).download(any(), any());
     }
 

@@ -10,9 +10,7 @@ public enum AuxFolder {
     S2IPF_CAMS("S2IPF-CAMS"),
     S2IPF_ECMWF("S2IPF-ECMWF"),
     S2IPF_GIPP("S2IPF-GIPP"),
-    S2IPF_IERS("S2IPF-IERS"),
-    L0_GIPP("/workspace/steps_data/GIPP"),
-    L0_IERS("/workspace/steps_data/IERS");
+    S2IPF_IERS("S2IPF-IERS");
 
     private final String path;
 

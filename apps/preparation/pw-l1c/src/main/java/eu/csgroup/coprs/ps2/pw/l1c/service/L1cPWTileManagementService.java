@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.pw.l1c.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.l1.OrchestratorMode;
+import eu.csgroup.coprs.ps2.core.common.model.l01.OrchestratorMode;
 import eu.csgroup.coprs.ps2.core.common.utils.FileContentUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

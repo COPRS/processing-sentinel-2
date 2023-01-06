@@ -43,7 +43,8 @@ class L1sbEWExecutionServiceTest extends AbstractTest {
     void processing() {
 
         // Given
-        final L1ExecutionInput executionInput = new L1ExecutionInput().setDatatakeType(DatatakeType.RAW).setAuxFolder("foo").setInputFolder("foo").setOutputFolder("foo");
+        final L1ExecutionInput executionInput =
+                (L1ExecutionInput) new L1ExecutionInput().setDatatakeType(DatatakeType.RAW).setAuxFolder("foo").setInputFolder("foo").setOutputFolder("foo");
         when(sharedProperties.getMaxParallelTasks()).thenReturn(1);
         when(sharedProperties.getDemFolderRoot()).thenReturn("foo");
         when(sharedProperties.getGridFolderRoot()).thenReturn("bar");

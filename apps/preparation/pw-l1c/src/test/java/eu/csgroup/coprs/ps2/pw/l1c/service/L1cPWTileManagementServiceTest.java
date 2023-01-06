@@ -39,7 +39,7 @@ class L1cPWTileManagementServiceTest extends AbstractTest {
             fileContentUtilsMockedStatic.when(() -> FileContentUtils.grepAll(any(), any())).thenReturn(List.of("1", "2", "3", "4"));
 
             // When
-            final Set<String> tiles = tileManagementService.listTiles(new L1ExecutionInput().setOutputFolder("output"));
+            final Set<String> tiles = tileManagementService.listTiles((L1ExecutionInput) new L1ExecutionInput().setOutputFolder("output"));
             // Then
             assertEquals(4, tiles.size());
         }

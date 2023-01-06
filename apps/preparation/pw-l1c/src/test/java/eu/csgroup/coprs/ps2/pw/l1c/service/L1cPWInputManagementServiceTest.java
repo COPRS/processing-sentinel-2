@@ -31,7 +31,7 @@ class L1cPWInputManagementServiceTest extends AbstractTest {
     void manageInput() {
         //Given
         final ProcessingMessage processingMessage = ProcessingMessageUtils.create();
-        final L1ExecutionInput executionInput = new L1ExecutionInput().setDatastrip("FOO");
+        final L1ExecutionInput executionInput = (L1ExecutionInput) new L1ExecutionInput().setDatastrip("FOO");
         processingMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);
         // When
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {

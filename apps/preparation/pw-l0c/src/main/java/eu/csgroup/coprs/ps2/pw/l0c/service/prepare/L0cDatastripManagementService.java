@@ -1,8 +1,10 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
+import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DatastripUtils;
+import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastripEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -45,11 +49,21 @@ public class L0cDatastripManagementService extends PWItemManagementService<L0cDa
 
             log.info("Creating Datastrip {}", datastripName);
 
-            final String datastripFolder = datastripPath.getParent().toString();
+            // Creating required processing folders inside DT folder - Path being (...)/DT_xx/DS/<Datastrip>
+            createSharedFolders(datastripPath.getParent().getParent());
+
             final Pair<Instant, Instant> datastripTimes = DatastripUtils.getDatastripTimes(datastripPath);
 
-            itemService.create(datastripName, datastripFolder, datastripTimes.getLeft(), datastripTimes.getRight(), satellite, stationCode, t0PdgsDate);
+            itemService.create(datastripPath, datastripTimes.getLeft(), datastripTimes.getRight(), satellite, stationCode, t0PdgsDate);
         }
+    }
+
+    private void createSharedFolders(Path folderPath) {
+        final Set<Path> folderPaths = Set.of(
+                folderPath.resolve(L12Parameters.OUTPUT_FOLDER),
+                folderPath.resolve(L12Parameters.AUX_FOLDER)
+        );
+        FileOperationUtils.createFolders(folderPaths.stream().map(Path::toString).collect(Collectors.toSet()));
     }
 
 }

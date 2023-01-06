@@ -71,7 +71,7 @@ class L1cEWUploadServiceTest extends AbstractTest {
     void upload_TL() {
         // Given
         when(bucketProperties.getL1TLBucket()).thenReturn("bucket");
-        final L1ExecutionInput executionInput = new L1ExecutionInput().setTile("tile1");
+        final L1ExecutionInput executionInput = (L1ExecutionInput) new L1ExecutionInput().setTile("tile1");
         final List<Path> pathList = List.of(Path.of("/path/to/file1"), Path.of("/path/to/file2"));
 
         try (

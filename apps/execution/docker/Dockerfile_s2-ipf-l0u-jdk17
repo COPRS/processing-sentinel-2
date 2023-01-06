@@ -1,6 +1,6 @@
 #### Setup
 
-ARG INV_INSTALL="/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.3"
+ARG INV_INSTALL="/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.4"
 ARG PROC_STATION=REFS
 
 ARG JDK_URI=https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
@@ -18,7 +18,7 @@ RUN curl -L $JDK_URI > jdk.tar.gz
 
 #### Build image from IPF
 
-FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2-ipf-l0u:3.0.1
+FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2-ipf-l0u:3.0.2
 
 USER root
 
@@ -39,8 +39,8 @@ RUN cd /wrapper \
 # Set config values
 ARG INV_INSTALL
 ARG PROC_STATION
-RUN sed -i 's+<center>.*</center>+<center>'"$PROC_STATION"'</center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.xml \
-    && sed -i 's+<archiving_center>.*</archiving_center>+<archiving_center>'"$PROC_STATION"'</archiving_center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.xml
+RUN sed -i 's+<center>.*</center>+<center>'"$PROC_STATION"'</center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.template \
+    && sed -i 's+<archiving_center>.*</archiving_center>+<archiving_center>'"$PROC_STATION"'</archiving_center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.template
 
 ## Setup workspace folder
 RUN mkdir -p /workspace \

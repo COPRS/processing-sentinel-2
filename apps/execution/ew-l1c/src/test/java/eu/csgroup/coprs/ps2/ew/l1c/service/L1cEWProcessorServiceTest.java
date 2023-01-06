@@ -45,7 +45,7 @@ class L1cEWProcessorServiceTest extends AbstractTest {
     void getMissingOutputs_TL() {
 
         // Given
-        final L1ExecutionInput executionInput = new L1ExecutionInput().setTile("tile1");
+        final L1ExecutionInput executionInput = (L1ExecutionInput) new L1ExecutionInput().setTile("tile1");
 
         // When
         final List<TaskMissingOutput> missingOutputs = processorService.getMissingOutputs(executionInput);

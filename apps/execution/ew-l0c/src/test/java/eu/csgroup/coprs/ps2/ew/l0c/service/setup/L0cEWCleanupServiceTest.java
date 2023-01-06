@@ -35,7 +35,6 @@ class L0cEWCleanupServiceTest extends AbstractTest {
 
             // Then
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.deleteFolderContent(any()));
-            fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.createFolders(any()));
         }
     }
 

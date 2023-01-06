@@ -16,9 +16,6 @@ spring:
           process-in-0: input
           process-out-0: output
 
-mongo:
-  enabled: true
-
 ---
 
 spring:

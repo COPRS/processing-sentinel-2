@@ -6,6 +6,12 @@ mongo:
   port: 37017
   host: localhost
 
+pending:
+  gaugeName: rs.pending.processing.job
+  mission: S2
+  level: changeMe
+  addon: changeMe
+
 spring:
   data:
     mongodb:

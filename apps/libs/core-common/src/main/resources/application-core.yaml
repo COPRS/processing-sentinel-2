@@ -9,12 +9,13 @@ chain:
   version: 1
 
 ps2:
-  sharedFolderRoot: "/shared"
-  demFolderRoot: "/dem"
-  globeFolderName: "S2IPF-DEMGLOBE"
-  gridFolderRoot: "/grid"
+  sharedFolderRoot: /shared
+  demFolderRoot: /dem
+  globeFolderName: S2IPF-DEMGLOBE
+  gridFolderRoot: /grid
   minGrRequired: 48
   maxParallelTasks: 8
+  killTimeout: 7200
 
 spring:
   kafka:

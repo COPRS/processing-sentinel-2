@@ -46,17 +46,6 @@ public class L2DatastripManagementService extends PWItemManagementService<L2Data
         this.bucketProperties = bucketProperties;
     }
 
-
-    @Override
-    public List<L2Datastrip> getReady() {
-        return itemService.readAll(true, false);
-    }
-
-    @Override
-    public List<L2Datastrip> getNotReady() {
-        return itemService.readAll(false, false);
-    }
-
     @Override
     public List<L2Datastrip> getMissingAux() {
         return itemService.readAll(true, false, false);
@@ -87,7 +76,6 @@ public class L2DatastripManagementService extends PWItemManagementService<L2Data
 
             obsService.download(Set.of(
                     new FileInfo()
-                            .setBucket(bucketProperties.getL0DSBucket())
                             .setObsURL(storagePath)
                             .setLocalName(datastripName)
                             .setLocalPath(dsFolderPath.toString())));

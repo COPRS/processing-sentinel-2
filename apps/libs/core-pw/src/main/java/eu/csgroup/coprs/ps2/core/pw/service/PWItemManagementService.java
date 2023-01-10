@@ -1,9 +1,9 @@
 package eu.csgroup.coprs.ps2.core.pw.service;
 
-import eu.csgroup.coprs.ps2.core.pw.model.PWItem;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Band;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
+import eu.csgroup.coprs.ps2.core.pw.model.PWItem;
 import eu.csgroup.coprs.ps2.core.pw.model.PWItemEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
@@ -26,13 +26,17 @@ public abstract class PWItemManagementService<S extends PWItem, I extends PWItem
         this.itemService = itemService;
     }
 
-    public abstract List<S> getReady();
-
-    public abstract List<S> getNotReady();
-
     public abstract List<S> getMissingAux();
 
     public abstract boolean isReady(S item);
+
+    public List<S> getReady() {
+        return itemService.readAll(true, false);
+    }
+
+    public List<S> getNotReady() {
+        return itemService.readAll(false, false);
+    }
 
     public List<S> getDeletable() {
         final Instant now = Instant.now();

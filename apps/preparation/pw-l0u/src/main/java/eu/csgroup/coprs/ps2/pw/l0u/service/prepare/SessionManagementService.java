@@ -3,9 +3,9 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.ProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.SessionCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
 import eu.csgroup.coprs.ps2.core.common.utils.CatalogUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
+import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import eu.csgroup.coprs.ps2.pw.l0u.model.SessionEntity;
 import lombok.extern.slf4j.Slf4j;
@@ -26,17 +26,6 @@ public class SessionManagementService extends PWItemManagementService<Session, S
 
     public SessionManagementService(CatalogService catalogService, SessionService itemService) {
         super(catalogService, itemService);
-    }
-
-
-    @Override
-    public List<Session> getReady() {
-        return itemService.readAll(true, false);
-    }
-
-    @Override
-    public List<Session> getNotReady() {
-        return itemService.readAll(false, false);
     }
 
     @Override

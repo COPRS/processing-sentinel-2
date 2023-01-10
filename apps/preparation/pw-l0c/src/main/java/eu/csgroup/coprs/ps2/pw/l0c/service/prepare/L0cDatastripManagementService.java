@@ -24,17 +24,6 @@ public class L0cDatastripManagementService extends PWItemManagementService<L0cDa
         super(catalogService, datastripService);
     }
 
-
-    @Override
-    public List<L0cDatastrip> getReady() {
-        return itemService.readAll(true, false);
-    }
-
-    @Override
-    public List<L0cDatastrip> getNotReady() {
-        return itemService.readAll(false, false);
-    }
-
     @Override
     public List<L0cDatastrip> getMissingAux() {
         return getNotReady().stream()

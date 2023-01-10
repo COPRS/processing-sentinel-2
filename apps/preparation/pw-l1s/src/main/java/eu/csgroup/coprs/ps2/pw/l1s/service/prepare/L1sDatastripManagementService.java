@@ -46,17 +46,6 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
         this.bucketProperties = bucketProperties;
     }
 
-
-    @Override
-    public List<L1sDatastrip> getReady() {
-        return itemService.readAll(true, false);
-    }
-
-    @Override
-    public List<L1sDatastrip> getNotReady() {
-        return itemService.readAll(false, false);
-    }
-
     @Override
     public List<L1sDatastrip> getMissingAux() {
         return itemService.readAll(true, false, false);
@@ -82,7 +71,6 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
 
             obsService.download(Set.of(
                     new FileInfo()
-                            .setBucket(bucketProperties.getL0DSBucket())
                             .setObsURL(storagePath)
                             .setLocalName(datastripName)
                             .setLocalPath(dsFolderPath.toString())));

@@ -5,9 +5,13 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.SessionCatalogData;
 
+import java.time.Instant;
 import java.util.Map;
 
 public final class CatalogUtils {
+
+    private static final String TO_PDGS_DATE_PROPERTY_1 = "t0_pdgs_date";
+    private static final String TO_PDGS_DATE_PROPERTY_2 = "t0PdgsDate";
 
     private static final ObjectMapper objectMapper;
 
@@ -28,6 +32,17 @@ public final class CatalogUtils {
         }
 
         return objectMapper.convertValue(sessionCatalogData.getAdditionalProperties().get(property), clazz);
+    }
+
+    public static Instant getT0PdgsDate(SessionCatalogData sessionCatalogData) {
+        // Looking for t0PdgsDate with both known property names
+        Instant t0PdgsDate = Instant.EPOCH;
+        if (hasAdditionalProperty(sessionCatalogData, TO_PDGS_DATE_PROPERTY_1)) {
+            t0PdgsDate = getAdditionalProperty(sessionCatalogData, TO_PDGS_DATE_PROPERTY_1, Instant.class);
+        } else if (hasAdditionalProperty(sessionCatalogData, TO_PDGS_DATE_PROPERTY_2)) {
+            t0PdgsDate = getAdditionalProperty(sessionCatalogData, TO_PDGS_DATE_PROPERTY_2, Instant.class);
+        }
+        return t0PdgsDate;
     }
 
     private CatalogUtils() {

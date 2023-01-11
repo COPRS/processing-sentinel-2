@@ -22,7 +22,6 @@ import java.util.List;
 public class SessionManagementService extends PWItemManagementService<Session, SessionEntity, SessionService> {
 
     private static final int TOTAL_SESSION_ENTRIES = 2;
-    private static final String TO_PDGS_DATE_PROPERTY = "t0_pdgs_date";
 
     public SessionManagementService(CatalogService catalogService, SessionService itemService) {
         super(catalogService, itemService);
@@ -89,7 +88,7 @@ public class SessionManagementService extends PWItemManagementService<Session, S
                     if (session.isRawComplete()) {
                         session.setT0PdgsDate(
                                 sessionCatalogDataList.stream()
-                                        .map(sessionCatalogData -> CatalogUtils.getAdditionalProperty(sessionCatalogData, TO_PDGS_DATE_PROPERTY, Instant.class))
+                                        .map(CatalogUtils::getT0PdgsDate)
                                         .max(Instant::compareTo)
                                         .orElse(session.getT0PdgsDate())
                         );

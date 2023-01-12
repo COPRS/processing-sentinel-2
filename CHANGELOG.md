@@ -10,6 +10,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.4.0-rc2] - 2023-01-12
+
+### Added
+
+- [#782 - Change t0 date extraction from catalog data following Catalog API change](https://github.com/COPRS/rs-issues/issues/782)
+
+### Fixed
+
+- [#781 - Remove quotes from stream parameters](https://github.com/COPRS/rs-issues/issues/781)
+
 ## [1.4.0-rc1] - 2023-01-04
 
 ### Added

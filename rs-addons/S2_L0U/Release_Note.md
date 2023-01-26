@@ -139,7 +139,7 @@ _Apps_: pw-l0u, ew-l0u
 | minimumPartSize      | Minimum part size for multipart transfers (MB)   |                            5                             |
 | bucket.auxBucket     | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
 | bucket.sessionBucket | Bucket where sessions files are stored           |                     rs-session-files                     |
-| bucket.sadBucket     | Name of the OBS bucket containing SAD files      |                        rs-s2-aux                         |
+| bucket.sadBucket     | Name of the OBS bucket containing SAD files      |                       rs-s2-sadata                       |
 | bucket.hktmBucket    | Name of the OBS bucket containing HKTM files     |                        rs-s2-hktm                        |
 
 ### Cleanup setting

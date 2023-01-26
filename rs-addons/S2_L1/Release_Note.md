@@ -136,8 +136,6 @@ _Apps_: pw-l1s, ew-l1ab, ew-l1c
 | minimumPartSize   | Minimum part size for multipart transfers (MB)   |                            5                             |
 | auxBucket         | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
 | sessionBucket     | Bucket where sessions files are stored           |                     rs-session-files                     |
-| bucket.sadBucket  | Name of the OBS bucket containing SAD files      |                        rs-s2-aux                         |
-| bucket.hktmBucket | Name of the OBS bucket containing HKTM files     |                        rs-s2-hktm                        |
 | bucket.l0DSBucket | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
 | bucket.l0GRBucket | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
 | bucket.l1DSBucket | Name of the OBS bucket containing L1 DS files    |                         rs-s2-l1                         |

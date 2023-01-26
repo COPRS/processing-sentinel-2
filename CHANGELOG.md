@@ -10,6 +10,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.5.0-rc1] - 2023-01-26
+
+### Added
+
+- [#594 - Sentinel-2 Level-0 RS add-on to produce all the metadata files](https://github.com/COPRS/rs-issues/issues/594)
+- [#683 - Update l0u and l0c docker image](https://github.com/COPRS/rs-issues/issues/683)
+
+### Changed
+
+- Remove unnecessary properties and set proper default for SAD Data
+
 ## [1.4.0-rc1] - 2023-01-04
 
 ### Added

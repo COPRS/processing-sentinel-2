@@ -30,24 +30,30 @@ public class L0uEWCopyService {
 
         log.info("Copying output files to shared disk");
 
-        final String uuid = UUID.randomUUID().toString();
-        final Path destPath = Paths.get(sharedProperties.getSharedFolderRoot(), uuid);
+        String outputFolder = null;
+
         final Path rootPath = Paths.get(L0uFolderParameters.L0U_DUMP_PATH);
 
         final List<Path> dtFolders = FileOperationUtils.findFolders(rootPath, S2FileParameters.DT_REGEX);
+
         log.info("Found {} DT folders", dtFolders.size());
 
-        dtFolders.forEach(path -> {
-            try {
-                FileUtils.copyDirectoryToDirectory(path.toFile(), destPath.toFile());
-            } catch (IOException e) {
-                throw new FileOperationException("Unable to copy files to shared disk", e);
-            }
-        });
+        if (!dtFolders.isEmpty()) {
 
+            outputFolder = UUID.randomUUID().toString();
+            final Path destPath = Paths.get(sharedProperties.getSharedFolderRoot(), outputFolder);
+
+            dtFolders.forEach(path -> {
+                try {
+                    FileUtils.copyDirectoryToDirectory(path.toFile(), destPath.toFile());
+                } catch (IOException e) {
+                    throw new FileOperationException("Unable to copy files to shared disk", e);
+                }
+            });
+        }
         log.info("Finished copying output files to shared disk");
 
-        return uuid;
+        return outputFolder;
     }
 
 }

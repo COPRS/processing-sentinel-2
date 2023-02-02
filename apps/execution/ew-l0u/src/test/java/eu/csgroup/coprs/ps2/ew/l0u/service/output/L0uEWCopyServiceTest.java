@@ -13,12 +13,12 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class L0uEWCopyServiceTest extends AbstractTest {
 
@@ -81,6 +81,26 @@ class L0uEWCopyServiceTest extends AbstractTest {
             // Then
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.findFolders(any(), any()));
             fileUtilsMockedStatic.verify(() -> FileUtils.copyDirectoryToDirectory(any(), any()));
+        }
+    }
+
+    @Test
+    void copy_whenNoDataStripFound_ReturnNull() {
+
+        // Given
+        try (
+                MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+                MockedStatic<FileUtils> fileUtilsMockedStatic = Mockito.mockStatic(FileUtils.class);
+        ) {
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any())).thenReturn(Collections.emptyList());
+
+            //When
+            String result = copyService.copy();
+
+            //then
+            assertNull(result);
+            fileUtilsMockedStatic.verify(() -> FileUtils.copyDirectoryToDirectory(any(), any()), never());
+            verify(sharedProperties, never()).getSharedFolderRoot();
         }
     }
 

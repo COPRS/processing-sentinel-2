@@ -22,6 +22,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.when;
 
 class L0uEWMessageServiceTest extends AbstractTest {
@@ -31,10 +32,19 @@ class L0uEWMessageServiceTest extends AbstractTest {
 
     private L0uEWMessageService l0uEWMessageService;
 
+    private final L0uExecutionInput l0uExecutionInput = (L0uExecutionInput) new L0uExecutionInput()
+            .setSession("session")
+            .setSatellite("A")
+            .setStation("foo")
+            .setT0PdgsDate(Instant.EPOCH);
+    private final Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = Map.of(
+            ProductFamily.S2_HKTM, Collections.singleton(new FileInfo()),
+            ProductFamily.S2_SAD, Collections.singleton(new FileInfo())
+    );
+
     @Override
     public void setup() throws Exception {
         l0uEWMessageService = new L0uEWMessageService(sharedProperties);
-        when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
     }
 
     @Override
@@ -46,19 +56,11 @@ class L0uEWMessageServiceTest extends AbstractTest {
     void build() {
 
         // Given
-        final L0uExecutionInput l0uExecutionInput = (L0uExecutionInput) new L0uExecutionInput()
-                .setSession("session")
-                .setSatellite("A")
-                .setStation("foo")
-                .setT0PdgsDate(Instant.EPOCH);
-        Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = Map.of(
-                ProductFamily.S2_AUX, Collections.singleton(new FileInfo()),
-                ProductFamily.S2_L0_DS, Collections.singleton(new FileInfo())
-        );
+        when(sharedProperties.getSharedFolderRoot()).thenReturn("foo");
 
         try (final MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
 
-            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(Collections.emptyList());
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any())).thenReturn(Collections.emptyList());
 
             // When
             final Set<ProcessingMessage> messages = l0uEWMessageService.build(l0uExecutionInput, fileInfosByFamily, "outputFolder");
@@ -74,4 +76,18 @@ class L0uEWMessageServiceTest extends AbstractTest {
         }
     }
 
+    @Test
+    void whenNoDataStripCreatedReturnOnlyProcessingMessagesForCatalog() {
+        // Given
+        try (final MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
+
+            // When
+            final Set<ProcessingMessage> messages = l0uEWMessageService.build(l0uExecutionInput, fileInfosByFamily, null);
+
+            //Then
+            assertEquals(2, messages.size());
+            assertTrue(messages.stream().noneMatch(processingMessage -> processingMessage.getProductFamily() == null));
+            fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.findFolders(any(), any()), never());
+        }
+    }
 }

@@ -12,6 +12,7 @@ import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWMessageService;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,21 +35,23 @@ public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
 
         Set<ProcessingMessage> messages = buildCatalogMessages(fileInfosByFamily, l0uExecutionInput);
 
-        // Building a single message for L0C preparation
-        ProcessingMessage preparationMessage = ProcessingMessageUtils.create();
-        preparationMessage
-                .getAdditionalFields()
-                .put(
-                        MessageParameters.PREPARATION_INPUT_FIELD,
-                        new L0cPreparationInput()
-                                .setInputFolder(outputFolder)
-                                .setSession(l0uExecutionInput.getSession())
-                                .setSatellite(l0uExecutionInput.getSatellite())
-                                .setStation(l0uExecutionInput.getStation())
-                                .setT0PdgsDate(l0uExecutionInput.getT0PdgsDate())
-                                .setCustomTaskInputs(getCustomOutputs(outputFolder))
-                );
-        messages.add(preparationMessage);
+        if (StringUtils.hasText(outputFolder)) {
+            // Building a single message for L0C preparation
+            ProcessingMessage preparationMessage = ProcessingMessageUtils.create();
+            preparationMessage
+                    .getAdditionalFields()
+                    .put(
+                            MessageParameters.PREPARATION_INPUT_FIELD,
+                            new L0cPreparationInput()
+                                    .setInputFolder(outputFolder)
+                                    .setSession(l0uExecutionInput.getSession())
+                                    .setSatellite(l0uExecutionInput.getSatellite())
+                                    .setStation(l0uExecutionInput.getStation())
+                                    .setT0PdgsDate(l0uExecutionInput.getT0PdgsDate())
+                                    .setCustomTaskInputs(getCustomOutputs(outputFolder))
+                    );
+            messages.add(preparationMessage);
+        }
 
         return messages;
     }

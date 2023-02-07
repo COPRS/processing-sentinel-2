@@ -37,7 +37,6 @@ jobs:
           input_path: rs-addons/S2_L0U/Release_Note.md
           output_dir: rs-addons/S2_L0U/
           table_of_contents: false
-          # image_dir:
           build_html: false
 
       - name: Build S2_L0C
@@ -46,7 +45,22 @@ jobs:
           input_path: rs-addons/S2_L0C/Release_Note.md
           output_dir: rs-addons/S2_L0C/
           table_of_contents: false
-          # image_dir:
+          build_html: false
+
+      - name: Build S2_L1
+        uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_path: rs-addons/S2_L1/Release_Note.md
+          output_dir: rs-addons/S2_L1/
+          table_of_contents: false
+          build_html: false
+
+      - name: Build S2_L2
+        uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_path: rs-addons/S2_L2/Release_Note.md
+          output_dir: rs-addons/S2_L2/
+          table_of_contents: false
           build_html: false
 
       - uses: actions/upload-artifact@v3
@@ -55,6 +69,8 @@ jobs:
           path: |
             rs-addons/S2_L0U/Release_Note.pdf
             rs-addons/S2_L0C/Release_Note.pdf
+            rs-addons/S2_L1/Release_Note.pdf
+            rs-addons/S2_L2/Release_Note.pdf
 
       - name: Set up env
         run: |

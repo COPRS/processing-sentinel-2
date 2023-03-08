@@ -1,4 +1,4 @@
-# Installation manual Processing Sentinel 2
+# Processing Sentinel 2 - Installation manual
 
 ## Document properties
 

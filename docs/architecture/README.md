@@ -1,4 +1,4 @@
-# Processing Sentinel 2 Architecture Design Document
+# Processing Sentinel 2 - Architecture Design Document
 
 ## Document
 

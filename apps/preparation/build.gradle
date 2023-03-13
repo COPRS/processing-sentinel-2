@@ -15,7 +15,7 @@ subprojects {
         environment = [
                 "BPE_DELIM_JAVA_TOOL_OPTIONS" : " ",
 //                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-Xms512M -Xmx512M"
-                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-XX:MaxDirectMemorySize=32M"
+                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-XX:MaxDirectMemorySize=256M"
         ]
     }
 

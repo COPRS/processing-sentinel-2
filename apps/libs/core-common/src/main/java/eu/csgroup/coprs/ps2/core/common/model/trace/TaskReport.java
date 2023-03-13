@@ -52,7 +52,7 @@ public class TaskReport {
                 .setUid(uid)
                 .setName(taskName)
                 .setSatellite(satellite)
-                .setInput(input);
+                .setInput(this.input);
 
         final Trace trace = new Trace()
                 .setHeader(new Header().setLevel(TraceLevel.INFO))

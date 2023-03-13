@@ -269,8 +269,7 @@ class ObsServiceTest extends AbstractTest {
         final ListObjectsV2Response response = ListObjectsV2Response.builder().contents(
                         Set.of(
                                 S3Object.builder().key(FOLDER_1_KEY).eTag("eTag1").build(),
-                                S3Object.builder().key(FOLDER_2_KEY).eTag("eTag2").build(),
-                                S3Object.builder().key("root").build()
+                                S3Object.builder().key(FOLDER_2_KEY).eTag("eTag2").build()
                         ))
                 .build();
         when(s3Client.listObjectsV2(any(ListObjectsV2Request.class))).thenReturn(response);
@@ -280,15 +279,13 @@ class ObsServiceTest extends AbstractTest {
         final ListObjectsV2Response response1 = ListObjectsV2Response.builder().contents(
                         Set.of(
                                 S3Object.builder().key(FOLDER_1_KEY + "/foo1").eTag("eTag11").build(),
-                                S3Object.builder().key(FOLDER_1_KEY + "/subfolder1/bar1").eTag("eTag12").build(),
-                                S3Object.builder().key(FOLDER_1_KEY).build()
+                                S3Object.builder().key(FOLDER_1_KEY + "/subfolder1/bar1").eTag("eTag12").build()
                         ))
                 .build();
         final ListObjectsV2Response response2 = ListObjectsV2Response.builder().contents(
                         Set.of(
                                 S3Object.builder().key(FOLDER_2_KEY + "/foo2").eTag("eTag21").build(),
-                                S3Object.builder().key(FOLDER_2_KEY + "/subfolder2/bar2").eTag("eTag22").build(),
-                                S3Object.builder().key(FOLDER_2_KEY).build()
+                                S3Object.builder().key(FOLDER_2_KEY + "/subfolder2/bar2").eTag("eTag22").build()
                         ))
                 .build();
         when(s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(BUCKET).prefix(FOLDER_1_KEY).build()))

@@ -35,7 +35,7 @@ public class L2dsEWUploadService extends EWUploadService<L2ExecutionInput> {
 
         log.info("Uploading L2A DS to OBS");
 
-        final Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = new EnumMap<>(ProductFamily.class);
+        final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = new EnumMap<>(ProductFamily.class);
         final Path rootPath = Path.of(executionInput.getOutputFolder(), L12Parameters.L2A_DS_ROOT);
 
         try {
@@ -43,10 +43,9 @@ public class L2dsEWUploadService extends EWUploadService<L2ExecutionInput> {
             // Currently L2A is produced as tar archive, need to extract that first
             FileOperationUtils.findFiles(rootPath, S2FileParameters.L2A_DS_TAR_REGEX).forEach(archive -> ArchiveUtils.unTar(archive.toString(), false));
 
-            final List<Path> folders = FileOperationUtils.findFolders(rootPath, S2FileParameters.L2A_DS_REGEX);
-            fileInfosByFamily.put(ProductFamily.S2_L2A_DS, getFileInfoSet(folders, bucketProperties.getL2DSBucket()));
+            fileInfoByFamily.putAll(buildFolderInfoInFolder(rootPath, S2FileParameters.L2A_DS_REGEX, ProductFamily.S2_L2A_DS, bucketProperties.getL2DSBucket()));
 
-            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()), parentUid);
+            obsService.uploadWithMd5(fileInfoByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()), parentUid);
 
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);
@@ -54,7 +53,7 @@ public class L2dsEWUploadService extends EWUploadService<L2ExecutionInput> {
 
         log.info("Uploaded L2A DS files to OBS");
 
-        return fileInfosByFamily;
+        return fileInfoByFamily;
     }
 
 }

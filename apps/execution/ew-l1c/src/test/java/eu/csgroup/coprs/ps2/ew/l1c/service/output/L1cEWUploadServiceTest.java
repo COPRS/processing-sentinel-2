@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +53,10 @@ class L1cEWUploadServiceTest extends AbstractTest {
 
         try (
                 MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+                MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);
         ) {
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any())).thenReturn(pathList);
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
 
             // When
             final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = uploadService.upload(executionInput, UUID.randomUUID());
@@ -76,16 +79,19 @@ class L1cEWUploadServiceTest extends AbstractTest {
 
         try (
                 MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+                MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);
         ) {
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any())).thenReturn(pathList);
-
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFiles(any(), any())).thenReturn(pathList);
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
             // When
             final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = uploadService.upload(executionInput, UUID.randomUUID());
 
             // Then
             verify(obsService).uploadWithMd5(any(), any());
-            fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.findFolders(any(), any()), times(1));
-            assertEquals(1, fileInfoByFamily.size());
+            fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.findFolders(any(), any()));
+            fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.findFiles(any(), any()));
+            assertEquals(2, fileInfoByFamily.size());
             fileInfoByFamily.forEach((productFamily, fileInfoSet) -> assertEquals(2, fileInfoSet.size()));
         }
 

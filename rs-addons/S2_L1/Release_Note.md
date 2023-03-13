@@ -141,6 +141,7 @@ _Apps_: pw-l1s, ew-l1ab, ew-l1c
 | bucket.l1DSBucket | Name of the OBS bucket containing L1 DS files    |                         rs-s2-l1                         |
 | bucket.l1GRBucket | Name of the OBS bucket containing L1 GR files    |                         rs-s2-l1                         |
 | bucket.l1TLBucket | Name of the OBS bucket containing L1 TL files    |                         rs-s2-l1                         |
+| bucket.l1TCBucket | Name of the OBS bucket containing L1 TC files    |                         rs-s2-l1                         |
 
 ### Cleanup setting
 

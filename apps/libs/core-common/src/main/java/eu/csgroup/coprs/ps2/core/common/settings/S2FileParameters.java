@@ -18,9 +18,11 @@ public final class S2FileParameters {
     public static final String L1B_GR_REGEX = "^S2[A|B]_OPER_MSI_L1B_GR_" + JobParameters.PROC_STATION + ".*";
     public static final String L1C_DS_REGEX = "^S2[A|B]_OPER_MSI_L1C_DS_" + JobParameters.PROC_STATION + ".*";
     public static final String L1C_TL_REGEX = "^S2[A|B]_OPER_MSI_L1C_TL_" + JobParameters.PROC_STATION + ".*";
+    public static final String L1C_TC_REGEX = "^S2[A|B]_OPER_MSI_L1C_TC_" + JobParameters.PROC_STATION + ".*\\.jp2$";
     public static final String L2A_DS_REGEX = "^S2[A|B]_OPER_MSI_L2A_DS_" + JobParameters.PROC_STATION + ".*\\.00$";
     public static final String L2A_DS_TAR_REGEX = "^S2[A|B]_OPER_MSI_L2A_DS_" + JobParameters.PROC_STATION + ".*\\.00\\.tar$";
     public static final String L2A_TL_REGEX = "^S2[A|B]_OPER_MSI_L2A_TL_" + JobParameters.PROC_STATION + ".*\\.00$";
+    public static final String L2A_TC_REGEX = "^S2[A|B]_OPER_MSI_L2A_TC_" + JobParameters.PROC_STATION + ".*\\.jp2$";
     public static final String L2A_TL_TAR_REGEX = "^S2[A|B]_OPER_MSI_L2A_TL_" + JobParameters.PROC_STATION + ".*\\.00\\.tar$";
 
     private S2FileParameters() {

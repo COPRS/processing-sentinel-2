@@ -57,6 +57,11 @@ public class ObsBucketProperties {
     private String l1TLBucket;
 
     /**
+     * Name of the OBS bucket containing L1 TCI files
+     */
+    private String l1TCBucket;
+
+    /**
      * Name of the OBS bucket containing L2A DS files
      */
     private String l2DSBucket;
@@ -65,5 +70,10 @@ public class ObsBucketProperties {
      * Name of the OBS bucket containing L2A TL files
      */
     private String l2TLBucket;
+
+    /**
+     * Name of the OBS bucket containing L2A TCI files
+     */
+    private String l2TCBucket;
 
 }

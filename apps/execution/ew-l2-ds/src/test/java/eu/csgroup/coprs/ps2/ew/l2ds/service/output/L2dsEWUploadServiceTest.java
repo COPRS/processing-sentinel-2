@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -51,10 +52,11 @@ class L2dsEWUploadServiceTest extends AbstractTest {
         try (
                 MockedStatic<ArchiveUtils> archiveUtilsMockedStatic = Mockito.mockStatic(ArchiveUtils.class);
                 MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+                MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);
         ) {
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFiles(any(), any())).thenReturn(Collections.emptyList());
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any())).thenReturn(pathList);
-
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
             // When
             final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = uploadService.upload(executionInput, UUID.randomUUID());
 

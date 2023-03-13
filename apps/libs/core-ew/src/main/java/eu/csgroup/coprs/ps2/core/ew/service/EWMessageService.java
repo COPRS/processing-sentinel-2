@@ -62,7 +62,7 @@ public abstract class EWMessageService<T extends ExecutionInput> {
             case S2_SAD, S2_HKTM -> Timeliness.S2_SESSION;
             case S2_L0_DS, S2_L0_GR -> Timeliness.S2_L0;
             case S2_L1A_DS, S2_L1A_GR, S2_L1B_DS, S2_L1B_GR, S2_L1C_DS, S2_L1C_TC, S2_L1C_TL -> Timeliness.S2_L1;
-            case S2_L2A_DS, S2_L2A_TL -> Timeliness.S2_L2;
+            case S2_L2A_DS, S2_L2A_TL, S2_L2A_TC -> Timeliness.S2_L2;
             default -> Timeliness.EMPTY;
         };
     }

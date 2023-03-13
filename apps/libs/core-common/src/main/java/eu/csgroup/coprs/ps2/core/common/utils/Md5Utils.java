@@ -12,15 +12,17 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public final class Md5utils {
+public final class Md5Utils {
 
     /**
-     * Computes and returns a list of md5 checksums for all the files contained inside a folder (recursively)
+     * Computes and returns a list of md5 checksums:
+     * - if path is a directory, for each file contained inside this directory (recursively)
+     * - if path is a file, for this file.
      *
-     * @param path Path to folder
-     * @return A map of md5 checksums by fileName (with relative path including folder)
+     * @param path Path to folder or file
+     * @return A map of md5 checksums by fileName
      */
-    public static Map<String, String> getFolderMd5(Path path) {
+    public static Map<String, String> getMd5(Path path) {
 
         final String parent = path.getParent().toString() + FileSystems.getDefault().getSeparator();
 
@@ -28,7 +30,7 @@ public final class Md5utils {
                 .stream()
                 .collect(Collectors.toMap(
                         filePath -> StringUtils.removeStart(filePath.toString(), parent),
-                        Md5utils::getFileMd5
+                        Md5Utils::getFileMd5
                 ));
     }
 
@@ -46,7 +48,7 @@ public final class Md5utils {
         }
     }
 
-    private Md5utils() {
+    private Md5Utils() {
     }
 
 }

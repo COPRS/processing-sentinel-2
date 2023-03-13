@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -52,8 +53,10 @@ class L0uEWUploadServiceTest extends AbstractTest {
         final List<Path> sadPaths = List.of(Paths.get("foo"));
         final List<Path> hktmPaths = List.of(Paths.get("bar"));
 
-        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
+        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+             MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);) {
 
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any())).thenReturn(sadPaths);
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(hktmPaths);
 

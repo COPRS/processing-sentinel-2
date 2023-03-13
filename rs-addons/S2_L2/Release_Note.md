@@ -154,6 +154,9 @@ _Apps_: pw-l2, ew-l2-ds, ew-l2-tl
 | auxBucket         | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
 | bucket.l1DSBucket | Name of the OBS bucket containing L1 DS files    |                         rs-s2-l1                         |
 | bucket.l1TLBucket | Name of the OBS bucket containing L1 TL files    |                         rs-s2-l1                         |
+| bucket.l2DSBucket | Name of the OBS bucket containing L2 DS files    |                         rs-s2-l2                         |
+| bucket.l2TLBucket | Name of the OBS bucket containing L2 TL files    |                         rs-s2-l2                         |
+| bucket.l2TCBucket | Name of the OBS bucket containing L2 TC files    |                         rs-s2-l2                         |
 
 ### Cleanup setting
 

@@ -5,7 +5,6 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
-import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
@@ -36,22 +35,15 @@ public class L0uEWUploadService extends EWUploadService<L0uExecutionInput> {
 
         log.info("Uploading AUX files to OBS");
 
-        final Map<ProductFamily, Set<FileInfo>> fileInfosByFamily = new EnumMap<>(ProductFamily.class);
+        final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = new EnumMap<>(ProductFamily.class);
 
         final Path rootPath = Paths.get(L0uFolderParameters.L0U_DUMP_PATH);
 
         try {
+            fileInfoByFamily.putAll(buildFolderInfoInFolder(rootPath, S2FileParameters.SAD_REGEX, ProductFamily.S2_SAD, bucketProperties.getSadBucket()));
+            fileInfoByFamily.putAll(buildFolderInfoInTree(rootPath, S2FileParameters.HKTM_REGEX, ProductFamily.S2_HKTM, bucketProperties.getHktmBucket()));
 
-            final List<Path> sadFolders = FileOperationUtils.findFolders(rootPath, S2FileParameters.SAD_REGEX);
-            final List<Path> hktmFolders = FileOperationUtils.findFoldersInTree(rootPath, S2FileParameters.HKTM_REGEX);
-
-            log.info("Found {} SAD files", sadFolders.size());
-            log.info("Found {} HKTM files", hktmFolders.size());
-
-            fileInfosByFamily.put(ProductFamily.S2_SAD, getFileInfoSet(sadFolders, bucketProperties.getSadBucket()));
-            fileInfosByFamily.put(ProductFamily.S2_HKTM, getFileInfoSet(hktmFolders, bucketProperties.getHktmBucket()));
-
-            obsService.uploadWithMd5(fileInfosByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()), parentUid);
+            obsService.uploadWithMd5(fileInfoByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()), parentUid);
 
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);
@@ -59,7 +51,7 @@ public class L0uEWUploadService extends EWUploadService<L0uExecutionInput> {
 
         log.info("Uploaded AUX files to OBS");
 
-        return fileInfosByFamily;
+        return fileInfoByFamily;
     }
 
 }

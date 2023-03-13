@@ -5,7 +5,7 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
-import eu.csgroup.coprs.ps2.core.common.utils.Md5utils;
+import eu.csgroup.coprs.ps2.core.common.utils.Md5Utils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
 import eu.csgroup.coprs.ps2.core.obs.utils.ObsTraceUtils;
@@ -141,7 +141,6 @@ public class ObsService {
             return s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).build())
                     .contents()
                     .stream()
-                    .filter(s3Object -> !s3Object.key().equals(key))
                     .collect(Collectors.toMap(S3Object::key, s3Object -> StringUtils.remove(s3Object.eTag(), "\"")));
         } catch (Exception e) {
             String errorMessage = ERROR_MESSAGE + e.getMessage();
@@ -228,7 +227,7 @@ public class ObsService {
             final Path localPath = Paths.get(fileInfo.getFullLocalPath());
             final Path md5sumPath = Paths.get(tmpFolder).resolve(localPath.getFileName() + MD5SUM_SUFFIX);
 
-            final Map<String, String> md5ByFileName = Md5utils.getFolderMd5(localPath);
+            final Map<String, String> md5ByFileName = Md5Utils.getMd5(localPath);
             final Map<String, String> eTagByKey = getETags(fileInfo.getBucket(), fileInfo.getKey());
 
             final List<String> lines = md5ByFileName.entrySet()

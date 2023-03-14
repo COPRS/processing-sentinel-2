@@ -1,4 +1,4 @@
-# User's Manual Processing Sentinel 2
+# Processing Sentinel 2 - User's Manual
 
 ## Document properties
 

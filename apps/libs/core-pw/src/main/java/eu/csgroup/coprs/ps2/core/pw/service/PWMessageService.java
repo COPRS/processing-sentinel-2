@@ -1,6 +1,7 @@
 package eu.csgroup.coprs.ps2.core.pw.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.EventAction;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
@@ -14,6 +15,8 @@ import java.util.Set;
 @Slf4j
 public abstract class PWMessageService<T extends ExecutionInput> { // NOSONAR
 
+    protected abstract EventAction[] getAllowedActions();
+
     public Set<ProcessingMessage> build(List<T> executionInputList) {
 
         log.info("Creating output messages for all executions ({})", executionInputList.size());
@@ -26,7 +29,8 @@ public abstract class PWMessageService<T extends ExecutionInput> { // NOSONAR
                     .setSatelliteId(executionInput.getSatellite())
                     .setKeyObjectStorage(MessageParameters.EMPTY)
                     .setStoragePath(MessageParameters.EMPTY)
-                    .setProductFamily(ProductFamily.S2_L0_DS);
+                    .setProductFamily(ProductFamily.S2_L0_DS)
+                    .setAllowedActions(getAllowedActions());
 
             processingMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);
 

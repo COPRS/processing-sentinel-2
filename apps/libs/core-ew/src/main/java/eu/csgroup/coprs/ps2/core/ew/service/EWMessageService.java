@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.core.ew.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.common.model.processing.EventAction;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Timeliness;
@@ -10,11 +11,15 @@ import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 @Slf4j
 public abstract class EWMessageService<T extends ExecutionInput> {
+
+
+    protected abstract Set<ProcessingMessage> doBuild(T executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder);
 
     public Set<ProcessingMessage> build(T executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder) {
 
@@ -26,8 +31,6 @@ public abstract class EWMessageService<T extends ExecutionInput> {
 
         return messages;
     }
-
-    protected abstract Set<ProcessingMessage> doBuild(T executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder);
 
     protected Set<ProcessingMessage> buildCatalogMessages(Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, T executionInput) {
 
@@ -42,7 +45,8 @@ public abstract class EWMessageService<T extends ExecutionInput> {
                             .setStoragePath(fileInfo.getObsURL())
                             .setKeyObjectStorage(fileInfo.getObsName())
                             .setSatelliteId(executionInput.getSatellite())
-                            .setTimeliness(getTimeliness(productFamily));
+                            .setTimeliness(getTimeliness(productFamily))
+                            .setAllowedActions(List.of(EventAction.NO_ACTION, EventAction.RESTART).toArray(new EventAction[0]));
 
                     processingMessage.getAdditionalFields().put(MessageParameters.T0_PDGS_DATE_FIELD, executionInput.getT0PdgsDate());
 
@@ -61,6 +65,13 @@ public abstract class EWMessageService<T extends ExecutionInput> {
             case S2_L2A_DS, S2_L2A_TL -> Timeliness.S2_L2;
             default -> Timeliness.EMPTY;
         };
+    }
+
+    /**
+     * @return default Allowed actions for internal ProcessingMessages addressed to other processing modules
+     */
+    protected EventAction[] getAllowedActions() {
+        return List.of(EventAction.NO_ACTION, EventAction.RESTART, EventAction.RESUBMIT).toArray(new EventAction[0]);
     }
 
 }

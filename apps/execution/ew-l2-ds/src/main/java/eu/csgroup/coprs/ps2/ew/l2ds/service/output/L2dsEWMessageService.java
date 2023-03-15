@@ -62,7 +62,7 @@ public class L2dsEWMessageService extends EWMessageService<L2ExecutionInput> {
                             .setLocalName(tile)
                             .setLocalPath(FolderParameters.WORKING_FOLDER_ROOT)));
 
-                    final ProcessingMessage tileMessage = ProcessingMessageUtils.create();
+                    final ProcessingMessage tileMessage = ProcessingMessageUtils.create().setAllowedActions(getAllowedActions());
                     tileMessage.setSatelliteId(executionInput.getSatellite());
                     tileMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, tileInput);
                     return tileMessage;

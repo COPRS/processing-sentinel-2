@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import eu.csgroup.coprs.ps2.core.common.exception.ProcessingException;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.EventAction;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,14 +38,14 @@ public class L1cPWMessageService {
                         throw new ProcessingException("Something went horribly wrong");
                     }
                     tileInput.setTile(tile);
-                    final ProcessingMessage tileMessage = ProcessingMessageUtils.create();
+                    final ProcessingMessage tileMessage = ProcessingMessageUtils.create().setAllowedActions(getActions());
                     tileMessage.setSatelliteId(executionInput.getSatellite());
                     tileMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, tileInput);
                     return tileMessage;
                 })
                 .collect(Collectors.toSet());
 
-        final ProcessingMessage dsMessage = ProcessingMessageUtils.create();
+        final ProcessingMessage dsMessage = ProcessingMessageUtils.create().setAllowedActions(getActions());
         dsMessage.setSatelliteId(executionInput.getSatellite());
         dsMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);
 
@@ -52,6 +54,10 @@ public class L1cPWMessageService {
         log.info("Finished building output messages: found {} messages total", messages.size());
 
         return messages;
+    }
+
+    protected EventAction[] getActions() {
+        return List.of(EventAction.NO_ACTION, EventAction.RESUBMIT).toArray(new EventAction[0]);
     }
 
 }

@@ -4,6 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.EventAction;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
@@ -17,6 +18,7 @@ import org.springframework.util.StringUtils;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -37,7 +39,7 @@ public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
 
         if (StringUtils.hasText(outputFolder)) {
             // Building a single message for L0C preparation
-            ProcessingMessage preparationMessage = ProcessingMessageUtils.create();
+            ProcessingMessage preparationMessage = ProcessingMessageUtils.create().setAllowedActions(getAllowedActions());
             preparationMessage
                     .getAdditionalFields()
                     .put(
@@ -64,6 +66,11 @@ public class L0uEWMessageService extends EWMessageService<L0uExecutionInput> {
                 .flatMap(Collection::stream)
                 .map(path -> path.getFileName().toString())
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    protected EventAction[] getAllowedActions() {
+        return List.of(EventAction.NO_ACTION, EventAction.RESUBMIT).toArray(new EventAction[0]);
     }
 
 }

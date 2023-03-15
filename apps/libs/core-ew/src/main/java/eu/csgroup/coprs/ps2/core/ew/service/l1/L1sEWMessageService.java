@@ -18,7 +18,7 @@ public abstract class L1sEWMessageService extends EWMessageService<L1ExecutionIn
     @Override
     protected Set<ProcessingMessage> doBuild(L1ExecutionInput executionInput, Map<ProductFamily, Set<FileInfo>> fileInfosByFamily, String outputFolder) {
 
-        ProcessingMessage processingMessage = ProcessingMessageUtils.create();
+        ProcessingMessage processingMessage = ProcessingMessageUtils.create().setAllowedActions(getAllowedActions());
         processingMessage.setSatelliteId(executionInput.getSatellite());
         executionInput.setCustomTaskInputs(getCustomOutputs(executionInput.getOutputFolder()));
         processingMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);

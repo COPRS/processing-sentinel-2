@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.CommonInput;
-import eu.csgroup.coprs.ps2.core.common.model.processing.EventAction;
 import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
@@ -30,8 +29,7 @@ public final class ProcessingMessageUtils {
                 .setCreationDate(DateUtils.toLongDate(Instant.now()))
                 .setMissionId(Mission.S2.getValue())
                 .setPodName(System.getenv("HOSTNAME"))
-                .setRetryCounter(0)
-                .setAllowedActions(new EventAction[]{EventAction.NO_ACTION, EventAction.RESTART});
+                .setRetryCounter(0);
     }
 
     public static boolean hasAdditionalField(ProcessingMessage processingMessage, String fieldName) {

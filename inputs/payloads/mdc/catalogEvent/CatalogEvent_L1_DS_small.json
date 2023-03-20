@@ -3,8 +3,8 @@
   "creationDate": "2022-11-21T18:31:44.954Z",
   "missionId": "S2",
   "satelliteId": "B",
-  "keyObjectStorage": "S2B_OPER_MSI_L1C_DS_REFS_20221124T170956_S20221011T064025_N04.00",
-  "storagePath": "s3://rs-s2-l1/S2B_OPER_MSI_L1C_DS_REFS_20221124T170956_S20221011T064025_N04.00",
+  "keyObjectStorage": "S2B_OPER_MSI_L1C_DS_REFS_20230302T111036_S20221011T064025_N04.00",
+  "storagePath": "s3://rs-s2-l1/S2B_OPER_MSI_L1C_DS_REFS_20230302T111036_S20221011T064025_N04.00",
   "productFamily": "S2_L1C_DS",
   "podName": "metadata-part1-metadata-extraction-v12-747976d486-rv9s7",
   "allowedActions": [
@@ -397,5 +397,5 @@
   "demandType": "NOMINAL",
   "debug": false,
   "timeliness": null,
-  "t0_pdgs_date": null
+  "t0PdgsDate": "2022-11-21T10:31:44.954Z"
 }

@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
@@ -174,7 +175,7 @@ public final class FileOperationUtils {
 
     public static void move(Path sourcePath, Path destinationPath) {
         try {
-            Files.move(sourcePath, destinationPath);
+            Files.move(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new FileOperationException("Unable to move file", e);
         }

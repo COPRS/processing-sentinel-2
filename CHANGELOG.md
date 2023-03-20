@@ -10,6 +10,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.6.0-rc1] - 2023-03-20
+
+### Added
+
+- Rework docker build and add Security scan with Trivy
+- Added upload of True Color Image files for L1C and L2A
+
+### Changed
+
+- Added copyrights to Notice and harmonized Readme titles
+
+### Fixed
+
+- [#807 - Added logic for L0u Processing in case no Datastrip is produced](https://github.com/COPRS/rs-issues/issues/807)
+- [#856 - Increase direct memory size](https://github.com/COPRS/rs-issues/issues/856)
+- [#863 - Rework and set proper allowed actions for ProcessingMessages](https://github.com/COPRS/rs-issues/issues/863)
+- [#876 - Overwrite existing files during EW download](https://github.com/COPRS/rs-issues/issues/876)
+- Set proper input for some traces
+
 ## [1.5.0-rc1] - 2023-01-26
 
 ### Added

@@ -1,0 +1,56 @@
+#### Setup
+
+ARG INV_INSTALL="/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.4"
+ARG PROC_STATION=REFS
+
+ARG JDK_URI=https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz
+
+#### Fetch JDK
+
+FROM ubuntu:focal AS jdk
+
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y ca-certificates curl \
+    && rm -rf /var/lib/apt/lists/*
+
+ARG JDK_URI
+RUN curl -L $JDK_URI > jdk.tar.gz
+
+#### Build image from IPF
+
+FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2-ipf-l0u:3.0.2
+
+USER root
+
+## Wrapper configuration
+ARG INV_INSTALL
+RUN userdel ops2pdgs \
+    && groupadd -g 1000 wrapper \
+    && adduser -p '*' -d /wrapper -u 1000 -g 1000 wrapper \
+    && chmod -R 775 $INV_INSTALL
+COPY --from=jdk jdk.tar.gz /wrapper/jdk.tar.gz
+RUN cd /wrapper \
+    && tar xvf jdk.tar.gz \
+    && mv jdk-* jdk \
+    && rm jdk.tar.gz \
+    && chown -R wrapper:wrapper /wrapper \
+    && chmod -R 775 /wrapper
+
+# Set config values
+ARG INV_INSTALL
+ARG PROC_STATION
+RUN sed -i 's+<center>.*</center>+<center>'"$PROC_STATION"'</center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.template \
+    && sed -i 's+<archiving_center>.*</archiving_center>+<archiving_center>'"$PROC_STATION"'</archiving_center>+' ${INV_INSTALL}/*/conf/standalone/DPC_config_center.template
+
+## Setup workspace folder
+RUN mkdir -p /workspace \
+    && chmod -R 775 /workspace \
+    && chown -R wrapper:wrapper /workspace
+
+## Setup shared folder (on shared volume)
+RUN mkdir -p /shared \
+    && chmod -R 775 /shared \
+    && chown -R wrapper:wrapper /shared
+
+WORKDIR /wrapper
+USER wrapper

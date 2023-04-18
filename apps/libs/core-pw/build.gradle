@@ -1,0 +1,10 @@
+dependencies {
+
+    implementation project(':apps:libs:core-common')
+    implementation project(':apps:libs:core-obs')
+
+    api "org.springframework.boot:spring-boot-starter-data-mongodb"
+
+    testImplementation(testFixtures(project(":apps:libs:core-common")))
+
+}

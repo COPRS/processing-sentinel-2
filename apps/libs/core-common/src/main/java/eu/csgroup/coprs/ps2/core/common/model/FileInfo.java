@@ -1,6 +1,8 @@
 package eu.csgroup.coprs.ps2.core.common.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,8 +23,11 @@ public class FileInfo {
     private String obsPath;
     private String localName;
     private String localPath;
-    // Used for AuxProductType
-    private String type;
+
+    private ProductFamily productFamily;
+    private AuxProductType auxProductType;
+
+    boolean isSimpleFile;
 
     @JsonIgnore
     public FileInfo setFullLocalPath(String fullLocalPath) {

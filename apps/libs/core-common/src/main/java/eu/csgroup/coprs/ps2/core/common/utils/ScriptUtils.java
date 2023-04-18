@@ -6,14 +6,12 @@ import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -24,7 +22,7 @@ public final class ScriptUtils {
 
     public static Integer run(ScriptWrapper scriptWrapper) {
         try {
-            return run(scriptWrapper.getRunId(), scriptWrapper.getWorkdir(), scriptWrapper.getCommandArgs())
+            return doRun(scriptWrapper)
                     .get()
                     .entrySet()
                     .stream()
@@ -43,7 +41,7 @@ public final class ScriptUtils {
 
         final List<CompletableFuture<Map<String, Integer>>> futures = scriptWrapperSet
                 .stream()
-                .map(wrapper -> run(wrapper.getRunId(), wrapper.getWorkdir(), wrapper.getCommandArgs()))
+                .map(ScriptUtils::doRun)
                 .toList();
 
         try {
@@ -66,13 +64,12 @@ public final class ScriptUtils {
         }
     }
 
-    private static CompletableFuture<Map<String, Integer>> run(String id, String workdir, String... command) {
-        return run(id, workdir, Collections.emptyMap(), null, null, command);
-    }
-
-    private static CompletableFuture<Map<String, Integer>> run(String id, String workdir, Map<String, String> environment, Long timeOut, TimeUnit timeUnit, String... command) {
+    private static CompletableFuture<Map<String, Integer>> doRun(ScriptWrapper scriptWrapper) {
 
         return CompletableFuture.supplyAsync(() -> {
+
+                    final String[] command = scriptWrapper.getCommandArgs();
+                    final String workdir = scriptWrapper.getWorkdir();
 
                     log.info("Running command {} in workdir {}", command, workdir);
 
@@ -82,7 +79,7 @@ public final class ScriptUtils {
 
                     processBuilder.command(command);
                     processBuilder.directory(new File(workdir));
-                    processBuilder.environment().putAll(environment);
+                    processBuilder.environment().putAll(scriptWrapper.getEnvironment());
                     processBuilder.redirectErrorStream(true);
 
                     try {
@@ -95,12 +92,12 @@ public final class ScriptUtils {
 
                     try {
 
-                        executorService.submit(new ScriptLogger(process.getInputStream()));
+                        executorService.submit(new ScriptLogger(process.getInputStream(), scriptWrapper.getLogWhitelist()));
 
-                        if (timeOut == null) {
+                        if (scriptWrapper.getTimeOut() == null) {
                             exitCode = process.waitFor();
                         } else {
-                            process.waitFor(timeOut, timeUnit);
+                            process.waitFor(scriptWrapper.getTimeOut(), scriptWrapper.getTimeUnit());
                             exitCode = process.exitValue();
                         }
 
@@ -115,7 +112,7 @@ public final class ScriptUtils {
 
                     log.info("Finished Running command {} in workdir {}", command, workdir);
 
-                    return Map.of(id, exitCode);
+                    return Map.of(scriptWrapper.getRunId(), exitCode);
                 }
         );
     }

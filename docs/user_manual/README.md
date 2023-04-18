@@ -1,4 +1,4 @@
-# User's Manual Processing Sentinel 2
+# Processing Sentinel 2 - User's Manual
 
 ## Document properties
 
@@ -24,6 +24,10 @@ This document is the User Manual for processing Sentinel 2 subsystem of the Refe
 | 1 | 16 Sep 2022 | | v1.1.0 <br> First issue of document |
 
 ## Content
+
+The User Manual is split in two documents (hereafter named "release notes") that each explain the deployment and configuration of an rs-addon.
+
+Note: The term "release notes" for rs-addon deployment and configuration shall be renamed later to avoid confusion with Software release notes.
 
 Please refer to the release notes:
 

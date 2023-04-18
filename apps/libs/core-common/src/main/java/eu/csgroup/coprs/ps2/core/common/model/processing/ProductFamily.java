@@ -15,6 +15,7 @@ public enum ProductFamily {
     S2_L1C_TC,
     S2_L2A_TL,
     S2_L2A_DS,
+    S2_L2A_TC,
     S2_AUX,
     S2_SAD,
     S2_HKTM,

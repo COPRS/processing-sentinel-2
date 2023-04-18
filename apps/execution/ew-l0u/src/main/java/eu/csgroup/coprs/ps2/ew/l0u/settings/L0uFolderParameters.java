@@ -1,14 +1,15 @@
 package eu.csgroup.coprs.ps2.ew.l0u.settings;
 
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
+
 import java.util.Set;
 
 public final class L0uFolderParameters {
 
     // -------------------------------------------------------- Workspace ---------------------------------------------------------------------------
 
-    public static final String WORKSPACE_PATH = "/workspace"; //NOSONAR
-    public static final String WORKPLANS_PATH = WORKSPACE_PATH + "/workplans";
-    public static final String INPUT_PATH = WORKSPACE_PATH + "/INPUT";
+    public static final String WORKPLANS_PATH = FolderParameters.WORKING_FOLDER_ROOT + "/workplans";
+    public static final String INPUT_PATH = FolderParameters.WORKING_FOLDER_ROOT + "/INPUT";
     public static final String CH_1_PATH = INPUT_PATH + "/ch_1";
     public static final String CH_2_PATH = INPUT_PATH + "/ch_2";
     public static final String SCENARIO_PATH = WORKPLANS_PATH + "/scenario";
@@ -51,7 +52,7 @@ public final class L0uFolderParameters {
 
     // -------------------------------------------------------- Install files -----------------------------------------------------------------------
 
-    public static final String INSTALL_PATH = "/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.3"; //NOSONAR
+    public static final String INSTALL_PATH = "/usr/local/components/facilities/DPC-CORE-l0pack-ing-typ/DPC-CORE-l0pack-ing-typ-3.0.4"; //NOSONAR
     public static final String INSTALL_CONF_PATH = INSTALL_PATH + "/ingestion/conf";
     public static final String INSTALL_SCRIPT_PATH = INSTALL_PATH + "/ingestion/scripts";
     public static final String INSTALL_ARCHIVE_PATH = INSTALL_CONF_PATH + "/DATA/archive";

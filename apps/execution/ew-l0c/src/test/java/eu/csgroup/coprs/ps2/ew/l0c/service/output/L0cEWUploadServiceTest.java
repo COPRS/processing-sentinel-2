@@ -5,15 +5,16 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
-import eu.csgroup.coprs.ps2.ew.l0c.config.L0cExecutionProperties;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -28,7 +29,7 @@ import static org.mockito.Mockito.doThrow;
 class L0cEWUploadServiceTest extends AbstractTest {
 
     @Mock
-    private L0cExecutionProperties l0cExecutionProperties;
+    private ObsBucketProperties bucketProperties;
     @Mock
     private ObsService obsService;
 
@@ -37,7 +38,7 @@ class L0cEWUploadServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        l0cEWUploadService = new L0cEWUploadService(l0cExecutionProperties, obsService);
+        l0cEWUploadService = new L0cEWUploadService(bucketProperties, obsService);
     }
 
     @Override
@@ -52,14 +53,18 @@ class L0cEWUploadServiceTest extends AbstractTest {
         final List<Path> dsPaths = List.of(Paths.get("foo"));
         final List<Path> grPaths = List.of(Paths.get("bar"));
 
-        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
+        try (
+                MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);
+                MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+        ) {
 
-            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any()))
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any()))
                     .thenReturn(dsPaths)
                     .thenReturn(grPaths);
 
             // When
-            final Map<ProductFamily, Set<FileInfo>> upload = l0cEWUploadService.upload();
+            final Map<ProductFamily, Set<FileInfo>> upload = l0cEWUploadService.upload(null, null);
 
             // Then
             assertEquals(2, upload.size());
@@ -73,16 +78,20 @@ class L0cEWUploadServiceTest extends AbstractTest {
         final List<Path> dsPaths = List.of(Paths.get("foo"));
         final List<Path> grPaths = List.of(Paths.get("bar"));
 
-        doThrow(ObsException.class).when(obsService).uploadWithMd5(any());
+        doThrow(ObsException.class).when(obsService).uploadWithMd5(any(), any());
 
-        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
+        try (
+                MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class);
+                MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)
+        ) {
 
-            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any()))
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
+            fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any()))
                     .thenReturn(dsPaths)
                     .thenReturn(grPaths);
 
             // When Then
-            assertThrows(FileOperationException.class, () -> l0cEWUploadService.upload());
+            assertThrows(FileOperationException.class, () -> l0cEWUploadService.upload(null, null));
         }
     }
 

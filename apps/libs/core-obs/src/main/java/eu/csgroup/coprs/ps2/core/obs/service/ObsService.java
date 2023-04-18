@@ -2,11 +2,13 @@ package eu.csgroup.coprs.ps2.core.obs.service;
 
 import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
-import eu.csgroup.coprs.ps2.core.common.settings.PreparationParameters;
+import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
-import eu.csgroup.coprs.ps2.core.common.utils.Md5utils;
+import eu.csgroup.coprs.ps2.core.common.utils.Md5Utils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsProperties;
 import eu.csgroup.coprs.ps2.core.obs.exception.ObsException;
+import eu.csgroup.coprs.ps2.core.obs.utils.ObsTraceUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,7 @@ import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.core.exception.SdkServiceException;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.ListObjectsV2Request;
+import software.amazon.awssdk.services.s3.model.ListObjectsV2Response;
 import software.amazon.awssdk.services.s3.model.S3Object;
 import software.amazon.awssdk.transfer.s3.*;
 
@@ -33,7 +36,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -42,8 +47,9 @@ import java.util.stream.Collectors;
 @Service
 public class ObsService {
 
-    public static final String DELIMITER = "/";
-    public static final String MD5SUM_SUFFIX = ".md5sum";
+    private static final String DELIMITER = "/";
+    private static final String MD5SUM_SUFFIX = ".md5sum";
+    private static final String ERROR_MESSAGE = "Error occurred during OBS operation: ";
 
     private final S3TransferManager transferManager;
     private final S3Client s3Client;
@@ -61,131 +67,130 @@ public class ObsService {
     }
 
     public boolean exists(String bucket, String key) {
+
+        log.debug("Checking Obs file existence for file {}", key);
+
         boolean exists;
         try {
             exists = s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).maxKeys(1).build()).hasContents();
         } catch (Exception e) {
-            String errorMessage = "Error occurred during OBS operation: " + e.getMessage();
+            String errorMessage = ERROR_MESSAGE + e.getMessage();
             log.error(errorMessage);
             throw new ObsException(errorMessage, e);
         }
         return exists;
     }
 
+    public Map<String, Boolean> exists(String bucket, Set<String> keySet) {
+
+        log.debug("Checking Obs file existence for {} files", keySet.size());
+
+        Map<String, Boolean> existsByKey = keySet.stream().collect(Collectors.toMap(Function.identity(), s -> false));
+
+        final String commonPrefix = StringUtils.getCommonPrefix(keySet.toArray(new String[0]));
+
+        log.debug("Found common prefix {}", commonPrefix);
+
+        ListObjectsV2Request request;
+        ListObjectsV2Response response;
+        String continuationToken = null;
+        boolean isTruncated = true;
+
+        try {
+
+            while (isTruncated && existsByKey.entrySet().stream().anyMatch(entry -> !entry.getValue())) {
+
+                request = ListObjectsV2Request.builder()
+                        .bucket(bucket)
+                        .prefix(commonPrefix)
+                        .continuationToken(continuationToken)
+                        .build();
+                response = s3Client.listObjectsV2(request);
+                isTruncated = response.isTruncated();
+                continuationToken = response.nextContinuationToken();
+
+                final Set<String> foundKeySet = response.contents().stream().map(S3Object::key).collect(Collectors.toSet());
+
+                log.debug("Found {} files", foundKeySet.size());
+
+                existsByKey.entrySet()
+                        .stream()
+                        .filter(entry -> !entry.getValue())
+                        .forEach(entry -> {
+                            if (foundKeySet.stream().anyMatch(foundKey -> foundKey.equals(entry.getKey()) || foundKey.startsWith(entry.getKey() + "/"))) {
+                                existsByKey.put(entry.getKey(), true);
+                            }
+                        });
+            }
+
+        } catch (Exception e) {
+
+            String errorMessage = ERROR_MESSAGE + e.getMessage();
+            log.error(errorMessage);
+            throw new ObsException(errorMessage, e);
+        }
+
+        return existsByKey;
+    }
+
     public Map<String, String> getETags(String bucket, String key) {
+
+        log.debug("Fetching eTag for file {} in bucket {}", key, bucket);
+
         try {
             return s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key).build())
                     .contents()
                     .stream()
-                    .filter(s3Object -> !s3Object.key().equals(key))
                     .collect(Collectors.toMap(S3Object::key, s3Object -> StringUtils.remove(s3Object.eTag(), "\"")));
         } catch (Exception e) {
-            String errorMessage = "Error occurred during OBS operation: " + e.getMessage();
+            String errorMessage = ERROR_MESSAGE + e.getMessage();
             log.error(errorMessage);
             throw new ObsException(errorMessage, e);
         }
     }
 
-    /**
-     * Download a file from the specified key to a given destination OR the content of an obs folder to a local directory
-     *
-     * @param bucket Source bucket
-     * @param key    Key to download from OR name of the s3 folder content to download
-     * @param dest   Path to the destination file OR to the local directory under which to store the downloaded files
-     */
-    public void download(String bucket, String key, String dest) {
-        final Path destPath = Paths.get(dest);
-        if (isFolder(bucket, key)) {
-            doDirDownload(key, bucket, destPath).block();
-        } else {
-            doFileDownload(key, bucket, destPath).block();
-        }
+    public void download(Set<FileInfo> fileInfoSet, UUID parentUid) {
+        ObsTraceUtils.traceTransfer(fileInfoSet, ReportTask.OBS_READ, parentUid, this::download);
     }
 
     /**
-     * Download a list of files or directories to the specified directory root
+     * Download a set of files or directories, given their FileInfo.
      *
-     * @param bucket   Source bucket
-     * @param keyList  List of keys to download
-     * @param destRoot Path to the local directory under which to store the downloaded items
+     * @param fileInfoSet List of FileInfo objects, containing source and destination info for each file
      */
-    public void download(String bucket, List<String> keyList, String destRoot) {
-        Mono.when(keyList.stream()
-                        .map(key -> {
-                            if (isFolder(bucket, key)) {
-                                return doDirDownload(key, bucket, Paths.get(destRoot, filename(key)));
-                            } else {
-                                return doFileDownload(key, bucket, Paths.get(destRoot, filename(key)));
-                            }
-                        })
-                        .toList())
-                .block();
-    }
+    public void download(Set<FileInfo> fileInfoSet) {
 
-    /**
-     * Download a set of files or directories, given their FileInfo
-     *
-     * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
-     */
-    public void download(Set<FileInfo> fileInfoList) {
-        Mono.when(fileInfoList.stream()
+        log.debug("Downloading {} folders using FileInfos", fileInfoSet.size());
+
+        Mono.when(fileInfoSet.stream()
                         .map(fileInfo -> {
                             final String key = fileInfo.getKey();
                             final String bucket = fileInfo.getBucket();
                             final Path destinationPath = Paths.get(fileInfo.getFullLocalPath());
-                            if (isFolder(bucket, key)) {
-                                return doDirDownload(key, bucket, destinationPath);
-                            } else {
+                            if (fileInfo.isSimpleFile()) {
                                 return doFileDownload(key, bucket, destinationPath);
-                            }
-                        })
-                        .toList())
-                .block();
-    }
-
-    /**
-     * Upload a single file or directory to the specified key
-     *
-     * @param bucket Destination bucket
-     * @param source Path to the source item
-     * @param key    Key to upload to
-     */
-    public void upload(String bucket, String source, String key) {
-        final Path sourcePath = Paths.get(source);
-        if (Files.isDirectory(sourcePath)) {
-            doDirUpload(sourcePath, bucket, key).block();
-        } else {
-            doFileUpload(sourcePath, bucket, key).block();
-        }
-    }
-
-    /**
-     * Upload a list of files or directories to the specified folder key
-     *
-     * @param bucket   Destination bucket
-     * @param pathList List of Path to items to upload
-     * @param rootKey  Root key under which to upload items
-     */
-    public void upload(String bucket, List<Path> pathList, String rootKey) {
-        Mono.when(pathList.stream()
-                        .map(path -> {
-                            if (Files.isDirectory(path)) {
-                                return doDirUpload(path, bucket, destinationPath(rootKey, path));
                             } else {
-                                return doFileUpload(path, bucket, destinationPath(rootKey, path));
+                                return doDirDownload(key, bucket, destinationPath);
                             }
                         })
                         .toList())
                 .block();
+    }
+
+    public void upload(Set<FileInfo> fileInfoSet, UUID parentUid) {
+        ObsTraceUtils.traceTransfer(fileInfoSet, ReportTask.OBS_WRITE, parentUid, this::upload);
     }
 
     /**
      * Upload a set of files or folders, given their FileInfo
      *
-     * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
+     * @param fileInfoSet List of FileInfo objects, containing source and destination info for each file
      */
-    public void upload(Set<FileInfo> fileInfoList) {
-        Mono.when(fileInfoList.stream()
+    public void upload(Set<FileInfo> fileInfoSet) {
+
+        log.debug("Uploading {} files using FileInfos", fileInfoSet.size());
+
+        Mono.when(fileInfoSet.stream()
                         .map(fileInfo -> {
                             final Path sourcePath = Paths.get(fileInfo.getFullLocalPath());
                             if (sourcePath.toFile().isDirectory()) {
@@ -199,28 +204,30 @@ public class ObsService {
     }
 
     /**
-     * Upload a set of folders, given their FileInfo, and create the matching md5sum files according to ICD
+     * Upload a set of folders, given their FileInfo, and create the matching md5sum files according to ICD.
+     * Create an ObsWrite trace relative to the download.
      *
-     * @param fileInfoList List of FileInfo objects, containing source and destination info for each file
+     * @param fileInfoSet List of FileInfo objects, containing source and destination info for each file
+     * @param parentUid   UUID of the parent task
      */
-    public void uploadWithMd5(Set<FileInfo> fileInfoList) {
+    public void uploadWithMd5(Set<FileInfo> fileInfoSet, UUID parentUid) {
 
-        log.info("Uploading {} folders to OBS", fileInfoList.size());
-        upload(fileInfoList);
+        log.info("Uploading {} folders to OBS", fileInfoSet.size());
+        upload(fileInfoSet, parentUid);
 
         log.info("Creating md5sum files");
 
-        String tmpFolder = PreparationParameters.TMP_DOWNLOAD_FOLDER + FileSystems.getDefault().getSeparator() + UUID.randomUUID();
+        String tmpFolder = FolderParameters.TMP_DOWNLOAD_FOLDER + FileSystems.getDefault().getSeparator() + UUID.randomUUID();
         FileOperationUtils.createFolders(Set.of(tmpFolder));
 
         Set<FileInfo> md5FileInfos = new HashSet<>();
 
-        fileInfoList.forEach(fileInfo -> {
+        fileInfoSet.forEach(fileInfo -> {
 
             final Path localPath = Paths.get(fileInfo.getFullLocalPath());
             final Path md5sumPath = Paths.get(tmpFolder).resolve(localPath.getFileName() + MD5SUM_SUFFIX);
 
-            final Map<String, String> md5ByFileName = Md5utils.getFolderMd5(localPath);
+            final Map<String, String> md5ByFileName = Md5Utils.getMd5(localPath);
             final Map<String, String> eTagByKey = getETags(fileInfo.getBucket(), fileInfo.getKey());
 
             final List<String> lines = md5ByFileName.entrySet()
@@ -246,7 +253,7 @@ public class ObsService {
         });
 
         log.info("Uploading md5sum files");
-        upload(md5FileInfos);
+        upload(md5FileInfos, parentUid);
 
         if (!FileUtils.deleteQuietly(new File(tmpFolder))) {
             log.warn("Unable to delete temp folder {}", tmpFolder);
@@ -302,24 +309,36 @@ public class ObsService {
     }
 
     private Mono<?> doTransfer(Supplier<Transfer> transfer, String info, TransferType type) {
-        return Mono.fromFuture(transfer.get().completionFuture())
-                .doFirst(() -> log.info("{} starting {}", type.getName(), info))
-                .timed()
-                .doOnSuccess(completedTransfer -> log.info("{} complete in {} seconds {}", type.getName(), completedTransfer.elapsed().getSeconds(), info))
-                .doOnError(throwable -> {
-                    String message = "Obs error occurred: ";
-                    if (throwable instanceof SdkException) {
-                        if (throwable instanceof SdkClientException) {
-                            message = "Obs Client Exception occurred: ";
-                        } else if (throwable instanceof SdkServiceException) {
-                            message = "Obs Service Exception occurred: ";
-                        }
-                    }
-                    String errorMessage = String.format("%s failed %s -- Cause: %s", type.getName(), info, message + throwable.getLocalizedMessage());
-                    log.error(errorMessage);
-                    throw new ObsException(errorMessage, throwable);
-                })
-                .retryWhen(getRetrySpec());
+        String startKey = "start";
+        return Mono.deferContextual(context ->
+                        Mono.fromFuture(transfer.get().completionFuture())
+                                .doOnSubscribe(unused -> log.info("{} starting {}", type.getName(), info))
+                                .handle((transfer1, synchronousSink) -> {
+                                    if (transfer1 instanceof CompletedDirectoryTransfer completedDirectoryTransfer && !completedDirectoryTransfer.failedTransfers().isEmpty()) {
+                                        String errorMessage = String.format("%s failed %s -- %s", type.getName(), info, "Some files could not be transferred");
+                                        log.error(errorMessage);
+                                        synchronousSink.error(new ObsException(errorMessage));
+                                    }
+                                })
+                                .doOnSuccess(completedTransfer -> {
+                                    final Duration elapsed = Duration.between(context.<Instant>get(startKey), Instant.now());
+                                    log.info("{} complete after {} seconds {}", type.getName(), elapsed.getSeconds(), info);
+                                })
+                                .doOnError(throwable -> {
+                                    String message = "Obs error occurred: ";
+                                    if (throwable instanceof SdkException) {
+                                        if (throwable instanceof SdkClientException) {
+                                            message = "Obs Client Exception occurred: ";
+                                        } else if (throwable instanceof SdkServiceException) {
+                                            message = "Obs Service Exception occurred: ";
+                                        }
+                                    }
+                                    String errorMessage = String.format("%s failed %s -- Cause: %s", type.getName(), info, message + throwable.getLocalizedMessage());
+                                    log.error(errorMessage);
+                                    throw new ObsException(errorMessage, throwable);
+                                })
+                                .retryWhen(getRetrySpec()))
+                .contextWrite(context -> context.put(startKey, Instant.now()));
     }
 
     private String transferInfo(String bucket, String key, String file) {
@@ -333,18 +352,10 @@ public class ObsService {
                         new ObsException("Obs operation failed after " + retryBackoffSpec.maxAttempts + " retries", retrySignal.failure()));
     }
 
-    private boolean isFolder(String bucket, String key) {
+    private boolean isFolder(String bucket, String key) { // NOSONAR
         return !s3Client.listObjectsV2(ListObjectsV2Request.builder().bucket(bucket).prefix(key + DELIMITER).maxKeys(1).build())
                 .contents()
                 .isEmpty();
-    }
-
-    private String filename(String path) {
-        return Paths.get(path).getFileName().toString();
-    }
-
-    private String destinationPath(String root, Path path) {
-        return root + DELIMITER + path.getFileName().toString();
     }
 
     @Getter

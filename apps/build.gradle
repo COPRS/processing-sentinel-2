@@ -1,10 +1,10 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.3' apply false
-    id 'io.spring.dependency-management' version '1.0.12.RELEASE' apply false
-    id 'io.freefair.lombok' version '6.5.0.2' apply false
+    id 'org.springframework.boot' version '2.7.6' apply false
+    id 'io.spring.dependency-management' version '1.1.0' apply false
+    id 'io.freefair.lombok' version '6.6.1' apply false
     id 'com.palantir.docker' version '0.34.0' apply false
-    id 'org.sonarqube' version '3.4.0.2513'
+    id 'org.sonarqube' version '3.5.0.2730'
     id 'jacoco'
 }
 
@@ -58,37 +58,35 @@ subprojects {
     apply plugin: 'jacoco'
 
     group = 'eu.csgroup.coprs.ps2'
-    version = '1.0.0'
+    version = '1.6.0-rc1'
     sourceCompatibility = '17'
 
     ext {
         // Libs
-        springCloudVersion = "2021.0.3"
-        amazonSDKVersion = "2.17.224"
-        amazonSDKS3Version = "2.17.224-PREVIEW"
+        springCloudVersion = "2021.0.5"
+        amazonSDKVersion = "2.18.39"
+        amazonSDKS3Version = "2.18.39-PREVIEW"
         apacheCommonsLangVersion = "3.12.0"
+        apacheCommonsCompressVersion = "1.21"
         apacheCommonsIOVersion = "2.11.0"
         apacheCommonsCodecVersion = "1.15"
         prometheusRsocketVersion = "1.5.0"
+        mapstructVersion = "1.5.2.Final"
 
         // Test libs
         // See core-common for imports
-        podamVersion = "7.2.8.RELEASE"
-        mapstructVersion = "1.4.2.Final"
-        bytebuddyVersion = "1.12.9"
-        mockitoVersion = "4.5.1"
+        mockitoVersion = "4.8.0"
+        logCaptorVersion = "2.7.10"
+        podamVersion = "7.2.10.RELEASE"
+        bytebuddyVersion = "1.12.17"
         okhttpVersion = "4.10.0"
-        logCaptorVersion = "2.7.10";
 
         // Build parameters
         registryBase = System.getenv("REGISTRY_BASE")
         registryProject = System.getenv("REGISTRY_PROJECT")
-        registryUser = System.getenv("REGISTRY_USER")
-        registryPassword = System.getenv("REGISTRY_PWD")
         registryFolder = System.getenv("REGISTRY_FOLDER")
         dockerPrefix = registryBase ? "${registryBase}/${registryProject}/" : ""
         dockerPrefix += registryFolder ? "${registryFolder}/" : ""
-        dockerPublish = registryBase
     }
 
     dependencies {
@@ -96,6 +94,7 @@ subprojects {
         implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
 
         implementation "org.springframework.boot:spring-boot-starter-actuator"
+        implementation "org.springframework.boot:spring-boot-starter-aop"
         implementation "io.micrometer:micrometer-registry-prometheus"
         implementation "io.micrometer.prometheus:prometheus-rsocket-spring:${prometheusRsocketVersion}"
 
@@ -103,7 +102,7 @@ subprojects {
         implementation "org.springframework.boot:spring-boot-starter-webflux"
 
         implementation "org.apache.commons:commons-lang3:${apacheCommonsLangVersion}"
-        implementation "org.apache.commons:commons-compress:1.21"
+        implementation "org.apache.commons:commons-compress:${apacheCommonsCompressVersion}"
         implementation "commons-codec:commons-codec:${apacheCommonsCodecVersion}"
         implementation "commons-io:commons-io:${apacheCommonsIOVersion}"
         implementation "org.mapstruct:mapstruct:${mapstructVersion}"
@@ -154,18 +153,10 @@ subprojects {
         }
     }
 
-    task allDeps(type: DependencyReportTask) {}
+    tasks.register("allDeps", DependencyReportTask) {}
 
     tasks.named('bootBuildImage') {
         imageName = "${dockerPrefix}${project.name}:${project.version}"
-        publish = dockerPublish
-        docker {
-            publishRegistry {
-                url = "https://${registryBase}/${registryProject}"
-                username = "${registryUser}"
-                password = "${registryPassword}"
-            }
-        }
     }
 
     jar.enabled = false

@@ -4,16 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.time.Instant;
-
 @Getter
 @Setter
 @Accessors(chain = true)
-public class PreparationInput {
+public abstract class PreparationInput extends CommonInput {
 
     private String session;
-    private String satellite;
-    private String station;
-    private Instant t0PdgsDate;
 
 }

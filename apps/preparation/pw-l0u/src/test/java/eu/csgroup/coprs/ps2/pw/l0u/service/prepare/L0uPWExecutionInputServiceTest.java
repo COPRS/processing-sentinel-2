@@ -3,7 +3,7 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
+import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -21,16 +21,16 @@ class L0uPWExecutionInputServiceTest extends AbstractTest {
     @Mock
     private CatalogService catalogService;
     @Mock
-    private JobOrderService jobOrderService;
+    private L0uJobOrderService jobOrderService;
     @Mock
-    private L0uPreparationProperties l0uPreparationProperties;
+    private ObsBucketProperties bucketProperties;
 
     @InjectMocks
     private L0uPWExecutionInputService executionInputService;
 
     @Override
     public void setup() throws Exception {
-        executionInputService = new L0uPWExecutionInputService(catalogService, jobOrderService, l0uPreparationProperties);
+        executionInputService = new L0uPWExecutionInputService(catalogService, jobOrderService, bucketProperties);
     }
 
     @Override
@@ -42,7 +42,7 @@ class L0uPWExecutionInputServiceTest extends AbstractTest {
     void create() {
 
         // Given
-        when(l0uPreparationProperties.getCaduBucket()).thenReturn("bucket");
+        when(bucketProperties.getSessionBucket()).thenReturn("bucket");
         when(catalogService.retrieveSessionData(TestHelper.SESSION_NAME)).thenReturn(TestHelper.SESSION_CATALOG_DATA_LIST);
         when(jobOrderService.create(any())).thenReturn(Map.of("JobOrder.xml", "foo"));
 

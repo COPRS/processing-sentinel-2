@@ -2,8 +2,10 @@ package eu.csgroup.coprs.ps2.core.common.utils;
 
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
+import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,6 +16,7 @@ class ProcessingMessageUtilsTest {
     private static final String fieldValue = "fieldValue";
     private static final String metadata = "metadata";
     private static final String metadataValue = "metadataValue";
+    private static final Instant T0 = Instant.parse("2022-08-09T15:39:41.000000Z");
 
     @Test
     void create() {
@@ -83,6 +86,38 @@ class ProcessingMessageUtilsTest {
         final ProcessingMessage message = withoutFields();
         // When Then
         assertThrows(InvalidMessageException.class, () -> ProcessingMessageUtils.getMetadata(message, metadata, String.class));
+    }
+
+    @Test
+    void getT0PdgsDate_metadata() {
+        // Given
+        final ProcessingMessage processingMessage = ProcessingMessageUtils.create()
+                .setMetadata(Map.of(MessageParameters.T0_PDGS_DATE_FIELD, T0));
+        // When
+        final Instant t0PdgsDate = ProcessingMessageUtils.getT0PdgsDate(processingMessage);
+        // Then
+        assertEquals(T0, t0PdgsDate);
+    }
+
+    @Test
+    void getT0PdgsDate_additionalFields() {
+        // Given
+        final ProcessingMessage processingMessage = ProcessingMessageUtils.create()
+                .setAdditionalFields(Map.of(MessageParameters.T0_PDGS_DATE_FIELD, T0));
+        // When
+        final Instant t0PdgsDate = ProcessingMessageUtils.getT0PdgsDate(processingMessage);
+        // Then
+        assertEquals(T0, t0PdgsDate);
+    }
+
+    @Test
+    void getT0PdgsDate_none() {
+        // Given
+        final ProcessingMessage processingMessage = withFields();
+        // When
+        final Instant t0PdgsDate = ProcessingMessageUtils.getT0PdgsDate(processingMessage);
+        // Then
+        assertEquals(Instant.EPOCH, t0PdgsDate);
     }
 
     private ProcessingMessage withFields() {

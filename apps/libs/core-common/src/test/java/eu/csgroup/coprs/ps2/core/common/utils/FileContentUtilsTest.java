@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FileContentUtilsTest {
 
     private static final Path filePath = Paths.get("src/test/resources/fileContentUtilsTest/foo.txt").toAbsolutePath();
     private static final Path testPath = Paths.get("src/test/resources/fileContentUtilsTest/test.txt").toAbsolutePath();
     private static final Path xmlPath = Paths.get("src/test/resources/fileContentUtilsTest/job_order_eisp_ing_typ.xml").toAbsolutePath();
+    private static final Path tileListPath = Paths.get("src/test/resources/fileContentUtilsTest/tile_list_file.xml").toAbsolutePath();
 
     @BeforeEach
     void setup() throws IOException {
@@ -40,10 +40,23 @@ class FileContentUtilsTest {
     }
 
     @Test
-    void grep() {
-        final Optional<String> grep = FileContentUtils.grep(xmlPath, "20191208T050815");
+    void grepOne() {
+        final Optional<String> grep = FileContentUtils.grepOne(xmlPath, "20191208T050815");
         assertTrue(grep.isPresent());
         assertTrue(grep.get().contains("/Value"));
+    }
+
+    @Test
+    void grepAll() {
+        final List<String> grep = FileContentUtils.grepAll(xmlPath, "<Name>");
+        assertFalse(grep.isEmpty());
+        assertEquals(13, grep.size());
+    }
+
+    @Test
+    void grepAll_NotFound() {
+        final List<String> grep = FileContentUtils.grepAll(xmlPath, "<Burglop>");
+        assertTrue(grep.isEmpty());
     }
 
     @Test
@@ -59,9 +72,21 @@ class FileContentUtilsTest {
     }
 
     @Test
+    void extractXmlTagValues() {
+        final List<String> tileList = FileContentUtils.extractXmlTagValues(tileListPath, "Tile_Id");
+        assertEquals(18, tileList.size());
+    }
+
+    @Test
+    void extractValues() {
+        final List<String> tileList = FileContentUtils.extractValues(tileListPath, "<Tile_Id>", List.of("^[ ]*", "[ ]$", "^<[^>]*>", "<[^>]*>$"));
+        assertEquals(18, tileList.size());
+    }
+
+    @Test
     void replaceInFile() {
         FileContentUtils.replaceInFile(testPath, Map.of("@l0_gr_count@", "12"));
-        assertTrue(FileContentUtils.grep(testPath, "12").isPresent());
+        assertTrue(FileContentUtils.grepOne(testPath, "12").isPresent());
     }
 
 }

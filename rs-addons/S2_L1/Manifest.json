@@ -1,0 +1,20 @@
+{
+  "ProcessorID": "S2_L1",
+  "Version": "<VERSION>",
+  "ReleaseDate": "<DATE>",
+  "Mission": "S2",
+  "Level": [
+    "L1"
+  ],
+  "Description": "L1 processing",
+  "ReleaseItems": [
+    "<NAME>_Manifest.json",
+    "<NAME>_Release_Note.pdf",
+    "<NAME>_Executables/stream-application-list.properties",
+    "<NAME>_Executables/stream-definition.properties",
+    "<NAME>_Executables/stream-parameters.properties",
+    "<NAME>_Executables/additional_resources/KafkaTopic.yaml",
+    "<NAME>_Executables/additional_resources/PVC.yaml",
+    "<NAME>_Executables/additional_resources/Secret.yaml"
+  ]
+}

@@ -4,7 +4,6 @@ import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.pw.l0u.config.L0uPreparationProperties;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -27,8 +26,6 @@ class SessionManagementServiceTest extends AbstractTest {
     private CatalogService catalogService;
     @Mock
     private SessionService sessionService;
-    @Mock
-    private L0uPreparationProperties l0uPreparationProperties;
 
     @InjectMocks
     private SessionManagementService sessionManagementService;
@@ -63,7 +60,7 @@ class SessionManagementServiceTest extends AbstractTest {
         deletableSessionList = List.of(deletableSession);
         missingAuxSessionList = List.of(missingAuxSession);
 
-        sessionManagementService = new SessionManagementService(catalogService, sessionService, l0uPreparationProperties);
+        sessionManagementService = new SessionManagementService(catalogService, sessionService);
     }
 
     @Override
@@ -75,7 +72,7 @@ class SessionManagementServiceTest extends AbstractTest {
     @Test
     void getReady() {
         // Given
-        when(sessionService.readAll(true, false, false)).thenReturn(readySessionList);
+        when(sessionService.readAll(true, false)).thenReturn(readySessionList);
         // When
         final List<Session> ready = sessionManagementService.getReady();
         // Then
@@ -85,7 +82,7 @@ class SessionManagementServiceTest extends AbstractTest {
     @Test
     void getDeletable() {
         // Given
-        when(sessionService.readAllOr(true, true)).thenReturn(deletableSessionList);
+        when(sessionService.readAllByJobOrderCreated(true)).thenReturn(deletableSessionList);
         // When
         final List<Session> deletable = sessionManagementService.getDeletable();
         // Then
@@ -93,19 +90,9 @@ class SessionManagementServiceTest extends AbstractTest {
     }
 
     @Test
-    void getWaiting() {
-        // Given
-        when(sessionService.readAll(false, false)).thenReturn(waitingSessionList);
-        // When
-        final List<Session> waiting = sessionManagementService.getWaiting();
-        // Then
-        assertEquals(waitingSessionList, waiting);
-    }
-
-    @Test
     void updateAvailableAux() {
         // Given
-        when(sessionService.readAll(true, false, false, false)).thenReturn(missingAuxSessionList);
+        when(sessionService.readAll(true, false, false)).thenReturn(missingAuxSessionList);
         mockAuxCatalogResponse();
         // When
         sessionManagementService.updateAvailableAux();
@@ -116,7 +103,7 @@ class SessionManagementServiceTest extends AbstractTest {
     @Test
     void updateAvailableAux_empty() {
         // Given
-        when(sessionService.readAll(true, false, false, false)).thenReturn(Collections.emptyList());
+        when(sessionService.readAll(true, false, false)).thenReturn(Collections.emptyList());
         // When
         sessionManagementService.updateAvailableAux();
         // Then
@@ -126,7 +113,7 @@ class SessionManagementServiceTest extends AbstractTest {
     @Test
     void updateNotReady() {
         // Given
-        when(sessionService.readAll(false, false, false)).thenReturn(notReadySessionList);
+        when(sessionService.readAll(false, false)).thenReturn(notReadySessionList);
         // When
         sessionManagementService.updateNotReady();
         // Then
@@ -137,7 +124,7 @@ class SessionManagementServiceTest extends AbstractTest {
     @Test
     void updateNotReady_empty() {
         // Given
-        when(sessionService.readAll(false, false, false)).thenReturn(Collections.emptyList());
+        when(sessionService.readAll(false, false)).thenReturn(Collections.emptyList());
         // When
         sessionManagementService.updateNotReady();
         // Then

@@ -10,7 +10,11 @@ public enum Timeliness {
     NRT("NRT"),
     NTC("NTC"),
     PT("PT"),
-    STC("STC");
+    STC("STC"),
+    S2_SESSION("S2_SESSION"),
+    S2_L0("S2_L0"),
+    S2_L1("S2_L1"),
+    S2_L2("S2_L2");
 
     private String value;
 

@@ -1,8 +1,6 @@
 package eu.csgroup.coprs.ps2.core.common.model.trace;
 
 import eu.csgroup.coprs.ps2.core.common.test.AbstractSpringBootTest;
-import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
-import eu.csgroup.coprs.ps2.core.common.model.trace.TraceLogger;
 import nl.altindag.log.LogCaptor;
 import org.junit.jupiter.api.Test;
 

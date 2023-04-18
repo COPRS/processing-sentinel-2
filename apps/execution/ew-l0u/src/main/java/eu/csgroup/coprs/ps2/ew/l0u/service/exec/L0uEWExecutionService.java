@@ -6,8 +6,10 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.Mission;
 import eu.csgroup.coprs.ps2.core.common.model.script.ScriptWrapper;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWExecutionService;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ScriptUtils;
+import eu.csgroup.coprs.ps2.core.ew.service.EWExecutionService;
+import eu.csgroup.coprs.ps2.core.ew.settings.L0EWParameters;
 import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -39,8 +41,9 @@ public class L0uEWExecutionService implements EWExecutionService<L0uExecutionInp
             final Integer exitCode = ScriptUtils.run(
                     new ScriptWrapper()
                             .setRunId(jobOrderName)
-                            .setWorkdir(L0uFolderParameters.WORKSPACE_PATH)
-                            .setCommand(List.of(L0uFolderParameters.SCRIPT_PATH, L0uFolderParameters.WORKSPACE_PATH + "/" + jobOrderName))
+                            .setWorkdir(FolderParameters.WORKING_FOLDER_ROOT)
+                            .setCommand(List.of(L0uFolderParameters.SCRIPT_PATH, FolderParameters.WORKING_FOLDER_ROOT + "/" + jobOrderName))
+                            .setLogWhitelist(L0EWParameters.INFO_LEVEL_MARKERS)
             );
 
             if (exitCode == 0) {

@@ -4,8 +4,22 @@ subprojects {
 
         implementation project(':apps:libs:core-common')
         implementation project(':apps:libs:core-obs')
+        implementation project(':apps:libs:core-ew')
 
         testImplementation(testFixtures(project(":apps:libs:core-common")))
+    }
+
+    apply plugin: 'com.palantir.docker'
+
+    docker {
+        name "${dockerPrefix}${project.name}:${project.version}"
+        copySpec.from("docker")
+        copySpec.from("build/libs")
+        files "${project.name}-${project.version}.jar"
+    }
+
+    dockerPrepare {
+        dependsOn(bootJar)
     }
 
     bootJar.enabled = true

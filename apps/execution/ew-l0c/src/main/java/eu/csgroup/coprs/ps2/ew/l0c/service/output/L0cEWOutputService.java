@@ -2,51 +2,28 @@ package eu.csgroup.coprs.ps2.ew.l0c.service.output;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWOutputService;
-import eu.csgroup.coprs.ps2.ew.l0c.config.L0cExecutionProperties;
+import eu.csgroup.coprs.ps2.core.ew.service.EWOutputService;
 import eu.csgroup.coprs.ps2.ew.l0c.service.setup.L0cEWCleanupService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
-@Slf4j
 @Service
-public class L0cEWOutputService implements EWOutputService<L0cExecutionInput> {
+public class L0cEWOutputService extends EWOutputService<L0cExecutionInput> {
 
     private final L0cEWUploadService uploadService;
-    private final L0cEWMessageService messageService;
-    private final L0cEWCleanupService cleanupService;
-    private final L0cExecutionProperties l0cExecutionProperties;
 
-    public L0cEWOutputService(L0cEWUploadService uploadService, L0cEWMessageService messageService, L0cEWCleanupService cleanupService,
-            L0cExecutionProperties l0cExecutionProperties
-    ) {
+    public L0cEWOutputService(L0cEWMessageService messageService, L0cEWCleanupService cleanupService, L0cEWUploadService uploadService) {
+        super(messageService, cleanupService);
         this.uploadService = uploadService;
-        this.messageService = messageService;
-        this.cleanupService = cleanupService;
-        this.l0cExecutionProperties = l0cExecutionProperties;
     }
 
     @Override
-    public Set<ProcessingMessage> output(L0cExecutionInput l0cExecutionInput) {
-
-        log.info("Starting post execution tasks");
-
-        final Map<ProductFamily, Set<FileInfo>> productsByFamily = uploadService.upload();
-
-        final Set<ProcessingMessage> messages = messageService.build(l0cExecutionInput, productsByFamily);
-
-        if (l0cExecutionProperties.isCleanup()) {
-            cleanupService.clean(l0cExecutionInput);
-        }
-
-        log.info("Finished post execution tasks");
-
-        return messages;
+    protected Map<ProductFamily, Set<FileInfo>> upload(L0cExecutionInput executionInput, UUID parentUid) {
+        return uploadService.upload(executionInput, parentUid);
     }
 
 }

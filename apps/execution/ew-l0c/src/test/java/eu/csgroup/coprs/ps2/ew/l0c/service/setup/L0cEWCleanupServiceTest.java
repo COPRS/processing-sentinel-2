@@ -1,5 +1,6 @@
 package eu.csgroup.coprs.ps2.ew.l0c.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.config.CleanupProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
@@ -15,7 +16,7 @@ class L0cEWCleanupServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        l0cEWCleanupService = new L0cEWCleanupService();
+        l0cEWCleanupService = new L0cEWCleanupService(new CleanupProperties());
     }
 
     @Override
@@ -30,11 +31,10 @@ class L0cEWCleanupServiceTest extends AbstractTest {
         try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
 
             // When
-            l0cEWCleanupService.cleanAndPrepare();
+            l0cEWCleanupService.cleanAndPrepare("foo");
 
             // Then
             fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.deleteFolderContent(any()));
-            fileOperationUtilsMockedStatic.verify(() -> FileOperationUtils.createFolders(any()));
         }
     }
 

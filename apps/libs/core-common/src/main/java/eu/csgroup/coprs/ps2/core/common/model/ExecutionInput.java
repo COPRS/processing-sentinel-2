@@ -4,21 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.time.Instant;
-import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @Accessors(chain = true)
-public abstract class ExecutionInput {
-
-    private String satellite;
-    private String station;
-    private Instant t0PdgsDate;
+public abstract class ExecutionInput extends CommonInput {
 
     private Set<FileInfo> files;
-
-    public abstract List<String> listJobOrders();
 
 }

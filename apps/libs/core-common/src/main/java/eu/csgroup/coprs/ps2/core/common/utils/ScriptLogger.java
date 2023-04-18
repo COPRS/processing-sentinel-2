@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -18,9 +19,8 @@ import java.util.function.Consumer;
 @AllArgsConstructor
 public class ScriptLogger implements Runnable {
 
-    private static final List<String> INFO_LEVEL_MARKERS = List.of("[W]", "[E]", "[WARNING]", "[ERROR]");
-
     private InputStream standardStream;
+    private List<String> whitelist;
 
     @Override
     public void run() {
@@ -32,8 +32,10 @@ public class ScriptLogger implements Runnable {
     }
 
     private Consumer<String> logger() {
-        return string -> {
-            for (String marker : INFO_LEVEL_MARKERS) {
+        if (CollectionUtils.isEmpty(whitelist)) {
+            return log::info;
+        } else return string -> {
+            for (String marker : whitelist) {
                 if (string.contains(marker)) {
                     log.info(string);
                     return;

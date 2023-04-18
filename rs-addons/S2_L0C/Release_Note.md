@@ -1,23 +1,26 @@
 # RS Addon : S2_L0c
 
 <!-- TOC -->
+
 * [RS Addon : S2_L0c](#rs-addon--s2_l0c)
-  * [Prerequisites](#prerequisites)
-  * [Deployment](#deployment)
-    * [Principle](#principle)
-    * [Additional resources](#additional-resources)
-    * [Requirements](#requirements)
-  * [Configuration](#configuration)
-    * [Global deployer settings](#global-deployer-settings)
-    * [Workers deployer settings](#workers-deployer-settings)
-    * [Filter](#filter)
-    * [OBS settings](#obs-settings)
-    * [Kafka settings](#kafka-settings)
-    * [Preparation worker](#preparation-worker)
-      * [Catalog](#catalog)
-      * [MongoDB](#mongodb)
-      * [Misc](#misc)
-    * [Execution worker](#execution-worker)
+    * [Prerequisites](#prerequisites)
+    * [Deployment](#deployment)
+        * [Principle](#principle)
+        * [Additional resources](#additional-resources)
+        * [Requirements](#requirements)
+    * [Configuration](#configuration)
+        * [Global deployer settings](#global-deployer-settings)
+        * [Workers deployer settings](#workers-deployer-settings)
+        * [Filter](#filter)
+        * [OBS settings](#obs-settings)
+        * [Cleanup setting](#cleanup-setting)
+        * [Kafka settings](#kafka-settings)
+        * [Preparation worker](#preparation-worker)
+            * [Catalog](#catalog)
+            * [MongoDB](#mongodb)
+            * [Misc](#misc)
+        * [Execution worker](#execution-worker)
+
 <!-- TOC -->
 
 ## Prerequisites
@@ -28,8 +31,7 @@
 - SCDF is configured with this standard application : filter
 - Ceph-FS is configured to host the shared storage
 - OBS Buckets are configured for outgoing files (L0c Datastrips and Granules)
-- A shared volume is accessible and contains the required DEM_GLOBEF directory  
-  (e.g.: S2__OPER_DEM_GLOBEF_PDMC_20091210T235100_S20091210T235134.DBL)
+- A shared volume is accessible and contains the required DEM_GLOBEF directory (S2IPF-DEMGLOBE)
 
 ## Deployment
 
@@ -48,12 +50,12 @@ The [Additional resources](Executables/additional_resources) will create:
 
 Here are the basic requirements for the main components:
 
-| Resource          |  Preparation Worker  |  Execution Worker  |
-|-------------------|:--------------------:|:------------------:|
-| CPU               |        2000m         |       8000m        |
-| Memory            |         4Gi          |        24Gi        |
-| Disk size (local) |          -           |       200GB        |
-| Disk size (Ceph)  |          -           |       200GB        |
+| Resource          |  Preparation Worker  | Execution Worker |
+|-------------------|:--------------------:|:----------------:|
+| CPU               |        2000m         |      8000m       |
+| Memory            |         4Gi          |       32Gi       |
+| Disk size (local) |          -           |      200GB       |
+| Disk size (Ceph)  |          -           |      200GB       |
 
 ## Configuration
 
@@ -73,27 +75,27 @@ _Prefix_: deployer.*.kubernetes
 _Prefix_: deployer.&lt;APP&gt;.kubernetes  
 _Apps_: pw-l0c, ew-l0c
 
-| Property                         | Description                            |                                                                                                  Default (pw-l0c)                                                                                                  |                                                                                                  Default (ew-l0c)                                                                                                  |
-|----------------------------------|----------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| liveness-probe-delay             | Probe delay for liveness (seconds)     |                                                                                                         10                                                                                                         |                                                                                                         10                                                                                                         |
-| liveness-probe-path              | Probe path for liveness                |                                                                                             /actuator/health/liveness                                                                                              |                                                                                             /actuator/health/liveness                                                                                              |
-| liveness-probe-period            | Probe interval for liveness (seconds)  |                                                                                                         60                                                                                                         |                                                                                                         60                                                                                                         |
-| liveness-probe-port              | Port for liveness probe                |                                                                                                        8080                                                                                                        |                                                                                                        8080                                                                                                        |
-| liveness-probe-timeout           | Timeout for liveness (seconds)         |                                                                                                         60                                                                                                         |                                                                                                         60                                                                                                         |
-| max-terminated-error-restarts    | Max number of restarts on error        |                                                                                                         3                                                                                                          |                                                                                                         3                                                                                                          |
-| readiness-probe-delay            | Probe delay for readiness (seconds)    |                                                                                                         60                                                                                                         |                                                                                                         60                                                                                                         |
-| readiness-probe-path             | Probe path for readiness               |                                                                                             /actuator/health/readiness                                                                                             |                                                                                             /actuator/health/readiness                                                                                             |
-| readiness-probe-period           | Probe interval for readiness (seconds) |                                                                                                         60                                                                                                         |                                                                                                         60                                                                                                         |
-| readiness-probe-port             | Port for readiness probe               |                                                                                                        8080                                                                                                        |                                                                                                        8080                                                                                                        |
-| readiness-probe-timeout          | Timeout for readiness (seconds)        |                                                                                                         20                                                                                                         |                                                                                                         20                                                                                                         |
-| requests.memory                  | Memory requets                         |                                                                                                       2000Mi                                                                                                       |                                                                                                       2000Mi                                                                                                       |
-| requests.cpu                     | CPU request                            |                                                                                                        300m                                                                                                        |                                                                                                        300m                                                                                                        |
-| limits.memory                    | Memory limit                           |                                                                                                       4000Mi                                                                                                       |                                                                                                      24000Mi                                                                                                       |
-| limits.cpu                       | CPU limit                              |                                                                                                       2000m                                                                                                        |                                                                                                       8000m                                                                                                        |
-| secret-refs                      | Name of the secret to bind             |                                                                                                     s2-l0c-pw                                                                                                      |                                                                                                     s2-l0c-ew                                                                                                      |
-| pod-security-context.run-as-user | UID to run the app as                  |                                                                                                        1000                                                                                                        |                                                                                                        1001                                                                                                        |
-| volume-mounts                    | Volume mounts                          |                                                                  [ { name: input, mountPath: '/input' }, <br/>{ name: dem, mountPath: '/dem' } ]                                                                   |                                                                  [ { name: input, mountPath: '/input' }, <br/>{ name: dem, mountPath: '/dem' } ]                                                                   |
-| volumes                          | Volumes                                | [ { name: input, persistentVolumeClaim: <br/>{ claimName: 's2-l0u-output', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] | [ { name: input, persistentVolumeClaim: <br/>{ claimName: 's2-l0u-output', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
+| Property                      | Description                            |                                                                                                 Default (pw-l0c)                                                                                                  |                                                                                                  Default (ew-l0c)                                                                                                  |
+|-------------------------------|----------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| liveness-probe-delay          | Probe delay for liveness (seconds)     |                                                                                                        10                                                                                                         |                                                                                                         10                                                                                                         |
+| liveness-probe-path           | Probe path for liveness                |                                                                                             /actuator/health/liveness                                                                                             |                                                                                             /actuator/health/liveness                                                                                              |
+| liveness-probe-period         | Probe interval for liveness (seconds)  |                                                                                                        60                                                                                                         |                                                                                                         60                                                                                                         |
+| liveness-probe-port           | Port for liveness probe                |                                                                                                       8080                                                                                                        |                                                                                                        8080                                                                                                        |
+| liveness-probe-timeout        | Timeout for liveness (seconds)         |                                                                                                        60                                                                                                         |                                                                                                         60                                                                                                         |
+| max-terminated-error-restarts | Max number of restarts on error        |                                                                                                         3                                                                                                         |                                                                                                         3                                                                                                          |
+| readiness-probe-delay         | Probe delay for readiness (seconds)    |                                                                                                        60                                                                                                         |                                                                                                         60                                                                                                         |
+| readiness-probe-path          | Probe path for readiness               |                                                                                            /actuator/health/readiness                                                                                             |                                                                                             /actuator/health/readiness                                                                                             |
+| readiness-probe-period        | Probe interval for readiness (seconds) |                                                                                                        60                                                                                                         |                                                                                                         60                                                                                                         |
+| readiness-probe-port          | Port for readiness probe               |                                                                                                       8080                                                                                                        |                                                                                                        8080                                                                                                        |
+| readiness-probe-timeout       | Timeout for readiness (seconds)        |                                                                                                        20                                                                                                         |                                                                                                         20                                                                                                         |
+| requests.memory               | Memory requets                         |                                                                                                      1000Mi                                                                                                       |                                                                                                       2000Mi                                                                                                       |
+| limits.memory                 | Memory limit                           |                                                                                                      4000Mi                                                                                                       |                                                                                                      32000Mi                                                                                                       |
+| requests.cpu                  | CPU request                            |                                                                                                       300m                                                                                                        |                                                                                                       1000m                                                                                                        |
+| limits.cpu                    | CPU limit                              |                                                                                                       2000m                                                                                                       |                                                                                                       8000m                                                                                                        |
+| secret-refs                   | Name of the secret to bind             |                                                                                                     s2-l0c-pw                                                                                                     |                                                                                                     s2-l0c-ew                                                                                                      |
+| podSecurityContext            | Security Context                       |                                                                                                 {runAsUser: 1000}                                                                                                 |                                                                                                 {runAsUser: 1000}                                                                                                  |
+| volume-mounts                 | Volume mounts                          |                                                                 [ { name: shared, mountPath: '/shared' }, <br/>{ name: dem, mountPath: '/dem' } ]                                                                 |                                                                  [ { name: input, mountPath: '/input' }, <br/>{ name: dem, mountPath: '/dem' } ]                                                                   |
+| volumes                       | Volumes                                | [ { name: input, persistentVolumeClaim: <br/>{ claimName: 's2-l0-shared', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] | [ { name: input, persistentVolumeClaim: <br/>{ claimName: 's2-l0u-output', storageClassName: 'ceph-fs' } }, <br/>{ name: dem, persistentVolumeClaim: <br/>{ claimName: 's2-dem', storageClassName: 'ceph-fs' } } ] |
 
 ### Filter
 
@@ -109,13 +111,31 @@ _Prefix_: app.filter-input-l0c
 _Prefix_: app.&lt;APP&gt;.obs  
 _Apps_: pw-l0c, ew-l0c
 
-| Property        | Description                                      |                     Default (pw-l0c)                     |                     Default (ew-l0c)                     |
-|-----------------|--------------------------------------------------|:--------------------------------------------------------:|:--------------------------------------------------------:|
-| endpoint        | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
-| region          | OBS Region                                       |                        eu-west-0                         |                        eu-west-0                         |
-| maxConcurrency  | Maximum number of concurrent network connections |                            50                            |                            50                            |
-| maxThroughput   | Maximum throughput for OBS transfers (Gb)        |                            10                            |                            10                            |
-| minimumPartSize | Minimum part size for multipart transfers (MB)   |                            5                             |                            5                             |
+| Property             | Description                                      |                     Default (pw-l0c)                     |
+|----------------------|--------------------------------------------------|:--------------------------------------------------------:|
+| endpoint             | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
+| region               | OBS Region                                       |                        eu-west-0                         |
+| maxConcurrency       | Maximum number of concurrent network connections |                            50                            |
+| maxThroughput        | Maximum throughput for OBS transfers (Gb)        |                            10                            |
+| minimumPartSize      | Minimum part size for multipart transfers (MB)   |                            5                             |
+| bucket.auxBucket     | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
+| bucket.sessionBucket | Bucket where sessions files are stored           |                     rs-session-files                     |
+| bucket.l0DSBucket    | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
+| bucket.l0GRBucket    | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
+
+app.*.obs.l0DSBucket=rs-s2-l0c
+app.*.obs.l0GRBucket=rs-s2-l0c
+
+### Cleanup setting
+
+_Prefix_: app.&lt;APP&gt;.cleanup  
+_Apps_: pw-l0c, ew-l0c
+
+| Property      | Description                                                                        | Default |
+|---------------|------------------------------------------------------------------------------------|:-------:|
+| localEnabled  | Enable cleaning up the local workspace folder                                      |  true   |
+| sharedEnabled | Enable cleaning up old folders on the shared filesystem                            |  true   |
+| 12            | Number of hours after which folder on the shared filesystem are considered expired |   12    |
 
 ### Kafka settings
 
@@ -161,13 +181,11 @@ _Prefix_: app.pw-l0c.mongo
 
 _Prefix_: app.pw-l0c
 
-| Property               | Description                                                            |  Default  |
-|------------------------|------------------------------------------------------------------------|:---------:|
-| spring.profiles.active | Name of the profile to run with (prod or dev)                          |   prod    |
-| pw.l0c.auxBucket       | OBS Bucket holding AUX files                                           | rs-s2-aux |
-| pw.l0c.inputFolderRoot | Path to the folder used as input for L0u files.<br/>Mount to shared fs |  /input   |
-| pw.l0c.demFolderRoot   | Path to the folder holding DEM_GLOBEF files                            |   /dem    |
-| pw.l0c.failedDelay     | Delay after which a datastrip is failed if not ready (hours)           |    24     |
+| Property               | Description                                                            |    Default     |
+|------------------------|------------------------------------------------------------------------|:--------------:|
+| spring.profiles.active | Name of the profile to run with (prod or dev)                          |      prod      |
+| ps2.sharedFolderRoot   | Path to the folder used as input for L0u files.<br/>Mount to shared fs |    /shared     |
+| ps2.demFolderRoot      | Path to the folder holding DEM_GLOBEF folder                           |      /dem      |
 
 ### Execution worker
 
@@ -176,8 +194,5 @@ _Prefix_: app.ew-l0c
 | Property               | Description                                           |  Default  |
 |------------------------|-------------------------------------------------------|:---------:|
 | spring.profiles.active | Name of the profile to run with (prod or dev)         |   prod    |
-| ew.l0c.dsUploadBucket  | OBS Bucket to upload Datastrip to                     | rs-s2-l0c |
-| ew.l0c.grUploadBucket  | OBS Bucket to upload Granules to                      | rs-s2-l0c |
-| ew.l0c.cleanup         | Enable local and shared disk cleanup after processing |   true    |
 
 ----

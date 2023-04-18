@@ -6,13 +6,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.core.client.config.SdkAdvancedAsyncClientOption;
 import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3AsyncClient;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.S3Configuration;
 import software.amazon.awssdk.transfer.s3.S3ClientConfiguration;
 import software.amazon.awssdk.transfer.s3.S3TransferManager;
+import software.amazon.awssdk.utils.ThreadFactoryBuilder;
 
 import java.net.URI;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import static software.amazon.awssdk.transfer.s3.SizeConstant.MB;
 
@@ -28,7 +34,7 @@ public class ObsConfiguration {
 
     @Bean
     public S3Client s3Client() {
-        log.debug("OBS Client enabled !");
+        log.debug("S3 Client enabled !");
         return S3Client.builder()
                 .credentialsProvider(staticCredentialsProvider())
                 .endpointOverride(URI.create(obsProperties.getEndpoint()))
@@ -38,9 +44,22 @@ public class ObsConfiguration {
     }
 
     @Bean
+    public S3AsyncClient s3AsyncClient() {
+        log.debug("S3 Async Client enabled !");
+        return S3AsyncClient.builder()
+                .credentialsProvider(staticCredentialsProvider())
+                .endpointOverride(URI.create(obsProperties.getEndpoint()))
+                .region(Region.of(obsProperties.getRegion()))
+                .serviceConfiguration(s3Configuration())
+                .asyncConfiguration(builder -> builder.advancedOption(SdkAdvancedAsyncClientOption.FUTURE_COMPLETION_EXECUTOR, threadPoolExecutor()))
+                .build();
+    }
+
+    @Bean
     public S3TransferManager s3TransferManager() {
         return S3TransferManager.builder()
                 .s3ClientConfiguration(s3ClientConfiguration())
+                .transferConfiguration(configuration -> configuration.executor(threadPoolExecutor()))
                 .build();
     }
 
@@ -63,6 +82,18 @@ public class ObsConfiguration {
                 .maxConcurrency(obsProperties.getMaxConcurrency())
                 .targetThroughputInGbps(obsProperties.getMaxThroughput())
                 .build();
+    }
+
+    private ThreadPoolExecutor threadPoolExecutor() {
+        final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+                8,
+                16,
+                10,
+                TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(10_000),
+                new ThreadFactoryBuilder().threadNamePrefix("sdk-async-response").build());
+        threadPoolExecutor.allowCoreThreadTimeOut(true);
+        return threadPoolExecutor;
     }
 
 }

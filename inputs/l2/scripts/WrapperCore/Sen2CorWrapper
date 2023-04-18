@@ -1,0 +1,16 @@
+#!/bin/sh
+
+CUR_DIR="$( cd "$(dirname "$0")" ; pwd -P )"
+
+if [ $# -lt 2 ]; then
+    echo "Sen2CorWrapper JobOrder Working"
+    exit 1
+fi
+
+export PYTHONPATH=/dpc/app/CompressTileImage/06.01.00/lib/python/:$PYTHONPATH
+
+export PATH=${KAKADU_PATH}:$PATH
+
+export LD_LIBRARY_PATH=${KAKADU_PATH}:${LD_LIBRARY_PATH}
+
+python $CUR_DIR/sen2cor_launcher.py --path "$SEN2COR_PATH" --joborder "$1" --working "$2"

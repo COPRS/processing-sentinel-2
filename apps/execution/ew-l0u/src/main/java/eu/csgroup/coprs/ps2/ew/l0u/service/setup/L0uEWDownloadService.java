@@ -1,6 +1,7 @@
 package eu.csgroup.coprs.ps2.ew.l0u.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
+import eu.csgroup.coprs.ps2.core.ew.service.EWDownloadService;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import eu.csgroup.coprs.ps2.ew.l0u.settings.L0uFolderParameters;
 import lombok.extern.slf4j.Slf4j;
@@ -10,17 +11,14 @@ import java.util.Set;
 
 @Slf4j
 @Component
-public class L0uEWDownloadService {
-
-    private final ObsService obsService;
+public class L0uEWDownloadService extends EWDownloadService {
 
     public L0uEWDownloadService(ObsService obsService) {
-        this.obsService = obsService;
+        super(obsService);
     }
 
-    public void download(Set<FileInfo> fileInfoSet) {
-
-        log.info("Downloading files from object storage");
+    @Override
+    protected void prepareStandardFiles(Set<FileInfo> fileInfoSet) {
 
         fileInfoSet.forEach(fileInfo -> {
 
@@ -35,10 +33,6 @@ public class L0uEWDownloadService {
 
             fileInfo.setLocalPath(localPath);
         });
-
-        obsService.download(fileInfoSet);
-
-        log.info("Finished downloading files from object storage");
     }
 
 }

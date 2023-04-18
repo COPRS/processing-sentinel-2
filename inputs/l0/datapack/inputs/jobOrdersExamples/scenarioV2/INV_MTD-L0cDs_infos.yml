@@ -1,8 +1,0 @@
-jobOrderName: INV_MTD-L0cDs
-nbjobs: 1
-patterns:
-  - dt_number: <global.dt_number>
-  - l0_dsname:  <global.l0_dsname>
-  - wpdir: <automatic>
-  - jobnumber: <automatic>  
-  - detector: [D01,D02,D03,D04,D05,D06,D07,D08,D09,D10,D11,D12]      

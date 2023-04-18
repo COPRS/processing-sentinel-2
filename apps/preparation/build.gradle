@@ -4,7 +4,7 @@ subprojects {
 
         implementation project(':apps:libs:core-common')
         implementation project(':apps:libs:core-obs')
-        implementation project(':apps:libs:core-mongo')
+        implementation project(':apps:libs:core-pw')
 
         testImplementation(testFixtures(project(":apps:libs:core-common")))
 
@@ -12,10 +12,11 @@ subprojects {
 
     bootBuildImage {
         enabled = true
-//        environment = [
-//                "BPE_DELIM_JAVA_TOOL_OPTIONS" : " ",
+        environment = [
+                "BPE_DELIM_JAVA_TOOL_OPTIONS" : " ",
 //                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-Xms512M -Xmx512M"
-//        ]
+                "BPE_APPEND_JAVA_TOOL_OPTIONS": "-XX:MaxDirectMemorySize=256M"
+        ]
     }
 
     bootJar.enabled = true

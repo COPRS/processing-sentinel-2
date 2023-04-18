@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.pw.l0u.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
-import eu.csgroup.coprs.ps2.core.mongo.exception.MongoDBException;
+import eu.csgroup.coprs.ps2.core.pw.exception.MongoDBException;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import eu.csgroup.coprs.ps2.pw.l0u.model.SessionMapper;
 import eu.csgroup.coprs.ps2.pw.l0u.repository.SessionEntityRepository;
@@ -12,11 +12,11 @@ import org.mockito.Mock;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.anyBoolean;
+import static org.mockito.Mockito.when;
 
 class SessionServiceTest extends AbstractTest {
 
@@ -80,65 +80,12 @@ class SessionServiceTest extends AbstractTest {
     }
 
     @Test
-    void exists() {
-        // Given
-        mockExists(true);
-        // When
-        final boolean exists = sessionService.exists(TestHelper.SESSION_NAME);
-        // Then
-        assertTrue(exists);
-    }
-
-    @Test
-    void read() {
-        // Given
-        mockFind();
-        // When
-        final Session read = sessionService.read(TestHelper.SESSION_NAME);
-        // Then
-        assertEquals(TestHelper.SESSION_NAME, read.getName());
-    }
-
-    @Test
     void readAll_all() {
         // Given
-        when(sessionEntityRepository.findAllByRawCompleteAndReadyAndFailedAndJobOrderCreated(anyBoolean(), anyBoolean(), anyBoolean(), anyBoolean())).thenReturn(
+        when(sessionEntityRepository.findAllByRawCompleteAndReadyAndJobOrderCreated(anyBoolean(), anyBoolean(), anyBoolean())).thenReturn(
                 List.of(TestHelper.SESSION_ENTITY));
         // When
-        final List<Session> sessions = sessionService.readAll(true, false, true, false);
-        // Then
-        assertEquals(1, sessions.size());
-        assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());
-    }
-
-    @Test
-    void readAll_mid() {
-        // Given
-        when(sessionEntityRepository.findAllByReadyAndFailedAndJobOrderCreated(anyBoolean(), anyBoolean(), anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
-        // When
-        final List<Session> sessions = sessionService.readAll(true, false, true);
-        // Then
-        assertEquals(1, sessions.size());
-        assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());
-    }
-
-    @Test
-    void readAll_short() {
-        // Given
-        when(sessionEntityRepository.findAllByFailedAndJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
-        // When
-        final List<Session> sessions = sessionService.readAll(true, false);
-        // Then
-        assertEquals(1, sessions.size());
-        assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());
-    }
-
-    @Test
-    void readAllOr() {
-        // Given
-        when(sessionEntityRepository.findAllByFailedOrJobOrderCreated(anyBoolean(), anyBoolean())).thenReturn(List.of(TestHelper.SESSION_ENTITY));
-        // When
-        final List<Session> sessions = sessionService.readAllOr(true, false);
+        final List<Session> sessions = sessionService.readAll(true, true, false);
         // Then
         assertEquals(1, sessions.size());
         assertEquals(TestHelper.SESSION_NAME, sessions.get(0).getName());
@@ -161,37 +108,6 @@ class SessionServiceTest extends AbstractTest {
         assertEquals(TestHelper.T0_PDGS_DATE, update.getT0PdgsDate());
         assertTrue(update.isReady());
         assertTrue(update.isRawComplete());
-    }
-
-    @Test
-    void updateAll() {
-        // Given
-        mockFind();
-        when(sessionEntityRepository.saveAll(any())).thenReturn(null);
-        // When
-        sessionService.updateAll(List.of(TestHelper.SESSION));
-        // Then
-        verify(sessionEntityRepository).saveAll(any());
-    }
-
-    @Test
-    void delete() {
-        //Given
-        mockFind();
-        // When
-        sessionService.delete(TestHelper.SESSION_NAME);
-        // Then
-        verify(sessionEntityRepository).delete(any());
-    }
-
-    @Test
-    void deleteAll() {
-        // Given
-        // When
-        final Set<String> nameList = Set.of(TestHelper.SESSION_NAME);
-        sessionService.deleteAll(nameList);
-        // Then
-        verify(sessionEntityRepository).deleteAllByNameIn(nameList);
     }
 
     private void mockExists(boolean exists) {

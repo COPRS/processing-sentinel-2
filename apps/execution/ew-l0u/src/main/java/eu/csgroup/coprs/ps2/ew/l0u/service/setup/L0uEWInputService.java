@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0uExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
-import eu.csgroup.coprs.ps2.core.common.service.ew.EWInputService;
+import eu.csgroup.coprs.ps2.core.ew.service.EWInputService;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import lombok.extern.slf4j.Slf4j;

@@ -1,0 +1,23 @@
+mongo:
+  authentication-database: admin
+  username: mongo
+  password: mongo
+  database: changeMe
+  port: 37017
+  host: localhost
+
+pending:
+  gaugeName: rs.pending.processing.job
+  mission: S2
+  level: changeMe
+  addon: changeMe
+
+spring:
+  data:
+    mongodb:
+      authentication-database: ${mongo.authentication-database}
+      username: ${mongo.username}
+      password: ${mongo.password}
+      database: ${mongo.database}
+      port: ${mongo.port}
+      host: ${mongo.host}

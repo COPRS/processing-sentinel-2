@@ -16,6 +16,10 @@ spring:
           process-in-0: input
           process-out-0: output
 
+pending:
+  level: 0
+  addon: l0c
+
 ---
 
 spring:

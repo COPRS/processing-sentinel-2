@@ -1,9 +1,0 @@
-dependencies {
-
-    implementation project(':apps:libs:core-common')
-
-    api "org.springframework.boot:spring-boot-starter-data-mongodb"
-
-    testImplementation(testFixtures(project(":apps:libs:core-common")))
-
-}

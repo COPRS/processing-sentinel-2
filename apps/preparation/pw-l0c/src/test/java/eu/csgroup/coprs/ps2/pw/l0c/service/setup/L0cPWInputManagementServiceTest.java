@@ -1,13 +1,13 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.setup;
 
+import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.exception.InvalidMessageException;
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cPreparationInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
-import eu.csgroup.coprs.ps2.pw.l0c.config.L0cPreparationProperties;
-import eu.csgroup.coprs.ps2.pw.l0c.service.prepare.DatastripManagementService;
+import eu.csgroup.coprs.ps2.pw.l0c.service.prepare.L0cDatastripManagementService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -22,9 +22,9 @@ class L0cPWInputManagementServiceTest extends AbstractTest {
     private static final String ROOT_FOLDER = "src/test/resources";
 
     @Mock
-    private DatastripManagementService managementService;
+    private L0cDatastripManagementService managementService;
     @Mock
-    private L0cPreparationProperties l0cPreparationProperties;
+    private SharedProperties sharedProperties;
 
     @InjectMocks
     private L0cPWInputManagementService inputManagementService;
@@ -33,7 +33,7 @@ class L0cPWInputManagementServiceTest extends AbstractTest {
 
     @Override
     public void setup() throws Exception {
-        inputManagementService = new L0cPWInputManagementService(managementService, l0cPreparationProperties);
+        inputManagementService = new L0cPWInputManagementService(managementService, sharedProperties);
         processingMessage = ProcessingMessageUtils.create();
     }
 
@@ -47,7 +47,7 @@ class L0cPWInputManagementServiceTest extends AbstractTest {
         // Given
         L0cPreparationInput l0cExecutionInput = ((L0cPreparationInput) new L0cPreparationInput().setInputFolder(INPUT_FOLDER).setSession("session"));
         processingMessage.getAdditionalFields().put(MessageParameters.PREPARATION_INPUT_FIELD, l0cExecutionInput);
-        when(l0cPreparationProperties.getInputFolderRoot()).thenReturn(ROOT_FOLDER);
+        when(sharedProperties.getSharedFolderRoot()).thenReturn(ROOT_FOLDER);
         // When
         inputManagementService.manageInput(processingMessage);
         // Then

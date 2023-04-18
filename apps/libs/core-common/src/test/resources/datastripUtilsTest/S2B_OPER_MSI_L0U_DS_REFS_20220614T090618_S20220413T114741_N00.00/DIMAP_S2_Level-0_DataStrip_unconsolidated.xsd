@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by Thales (THALES INFORMATION SYSTEMS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:editor="http://ipu.this.fr/dic/ipu/core/XMLEditor" xmlns:ns1="http://gs2.esa.int/DICO/DIMAP_S2_Level-0_DataStrip_unconconso.xsd" xmlns:dimapuncons="http://gs2.esa.int/DICO/1.0/PDGS/dimap/dimapuncons.xsd" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://gs2.esa.int/DICO/1.0/PDGS/dimap/dimapuncons.xsd" schemaLocation="DICO/1.0/PDGS/dimap/dimapuncons.xsd"/>
+	<xs:element name="DIMAP_Level-0-unconsolidated_DataStrip" type="DIMAP_Level-0-uncons_DataStrip">
+		<xs:annotation>
+			<xs:documentation>Instance of the DIMAP_Level-0UC_DataStrip_ID</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DIMAP_Level-0-uncons_DataStrip">
+		<xs:sequence>
+			<xs:element name="General_Info" type="dimapuncons:A_GENERAL_INFO_DS_UNCONS"/>
+			<xs:element name="Image_Data_Info" type="dimapuncons:AN_IMAGE_DATA_INFO_DSL0UC"/>
+			<xs:element name="Satellite_Ancillary_Data_Info" type="dimapuncons:AN_ANCILLARY_DATA_DSL0U"/>
+			<xs:element name="Quality_Indicators_Info" type="dimapuncons:A_QUALITY_INDICATORS_INFO_DSL0U"/>
+		</xs:sequence>
+		<xs:attribute name="datastripIdentifier" type="dimapuncons:A_DS_PDI_ID"/>
+	</xs:complexType>
+</xs:schema>

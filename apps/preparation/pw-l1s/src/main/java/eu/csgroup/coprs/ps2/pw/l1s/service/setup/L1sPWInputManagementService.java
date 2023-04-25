@@ -58,7 +58,7 @@ public class L1sPWInputManagementService implements PWInputManagementService {
                 case S2_L0_GR -> {
                     final String datastripName = ProcessingMessageUtils.getMetadata(
                             processingMessage,
-                            MessageParameters.PRODUCT_GROUP_ID_FIELD,
+                            MessageParameters.DATASTRIP_ID_FIELD,
                             String.class
                     );
                     managementService.updateGRComplete(datastripName);

@@ -65,7 +65,7 @@ class L2PWInputManagementServiceTest extends AbstractTest {
         processingMessage.setKeyObjectStorage("TL");
         processingMessage.setStoragePath("s3://bucket/path/TL");
         processingMessage.setProductFamily(ProductFamily.S2_L1C_TL);
-        processingMessage.getMetadata().put(MessageParameters.PRODUCT_GROUP_ID_FIELD, "DS");
+        processingMessage.getMetadata().put(MessageParameters.DATASTRIP_ID_FIELD, "DS");
 
         // When
         final UUID uuid = inputManagementService.manageInput(processingMessage);

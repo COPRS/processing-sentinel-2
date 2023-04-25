@@ -65,7 +65,7 @@ class L1sPWInputManagementServiceTest extends AbstractTest {
         processingMessage.setKeyObjectStorage("GR");
         processingMessage.setStoragePath("s3://bucket/path/GR");
         processingMessage.setProductFamily(ProductFamily.S2_L0_GR);
-        processingMessage.getMetadata().put(MessageParameters.PRODUCT_GROUP_ID_FIELD, "DS");
+        processingMessage.getMetadata().put(MessageParameters.DATASTRIP_ID_FIELD, "DS");
 
         // When
         final UUID uuid = inputManagementService.manageInput(processingMessage);

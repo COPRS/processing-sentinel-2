@@ -1,0 +1,131 @@
+{
+  "uid": "036e6c54-ea19-4776-9343-7bfbd443ae9f",
+  "creationDate": "2023-04-24T19:18:56.069Z",
+  "rsChainVersion": "1.12.1-rc1",
+  "missionId": "S2",
+  "satelliteId": "B",
+  "keyObjectStorage": "S2B_OPER_MSI_L1C_TL_REFS_20230424T125733_A032001_T02QRM_N04.00",
+  "storagePath": "s3://ops-rs-s2-l1-tl/S2B_OPER_MSI_L1C_TL_REFS_20230424T125733_A032001_T02QRM_N04.00",
+  "productFamily": "S2_L1C_TL",
+  "podName": "metadata-catalog-part1-metadata-extraction-v26-7964bc5bd5-zhzq2",
+  "allowedActions": [
+    "RESUBMIT"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {
+    "t0PdgsDate": "2023-04-22T22:50:00.000000Z",
+    "productSizeByte": 0
+  },
+  "metadata": {
+    "productFamily": "S2_L1C_TL",
+    "creationTime": "2023-04-24T12:57:33.000000Z",
+    "insertionTime": "2023-04-24T19:18:55.332844Z",
+    "instrumentShortName": "MSI",
+    "productGroupId": "GS2B_20230422T214859_032001_N04.00",
+    "productName": "S2B_OPER_MSI_L1C_TL_REFS_20230424T125733_A032001_T02QRM_N04.00",
+    "orbitNumber": "032001",
+    "qualityInfo": 100,
+    "platformShortName": "SENTINEL-2",
+    "qualityStatus": "NOMINAL",
+    "startTime": "2023-04-22T21:49:12.079392Z",
+    "stopTime": "2023-04-22T21:49:12.079392Z",
+    "productType": "MSI_L1C_TL",
+    "productClass": "OPER",
+    "missionId": "S2",
+    "satelliteId": "B",
+    "coordinates": {
+      "orientation": "counterclockwise",
+      "coordinates": [
+        [
+          [
+            -167.0827517740746,
+            23.3722699461481
+          ],
+          [
+            -167.28159969362065,
+            23.4044916891446
+          ],
+          [
+            -167.28170387782063,
+            23.40405961014124
+          ],
+          [
+            -167.2817403505847,
+            23.4040655390842
+          ],
+          [
+            -167.28223723228948,
+            23.401995143297054
+          ],
+          [
+            -167.28237306251935,
+            23.40201780011558
+          ],
+          [
+            -167.2824094748681,
+            23.401866517921896
+          ],
+          [
+            -167.53937258290642,
+            23.44376478287415
+          ],
+          [
+            -167.52747723019235,
+            23.49410619873084
+          ],
+          [
+            -167.4922183486297,
+            23.642431969232835
+          ],
+          [
+            -167.45691920781476,
+            23.79073289799617
+          ],
+          [
+            -167.42158958196643,
+            23.939041913416293
+          ],
+          [
+            -167.3862302231114,
+            24.087332722077857
+          ],
+          [
+            -167.35083836502835,
+            24.23558251082993
+          ],
+          [
+            -167.3192018554205,
+            24.367827429323604
+          ],
+          [
+            -166.96205337902083,
+            24.359575814732658
+          ],
+          [
+            -166.99266149520665,
+            23.370267968582922
+          ],
+          [
+            -167.0827517740746,
+            23.3722699461481
+          ]
+        ]
+      ],
+      "type": "polygon"
+    },
+    "cloudCover": 5.43662457171397,
+    "illuminationZenithAngle": 22.0575184095351,
+    "processorVersion": "04.00",
+    "t0PdgsDate": "2023-04-22T22:50:00.000000Z",
+    "url": "S2B_OPER_MSI_L1C_TL_REFS_20230424T125733_A032001_T02QRM_N04.00",
+    "platformSerialIdentifier": "B",
+    "processingCenter": "REFS",
+    "timeliness": "S2_L1",
+    "processMode": "NOMINAL",
+    "datastripId": "S2B_OPER_MSI_L1C_DS_REFS_20230424T125733_S20230422T214854_N04.00",
+    "tileNumber": "02QRM"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": "S2_L1"
+}

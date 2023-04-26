@@ -5,6 +5,7 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.Level;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProductType;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
+import eu.csgroup.coprs.ps2.core.ew.config.MissingOutputProperties;
 import eu.csgroup.coprs.ps2.core.ew.service.EWSetupService;
 import eu.csgroup.coprs.ps2.core.ew.service.l01.L01EWExecutionService;
 
@@ -13,14 +14,15 @@ import java.util.List;
 
 public abstract class L1sabEWProcessorService extends L1EWProcessorService {
 
-    protected L1sabEWProcessorService(L1EWInputService inputService,
+    protected L1sabEWProcessorService(
+            L1EWInputService inputService,
             EWSetupService<L1ExecutionInput> setupService,
-            L01EWExecutionService<L1ExecutionInput> executionService, L1EWOutputService outputService
+            L01EWExecutionService<L1ExecutionInput> executionService,
+            L1EWOutputService outputService,
+            MissingOutputProperties missingOutputProperties
     ) {
-        super(inputService, setupService, executionService, outputService);
+        super(inputService, setupService, executionService, outputService, missingOutputProperties);
     }
-
-    public static final int GR_TO_TL_RATIO = 6;
 
     protected List<TaskMissingOutput> getL1abMissingOutput(L1ExecutionInput executionInput) {
 
@@ -60,7 +62,6 @@ public abstract class L1sabEWProcessorService extends L1EWProcessorService {
     }
 
     private int calculateTileApproximation(double grCount) {
-        return (int) Math.ceil(grCount / GR_TO_TL_RATIO);
+        return (int) Math.ceil(grCount / missingOutputProperties.getGrToTlRatio());
     }
-
 }

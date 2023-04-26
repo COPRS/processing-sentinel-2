@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l1sb.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
+import eu.csgroup.coprs.ps2.core.ew.config.MissingOutputProperties;
 import eu.csgroup.coprs.ps2.core.ew.service.l1.L1sabEWProcessorService;
 import eu.csgroup.coprs.ps2.ew.l1sb.service.exec.L1sbEWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l1sb.service.output.L1sbEWOutputService;
@@ -21,9 +22,10 @@ public class L1sbEWProcessorService extends L1sabEWProcessorService {
             L1sbEWInputService inputService,
             L1sbEWSetupService setupService,
             L1sbEWExecutionService executionService,
-            L1sbEWOutputService outputService
+            L1sbEWOutputService outputService,
+            MissingOutputProperties missingOutputProperties
     ) {
-        super(inputService, setupService, executionService, outputService);
+        super(inputService, setupService, executionService, outputService, missingOutputProperties);
     }
 
     @Override

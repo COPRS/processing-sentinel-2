@@ -7,6 +7,7 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.ew.config.MissingOutputProperties;
 import eu.csgroup.coprs.ps2.ew.l1sb.service.exec.L1sbEWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l1sb.service.output.L1sbEWOutputService;
 import eu.csgroup.coprs.ps2.ew.l1sb.service.setup.L1sbEWInputService;
@@ -33,10 +34,12 @@ class L1sbEWProcessorServiceTest extends AbstractTest {
 
     @InjectMocks
     private L1sbEWProcessorService processorService;
+    @InjectMocks
+    MissingOutputProperties missingOutputProperties;
 
     @Override
     public void setup() throws Exception {
-        processorService = new L1sbEWProcessorService(inputService, setupService, executionService, outputService);
+        processorService = new L1sbEWProcessorService(inputService, setupService, executionService, outputService, missingOutputProperties);
     }
 
     @Override

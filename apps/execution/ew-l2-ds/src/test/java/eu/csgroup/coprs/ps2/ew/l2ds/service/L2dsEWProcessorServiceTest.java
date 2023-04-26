@@ -1,11 +1,10 @@
 package eu.csgroup.coprs.ps2.ew.l2ds.service;
 
-import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.ew.config.MissingOutputProperties;
 import eu.csgroup.coprs.ps2.ew.l2ds.service.exec.L2dsEWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l2ds.service.output.L2dsEWOutputService;
 import eu.csgroup.coprs.ps2.ew.l2ds.service.setup.L2dsEWInputService;
@@ -15,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,10 +30,12 @@ class L2dsEWProcessorServiceTest extends AbstractTest {
 
     @InjectMocks
     private L2dsEWProcessorService processorService;
+    @InjectMocks
+    MissingOutputProperties missingOutputProperties;
 
     @Override
     public void setup() throws Exception {
-        processorService = new L2dsEWProcessorService(inputService, setupService, executionService, outputService);
+        processorService = new L2dsEWProcessorService(inputService, setupService, executionService, outputService, missingOutputProperties);
     }
 
     @Override
@@ -47,14 +47,16 @@ class L2dsEWProcessorServiceTest extends AbstractTest {
     void getMissingOutputs() {
 
         // Given
-        final L2ExecutionInput executionInput = (L2ExecutionInput) new L2ExecutionInput();
+        final L2ExecutionInput executionInput = new L2ExecutionInput()
+                .setTileList(List.of("Tile1", "Tile2"));
 
         // When
         final List<TaskMissingOutput> missingOutputs = processorService.getMissingOutputs(executionInput);
 
         // Then
-        assertEquals(1, missingOutputs.size());
+        assertEquals(3, missingOutputs.size());
         assertEquals(1, ((JobProcessingTaskMissingOutput) missingOutputs.get(0)).getEstimatedCountInteger());
+        assertEquals(2, ((JobProcessingTaskMissingOutput) missingOutputs.get(1)).getEstimatedCountInteger());
     }
 
 }

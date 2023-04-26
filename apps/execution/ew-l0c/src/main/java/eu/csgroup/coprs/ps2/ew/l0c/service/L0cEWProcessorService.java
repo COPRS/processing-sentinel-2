@@ -7,6 +7,7 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProduct
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
+import eu.csgroup.coprs.ps2.core.ew.config.MissingOutputProperties;
 import eu.csgroup.coprs.ps2.core.ew.service.EWProcessorService;
 import eu.csgroup.coprs.ps2.ew.l0c.service.exec.L0cEWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l0c.service.output.L0cEWOutputService;
@@ -23,34 +24,32 @@ import java.util.List;
 @Configuration
 public class L0cEWProcessorService extends EWProcessorService<L0cExecutionInput> {
 
-    private static final String IPF_VERSION = "5.0.1";
-
     public L0cEWProcessorService(
             L0cEWInputService inputService,
             L0cEWSetupService setupService,
             L0cEWExecutionService executionService,
-            L0cEWOutputService outputService
+            L0cEWOutputService outputService,
+            MissingOutputProperties missingOutputProperties
     ) {
-        super(inputService, setupService, executionService, outputService);
+        super(inputService, setupService, executionService, outputService, missingOutputProperties);
     }
 
     @Override
     protected List<TaskMissingOutput> getMissingOutputs(L0cExecutionInput executionInput) {
 
         final JobProcessingTaskMissingOutput dsMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L0_DS, 1, executionInput.getSatellite(), 0, true, IPF_VERSION
+                MissingOutputProductType.L0_DS, 1, executionInput.getSatellite(), 0, true, missingOutputProperties.getL0cIpfVersion()
         );
 
         int grCount;
         try {
-            grCount = FileOperationUtils.findFoldersInTree(Paths.get(executionInput.getDtFolder()), S2FileParameters.L0C_GR_REGEX).size();
+            grCount = FileOperationUtils.findFoldersInTree(Paths.get(executionInput.getDtFolder()), S2FileParameters.L0U_GR_REGEX).size();
         } catch (FileOperationException e) {
-            // Set an arbitrary number if we can't get the real one
-            grCount = 720;
+            grCount = missingOutputProperties.getL0cDefaultGrCount();
         }
 
         final JobProcessingTaskMissingOutput grMissingOutput = buildMissingOutput(
-                MissingOutputProductType.L0_GR, grCount, executionInput.getSatellite(), 0, true, IPF_VERSION
+                MissingOutputProductType.L0_GR, grCount, executionInput.getSatellite(), 0, true, missingOutputProperties.getL0cIpfVersion()
         );
 
         return List.of(dsMissingOutput, grMissingOutput);

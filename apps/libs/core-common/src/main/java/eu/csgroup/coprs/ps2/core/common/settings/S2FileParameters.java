@@ -9,6 +9,7 @@ public final class S2FileParameters {
     public static final String AUX_FILE_EXTENSION = ".DBL";
     public static final String L0C_DS_REGEX = "^S2[A|B]_OPER_MSI_L0__DS.*";
     public static final String L0C_GR_REGEX = "^S2[A|B]_OPER_MSI_L0__GR.*";
+    public static final String L0U_GR_REGEX = "^S2[A|B]_OPER_MSI_L0U__GR.*";
     public static final String L0C_GR_REGEX_TEMPLATE = "^S2[A|B]_OPER_MSI_L0__GR_.*_DXX.*";
     public static final String L1_DS_REGEX = "^S2[A|B]_OPER_MSI_L1[A|B|C]_DS_" + JobParameters.PROC_STATION + ".*";
     public static final String L1_GR_REGEX = "^S2[A|B]_OPER_MSI_L1[A|B|C]_GR_" + JobParameters.PROC_STATION + ".*";

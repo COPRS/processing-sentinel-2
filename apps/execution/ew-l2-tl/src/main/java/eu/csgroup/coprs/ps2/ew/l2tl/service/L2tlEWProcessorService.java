@@ -31,7 +31,10 @@ public class L2tlEWProcessorService extends EWProcessorService<L2ExecutionInput>
 
     @Override
     protected List<TaskMissingOutput> getMissingOutputs(L2ExecutionInput executionInput) {
-        return List.of(buildMissingOutput(MissingOutputProductType.L2A_TL, 1, executionInput.getSatellite(), 2, true, IPF_VERSION));
+        return List.of(
+                buildMissingOutput(MissingOutputProductType.L2A_TL, 1, executionInput.getSatellite(), 2, true, IPF_VERSION),
+                buildMissingOutput(MissingOutputProductType.L2A_TC, 1, executionInput.getSatellite(), 2, true, IPF_VERSION)
+        );
     }
 
 }

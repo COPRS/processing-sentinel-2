@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l1sb.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.DatatakeType;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
@@ -17,7 +18,7 @@ import org.mockito.Mock;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class L1sbEWProcessorServiceTest extends AbstractTest {
 
@@ -48,6 +49,7 @@ class L1sbEWProcessorServiceTest extends AbstractTest {
 
         // Given
         final L1ExecutionInput executionInput = (L1ExecutionInput) new L1ExecutionInput()
+                .setDatatakeType(DatatakeType.NOBS)
                 .setFiles(Set.of(
                         new FileInfo().setObsName("file1").setProductFamily(ProductFamily.S2_L0_GR),
                         new FileInfo().setObsName("file2").setProductFamily(ProductFamily.S2_L0_GR))
@@ -57,9 +59,10 @@ class L1sbEWProcessorServiceTest extends AbstractTest {
         final List<TaskMissingOutput> missingOutputs = processorService.getMissingOutputs(executionInput);
 
         // Then
-        assertEquals(2, missingOutputs.size());
+        assertEquals(5, missingOutputs.size());
         assertEquals(1, ((JobProcessingTaskMissingOutput) missingOutputs.get(0)).getEstimatedCountInteger());
         assertEquals(2, ((JobProcessingTaskMissingOutput) missingOutputs.get(1)).getEstimatedCountInteger());
+        assertEquals("MSI_L1C_TL", ((JobProcessingTaskMissingOutput) missingOutputs.get(2)).getProductMetadataCustomObject().getProductTypeString());
     }
-    
+
 }

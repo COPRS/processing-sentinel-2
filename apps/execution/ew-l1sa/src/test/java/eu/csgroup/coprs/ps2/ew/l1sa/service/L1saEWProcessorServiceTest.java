@@ -2,6 +2,7 @@ package eu.csgroup.coprs.ps2.ew.l1sa.service;
 
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
+import eu.csgroup.coprs.ps2.core.common.model.processing.DatatakeType;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
@@ -48,6 +49,7 @@ class L1saEWProcessorServiceTest extends AbstractTest {
 
         // Given
         final L1ExecutionInput executionInput = (L1ExecutionInput) new L1ExecutionInput()
+                .setDatatakeType(DatatakeType.DASC)
                 .setFiles(Set.of(
                         new FileInfo().setObsName("file1").setProductFamily(ProductFamily.S2_L0_GR),
                         new FileInfo().setObsName("file2").setProductFamily(ProductFamily.S2_L0_GR))

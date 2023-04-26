@@ -51,9 +51,10 @@ class L1cEWProcessorServiceTest extends AbstractTest {
         final List<TaskMissingOutput> missingOutputs = processorService.getMissingOutputs(executionInput);
 
         // Then
-        assertEquals(1, missingOutputs.size());
+        assertEquals(2, missingOutputs.size());
         assertEquals(1, ((JobProcessingTaskMissingOutput) missingOutputs.get(0)).getEstimatedCountInteger());
         assertEquals(MissingOutputProductType.L1C_TL.getType(), ((JobProcessingTaskMissingOutput) missingOutputs.get(0)).getProductMetadataCustomObject().getProductTypeString());
+        assertEquals(MissingOutputProductType.L1C_TC.getType(), ((JobProcessingTaskMissingOutput) missingOutputs.get(1)).getProductMetadataCustomObject().getProductTypeString());
     }
 
     @Test

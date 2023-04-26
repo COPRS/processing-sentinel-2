@@ -50,7 +50,7 @@ class L2tlEWProcessorServiceTest extends AbstractTest {
         final List<TaskMissingOutput> missingOutputs = processorService.getMissingOutputs(executionInput);
 
         // Then
-        assertEquals(1, missingOutputs.size());
+        assertEquals(2, missingOutputs.size());
         assertEquals(1, ((JobProcessingTaskMissingOutput) missingOutputs.get(0)).getEstimatedCountInteger());
     }
 

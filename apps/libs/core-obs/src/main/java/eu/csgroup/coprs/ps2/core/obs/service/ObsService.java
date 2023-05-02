@@ -265,7 +265,14 @@ public class ObsService {
 
     private void waitOnTransfers(List<Mono<?>> transfers, int timeout) {
         Mono.when(transfers)
-                .timeout(Duration.ofMinutes(timeout))
+                .timeout(
+                        Duration.ofMinutes(timeout),
+                        Mono.fromCallable(() -> {
+                            final String message = String.format("Transfer operation timed out after %s minutes", timeout);
+                            log.error(message);
+                            throw new ObsException(message);
+                        }))
+                .retryWhen(getRetrySpec())
                 .block();
     }
 

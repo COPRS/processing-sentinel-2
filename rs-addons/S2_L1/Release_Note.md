@@ -127,21 +127,24 @@ _Prefix_: app.s2-l1-filter
 _Prefix_: app.&lt;APP&gt;.obs  
 _Apps_: pw-l1s, ew-l1ab, ew-l1c
 
-| Property          | Description                                      |                         Default                          |
-|-------------------|--------------------------------------------------|:--------------------------------------------------------:|
-| endpoint          | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
-| region            | OBS Region                                       |                        eu-west-0                         |
-| maxConcurrency    | Maximum number of concurrent network connections |                            50                            |
-| maxThroughput     | Maximum throughput for OBS transfers (Gb)        |                            10                            |
-| minimumPartSize   | Minimum part size for multipart transfers (MB)   |                            5                             |
-| auxBucket         | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
-| sessionBucket     | Bucket where sessions files are stored           |                     rs-session-files                     |
-| bucket.l0DSBucket | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
-| bucket.l0GRBucket | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
-| bucket.l1DSBucket | Name of the OBS bucket containing L1 DS files    |                         rs-s2-l1                         |
-| bucket.l1GRBucket | Name of the OBS bucket containing L1 GR files    |                         rs-s2-l1                         |
-| bucket.l1TLBucket | Name of the OBS bucket containing L1 TL files    |                         rs-s2-l1                         |
-| bucket.l1TCBucket | Name of the OBS bucket containing L1 TC files    |                         rs-s2-l1                         |
+| Property             | Description                                      |                         Default                          |
+|----------------------|--------------------------------------------------|:--------------------------------------------------------:|
+| endpoint             | Endpoint for OBS connection                      | https://oss.eu-west-0.prod-cloud-ocb.orange-business.com |
+| region               | OBS Region                                       |                        eu-west-0                         |
+| maxConcurrency       | Maximum number of concurrent network connections |                            50                            |
+| maxThroughput        | Maximum throughput for OBS transfers (Gb)        |                            10                            |
+| minimumPartSize      | Minimum part size for multipart transfers (MB)   |                            5                             |
+| maxRetries           | Maximum number of retries on error               |                            3                             |
+| downloadTimeout      | Timeout in minutes for download operations       |                            15                            |
+| uploadTimeout        | Timeout in minutes for upload operations         |                            15                            |
+| bucket.auxBucket     | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
+| bucket.sessionBucket | Bucket where sessions files are stored           |                     rs-session-files                     |
+| bucket.l0DSBucket    | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
+| bucket.l0GRBucket    | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
+| bucket.l1DSBucket    | Name of the OBS bucket containing L1 DS files    |                         rs-s2-l1                         |
+| bucket.l1GRBucket    | Name of the OBS bucket containing L1 GR files    |                         rs-s2-l1                         |
+| bucket.l1TLBucket    | Name of the OBS bucket containing L1 TL files    |                         rs-s2-l1                         |
+| bucket.l1TCBucket    | Name of the OBS bucket containing L1 TC files    |                         rs-s2-l1                         |
 
 ### Cleanup setting
 

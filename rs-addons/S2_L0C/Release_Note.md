@@ -118,13 +118,13 @@ _Apps_: pw-l0c, ew-l0c
 | maxConcurrency       | Maximum number of concurrent network connections |                            50                            |
 | maxThroughput        | Maximum throughput for OBS transfers (Gb)        |                            10                            |
 | minimumPartSize      | Minimum part size for multipart transfers (MB)   |                            5                             |
+| maxRetries           | Maximum number of retries on error               |                            3                             |
+| downloadTimeout      | Timeout in minutes for download operations       |                            15                            |
+| uploadTimeout        | Timeout in minutes for upload operations         |                            15                            |
 | bucket.auxBucket     | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
 | bucket.sessionBucket | Bucket where sessions files are stored           |                     rs-session-files                     |
 | bucket.l0DSBucket    | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
 | bucket.l0GRBucket    | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
-
-app.*.obs.l0DSBucket=rs-s2-l0c
-app.*.obs.l0GRBucket=rs-s2-l0c
 
 ### Cleanup setting
 

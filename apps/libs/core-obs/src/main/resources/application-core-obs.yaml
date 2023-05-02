@@ -7,5 +7,5 @@ obs:
   maxThroughput: 10
   minimumPartSize: 5
   max-retries: 3
-  downloadTimeout: 30
-  uploadTimeout: 30
+  downloadTimeout: 15
+  uploadTimeout: 15

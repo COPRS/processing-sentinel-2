@@ -43,8 +43,12 @@ public class L0uEWUploadService extends EWUploadService<L0uExecutionInput> {
             fileInfoByFamily.putAll(buildFolderInfoInFolder(rootPath, S2FileParameters.SAD_REGEX, ProductFamily.S2_SAD, bucketProperties.getSadBucket()));
             fileInfoByFamily.putAll(buildFolderInfoInTree(rootPath, S2FileParameters.HKTM_REGEX, ProductFamily.S2_HKTM, bucketProperties.getHktmBucket()));
 
-            obsService.uploadWithMd5(fileInfoByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet()), parentUid);
-
+            final Set<FileInfo> fileInfoSet = fileInfoByFamily.values().stream().flatMap(Collection::parallelStream).collect(Collectors.toSet());
+            if (fileInfoSet.isEmpty()) {
+                log.warn("No AUX file to upload to OBS.");
+            } else {
+                obsService.uploadWithMd5(fileInfoSet, parentUid);
+            }
         } catch (Exception e) {
             throw new FileOperationException("Unable to upload files to OBS", e);
         }

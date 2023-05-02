@@ -162,7 +162,8 @@ public class ObsService {
 
         log.debug("Downloading {} folders using FileInfos", fileInfoSet.size());
 
-        Mono.when(fileInfoSet.stream()
+        waitOnTransfers(
+                fileInfoSet.stream()
                         .map(fileInfo -> {
                             final String key = fileInfo.getKey();
                             final String bucket = fileInfo.getBucket();
@@ -173,8 +174,9 @@ public class ObsService {
                                 return doDirDownload(key, bucket, destinationPath);
                             }
                         })
-                        .toList())
-                .block();
+                        .toList(),
+                obsProperties.getDownloadTimeout()
+        );
     }
 
     public void upload(Set<FileInfo> fileInfoSet, UUID parentUid) {
@@ -190,7 +192,8 @@ public class ObsService {
 
         log.debug("Uploading {} files using FileInfos", fileInfoSet.size());
 
-        Mono.when(fileInfoSet.stream()
+        waitOnTransfers(
+                fileInfoSet.stream()
                         .map(fileInfo -> {
                             final Path sourcePath = Paths.get(fileInfo.getFullLocalPath());
                             if (sourcePath.toFile().isDirectory()) {
@@ -199,8 +202,8 @@ public class ObsService {
                                 return doFileUpload(sourcePath, fileInfo.getBucket(), fileInfo.getKey());
                             }
                         })
-                        .toList())
-                .block();
+                        .toList(),
+                obsProperties.getUploadTimeout());
     }
 
     /**
@@ -258,6 +261,12 @@ public class ObsService {
         if (!FileUtils.deleteQuietly(new File(tmpFolder))) {
             log.warn("Unable to delete temp folder {}", tmpFolder);
         }
+    }
+
+    private void waitOnTransfers(List<Mono<?>> transfers, int timeout) {
+        Mono.when(transfers)
+                .timeout(Duration.ofMinutes(timeout))
+                .block();
     }
 
     private Mono<?> doFileDownload(String key, String bucket, Path destinationPath) {

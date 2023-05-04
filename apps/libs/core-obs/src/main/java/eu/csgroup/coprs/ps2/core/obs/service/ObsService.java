@@ -215,51 +215,54 @@ public class ObsService {
      */
     public void uploadWithMd5(Set<FileInfo> fileInfoSet, UUID parentUid) {
 
-        log.info("Uploading {} folders to OBS", fileInfoSet.size());
-        upload(fileInfoSet, parentUid);
+        if (!fileInfoSet.isEmpty()) {
 
-        log.info("Creating md5sum files");
+            log.info("Uploading {} folders to OBS", fileInfoSet.size());
+            upload(fileInfoSet, parentUid);
 
-        String tmpFolder = FolderParameters.TMP_DOWNLOAD_FOLDER + FileSystems.getDefault().getSeparator() + UUID.randomUUID();
-        FileOperationUtils.createFolders(Set.of(tmpFolder));
+            log.info("Creating md5sum files");
 
-        Set<FileInfo> md5FileInfos = new HashSet<>();
+            String tmpFolder = FolderParameters.TMP_DOWNLOAD_FOLDER + FileSystems.getDefault().getSeparator() + UUID.randomUUID();
+            FileOperationUtils.createFolders(Set.of(tmpFolder));
 
-        fileInfoSet.forEach(fileInfo -> {
+            Set<FileInfo> md5FileInfos = new HashSet<>();
 
-            final Path localPath = Paths.get(fileInfo.getFullLocalPath());
-            final Path md5sumPath = Paths.get(tmpFolder).resolve(localPath.getFileName() + MD5SUM_SUFFIX);
+            fileInfoSet.forEach(fileInfo -> {
 
-            final Map<String, String> md5ByFileName = Md5Utils.getMd5(localPath);
-            final Map<String, String> eTagByKey = getETags(fileInfo.getBucket(), fileInfo.getKey());
+                final Path localPath = Paths.get(fileInfo.getFullLocalPath());
+                final Path md5sumPath = Paths.get(tmpFolder).resolve(localPath.getFileName() + MD5SUM_SUFFIX);
 
-            final List<String> lines = md5ByFileName.entrySet()
-                    .stream()
-                    .map(entry -> String.format("%s %s %s", entry.getValue(), eTagByKey.get(entry.getKey()), entry.getKey()))
-                    .toList();
+                final Map<String, String> md5ByFileName = Md5Utils.getMd5(localPath);
+                final Map<String, String> eTagByKey = getETags(fileInfo.getBucket(), fileInfo.getKey());
 
-            try (final OutputStream outputStream = Files.newOutputStream(md5sumPath)) {
-                for (String line : lines) {
-                    outputStream.write(line.getBytes());
-                    outputStream.write(System.lineSeparator().getBytes());
+                final List<String> lines = md5ByFileName.entrySet()
+                        .stream()
+                        .map(entry -> String.format("%s %s %s", entry.getValue(), eTagByKey.get(entry.getKey()), entry.getKey()))
+                        .toList();
+
+                try (final OutputStream outputStream = Files.newOutputStream(md5sumPath)) {
+                    for (String line : lines) {
+                        outputStream.write(line.getBytes());
+                        outputStream.write(System.lineSeparator().getBytes());
+                    }
+                } catch (IOException e) {
+                    throw new FileOperationException("Unable to create temporary files in: " + tmpFolder, e);
                 }
-            } catch (IOException e) {
-                throw new FileOperationException("Unable to create temporary files in: " + tmpFolder, e);
+
+                md5FileInfos.add(
+                        new FileInfo()
+                                .setFullLocalPath(md5sumPath.toString())
+                                .setBucket(fileInfo.getBucket())
+                                .setKey(md5sumPath.getFileName().toString())
+                );
+            });
+
+            log.info("Uploading md5sum files");
+            upload(md5FileInfos, parentUid);
+
+            if (!FileUtils.deleteQuietly(new File(tmpFolder))) {
+                log.warn("Unable to delete temp folder {}", tmpFolder);
             }
-
-            md5FileInfos.add(
-                    new FileInfo()
-                            .setFullLocalPath(md5sumPath.toString())
-                            .setBucket(fileInfo.getBucket())
-                            .setKey(md5sumPath.getFileName().toString())
-            );
-        });
-
-        log.info("Uploading md5sum files");
-        upload(md5FileInfos, parentUid);
-
-        if (!FileUtils.deleteQuietly(new File(tmpFolder))) {
-            log.warn("Unable to delete temp folder {}", tmpFolder);
         }
     }
 

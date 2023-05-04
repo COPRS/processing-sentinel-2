@@ -77,8 +77,10 @@ class L0uEWUploadServiceTest extends AbstractTest {
 
         doThrow(ObsException.class).when(obsService).uploadWithMd5(any(), any());
 
-        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class)) {
+        try (MockedStatic<FileOperationUtils> fileOperationUtilsMockedStatic = Mockito.mockStatic(FileOperationUtils.class);
+             MockedStatic<Files> filesMockedStatic = Mockito.mockStatic(Files.class)) {
 
+            filesMockedStatic.when(() -> Files.exists(any())).thenReturn(true);
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFolders(any(), any())).thenReturn(sadPaths);
             fileOperationUtilsMockedStatic.when(() -> FileOperationUtils.findFoldersInTree(any(), any())).thenReturn(hktmPaths);
 

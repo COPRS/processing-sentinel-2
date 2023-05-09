@@ -11,7 +11,6 @@ chain:
 ps2:
   sharedFolderRoot: /shared
   demFolderRoot: /dem
-  globeFolderName: S2IPF-DEMGLOBE
   gridFolderRoot: /grid
   minGrRequired: 48
   maxParallelTasks: 8
@@ -22,8 +21,6 @@ spring:
     bootstrap-servers: localhost:9092
   cloud:
     stream:
-      #      function:
-      #        bindings: # TO BE SET
       kafka:
         binder:
           brokers: localhost:9092
@@ -43,6 +40,9 @@ spring:
           group: ${spring.application.name}
           consumer:
             max-attempts: 1
+        error-warning:
+          producer:
+            header-mode: embeddedHeaders
 
 management:
   endpoints:

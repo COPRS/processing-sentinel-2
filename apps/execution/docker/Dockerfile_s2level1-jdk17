@@ -4,7 +4,8 @@ ARG JDK_URI=https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.
 ARG ORCHESTRATOR_GIT_URL=https://github.com/CS-SI/S2IPF_Orchestrator.git
 ARG LAUNCHER_GIT_URL=https://github.com/CS-SI/S2IPF_Orchestrator_Launcher.git
 ARG ORCHESTRATOR_TAG=03.00.00
-ARG LAUNCHER_TAG=1.0.0
+ARG LAUNCHER_TAG=1.1.0
+ARG IPF_VERSION=6.1.4
 
 #### Fetch external inputs
 
@@ -32,7 +33,7 @@ RUN apt-get install -y git \
 
 #### Build image from IPF
 
-FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2level1:6.1.0
+FROM artifactory.coprs.esa-copernicus.eu/s2-docker/s2level1:$IPF_VERSION
 
 USER root
 

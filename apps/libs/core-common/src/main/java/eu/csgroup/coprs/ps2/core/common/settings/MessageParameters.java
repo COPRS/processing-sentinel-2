@@ -6,6 +6,7 @@ public final class MessageParameters {
     public static final String DATASTRIP_ID_FIELD = "datastripId";
     public static final String EXECUTION_INPUT_FIELD = "executionInput";
     public static final String PREPARATION_INPUT_FIELD = "preparationInput";
+    public static final String RESUBMIT_INFOS = "resubmitInfos";
 
     public static final String EMPTY = "empty";
 

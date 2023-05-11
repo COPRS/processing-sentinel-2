@@ -36,7 +36,7 @@ public abstract class PWProcessorService<T extends ExecutionInput, S extends PWI
     protected Set<ProcessingMessage> processMessage(ProcessingMessage processingMessage) {
         cleanup();
         inputManagementService.manageInput(processingMessage);
-        return manageItems();
+        return manageItems(processingMessage);
     }
 
     protected void cleanup() {
@@ -48,7 +48,7 @@ public abstract class PWProcessorService<T extends ExecutionInput, S extends PWI
         log.info("Finished cleaning up items ...");
     }
 
-    protected Set<ProcessingMessage> manageItems() {
+    protected Set<ProcessingMessage> manageItems(ProcessingMessage processingMessage) {
 
         Set<ProcessingMessage> outputMessageSet = new HashSet<>();
 
@@ -80,7 +80,7 @@ public abstract class PWProcessorService<T extends ExecutionInput, S extends PWI
             IntStream.range(0, taskReportList.size())
                     .forEach(value -> taskReportList.get(value).end("End Job Generation"));
 
-            outputMessageSet = messageService.build(executionInputList);
+            outputMessageSet = messageService.build(executionInputList, processingMessage);
             itemManagementService.setJobOrderCreated(readyItems);
         }
 

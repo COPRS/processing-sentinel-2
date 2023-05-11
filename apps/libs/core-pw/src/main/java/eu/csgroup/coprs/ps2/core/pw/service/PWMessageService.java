@@ -8,16 +8,16 @@ import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 public abstract class PWMessageService<T extends ExecutionInput> { // NOSONAR
 
     protected abstract EventAction[] getAllowedActions();
 
-    public Set<ProcessingMessage> build(List<T> executionInputList) {
+    protected abstract Map<String, Object> getResubmitInfos(ProcessingMessage processingMessage);
+
+    public Set<ProcessingMessage> build(List<T> executionInputList, ProcessingMessage inputProcessingMessage) {
 
         log.info("Creating output messages for all executions ({})", executionInputList.size());
 
@@ -33,6 +33,7 @@ public abstract class PWMessageService<T extends ExecutionInput> { // NOSONAR
                     .setAllowedActions(getAllowedActions());
 
             processingMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);
+            processingMessage.getAdditionalFields().put(MessageParameters.RESUBMIT_INFOS, getResubmitInfos(inputProcessingMessage));
 
             messages.add(processingMessage);
         });

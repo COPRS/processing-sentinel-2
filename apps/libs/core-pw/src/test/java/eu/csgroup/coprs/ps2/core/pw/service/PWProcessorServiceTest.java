@@ -68,7 +68,7 @@ class PWProcessorServiceTest extends AbstractTest {
         // Given
         when(itemManagementService.getReady()).thenReturn(itemList);
         when(executionInputService.create(itemList)).thenReturn(inputList);
-        when(messageService.build(inputList)).thenReturn(outputMessageSet);
+        when(messageService.build(inputList, inputMessage)).thenReturn(outputMessageSet);
 
         // When
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {
@@ -84,7 +84,7 @@ class PWProcessorServiceTest extends AbstractTest {
             verify(itemManagementService).getReady();
 
             verify(executionInputService).create(itemList);
-            verify(messageService).build(inputList);
+            verify(messageService).build(inputList, inputMessage);
             verify(itemManagementService).setJobOrderCreated(itemList);
 
             assertEquals(2, logCaptor.getLogs().size());

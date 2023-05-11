@@ -38,14 +38,14 @@ public class L1cPWMessageService {
                         throw new ProcessingException("Something went horribly wrong");
                     }
                     tileInput.setTile(tile);
-                    final ProcessingMessage tileMessage = ProcessingMessageUtils.create().setAllowedActions(getActions());
+                    final ProcessingMessage tileMessage = ProcessingMessageUtils.create().setAllowedActions(getAllowedActions());
                     tileMessage.setSatelliteId(executionInput.getSatellite());
                     tileMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, tileInput);
                     return tileMessage;
                 })
                 .collect(Collectors.toSet());
 
-        final ProcessingMessage dsMessage = ProcessingMessageUtils.create().setAllowedActions(getActions());
+        final ProcessingMessage dsMessage = ProcessingMessageUtils.create().setAllowedActions(getAllowedActions());
         dsMessage.setSatelliteId(executionInput.getSatellite());
         dsMessage.getAdditionalFields().put(MessageParameters.EXECUTION_INPUT_FIELD, executionInput);
 
@@ -56,7 +56,7 @@ public class L1cPWMessageService {
         return messages;
     }
 
-    protected EventAction[] getActions() {
+    private EventAction[] getAllowedActions() {
         return List.of(EventAction.NO_ACTION, EventAction.RESUBMIT).toArray(new EventAction[0]);
     }
 

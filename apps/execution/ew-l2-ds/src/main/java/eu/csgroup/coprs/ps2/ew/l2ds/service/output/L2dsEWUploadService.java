@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.exception.FileOperationException;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ArchiveUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
@@ -36,7 +36,7 @@ public class L2dsEWUploadService extends EWUploadService<L2ExecutionInput> {
         log.info("Uploading L2A DS to OBS");
 
         final Map<ProductFamily, Set<FileInfo>> fileInfoByFamily = new EnumMap<>(ProductFamily.class);
-        final Path rootPath = Path.of(executionInput.getOutputFolder(), L12Parameters.L2A_DS_ROOT);
+        final Path rootPath = Path.of(executionInput.getOutputFolder(), FolderParameters.L2A_DS_ROOT);
 
         try {
 

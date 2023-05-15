@@ -63,7 +63,9 @@ public class L1saEWDownloadService extends EWDownloadService {
 
                         FileOperationUtils.mergeFiles(tmpPath, Paths.get(fileInfo.getFullLocalPath()), AUX_ECMWFD_REGEX);
 
+                        log.info("Cleaning up temporary files");
                         FileOperationUtils.deleteFolders(Set.of(tmpPath.toString()));
+                        log.info("Finished cleaning up temporary files");
                     }
 
                     default -> log.warn("Something went horribly wrong");

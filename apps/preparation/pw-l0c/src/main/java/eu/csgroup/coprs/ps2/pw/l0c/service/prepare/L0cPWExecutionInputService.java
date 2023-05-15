@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.model.l0.L0cExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l0c.model.L0cDatastrip;
 import lombok.extern.slf4j.Slf4j;
@@ -45,8 +45,8 @@ public class L0cPWExecutionInputService implements PWExecutionInputService<L0cEx
                 .setDtFolder(dtFolderPath.toString())
                 .setDatastrip(datastrip.getName())
                 .setInputFolder(datastrip.getDtFolder())
-                .setOutputFolder(dtFolderPath.resolve(L12Parameters.OUTPUT_FOLDER).toString())
-                .setAuxFolder(dtFolderPath.resolve(L12Parameters.AUX_FOLDER).toString())
+                .setOutputFolder(dtFolderPath.resolve(FolderParameters.OUTPUT_FOLDER).toString())
+                .setAuxFolder(dtFolderPath.resolve(FolderParameters.AUX_FOLDER).toString())
                 .setSatellite(datastrip.getSatellite())
                 .setStation(datastrip.getStationCode())
                 .setStartTime(datastrip.getStartTime())

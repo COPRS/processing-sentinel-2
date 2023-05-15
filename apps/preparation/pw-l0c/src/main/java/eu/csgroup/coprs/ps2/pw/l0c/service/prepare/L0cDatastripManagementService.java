@@ -1,7 +1,7 @@
 package eu.csgroup.coprs.ps2.pw.l0c.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.DatastripUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
@@ -60,8 +60,8 @@ public class L0cDatastripManagementService extends PWItemManagementService<L0cDa
 
     private void createSharedFolders(Path folderPath) {
         final Set<Path> folderPaths = Set.of(
-                folderPath.resolve(L12Parameters.OUTPUT_FOLDER),
-                folderPath.resolve(L12Parameters.AUX_FOLDER)
+                folderPath.resolve(FolderParameters.OUTPUT_FOLDER),
+                folderPath.resolve(FolderParameters.AUX_FOLDER)
         );
         FileOperationUtils.createFolders(folderPaths.stream().map(Path::toString).collect(Collectors.toSet()));
     }

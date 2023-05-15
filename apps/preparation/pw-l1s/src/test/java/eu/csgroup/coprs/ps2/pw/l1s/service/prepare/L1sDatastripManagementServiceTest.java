@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.pw.l1s.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
@@ -30,7 +30,7 @@ import static org.mockito.Mockito.*;
 class L1sDatastripManagementServiceTest extends AbstractTest {
 
     private static final UUID AUX_UID = UUID.randomUUID();
-    private static final String TMP_DS_PATH = "/tmp/" + AUX_UID + "/" + L12Parameters.INPUT_FOLDER + "/" + L12Parameters.DS_FOLDER;
+    private static final String TMP_DS_PATH = "/tmp/" + AUX_UID + "/" + FolderParameters.INPUT_FOLDER + "/" + FolderParameters.DS_FOLDER;
     private static final Map<String, Boolean> availableByGR = Map.of("foo", true, "bar", false, "foobar", false);
     private static final Set<String> missingGR = Set.of("bar", "foobar");
     private static final Map<String, Boolean> missingAvailableByGR = Map.of("bar", true, "foobar", true);

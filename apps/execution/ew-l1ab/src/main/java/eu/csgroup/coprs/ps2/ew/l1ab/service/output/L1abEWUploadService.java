@@ -5,7 +5,6 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
@@ -41,13 +40,13 @@ public class L1abEWUploadService extends EWUploadService<L1ExecutionInput> {
         try {
 
             fileInfoByFamily.putAll(
-                    buildFolderInfoInTree(rootPath.resolve(L12Parameters.L1A_DS_ROOT), S2FileParameters.L1A_DS_REGEX, ProductFamily.S2_L1A_DS, bucketProperties.getL1DSBucket()));
+                    buildFolderInfoInTree(rootPath.resolve(FolderParameters.L1A_DS_ROOT), S2FileParameters.L1A_DS_REGEX, ProductFamily.S2_L1A_DS, bucketProperties.getL1DSBucket()));
             fileInfoByFamily.putAll(
-                    buildFolderInfoInTree(rootPath.resolve(L12Parameters.L1A_GR_ROOT), S2FileParameters.L1A_GR_REGEX, ProductFamily.S2_L1A_GR, bucketProperties.getL1GRBucket()));
+                    buildFolderInfoInTree(rootPath.resolve(FolderParameters.L1A_GR_ROOT), S2FileParameters.L1A_GR_REGEX, ProductFamily.S2_L1A_GR, bucketProperties.getL1GRBucket()));
             fileInfoByFamily.putAll(
-                    buildFolderInfoInTree(rootPath.resolve(L12Parameters.L1B_DS_ROOT), S2FileParameters.L1B_DS_REGEX, ProductFamily.S2_L1B_DS, bucketProperties.getL1DSBucket()));
+                    buildFolderInfoInTree(rootPath.resolve(FolderParameters.L1B_DS_ROOT), S2FileParameters.L1B_DS_REGEX, ProductFamily.S2_L1B_DS, bucketProperties.getL1DSBucket()));
             fileInfoByFamily.putAll(
-                    buildFolderInfoInTree(rootPath.resolve(L12Parameters.L1B_GR_ROOT), S2FileParameters.L1B_GR_REGEX, ProductFamily.S2_L1B_GR, bucketProperties.getL1GRBucket()));
+                    buildFolderInfoInTree(rootPath.resolve(FolderParameters.L1B_GR_ROOT), S2FileParameters.L1B_GR_REGEX, ProductFamily.S2_L1B_GR, bucketProperties.getL1GRBucket()));
 
             obsService.uploadWithMd5(fileInfoByFamily.values().stream().flatMap(Collection::stream).collect(Collectors.toSet()), parentUid);
         } catch (Exception e) {

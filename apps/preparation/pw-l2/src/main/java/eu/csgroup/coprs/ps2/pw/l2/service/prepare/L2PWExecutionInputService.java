@@ -2,7 +2,7 @@ package eu.csgroup.coprs.ps2.pw.l2.service.prepare;
 
 import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l2.model.L2Datastrip;
 import lombok.extern.slf4j.Slf4j;
@@ -44,15 +44,15 @@ public class L2PWExecutionInputService implements PWExecutionInputService<L2Exec
         log.info("Building execution input for Datastrip {}", datastrip.getName());
 
         final Path rootPath = Paths.get(sharedProperties.getSharedFolderRoot(), datastrip.getFolder());
-        final Path inputPath = rootPath.resolve(L12Parameters.INPUT_FOLDER);
+        final Path inputPath = rootPath.resolve(FolderParameters.INPUT_FOLDER);
 
         final L2ExecutionInput executionInput = new L2ExecutionInput();
         executionInput
                 .setTileList(datastrip.getAvailableByTL().keySet().stream().toList())
                 .setDatastrip(datastrip.getName())
                 .setInputFolder(inputPath.toString())
-                .setOutputFolder(rootPath.resolve(L12Parameters.OUTPUT_FOLDER).toString())
-                .setAuxFolder(rootPath.resolve(L12Parameters.AUX_FOLDER).toString())
+                .setOutputFolder(rootPath.resolve(FolderParameters.OUTPUT_FOLDER).toString())
+                .setAuxFolder(rootPath.resolve(FolderParameters.AUX_FOLDER).toString())
                 .setSatellite(datastrip.getSatellite())
                 .setStation(datastrip.getStationCode())
                 .setStartTime(datastrip.getStartTime())

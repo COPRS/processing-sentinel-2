@@ -4,7 +4,6 @@ import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.l2.L2ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.JobParameters;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.ew.service.l2.L2EWExecutionService;
 import eu.csgroup.coprs.ps2.core.ew.settings.L2EWParameters;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class L2tlEWExecutionService extends L2EWExecutionService {
     public List<String> getCommand(L2ExecutionInput executionInput) {
 
         final Path tlFolderPath = Path.of(FolderParameters.WORKING_FOLDER_ROOT, executionInput.getTile());
-        final Path dsFolderPath = Path.of(executionInput.getInputFolder(), L12Parameters.DS_FOLDER, executionInput.getDatastrip());
+        final Path dsFolderPath = Path.of(executionInput.getInputFolder(), FolderParameters.DS_FOLDER, executionInput.getDatastrip());
 
         return List.of(
                 L2EWParameters.TL_SCRIPT_NAME,

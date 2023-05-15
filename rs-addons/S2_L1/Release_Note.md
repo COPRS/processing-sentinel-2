@@ -1,27 +1,25 @@
 # RS Addon : S2_L1
 
 <!-- TOC -->
-
-* [RS Addon : S2_L1](#rs-addon--s2_l1)
-    * [Prerequisites](#prerequisites)
-    * [Deployment](#deployment)
-        * [Principle](#principle)
-        * [Additional resources](#additional-resources)
-        * [Sizing](#sizing)
-    * [Configuration](#configuration)
-        * [Global deployer settings](#global-deployer-settings)
-        * [Workers deployer settings](#workers-deployer-settings)
-        * [Workers volume mounts](#workers-volume-mounts)
-        * [Filter](#filter)
-        * [OBS settings](#obs-settings)
-        * [Cleanup setting](#cleanup-setting)
-        * [Kafka settings](#kafka-settings)
-        * [Catalog](#catalog)
-        * [MongoDB](#mongodb)
-        * [Misc](#misc)
-        * [Preparation workers](#preparation-workers)
-        * [Execution workers](#execution-workers)
-
+* [RS Addon : S2_L1](#rs-addon--s2l1)
+  * [Prerequisites](#prerequisites)
+  * [Deployment](#deployment)
+    * [Principle](#principle)
+    * [Additional resources](#additional-resources)
+    * [Sizing](#sizing)
+  * [Configuration](#configuration)
+    * [Global deployer settings](#global-deployer-settings)
+    * [Workers deployer settings](#workers-deployer-settings)
+    * [Workers volume mounts](#workers-volume-mounts)
+    * [Filter](#filter)
+    * [OBS settings](#obs-settings)
+    * [Cleanup setting](#cleanup-setting)
+    * [Kafka settings](#kafka-settings)
+    * [Catalog](#catalog)
+    * [MongoDB](#mongodb)
+    * [Misc](#misc)
+    * [Preparation workers](#preparation-workers)
+    * [Execution workers](#execution-workers)
 <!-- TOC -->
 
 ## Prerequisites
@@ -52,12 +50,12 @@ The [Additional resources](Executables/additional_resources) will create:
 
 Here are the basic sizing suggestions for the main components:
 
-| Resource                | pw-l1s & pw-l1c | ew-l1sa & ew-l1sb | ew-l1ab | ew-l1c |
-|-------------------------|:---------------:|:-----------------:|:-------:|:------:|
-| CPU                     |      2000m      |       8000m       |  8000m  | 8000m  |
-| Memory                  |       4Gi       |       32Gi        |  64Gi   |  32Gi  |
-| Disk size (local)       |        -        |      1500GB       |  500GB  | 500GB  |
-| Shared disk size (Ceph) |        -        |      3000GB       | 3000GB  | 3000GB |
+| Resource                | pw-l1s & pw-l1c | ew-l1sa | ew-l1sb | ew-l1ab | ew-l1c |
+|-------------------------|:---------------:|:-------:|:-------:|:-------:|:------:|
+| CPU                     |      2000m      |  8000m  |  8000m  |  8000m  | 8000m  |
+| Memory                  |       4Gi       |  48Gi   |  16Gi   |  80Gi   |  32Gi  |
+| Disk size (local)       |        -        | 1500GB  | 1500GB  |  500GB  | 500GB  |
+| Shared disk size (Ceph) |        -        | 3000GB  | 3000GB  | 3000GB  | 3000GB |
 
 ## Configuration
 
@@ -225,5 +223,6 @@ _Apps_: ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c
 | demFolderRoot    | Path to the folder for DEM files               |  /dem   |
 | gridFolderRoot   | Path to the folder for GRID files              |  /grid  |
 | maxParallelTasks | Maximum number of parallel processing tasks    |    8    |
+| killTimeout      | Timeout for the internal orchestrator          |  7200   |
 
 ----

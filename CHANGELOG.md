@@ -10,6 +10,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.7.0-rc1] - 2023-05-17
+
+### Added
+
+-Updated IPF version for L1 processing to 6.1.4
+
+### Changed
+
+- Updated Spring Boot version
+
+### Fixed
+
+- [#935 - Update default size for s2-l1-shared volume](https://github.com/COPRS/rs-issues/issues/935)
+- [#924 - Update default memory limits](https://github.com/COPRS/rs-issues/issues/924)
+- [#928 - Use proper CatalogEvent fields to link GR/TL to their Datastrip](https://github.com/COPRS/rs-issues/issues/928)
+- [#923 - Add timeout for obs transfers](https://github.com/COPRS/rs-issues/issues/923)
+- [#901 - Remove RESTART allowed Action for L2PW](https://github.com/COPRS/rs-issues/issues/901)
+- [#945 - Fixed Upload trigger when no file is produced](https://github.com/COPRS/rs-issues/issues/945)
+- [#917 - Increase kafka timeout from 1 hour to 2 hours for L0C](https://github.com/COPRS/rs-issues/issues/917)
+- [#941 - Updated MissingOutput behaviour](https://github.com/COPRS/rs-issues/issues/941)
+- [#970 - Added Aux folder cleanup before download](https://github.com/COPRS/rs-issues/issues/970)
+
 ## [1.6.0-rc1] - 2023-03-20
 
 ### Added

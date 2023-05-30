@@ -1,5 +1,5 @@
 # coding=utf-8
-PROCESSING_STATION = "2BPS"
+PROCESSING_STATION = "REFS"
 VERSION = "1.0.0"
 PROCESSOR_LOG_LEVEL = "DEBUG"
 INVENTORY_L2_SOFT_FOLDER = "/usr/local/components/facilities/DPC-CORE-l1l2pack-dpc-software/" \

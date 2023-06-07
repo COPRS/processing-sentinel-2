@@ -6,6 +6,7 @@ import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
+import eu.csgroup.coprs.ps2.core.pw.model.ResubmitMessage;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
@@ -92,7 +93,7 @@ class L1sDatastripManagementServiceTest extends AbstractTest {
                 return null;
             }).when(obsService).download(anySet());
             // When
-            datastripManagementService.create(TestHelper.DATASTRIP_NAME, "A", Instant.now(), "s3://path/to/storage");
+            datastripManagementService.create(TestHelper.DATASTRIP_NAME, "A", Instant.now(), "s3://path/to/storage", new ResubmitMessage());
             // Then
             verify(datastripService).create(any(), any(), any(), any(), any(), any(), any());
         } finally {

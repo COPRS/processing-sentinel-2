@@ -4,6 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.catalog.AuxCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.pw.model.ResubmitMessage;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -145,7 +146,7 @@ class SessionManagementServiceTest extends AbstractTest {
         when(sessionService.create(any(), any(), any(), any(), any(), any())).thenReturn(new Session());
         mockSessionCatalogResponse();
         // When
-        sessionManagementService.create(TestHelper.SESSION_NAME, Instant.now().minus(1, ChronoUnit.HOURS));
+        sessionManagementService.create(TestHelper.SESSION_NAME, Instant.now().minus(1, ChronoUnit.HOURS), new ResubmitMessage());
         // Then
         verify(sessionService).create(any(), any(), any(), any(), any(), any());
     }

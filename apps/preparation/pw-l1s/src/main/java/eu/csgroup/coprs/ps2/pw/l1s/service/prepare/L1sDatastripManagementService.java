@@ -9,6 +9,7 @@ import eu.csgroup.coprs.ps2.core.common.utils.DatastripUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
+import eu.csgroup.coprs.ps2.core.pw.model.ResubmitMessage;
 import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastripEntity;
@@ -57,7 +58,7 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
     }
 
 
-    public void create(String datastripName, String satellite, Instant t0PdgsDate, String storagePath) {
+    public void create(String datastripName, String satellite, Instant t0PdgsDate, String storagePath, ResubmitMessage resubmitMessage) {
 
         if (!itemService.exists(datastripName)) {
 
@@ -81,7 +82,11 @@ public class L1sDatastripManagementService extends PWItemManagementService<L1sDa
             final Pair<Instant, Instant> datastripTimes = DatastripUtils.getDatastripTimes(datastripPath);
             final List<String> grList = DatastripUtils.getGRList(datastripPath);
 
-            itemService.create(datastripName, datastripFolder, datastripTimes, satellite, t0PdgsDate, datatakeType, grList);
+            L1sDatastrip datastrip = itemService.create(datastripName, datastripFolder, datastripTimes, satellite, t0PdgsDate, datatakeType, grList);
+
+            datastrip.setResubmitMessage(resubmitMessage);
+            itemService.update(datastrip);
+
         }
 
         updateGRComplete(datastripName);

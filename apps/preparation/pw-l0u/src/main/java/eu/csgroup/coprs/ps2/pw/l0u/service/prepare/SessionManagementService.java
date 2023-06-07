@@ -5,6 +5,7 @@ import eu.csgroup.coprs.ps2.core.common.model.catalog.SessionCatalogData;
 import eu.csgroup.coprs.ps2.core.common.service.catalog.CatalogService;
 import eu.csgroup.coprs.ps2.core.common.utils.CatalogUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.DateUtils;
+import eu.csgroup.coprs.ps2.core.pw.model.ResubmitMessage;
 import eu.csgroup.coprs.ps2.core.pw.service.PWItemManagementService;
 import eu.csgroup.coprs.ps2.pw.l0u.model.Session;
 import eu.csgroup.coprs.ps2.pw.l0u.model.SessionEntity;
@@ -38,7 +39,7 @@ public class SessionManagementService extends PWItemManagementService<Session, S
     }
 
 
-    public void create(String sessionName, Instant t0PdgsDate) {
+    public void create(String sessionName, Instant t0PdgsDate, ResubmitMessage resubmitMessage) {
 
         if (!itemService.exists(sessionName)) {
             catalogService.retrieveSessionData(sessionName)
@@ -48,7 +49,9 @@ public class SessionManagementService extends PWItemManagementService<Session, S
                     .ifPresent(sessionCatalogData -> {
                         Instant start = DateUtils.toInstant(sessionCatalogData.getStartTime());
                         Instant stop = DateUtils.toInstant(sessionCatalogData.getStopTime());
-                        itemService.create(sessionName, start, stop, sessionCatalogData.getSatelliteId(), sessionCatalogData.getStationCode(), t0PdgsDate);
+                        Session session = itemService.create(sessionName, start, stop, sessionCatalogData.getSatelliteId(), sessionCatalogData.getStationCode(), t0PdgsDate);
+                        session.setResubmitMessage(resubmitMessage);
+                        itemService.update(session);
                     });
         }
 

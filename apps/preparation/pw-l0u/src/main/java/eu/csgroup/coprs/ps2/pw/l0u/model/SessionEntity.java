@@ -1,6 +1,7 @@
 package eu.csgroup.coprs.ps2.pw.l0u.model;
 
 import eu.csgroup.coprs.ps2.core.pw.model.PWItemEntity;
+import eu.csgroup.coprs.ps2.core.pw.model.ResubmitMessage;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,5 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class SessionEntity extends PWItemEntity {
 
     private boolean rawComplete;
+
+    private ResubmitMessage resubmitMessage;
 
 }

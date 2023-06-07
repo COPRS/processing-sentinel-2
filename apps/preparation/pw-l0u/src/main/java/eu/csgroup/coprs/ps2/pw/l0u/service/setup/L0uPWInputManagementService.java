@@ -2,13 +2,15 @@ package eu.csgroup.coprs.ps2.pw.l0u.service.setup;
 
 import eu.csgroup.coprs.ps2.core.common.model.l0.FileType;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProcessingMessage;
+import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.input.SingleFileInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
-import eu.csgroup.coprs.ps2.core.pw.service.PWInputManagementService;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.SessionUtils;
+import eu.csgroup.coprs.ps2.core.pw.model.ResubmitMessage;
+import eu.csgroup.coprs.ps2.core.pw.service.PWInputManagementService;
 import eu.csgroup.coprs.ps2.pw.l0u.service.prepare.SessionManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -47,7 +49,8 @@ public class L0uPWInputManagementService implements PWInputManagementService {
 
             switch (fileType) {
                 case DSIB -> {
-                    managementService.create(SessionUtils.sessionFromFilename(fileName), ProcessingMessageUtils.getT0PdgsDate(processingMessage));
+                    ResubmitMessage resubmitMessage = createResubmitMessage(processingMessage);
+                    managementService.create(SessionUtils.sessionFromFilename(fileName), ProcessingMessageUtils.getT0PdgsDate(processingMessage), resubmitMessage);
                     taskReport.end(product + " is DSIB, creating session");
                 }
                 case DSDB -> {
@@ -74,6 +77,17 @@ public class L0uPWInputManagementService implements PWInputManagementService {
             case S2_AUX -> FileType.AUX;
             default -> FileType.UNKNOWN;
         };
+    }
+
+    private ResubmitMessage createResubmitMessage(ProcessingMessage processingMessage) {
+        ResubmitMessage message = new ResubmitMessage();
+        message.setProductFamily(ProductFamily.EDRS_SESSION)
+                .setKeyObjectStorage(processingMessage.getKeyObjectStorage())
+                .setMissionId(processingMessage.getMissionId())
+                .setSatelliteId(processingMessage.getSatelliteId())
+                .setT0PdgsDate(ProcessingMessageUtils.getT0PdgsDate(processingMessage));
+
+        return message;
     }
 
 }

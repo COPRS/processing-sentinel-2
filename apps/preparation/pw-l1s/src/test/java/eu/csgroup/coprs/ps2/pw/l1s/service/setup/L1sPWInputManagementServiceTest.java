@@ -53,7 +53,7 @@ class L1sPWInputManagementServiceTest extends AbstractTest {
             final UUID uuid = inputManagementService.manageInput(processingMessage);
 
             // Then
-            verify(managementService).create(any(), any(), any(), any());
+            verify(managementService).create(any(), any(), any(), any(), any());
             assertEquals(2, logCaptor.getLogs().size());
             assertNotNull(uuid);
         }
@@ -71,7 +71,7 @@ class L1sPWInputManagementServiceTest extends AbstractTest {
         final UUID uuid = inputManagementService.manageInput(processingMessage);
 
         // Then
-        verify(managementService, never()).create(any(), any(), any(), any());
+        verify(managementService, never()).create(any(), any(), any(), any(), any());
         verify(managementService).updateGRComplete(any());
         assertNotNull(uuid);
     }
@@ -87,7 +87,7 @@ class L1sPWInputManagementServiceTest extends AbstractTest {
         final UUID uuid = inputManagementService.manageInput(processingMessage);
 
         // Then
-        verify(managementService, never()).create(any(), any(), any(), any());
+        verify(managementService, never()).create(any(), any(), any(), any(), any());
         verify(managementService, never()).updateGRComplete(any());
         assertNotNull(uuid);
     }
@@ -98,7 +98,7 @@ class L1sPWInputManagementServiceTest extends AbstractTest {
         processingMessage.setKeyObjectStorage("file.xml");
         processingMessage.setStoragePath("s3://bucket/path/file.xml");
         processingMessage.setProductFamily(ProductFamily.S2_L0_DS);
-        doThrow(FileOperationException.class).when(managementService).create(any(), any(), any(), any());
+        doThrow(FileOperationException.class).when(managementService).create(any(), any(), any(), any(), any());
 
         // When Then
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {

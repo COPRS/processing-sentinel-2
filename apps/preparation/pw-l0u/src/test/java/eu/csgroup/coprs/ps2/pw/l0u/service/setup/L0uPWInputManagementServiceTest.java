@@ -57,7 +57,7 @@ class L0uPWInputManagementServiceTest extends AbstractTest {
             final UUID uuid = inputManagementService.manageInput(processingMessage);
 
             // Then
-            verify(managementService).create(any(), any());
+            verify(managementService).create(any(), any(), any());
             assertEquals(2, logCaptor.getLogs().size());
             assertNotNull(uuid);
         }
@@ -75,7 +75,7 @@ class L0uPWInputManagementServiceTest extends AbstractTest {
         final UUID uuid = inputManagementService.manageInput(processingMessage);
 
         // Then
-        verify(managementService, never()).create(any(), any());
+        verify(managementService, never()).create(any(), any(), any());
         verify(managementService).updateRawComplete(any());
         assertNotNull(uuid);
     }
@@ -92,7 +92,7 @@ class L0uPWInputManagementServiceTest extends AbstractTest {
         final UUID uuid = inputManagementService.manageInput(processingMessage);
 
         // Then
-        verify(managementService, never()).create(any(), any());
+        verify(managementService, never()).create(any(), any(), any());
         verify(managementService, never()).updateRawComplete(any());
         assertNotNull(uuid);
     }
@@ -110,7 +110,7 @@ class L0uPWInputManagementServiceTest extends AbstractTest {
         inputManagementService.manageInput(processingMessage);
 
         // Then
-        verify(managementService).create(any(), eq(now));
+        verify(managementService).create(any(), eq(now), any());
     }
 
     @Test
@@ -126,7 +126,7 @@ class L0uPWInputManagementServiceTest extends AbstractTest {
         inputManagementService.manageInput(processingMessage);
 
         // Then
-        verify(managementService).create(any(), eq(now));
+        verify(managementService).create(any(), eq(now), any());
     }
 
     @Test
@@ -136,7 +136,7 @@ class L0uPWInputManagementServiceTest extends AbstractTest {
         processingMessage.setKeyObjectStorage("file.xml");
         processingMessage.setStoragePath("s3://bucket/path/file.xml");
         processingMessage.setProductFamily(ProductFamily.EDRS_SESSION);
-        doThrow(FileOperationException.class).when(managementService).create(any(), any());
+        doThrow(FileOperationException.class).when(managementService).create(any(), any(), any());
 
         // When Then
         try (LogCaptor logCaptor = LogCaptor.forClass(TraceLogger.class)) {

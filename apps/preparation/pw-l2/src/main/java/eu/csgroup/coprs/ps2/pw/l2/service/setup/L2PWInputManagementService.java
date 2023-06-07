@@ -5,10 +5,11 @@ import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.model.trace.TaskReport;
 import eu.csgroup.coprs.ps2.core.common.model.trace.input.SingleFileInput;
 import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
-import eu.csgroup.coprs.ps2.core.pw.service.PWInputManagementService;
 import eu.csgroup.coprs.ps2.core.common.settings.MessageParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
+import eu.csgroup.coprs.ps2.core.pw.model.ResubmitMessage;
+import eu.csgroup.coprs.ps2.core.pw.service.PWInputManagementService;
 import eu.csgroup.coprs.ps2.pw.l2.service.prepare.L2DatastripManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -47,11 +48,13 @@ public class L2PWInputManagementService implements PWInputManagementService {
 
             switch (productFamily) {
                 case S2_L1C_DS -> {
+                    ResubmitMessage resubmitMessage = createResubmitMessage(processingMessage);
+
                     managementService.create(
                             fileName,
                             processingMessage.getSatelliteId(),
                             ProcessingMessageUtils.getT0PdgsDate(processingMessage),
-                            processingMessage.getStoragePath()
+                            processingMessage.getStoragePath(), resubmitMessage
                     );
                     taskReport.end(product + " is DS, creating datastrip");
                 }
@@ -73,6 +76,18 @@ public class L2PWInputManagementService implements PWInputManagementService {
         }
 
         return taskReport.getUid();
+    }
+
+    private ResubmitMessage createResubmitMessage(ProcessingMessage processingMessage) {
+        ResubmitMessage message = new ResubmitMessage();
+        message.setProductFamily(ProductFamily.S2_L1C_DS)
+                .setKeyObjectStorage(processingMessage.getKeyObjectStorage())
+                .setStoragePath(processingMessage.getStoragePath())
+                .setMissionId(processingMessage.getMissionId())
+                .setSatelliteId(processingMessage.getSatelliteId())
+                .setT0PdgsDate(ProcessingMessageUtils.getT0PdgsDate(processingMessage));
+
+        return message;
     }
 
 }

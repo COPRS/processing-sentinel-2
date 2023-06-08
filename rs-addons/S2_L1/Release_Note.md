@@ -75,25 +75,25 @@ _Prefix_: deployer.*.kubernetes
 _Prefix_: deployer.&lt;APP&gt;.kubernetes  
 _Apps_: pw-l1s, ew-l1sa, ew-l1sb, ew-l1ab, pw-l1c, ew-l1c
 
-| Property                      | Description                            |      Default (pw-l*)       | Default (ew-l1sa/l1sb/l1c) |     Default (ew-l1ab)      |
-|-------------------------------|----------------------------------------|:--------------------------:|:--------------------------:|:--------------------------:|
-| liveness-probe-delay          | Probe delay for liveness (seconds)     |             10             |             10             |             10             |
-| liveness-probe-path           | Probe path for liveness                | /actuator/health/liveness  | /actuator/health/liveness  | /actuator/health/liveness  |
-| liveness-probe-period         | Probe interval for liveness (seconds)  |             60             |             60             |             60             |
-| liveness-probe-port           | Port for liveness probe                |            8080            |            8080            |            8080            |
-| liveness-probe-timeout        | Timeout for liveness (seconds)         |             60             |             60             |             60             |
-| max-terminated-error-restarts | Max number of restarts on error        |             3              |             3              |             3              |
-| readiness-probe-delay         | Probe delay for readiness (seconds)    |             60             |             60             |             60             |
-| readiness-probe-path          | Probe path for readiness               | /actuator/health/readiness | /actuator/health/readiness | /actuator/health/readiness |
-| readiness-probe-period        | Probe interval for readiness (seconds) |             60             |             60             |             60             |
-| readiness-probe-port          | Port for readiness probe               |            8080            |            8080            |            8080            |
-| readiness-probe-timeout       | Timeout for readiness (seconds)        |             20             |             20             |             20             |
-| requests.memory               | Memory requets                         |           1000Mi           |           2000Mi           |           2000Mi           |
-| limits.memory                 | Memory limit                           |           4000Mi           |          32000Mi           |          64000Mi           |
-| requests.cpu                  | CPU request                            |            300m            |           1000m            |           1000m            |
-| limits.cpu                    | CPU limit                              |           2000m            |           8000m            |           8000m            |
-| secret-refs                   | Name of the secrets to bind            | [ s2-l1-mongo, s2-l1-obs ] |         s2-l1-obs          |         s2-l1-obs          |
-| podSecurityContext            | Security Context                       |     {runAsUser: 1000}      |     {runAsUser: 1000}      |     {runAsUser: 1000}      |
+| Property                      | Description                            |      Default (pw-l*)       |     Default (ew-l1sa)      |     Default (ew-l1sb)      |      Default (ew-l1c)      |     Default (ew-l1ab)      |
+|-------------------------------|----------------------------------------|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|
+| liveness-probe-delay          | Probe delay for liveness (seconds)     |             10             |             10             |             10             |             10             |             10             |
+| liveness-probe-path           | Probe path for liveness                | /actuator/health/liveness  | /actuator/health/liveness  | /actuator/health/liveness  | /actuator/health/liveness  | /actuator/health/liveness  |
+| liveness-probe-period         | Probe interval for liveness (seconds)  |             60             |             60             |             60             |             60             |             60             |
+| liveness-probe-port           | Port for liveness probe                |            8080            |            8080            |            8080            |            8080            |            8080            |
+| liveness-probe-timeout        | Timeout for liveness (seconds)         |             60             |             60             |             60             |             60             |             60             |
+| max-terminated-error-restarts | Max number of restarts on error        |             3              |             3              |             3              |             3              |             3              |
+| readiness-probe-delay         | Probe delay for readiness (seconds)    |             60             |             60             |             60             |             60             |             60             |
+| readiness-probe-path          | Probe path for readiness               | /actuator/health/readiness | /actuator/health/readiness | /actuator/health/readiness | /actuator/health/readiness | /actuator/health/readiness |
+| readiness-probe-period        | Probe interval for readiness (seconds) |             60             |             60             |             60             |             60             |             60             |
+| readiness-probe-port          | Port for readiness probe               |            8080            |            8080            |            8080            |            8080            |            8080            |
+| readiness-probe-timeout       | Timeout for readiness (seconds)        |             20             |             20             |             20             |             20             |             20             |
+| requests.memory               | Memory requets                         |           1000Mi           |          40000Mi           |            2000            |           24000            |          48000Mi           |
+| limits.memory                 | Memory limit                           |           4000Mi           |          48000Mi           |           80000            |           32000            |          80000Mi           |
+| requests.cpu                  | CPU request                            |            300m            |           3000m            |            1000            |            3000            |           3000m            |
+| limits.cpu                    | CPU limit                              |           2000m            |           8000m            |            8000            |            8000            |           8000m            |
+| secret-refs                   | Name of the secrets to bind            | [ s2-l1-mongo, s2-l1-obs ] |         s2-l1-obs          |         s2-l1-obs          |         s2-l1-obs          |         s2-l1-obs          |
+| podSecurityContext            | Security Context                       |     {runAsUser: 1000}      |     {runAsUser: 1000}      |     {runAsUser: 1000}      |     {runAsUser: 1000}      |     {runAsUser: 1000}      |
 
 ### Workers volume mounts
 
@@ -223,6 +223,6 @@ _Apps_: ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c
 | demFolderRoot    | Path to the folder for DEM files               |  /dem   |
 | gridFolderRoot   | Path to the folder for GRID files              |  /grid  |
 | maxParallelTasks | Maximum number of parallel processing tasks    |    8    |
-| killTimeout      | Timeout for the internal orchestrator          |  7200   |
+| killTimeout      | Timeout for the internal orchestrator          |  14400  |
 
 ----

@@ -13,10 +13,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Slf4j
@@ -67,6 +69,14 @@ public class TaskReport {
                 .setLevel(TraceLevel.INFO)
                 .setStatus(TaskStatus.OK)
                 .setMessage(message));
+    }
+
+    public void end(String message, Map<String, Object> custom) {
+        end(new EndWrapper()
+                .setLevel(TraceLevel.INFO)
+                .setStatus(TaskStatus.OK)
+                .setMessage(message)
+                .setCustom(custom));
     }
 
     public void end(String message, TaskOutput output, List<TaskMissingOutput> missingOutputs) {
@@ -133,10 +143,14 @@ public class TaskReport {
                 .setSatellite(satellite)
                 .setInput(input);
 
-        final Trace trace = new Trace()
+        Trace trace = new Trace()
                 .setHeader(new Header().setLevel(wrapper.getLevel()))
                 .setMessage(new Message().setContent(wrapper.getMessage()))
                 .setTask(endTask);
+
+        if (!CollectionUtils.isEmpty(wrapper.getCustom())) {
+            trace.setCustom(wrapper.getCustom());
+        }
 
         TraceLogger.log(trace);
     }
@@ -154,6 +168,7 @@ public class TaskReport {
         private List<TaskMissingOutput> missingOutputs;
         private Double dataRateMebibytesSec;
         private Double dataVolumeMebibytes;
+        private Map<String, Object> custom;
 
     }
 

@@ -25,4 +25,9 @@ public class L1sPWProcessorService extends PWProcessorService<L1ExecutionInput, 
         super(inputManagementService, itemManagementService, executionInputService, messageService);
     }
 
+    @Override
+    protected String noProcessingMessage() {
+        return "minGrRequired";
+    }
+
 }

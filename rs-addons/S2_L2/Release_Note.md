@@ -121,6 +121,10 @@ _Prefix_: app.s2-l2-filter
 |------------------------------------------|---------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | spring.cloud.stream.bindings.input.group | Kafka consumer group                              |                                                                      s2-l2-filter                                                                       |
 | expression                               | SpEL expression to filter incoming catalog events | (payload.missionId=='S2' and<br> (payload.productFamily=='S2_L1C_DS'<br> or payload.productFamily=='S2_L1C_TL'<br> or payload.productFamily=='S2_AUX')) |
+| requests.memory                          | Memory requests                                   |                                                                          160Mi                                                                          |
+| limits.memory                            | Memory limit                                      |                                                                          300Mi                                                                          |
+| requests.cpu                             | CPU request                                       |                                                                          512m                                                                           |
+| limits.cpu                               | CPU limit                                         |                                                                          600m                                                                           |
 
 ### Router
 
@@ -134,10 +138,14 @@ _Prefix_: app.s2-l2-router
 
 _Prefix_: deployer.s2-l2-router.kubernetes
 
-| Property      | Description        |                                    Default                                     |
-|---------------|--------------------|:------------------------------------------------------------------------------:|
-| volume-mounts | Mounted volumes    | [ {name: script, mountPath: '/etc/router.groovy', subPath: 'router.groovy' } ] |
-| volumes       | Volumes definition |         [ {name: script, configmap: { name: s2-l2-router-script } } ]          |
+| Property        | Description        |                                    Default                                     |
+|-----------------|--------------------|:------------------------------------------------------------------------------:|
+| volume-mounts   | Mounted volumes    | [ {name: script, mountPath: '/etc/router.groovy', subPath: 'router.groovy' } ] |
+| volumes         | Volumes definition |         [ {name: script, configmap: { name: s2-l2-router-script } } ]          |
+| requests.memory | Memory requests    |                                     160Mi                                      |
+| limits.memory   | Memory limit       |                                     300Mi                                      |
+| requests.cpu    | CPU request        |                                      400m                                      |
+| limits.cpu      | CPU limit          |                                      600m                                      |
 
 ### OBS settings
 

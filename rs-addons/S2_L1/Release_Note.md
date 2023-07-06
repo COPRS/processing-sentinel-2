@@ -119,6 +119,10 @@ _Prefix_: app.s2-l1-filter
 |------------------------------------------|---------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
 | spring.cloud.stream.bindings.input.group | Kafka consumer group                              |                                                                     s2-l1-filter                                                                      |
 | expression                               | SpEL expression to filter incoming catalog events | (payload.missionId=='S2' and<br> (payload.productFamily=='S2_L0_DS'<br> or payload.productFamily=='S2_L0_GR'<br> or payload.productFamily=='S2_AUX')) |
+| requests.memory                          | Memory requests                                   |                                                                         160Mi                                                                         |
+| limits.memory                            | Memory limit                                      |                                                                         300Mi                                                                         |
+| requests.cpu                             | CPU request                                       |                                                                         512m                                                                          |
+| limits.cpu                               | CPU limit                                         |                                                                         600m                                                                          |
 
 ### OBS settings
 

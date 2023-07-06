@@ -107,6 +107,10 @@ _Prefix_: app.filter-input-l0u
 |------------------------------------------|---------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------:|
 | spring.cloud.stream.bindings.input.group | Kafka consumer group                              |                                                  filter-input-l0u                                                   |
 | expression                               | SpEL expression to filter incoming catalog events | "payload.missionId=='S2' and <br />(payload.productFamily=='S2_AUX' <br/>or payload.productFamily=='EDRS_SESSION')" |
+| requests.memory                          | Memory requests                                   |                                                        160Mi                                                        |
+| limits.memory                            | Memory limit                                      |                                                        300Mi                                                        |
+| requests.cpu                             | CPU request                                       |                                                        512m                                                         |
+| limits.cpu                               | CPU limit                                         |                                                        600m                                                         |
 
 ### Router
 
@@ -120,10 +124,14 @@ _Prefix_: app.s2-l0u-router
 
 _Prefix_: deployer.s2-l0u-router.kubernetes
 
-| Property      | Description        |                                       Default                                        |
-|---------------|--------------------|:------------------------------------------------------------------------------------:|
-| volume-mounts | Mounted volumes    | [ {name: script, mountPath: '/etc/router-ew.groovy', subPath: 'router-ew.groovy' } ] |
-| volumes       | Volumes definition |          [ {name: script, configmap: { name: s2-l0u-router-ew-script } } ]           |
+| Property        | Description        |                                       Default                                        |
+|-----------------|--------------------|:------------------------------------------------------------------------------------:|
+| volume-mounts   | Mounted volumes    | [ {name: script, mountPath: '/etc/router-ew.groovy', subPath: 'router-ew.groovy' } ] |
+| volumes         | Volumes definition |          [ {name: script, configmap: { name: s2-l0u-router-ew-script } } ]           |
+| requests.memory | Memory requests    |                                        160Mi                                         |
+| limits.memory   | Memory limit       |                                        300Mi                                         |
+| requests.cpu    | CPU request        |                                         400m                                         |
+| limits.cpu      | CPU limit          |                                         600m                                         |
 
 ### OBS settings
 

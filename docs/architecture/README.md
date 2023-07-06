@@ -1,20 +1,7 @@
+### Copernicus Reference System
 # Processing Sentinel 2 - Architecture Design Document
-
-## Document
-
-### Document properties
-
-|                 |                                                                                                    |
-| --------------: | -------------------------------------------------------------------------------------------------- |
-|   **Reference** | CSGF-CSC-RS-PRD-ADDPS2                                                                             |
-|       **Issue** | 1.2                                                                                                |
-|  **Issue date** | 21 Nov 2022                                                                                        |
-| **Prepared by** | **Nicolas LECONTE**  *(Technical Manager)*                                                         |
-| **Approved by** | **Jonathan TAGLIONE** *(Quality Manager)* + **Cyrille BOUISSON** *(Architect / Technical Manager)* |
-| **Released by** | **Stéphane HURIEZ** *(Project Manager)*                                                            |
-|    **Doc type** | ADD                                                                                                |
-|      **No WBS** | WP-3000-C                                                                                          |
-
+### Reference System version V2.0
+---
 ### Document Summary
 
 This document is the **A**rchitecture **D**esign **D**ocument (ADD) for the **S**entinel-**2** (S2) processing of **R**eference **S**ystem **S**oftware (RS Software). This document will be completed all along the software development lifecycle.

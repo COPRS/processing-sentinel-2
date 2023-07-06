@@ -12,6 +12,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.IntStream;
 
@@ -77,14 +78,23 @@ public abstract class PWProcessorService<T extends ExecutionInput, S extends PWI
 
             List<T> executionInputList = executionInputService.create(readyItems);
 
-            IntStream.range(0, taskReportList.size())
+            IntStream.range(0, executionInputList.size())
                     .forEach(value -> taskReportList.get(value).end("End Job Generation"));
+
+            if (executionInputList.size() != readyItems.size()) {
+                IntStream.range(executionInputList.size(), readyItems.size())
+                        .forEach(value -> taskReportList.get(value).end("End Job Generation", Map.of("processing_conditions_not_met_string", noProcessingMessage())));
+            }
 
             outputMessageSet = messageService.build(executionInputList);
             itemManagementService.setJobOrderCreated(readyItems);
         }
 
         return outputMessageSet;
+    }
+
+    protected String noProcessingMessage() {
+        return "";
     }
 
 }

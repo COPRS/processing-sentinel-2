@@ -87,7 +87,7 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:pw-l0u:${{ env.BUILD_VERSION }} 
+          docker image push ${{ env.REGISTRY_PROJECT }}:pw-l0u:${{ env.BUILD_VERSION }}
           docker rmi -f ${{ env.REGISTRY_PROJECT }}:pw-l0u:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
@@ -100,8 +100,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:pw-l0c:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:pw-l0c:${{ env.BUILD_VERSION }}       
+          docker image push ${{ env.REGISTRY_PROJECT }}:pw-l0c:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_PROJECT }}:pw-l0c:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -113,8 +113,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:pw-l1s:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:pw-l1s:${{ env.BUILD_VERSION }}          
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1s:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1s:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -125,8 +125,8 @@ jobs:
           SEVERITY: ${{ env.SCAN_SEVERITY }}
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:pw-l1c:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:pw-l1c:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1c:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1c:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -137,8 +137,8 @@ jobs:
           SEVERITY: ${{ env.SCAN_SEVERITY }}
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:pw-l2:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:pw-l2:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l2:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l2:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -150,8 +150,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l0u:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l0u:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0u:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0u:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -163,8 +163,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l0c:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l0c:${{ env.BUILD_VERSION }}               
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0c:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0c:${{ env.BUILD_VERSION }}             
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -176,8 +176,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l1sa:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l1sa:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sa:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sa:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -189,8 +189,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l1sb:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l1sb:${{ env.BUILD_VERSION }}          
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sb:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sb:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -202,8 +202,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l1ab:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l1ab:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1ab:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1ab:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -215,8 +215,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l1c:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l1c:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1c:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1c:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -228,8 +228,8 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l2-ds:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l2-ds:${{ env.BUILD_VERSION }}          
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-ds:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-ds:${{ env.BUILD_VERSION }}
 
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
@@ -241,5 +241,5 @@ jobs:
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_PROJECT }}:ew-l2-tl:${{ env.BUILD_VERSION }} 
-          docker rmi -f ${{ env.REGISTRY_PROJECT }}:ew-l2-tl:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-tl:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-tl:${{ env.BUILD_VERSION }}

@@ -10,6 +10,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 > - **Fixed** for any bug fixes.
 > - **Security** in case of vulnerabilities.
 
+## [1.8.0-rc1] - 2023-07-17
+
+### Added
+- Added limits and request values for filters and routers
+
+### Changed
+
+- Updated memory and cpu values
+- Homogenization of the titles of the documentation
+
+### Fixed
+
+- Corrected Processing Station default value for L2 orchestrator
+- [#999 - Added custom field to PW Tracelogs](https://github.com/COPRS/rs-issues/issues/999)
+
 ## [1.7.0-rc1] - 2023-05-17
 
 ### Added

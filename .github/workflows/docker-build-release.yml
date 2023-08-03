@@ -28,11 +28,6 @@ jobs:
     strategy:
       matrix:
         component: [pw-l0u, pw-l0c, pw-l1s, pw-l1c, pw-l2, ew-l0u, ew-l0c, ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c, ew-l2-ds, ew-l2-tl]
-        include:
-          - type: preparation
-            component: [pw-l0u, pw-l0c, pw-l1s, pw-l1c, pw-l2]
-          - type: execution
-            component:  [ew-l0u, ew-l0c, ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c, ew-l2-ds, ew-l2-tl]
 
     steps:
 
@@ -70,36 +65,36 @@ jobs:
           password: ${{ env.REGISTRY_PWD }}
 
       - name: Build base docker images l0u
-        if: matrix.component == 'pw-l0u' || matrix.component == 'ew-l0u'
+        if: contains(matrix.component, 'l0u')
         run: |
           docker build . -f apps/execution/docker/Dockerfile_s2-ipf-l0u-jdk17 -t s2-ipf-l0u-jdk17
 
       - name: Build base docker images l0c
-        if: matrix.component == 'pw-l0c' || matrix.component == 'ew-l0c'
+        if: contains(matrix.component, 'l0c')
         run: |
           docker build . -f apps/execution/docker/Dockerfile_s2level0-jdk17 -t s2level0-jdk17
 
       - name: Build base docker images l1
-        if: matrix.component == 'pw-l1s' || matrix.component == 'pw-l1c' || matrix.component == 'ew-l1sa' || matrix.component == 'ew-l1sb' || matrix.component == 'ew-l1ab' || matrix.component == 'ew-l1c'
+        if: contains(matrix.component, 'l1')
         run: |
           docker build . -f apps/execution/docker/Dockerfile_s2level1-jdk17 -t s2level1-jdk17
 
       - name: Build base docker images l2
-        if: matrix.component == 'pw-l2' || matrix.component == 'ew-l2-ds' || matrix.component == 'ew-l2-tl'
+        if: contains(matrix.component, 'l2')
         run: |
           docker build . -f apps/execution/docker/Dockerfile_s2level2-jdk17 -t s2level2-jdk17
 
       - name: Build with Gradle preparation
-        if: matrix.type == 'preparation'
+        if: startsWith(matrix.component, 'pw')
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean apps:${{ matrix.type }}:${{ matrix.component }}:build apps:${{ matrix.type }}:${{ matrix.component }}:bootBuildImage
+          arguments: clean apps:preparation:${{ matrix.component }}:build apps:preparation:${{ matrix.component }}:bootBuildImage
 
       - name: Build with Gradle execution
-        if: matrix.type == 'execution'
+        if: startsWith(matrix.component, 'ew')
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean apps:${{ matrix.type }}:${{ matrix.component }}:build apps:${{ matrix.type }}:${{ matrix.component }}:bootBuildImage apps:${{ matrix.type }}:${{ matrix.component }}:docker
+          arguments: clean apps:execution:${{ matrix.component }}:build apps:execution:${{ matrix.component }}:bootBuildImage apps:execution:${{ matrix.component }}:docker
 
       - name: Remove base docker images
         run: |

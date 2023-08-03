@@ -25,6 +25,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        component: [pw-l0u, pw-l0c, pw-l1s, pw-l1c, pw-l2, ew-l0u, ew-l0c, ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c, ew-l2-ds, ew-l2-tl]
+        include:
+          - type: preparation
+            component: [pw-l0u, pw-l0c, pw-l1s, pw-l1c, pw-l2]
+          - type: execution
+            component:  [ew-l0u, ew-l0c, ew-l1sa, ew-l1sb, ew-l1ab, ew-l1c, ew-l2-ds, ew-l2-tl]
 
     steps:
 
@@ -61,17 +69,37 @@ jobs:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PWD }}
 
-      - name: Build base docker images
+      - name: Build base docker images l0u
+        if: matrix.component == 'pw-l0u' || matrix.component == 'ew-l0u'
         run: |
           docker build . -f apps/execution/docker/Dockerfile_s2-ipf-l0u-jdk17 -t s2-ipf-l0u-jdk17
+
+      - name: Build base docker images l0c
+        if: matrix.component == 'pw-l0c' || matrix.component == 'ew-l0c'
+        run: |
           docker build . -f apps/execution/docker/Dockerfile_s2level0-jdk17 -t s2level0-jdk17
+
+      - name: Build base docker images l1
+        if: matrix.component == 'pw-l1s' || matrix.component == 'pw-l1c' || matrix.component == 'ew-l1sa' || matrix.component == 'ew-l1sb' || matrix.component == 'ew-l1ab' || matrix.component == 'ew-l1c'
+        run: |
           docker build . -f apps/execution/docker/Dockerfile_s2level1-jdk17 -t s2level1-jdk17
+
+      - name: Build base docker images l2
+        if: matrix.component == 'pw-l2' || matrix.component == 'ew-l2-ds' || matrix.component == 'ew-l2-tl'
+        run: |
           docker build . -f apps/execution/docker/Dockerfile_s2level2-jdk17 -t s2level2-jdk17
 
-      - name: Build with Gradle
+      - name: Build with Gradle preparation
+        if: matrix.type == 'preparation'
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: clean build sonar bootBuildImage docker
+          arguments: clean apps:${{ matrix.type }}:${{ matrix.component }}:build apps:${{ matrix.type }}:${{ matrix.component }}:bootBuildImage
+
+      - name: Build with Gradle execution
+        if: matrix.type == 'execution'
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: clean apps:${{ matrix.type }}:${{ matrix.component }}:build apps:${{ matrix.type }}:${{ matrix.component }}:bootBuildImage apps:${{ matrix.type }}:${{ matrix.component }}:docker
 
       - name: Remove base docker images
         run: |
@@ -80,166 +108,48 @@ jobs:
       - name: Docker security scan
         uses: COPRS/reference-system-software@trivy-security-scan-v1
         with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l0u:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: pw-l0u_${{ env.BUILD_VERSION }}
+          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/${{ matrix.component }}:${{ env.BUILD_VERSION }}
+          ARTIFACT_NAME: ${{ matrix.component }}_${{ env.BUILD_VERSION }}
           EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
           SEVERITY: ${{ env.SCAN_SEVERITY }}
 
       - name: Push and clean docker image
         run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l0u:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l0u:${{ env.BUILD_VERSION }}
+          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/${{ matrix.component }}:${{ env.BUILD_VERSION }}
+          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/${{ matrix.component }}:${{ env.BUILD_VERSION }}
 
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
+  sonar:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l0c:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: pw-l0c_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
+          fetch-depth: 0 # fetch all history so multiple commits can be scanned
 
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l0c:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l0c:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1s:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: pw-l1s_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
+          java-version: '17'
+          distribution: 'temurin'
 
-      - name: Push and clean docker image
+      - name: Set up environment
         run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1s:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1s:${{ env.BUILD_VERSION }}
+          # Sonar
+          echo "SONARQUBE_HOST=${{ env.SONARQUBE_HOST }}" >> $GITHUB_ENV
+          echo "SONARQUBE_TOKEN=${{ env.SONARQUBE_TOKEN }}" >> $GITHUB_ENV
 
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
+          # Git
+          GIT_BRANCH=${{ github.ref_name }}
+          echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+          echo Building branch : $GIT_BRANCH
+
+          # Set version for docker tasks
+          echo "BUILD_VERSION=$(grep  "version = " apps/build.gradle | cut -d"'" -f 2)" >> $GITHUB_ENV
+
+      - name: Build with Gradle execution
+        uses: gradle/gradle-build-action@v2
         with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1c:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: pw-l1c_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1c:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l1c:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l2:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: pw-l2_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l2:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/pw-l2:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0u:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l0u_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0u:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0u:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0c:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l0c_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0c:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l0c:${{ env.BUILD_VERSION }}             
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sa:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l1sa_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sa:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sa:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sb:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l1sb_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sb:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1sb:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1ab:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l1ab_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1ab:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1ab:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1c:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l1c_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1c:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l1c:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-ds:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l2-ds_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-ds:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-ds:${{ env.BUILD_VERSION }}
-
-      - name: Docker security scan
-        uses: COPRS/reference-system-software@trivy-security-scan-v1
-        with:
-          IMAGE_REF: ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-tl:${{ env.BUILD_VERSION }}
-          ARTIFACT_NAME: ew-l2-tl_${{ env.BUILD_VERSION }}
-          EXIT_CODE: ${{ env.SCAN_EXIT_CODE }}
-          SEVERITY: ${{ env.SCAN_SEVERITY }}
-
-      - name: Push and clean docker image
-        run: |
-          docker image push ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-tl:${{ env.BUILD_VERSION }}
-          docker rmi -f ${{ env.REGISTRY_BASE }}/${{ env.REGISTRY_PROJECT }}/ew-l2-tl:${{ env.BUILD_VERSION }}
+          arguments: clean build sonar

@@ -1,0 +1,79 @@
+{
+  "uid": "f3af8ad8-e8d4-4ed3-89c6-121f314deab8",
+  "creationDate": "2023-03-27T16:56:52.999Z",
+  "rsChainVersion": "1.12.1-rc1",
+  "missionId": "S2",
+  "satelliteId": "A",
+  "keyObjectStorage": "S2A_OPER_MSI_L0__GR_REFS_20230327T165009_S20230325T181901_D05_N04.00",
+  "storagePath": "s3://ops-rs-s2-l0-gr/S2A_OPER_MSI_L0__GR_REFS_20230327T165009_S20230325T181901_D05_N04.00",
+  "productFamily": "S2_L0_GR",
+  "podName": "metadata-catalog-part1-metadata-extraction-v22-6cc5dd5547-8csgd",
+  "allowedActions": [
+    "RESUBMIT"
+  ],
+  "retryCounter": 0,
+  "additionalFields": {
+    "t0PdgsDate": "2023-03-25T22:42:00.000000Z",
+    "productSizeByte": 0
+  },
+  "metadata": {
+    "productFamily": "S2_L0_GR",
+    "creationTime": "2023-03-27T16:50:09.000000Z",
+    "insertionTime": "2023-03-27T16:56:52.096054Z",
+    "instrumentShortName": "MSI",
+    "productGroupId": "S2A_OPER_MSI_L0__DS_REFS_20230327T165009_S20230325T181901_N04.00",
+    "productName": "S2A_OPER_MSI_L0__GR_REFS_20230327T165009_S20230325T181901_D05_N04.00",
+    "orbitNumber": "",
+    "qualityInfo": 0,
+    "platformShortName": "SENTINEL-2",
+    "qualityStatus": "NOMINAL",
+    "startTime": "2023-03-25T18:19:01.463000Z",
+    "stopTime": "2023-03-25T18:19:01.463000Z",
+    "productType": "MSI_L0__GR",
+    "productClass": "OPER",
+    "missionId": "S2",
+    "satelliteId": "A",
+    "relativeOrbitNumber": "",
+    "coordinates": {
+      "orientation": "counterclockwise",
+      "coordinates": [
+        [
+          [
+            -114.721455043901,
+            19.1214254822262
+          ],
+          [
+            -114.807495562024,
+            18.7569595804879
+          ],
+          [
+            -114.572144557224,
+            18.7094506265276
+          ],
+          [
+            -114.486496657995,
+            19.0736980160363
+          ],
+          [
+            -114.721455043901,
+            19.1214254822262
+          ]
+        ]
+      ],
+      "type": "polygon"
+    },
+    "cloudCover": 36.935,
+    "processorVersion": "",
+    "t0PdgsDate": "2023-03-25T22:42:00.000000Z",
+    "url": "S2A_OPER_MSI_L0__GR_REFS_20230327T165009_S20230325T181901_D05_N04.00",
+    "platformSerialIdentifier": "A",
+    "operationalMode": "",
+    "processingCenter": "RS",
+    "timeliness": "S2_L0",
+    "processMode": "NOMINAL",
+    "datastripId": "S2A_OPER_MSI_L0__DS_REFS_20230327T165009_S20230325T181901_N04.00"
+  },
+  "demandType": "NOMINAL",
+  "debug": false,
+  "timeliness": "S2_L0"
+}

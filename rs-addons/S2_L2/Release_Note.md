@@ -121,6 +121,10 @@ _Prefix_: app.s2-l2-filter
 |------------------------------------------|---------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | spring.cloud.stream.bindings.input.group | Kafka consumer group                              |                                                                      s2-l2-filter                                                                       |
 | expression                               | SpEL expression to filter incoming catalog events | (payload.missionId=='S2' and<br> (payload.productFamily=='S2_L1C_DS'<br> or payload.productFamily=='S2_L1C_TL'<br> or payload.productFamily=='S2_AUX')) |
+| requests.memory                          | Memory requests                                   |                                                                          160Mi                                                                          |
+| limits.memory                            | Memory limit                                      |                                                                          300Mi                                                                          |
+| requests.cpu                             | CPU request                                       |                                                                          512m                                                                           |
+| limits.cpu                               | CPU limit                                         |                                                                          600m                                                                           |
 
 ### Router
 
@@ -134,10 +138,14 @@ _Prefix_: app.s2-l2-router
 
 _Prefix_: deployer.s2-l2-router.kubernetes
 
-| Property      | Description        |                                    Default                                     |
-|---------------|--------------------|:------------------------------------------------------------------------------:|
-| volume-mounts | Mounted volumes    | [ {name: script, mountPath: '/etc/router.groovy', subPath: 'router.groovy' } ] |
-| volumes       | Volumes definition |         [ {name: script, configmap: { name: s2-l2-router-script } } ]          |
+| Property        | Description        |                                    Default                                     |
+|-----------------|--------------------|:------------------------------------------------------------------------------:|
+| volume-mounts   | Mounted volumes    | [ {name: script, mountPath: '/etc/router.groovy', subPath: 'router.groovy' } ] |
+| volumes         | Volumes definition |         [ {name: script, configmap: { name: s2-l2-router-script } } ]          |
+| requests.memory | Memory requests    |                                     160Mi                                      |
+| limits.memory   | Memory limit       |                                     300Mi                                      |
+| requests.cpu    | CPU request        |                                      400m                                      |
+| limits.cpu      | CPU limit          |                                      600m                                      |
 
 ### OBS settings
 
@@ -151,7 +159,10 @@ _Apps_: pw-l2, ew-l2-ds, ew-l2-tl
 | maxConcurrency    | Maximum number of concurrent network connections |                            50                            |
 | maxThroughput     | Maximum throughput for OBS transfers (Gb)        |                            10                            |
 | minimumPartSize   | Minimum part size for multipart transfers (MB)   |                            5                             |
-| auxBucket         | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
+| maxRetries        | Maximum number of retries on error               |                            3                             |
+| downloadTimeout   | Timeout in minutes for download operations       |                            15                            |
+| uploadTimeout     | Timeout in minutes for upload operations         |                            15                            |
+| bucket.auxBucket  | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
 | bucket.l1DSBucket | Name of the OBS bucket containing L1 DS files    |                         rs-s2-l1                         |
 | bucket.l1TLBucket | Name of the OBS bucket containing L1 TL files    |                         rs-s2-l1                         |
 | bucket.l2DSBucket | Name of the OBS bucket containing L2 DS files    |                         rs-s2-l2                         |
@@ -222,9 +233,9 @@ _Apps_: pw-l2, ew-l2-ds, ew-l2-tl
 
 _Apps_: pw-l2
 
-| Property                       | Description                                    |  Default  |
-|--------------------------------|------------------------------------------------|:---------:|
-| app.pw-l1s.pw.sharedFolderRoot | Path to the shared folder for L1 working files |  /shared  |
+| Property                       | Description                                    | Default |
+|--------------------------------|------------------------------------------------|:-------:|
+| app.pw-l1s.pw.sharedFolderRoot | Path to the shared folder for L1 working files | /shared |
 
 ### Execution workers
 

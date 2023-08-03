@@ -5,6 +5,8 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.task.AbstractTask;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Map;
+
 @Getter
 @Setter
 public class Trace {
@@ -12,6 +14,7 @@ public class Trace {
     private Header header;
     private Message message;
     private AbstractTask task;
+    private Map<String, Object> custom;
 
     @Override
     public String toString() {

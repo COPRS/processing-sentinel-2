@@ -13,7 +13,7 @@ public class L2PWMessageService extends PWMessageService<L2ExecutionInput> {
 
     @Override
     protected EventAction[] getAllowedActions() {
-        return List.of(EventAction.NO_ACTION, EventAction.RESTART, EventAction.RESUBMIT).toArray(new EventAction[0]);
+        return List.of(EventAction.NO_ACTION, EventAction.RESUBMIT).toArray(new EventAction[0]);
     }
 
 }

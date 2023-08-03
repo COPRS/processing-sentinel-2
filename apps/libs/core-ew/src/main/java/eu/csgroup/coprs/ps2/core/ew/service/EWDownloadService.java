@@ -3,10 +3,12 @@ package eu.csgroup.coprs.ps2.core.ew.service;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.aux.AuxProductType;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.common.utils.FileOperationUtils;
 import eu.csgroup.coprs.ps2.core.obs.service.ObsService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,7 +27,7 @@ public abstract class EWDownloadService {
 
     public void download(Set<FileInfo> fileInfoSet, UUID parentUid) {
 
-        log.info("Downloading {} files from object storage", fileInfoSet.size());
+        log.info("Downloading files from object storage");
 
         final Map<Boolean, List<FileInfo>> filesByIsAux = fileInfoSet
                 .stream()
@@ -35,17 +37,28 @@ public abstract class EWDownloadService {
 
         final Set<FileInfo> stdFiles = new HashSet<>(filesByIsAux.get(false));
         if (!stdFiles.isEmpty()) {
+            log.info("Downloading standard files ({})", stdFiles.size());
             prepareStandardFiles(stdFiles);
             obsService.download(stdFiles, parentUid);
+            log.info("Finished downloading standard files");
         }
 
         final HashSet<FileInfo> auxFiles = new HashSet<>(filesByIsAux.get(true));
         if (!auxFiles.isEmpty()) {
+            log.info("Downloading aux files ({})", auxFiles.size());
+
+            log.info("Cleaning up aux folder");
+            // Quick hack to get aux folder root - will do better another time, for sure
+            final String auxFolder = StringUtils.substringBefore(auxFiles.iterator().next().getLocalPath(), FolderParameters.AUX_FOLDER) + FolderParameters.AUX_FOLDER;
+            FileOperationUtils.deleteFolderContent(auxFolder);
+            log.info("Finished cleaning up aux folder");
+
             final Map<Boolean, List<FileInfo>> auxByIsCustom = auxFiles
                     .stream()
                     .collect(Collectors.partitioningBy(customAux()));
             downloadStandardAux(new HashSet<>(auxByIsCustom.get(false)), parentUid);
             downloadCustomAux(new HashSet<>(auxByIsCustom.get(true)), parentUid);
+            log.info("Finished downloading aux files");
         }
 
         log.info("Finished downloading files from object storage");
@@ -79,7 +92,9 @@ public abstract class EWDownloadService {
                 trashFolders.add(localPath + "/" + downloadName);
             });
 
+            log.info("Cleaning up temporary files");
             FileOperationUtils.deleteFolders(trashFolders);
+            log.info("Finished cleaning up temporary files");
         }
     }
 

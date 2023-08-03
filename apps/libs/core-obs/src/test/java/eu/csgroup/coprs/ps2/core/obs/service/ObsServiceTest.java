@@ -120,6 +120,7 @@ class ObsServiceTest extends AbstractTest {
 
     @Test
     void download() {
+        when(obsProperties.getDownloadTimeout()).thenReturn(30);
         mockDirDownloadSuccess();
         obsService.download(FILE_INFO_MIXED_SET);
         assertTrue(true);
@@ -127,12 +128,14 @@ class ObsServiceTest extends AbstractTest {
 
     @Test
     void download_failure() {
+        when(obsProperties.getDownloadTimeout()).thenReturn(30);
         mockDirDownloadFailure();
         assertThrows(ObsException.class, () -> obsService.download(FILE_INFO_MIXED_SET));
     }
 
     @Test
     void upload() {
+        when(obsProperties.getUploadTimeout()).thenReturn(30);
         mockDirUploadSuccess();
         mockFileUploadSuccess();
         obsService.upload(FILE_INFO_MIXED_SET);
@@ -141,6 +144,7 @@ class ObsServiceTest extends AbstractTest {
 
     @Test
     void upload_failure() {
+        when(obsProperties.getUploadTimeout()).thenReturn(30);
         mockDirUploadFailure();
         mockFileUploadSuccess();
         assertThrows(ObsException.class, () -> obsService.upload(FILE_INFO_MIXED_SET));
@@ -148,6 +152,7 @@ class ObsServiceTest extends AbstractTest {
 
     @Test
     void uploadWithMd5() {
+        when(obsProperties.getUploadTimeout()).thenReturn(30);
         mockDirUploadSuccess();
         mockFileUploadSuccess();
         mockListResponseEtagsMd5();

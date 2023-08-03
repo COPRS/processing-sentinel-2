@@ -4,7 +4,7 @@ import eu.csgroup.coprs.ps2.core.common.config.SharedProperties;
 import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
+import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
 import eu.csgroup.coprs.ps2.core.pw.service.PWExecutionInputService;
 import eu.csgroup.coprs.ps2.pw.l1s.model.L1sDatastrip;
@@ -57,15 +57,15 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
         log.info("Building execution input for Datastrip {}", datastrip.getName());
 
         final Path rootPath = Paths.get(sharedProperties.getSharedFolderRoot(), datastrip.getFolder());
-        final Path inputPath = rootPath.resolve(L12Parameters.INPUT_FOLDER);
+        final Path inputPath = rootPath.resolve(FolderParameters.INPUT_FOLDER);
 
         final L1ExecutionInput executionInput = new L1ExecutionInput();
         executionInput
                 .setDatatakeType(datastrip.getDatatakeType())
                 .setDatastrip(datastrip.getName())
                 .setInputFolder(inputPath.toString())
-                .setOutputFolder(rootPath.resolve(L12Parameters.OUTPUT_FOLDER).toString())
-                .setAuxFolder(rootPath.resolve(L12Parameters.AUX_FOLDER).toString())
+                .setOutputFolder(rootPath.resolve(FolderParameters.OUTPUT_FOLDER).toString())
+                .setAuxFolder(rootPath.resolve(FolderParameters.AUX_FOLDER).toString())
                 .setFiles(new HashSet<>())
                 .setSatellite(datastrip.getSatellite())
                 .setStation(datastrip.getStationCode())
@@ -74,7 +74,7 @@ public class L1sPWExecutionInputService implements PWExecutionInputService<L1Exe
                 .setT0PdgsDate(datastrip.getT0PdgsDate());
 
         executionInput.getFiles().addAll(
-                getGRFileInfos(datastrip, inputPath.resolve(L12Parameters.GR_FOLDER))
+                getGRFileInfos(datastrip, inputPath.resolve(FolderParameters.GR_FOLDER))
         );
 
         executionInput.getFiles().addAll(

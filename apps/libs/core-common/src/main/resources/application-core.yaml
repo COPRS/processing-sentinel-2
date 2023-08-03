@@ -11,7 +11,6 @@ chain:
 ps2:
   sharedFolderRoot: /shared
   demFolderRoot: /dem
-  globeFolderName: S2IPF-DEMGLOBE
   gridFolderRoot: /grid
   minGrRequired: 48
   maxParallelTasks: 8

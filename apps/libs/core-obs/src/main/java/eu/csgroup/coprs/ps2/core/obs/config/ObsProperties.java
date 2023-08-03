@@ -52,4 +52,14 @@ public class ObsProperties {
      */
     private int maxRetries;
 
+    /**
+     * Timeout in minutes for download operations
+     */
+    private int downloadTimeout;
+
+    /**
+     * Timeout in minutes for upload operations
+     */
+    private int uploadTimeout;
+
 }

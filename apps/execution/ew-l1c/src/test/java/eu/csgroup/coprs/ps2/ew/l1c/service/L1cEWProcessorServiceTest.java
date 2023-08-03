@@ -5,6 +5,7 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.missing.JobProcessingTaskMis
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.MissingOutputProductType;
 import eu.csgroup.coprs.ps2.core.common.model.trace.missing.TaskMissingOutput;
 import eu.csgroup.coprs.ps2.core.common.test.AbstractTest;
+import eu.csgroup.coprs.ps2.core.ew.config.MissingOutputProperties;
 import eu.csgroup.coprs.ps2.ew.l1c.service.exec.L1cEWExecutionService;
 import eu.csgroup.coprs.ps2.ew.l1c.service.output.L1cEWOutputService;
 import eu.csgroup.coprs.ps2.ew.l1c.service.setup.L1cEWInputService;
@@ -30,10 +31,12 @@ class L1cEWProcessorServiceTest extends AbstractTest {
 
     @InjectMocks
     private L1cEWProcessorService processorService;
+    @InjectMocks
+    MissingOutputProperties missingOutputProperties;
 
     @Override
     public void setup() throws Exception {
-        processorService = new L1cEWProcessorService(inputService, setupService, executionService, outputService);
+        processorService = new L1cEWProcessorService(inputService, setupService, executionService, outputService, missingOutputProperties);
     }
 
     @Override
@@ -51,9 +54,10 @@ class L1cEWProcessorServiceTest extends AbstractTest {
         final List<TaskMissingOutput> missingOutputs = processorService.getMissingOutputs(executionInput);
 
         // Then
-        assertEquals(1, missingOutputs.size());
+        assertEquals(2, missingOutputs.size());
         assertEquals(1, ((JobProcessingTaskMissingOutput) missingOutputs.get(0)).getEstimatedCountInteger());
         assertEquals(MissingOutputProductType.L1C_TL.getType(), ((JobProcessingTaskMissingOutput) missingOutputs.get(0)).getProductMetadataCustomObject().getProductTypeString());
+        assertEquals(MissingOutputProductType.L1C_TC.getType(), ((JobProcessingTaskMissingOutput) missingOutputs.get(1)).getProductMetadataCustomObject().getProductTypeString());
     }
 
     @Test

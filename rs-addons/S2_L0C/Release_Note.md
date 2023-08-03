@@ -2,7 +2,7 @@
 
 <!-- TOC -->
 
-* [RS Addon : S2_L0c](#rs-addon--s2_l0c)
+* [RS Addon : S2_L0c](#rs-addon--s2l0c)
     * [Prerequisites](#prerequisites)
     * [Deployment](#deployment)
         * [Principle](#principle)
@@ -12,6 +12,7 @@
         * [Global deployer settings](#global-deployer-settings)
         * [Workers deployer settings](#workers-deployer-settings)
         * [Filter](#filter)
+        * [Router](#router)
         * [OBS settings](#obs-settings)
         * [Cleanup setting](#cleanup-setting)
         * [Kafka settings](#kafka-settings)
@@ -50,12 +51,12 @@ The [Additional resources](Executables/additional_resources) will create:
 
 Here are the basic requirements for the main components:
 
-| Resource          |  Preparation Worker  | Execution Worker |
-|-------------------|:--------------------:|:----------------:|
-| CPU               |        2000m         |      8000m       |
-| Memory            |         4Gi          |       32Gi       |
-| Disk size (local) |          -           |      200GB       |
-| Disk size (Ceph)  |          -           |      200GB       |
+| Resource          | Preparation Worker | Execution Worker |
+|-------------------|:------------------:|:----------------:|
+| CPU               |       2000m        |      8000m       |
+| Memory            |        4Gi         |       32Gi       |
+| Disk size (local) |         -          |      200GB       |
+| Disk size (Ceph)  |         -          |      200GB       |
 
 ## Configuration
 
@@ -88,10 +89,10 @@ _Apps_: pw-l0c, ew-l0c
 | readiness-probe-period        | Probe interval for readiness (seconds) |                                                                                                        60                                                                                                         |                                                                                                         60                                                                                                         |
 | readiness-probe-port          | Port for readiness probe               |                                                                                                       8080                                                                                                        |                                                                                                        8080                                                                                                        |
 | readiness-probe-timeout       | Timeout for readiness (seconds)        |                                                                                                        20                                                                                                         |                                                                                                         20                                                                                                         |
-| requests.memory               | Memory requets                         |                                                                                                      1000Mi                                                                                                       |                                                                                                       2000Mi                                                                                                       |
-| limits.memory                 | Memory limit                           |                                                                                                      4000Mi                                                                                                       |                                                                                                      32000Mi                                                                                                       |
-| requests.cpu                  | CPU request                            |                                                                                                       300m                                                                                                        |                                                                                                       1000m                                                                                                        |
-| limits.cpu                    | CPU limit                              |                                                                                                       2000m                                                                                                       |                                                                                                       8000m                                                                                                        |
+| requests.memory               | Memory request                         |                                                                                                       500Mi                                                                                                       |                                                                                                       2000Mi                                                                                                       |
+| limits.memory                 | Memory limit                           |                                                                                                      4000Mi                                                                                                       |                                                                                                      24000Mi                                                                                                       |
+| requests.cpu                  | CPU request                            |                                                                                                        50m                                                                                                        |                                                                                                       1000m                                                                                                        |
+| limits.cpu                    | CPU limit                              |                                                                                                       2000m                                                                                                       |                                                                                                       6000m                                                                                                        |
 | secret-refs                   | Name of the secret to bind             |                                                                                                     s2-l0c-pw                                                                                                     |                                                                                                     s2-l0c-ew                                                                                                      |
 | podSecurityContext            | Security Context                       |                                                                                                 {runAsUser: 1000}                                                                                                 |                                                                                                 {runAsUser: 1000}                                                                                                  |
 | volume-mounts                 | Volume mounts                          |                                                                 [ { name: shared, mountPath: '/shared' }, <br/>{ name: dem, mountPath: '/dem' } ]                                                                 |                                                                  [ { name: input, mountPath: '/input' }, <br/>{ name: dem, mountPath: '/dem' } ]                                                                   |
@@ -105,6 +106,21 @@ _Prefix_: app.filter-input-l0c
 |------------------------------------------|---------------------------------------------------|:------------------------------------------------------------------:|
 | spring.cloud.stream.bindings.input.group | Kafka consumer group                              |                          filter-input-l0c                          |
 | expression                               | SpEL expression to filter incoming catalog events | "payload.missionId=='S2' and <br/>payload.productFamily=='S2_AUX'" |
+| requests.memory                          | Memory requests                                   |                               160Mi                                |
+| limits.memory                            | Memory limit                                      |                               300Mi                                |
+| requests.cpu                             | CPU request                                       |                                512m                                |
+| limits.cpu                               | CPU limit                                         |                                600m                                |
+
+### Router
+
+_Prefix_: deployer.s2-l0c-router.kubernetes
+
+| Property        | Description     | Default |
+|-----------------|-----------------|:-------:|
+| requests.memory | Memory requests |  160Mi  |
+| limits.memory   | Memory limit    |  300Mi  |
+| requests.cpu    | CPU request     |  400m   |
+| limits.cpu      | CPU limit       |  600m   |
 
 ### OBS settings
 
@@ -118,13 +134,13 @@ _Apps_: pw-l0c, ew-l0c
 | maxConcurrency       | Maximum number of concurrent network connections |                            50                            |
 | maxThroughput        | Maximum throughput for OBS transfers (Gb)        |                            10                            |
 | minimumPartSize      | Minimum part size for multipart transfers (MB)   |                            5                             |
+| maxRetries           | Maximum number of retries on error               |                            3                             |
+| downloadTimeout      | Timeout in minutes for download operations       |                            15                            |
+| uploadTimeout        | Timeout in minutes for upload operations         |                            15                            |
 | bucket.auxBucket     | Name of the OBS bucket containing AUX files      |                        rs-s2-aux                         |
 | bucket.sessionBucket | Bucket where sessions files are stored           |                     rs-session-files                     |
 | bucket.l0DSBucket    | Name of the OBS bucket containing L0 DS files    |                        rs-s2-l0c                         |
 | bucket.l0GRBucket    | Name of the OBS bucket containing L0 GR files    |                        rs-s2-l0c                         |
-
-app.*.obs.l0DSBucket=rs-s2-l0c
-app.*.obs.l0GRBucket=rs-s2-l0c
 
 ### Cleanup setting
 
@@ -181,18 +197,18 @@ _Prefix_: app.pw-l0c.mongo
 
 _Prefix_: app.pw-l0c
 
-| Property               | Description                                                            |    Default     |
-|------------------------|------------------------------------------------------------------------|:--------------:|
-| spring.profiles.active | Name of the profile to run with (prod or dev)                          |      prod      |
-| ps2.sharedFolderRoot   | Path to the folder used as input for L0u files.<br/>Mount to shared fs |    /shared     |
-| ps2.demFolderRoot      | Path to the folder holding DEM_GLOBEF folder                           |      /dem      |
+| Property               | Description                                                            | Default |
+|------------------------|------------------------------------------------------------------------|:-------:|
+| spring.profiles.active | Name of the profile to run with (prod or dev)                          |  prod   |
+| ps2.sharedFolderRoot   | Path to the folder used as input for L0u files.<br/>Mount to shared fs | /shared |
+| ps2.demFolderRoot      | Path to the folder holding DEM_GLOBEF folder                           |  /dem   |
 
 ### Execution worker
 
 _Prefix_: app.ew-l0c
 
-| Property               | Description                                           |  Default  |
-|------------------------|-------------------------------------------------------|:---------:|
-| spring.profiles.active | Name of the profile to run with (prod or dev)         |   prod    |
+| Property               | Description                                   | Default |
+|------------------------|-----------------------------------------------|:-------:|
+| spring.profiles.active | Name of the profile to run with (prod or dev) |  prod   |
 
 ----

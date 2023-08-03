@@ -1,5 +1,5 @@
 
-## Note
+## WARNING
 
 Dockerfiles are meant to be run from the root of the project, since it copies files from the 'input' directory
 
@@ -28,8 +28,8 @@ docker push artifactory.coprs.esa-copernicus.eu/s2-docker/s2level0-jdk17:6.1.0
 
 ```
 docker build -t s2level1-jdk17 -f apps/execution/docker/Dockerfile_s2level1-jdk17 .
-docker tag s2level1-jdk17 artifactory.coprs.esa-copernicus.eu/s2-docker/s2level1-jdk17:6.1.0
-docker push artifactory.coprs.esa-copernicus.eu/s2-docker/s2level1-jdk17:6.1.0
+docker tag s2level1-jdk17 artifactory.coprs.esa-copernicus.eu/s2-docker/s2level1-jdk17:6.1.4
+docker push artifactory.coprs.esa-copernicus.eu/s2-docker/s2level1-jdk17:6.1.4
 ```
 
 ## L2 execution workers base image

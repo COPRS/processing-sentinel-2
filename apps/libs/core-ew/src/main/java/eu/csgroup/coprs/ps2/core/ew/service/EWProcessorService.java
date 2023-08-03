@@ -14,6 +14,7 @@ import eu.csgroup.coprs.ps2.core.common.model.trace.task.ReportTask;
 import eu.csgroup.coprs.ps2.core.common.service.processor.ProcessorService;
 import eu.csgroup.coprs.ps2.core.common.utils.ObsUtils;
 import eu.csgroup.coprs.ps2.core.common.utils.ProcessingMessageUtils;
+import eu.csgroup.coprs.ps2.core.ew.config.MissingOutputProperties;
 import org.springframework.util.StringUtils;
 
 import java.util.Collection;
@@ -28,12 +29,14 @@ public abstract class EWProcessorService<T extends ExecutionInput> extends Proce
     protected final EWSetupService<T> setupService;
     protected final EWExecutionService<T> executionService;
     protected final EWOutputService<T> outputService;
+    protected final MissingOutputProperties missingOutputProperties;
 
-    protected EWProcessorService(EWInputService<T> inputService, EWSetupService<T> setupService, EWExecutionService<T> executionService, EWOutputService<T> outputService) {
+    protected EWProcessorService(EWInputService<T> inputService, EWSetupService<T> setupService, EWExecutionService<T> executionService, EWOutputService<T> outputService, MissingOutputProperties missingOutputProperties) {
         this.inputService = inputService;
         this.setupService = setupService;
         this.executionService = executionService;
         this.outputService = outputService;
+        this.missingOutputProperties = missingOutputProperties;
     }
 
     protected abstract List<TaskMissingOutput> getMissingOutputs(T executionInput);

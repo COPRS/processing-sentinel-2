@@ -91,7 +91,7 @@ public class ObsConfiguration {
                 10,
                 TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(10_000),
-                new ThreadFactoryBuilder().threadNamePrefix("sdk-async-response").build());
+                new ThreadFactoryBuilder().build());
         threadPoolExecutor.allowCoreThreadTimeOut(true);
         return threadPoolExecutor;
     }

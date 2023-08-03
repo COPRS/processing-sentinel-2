@@ -1,18 +1,7 @@
+### Copernicus Reference System
 # Processing Sentinel 2 - User's Manual
-
-## Document properties
-
-|    |   |
-| -: | - |
-|    **Reference** | CCSGF-CSC-RS-PRD-SUM-PS2 |
-|        **Issue** | 1 |
-|   **Issue date** | 16 Sep 2022 |
-|  **Prepared by** | **Nicolas Leconte** (Technical Manager) |
-|  **Approved by** | **Jonathan TAGLIONE** (Quality Manager) + **Cyrille BOUISSON**  *(Architect / Technical Manager)* |
-|  **Released by** | **Stéphane HURIEZ** (Project Manager) |
-|     **Doc type** | SCF |
-|       **No WBS** | WP-3000-C |
-
+### Reference System version V2.0
+---
 ## Document Summary
 
 This document is the User Manual for processing Sentinel 2 subsystem of the Reference System Software.

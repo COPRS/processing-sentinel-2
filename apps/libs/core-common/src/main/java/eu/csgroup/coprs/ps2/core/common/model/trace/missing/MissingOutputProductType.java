@@ -15,8 +15,10 @@ public enum MissingOutputProductType {
     L1B_DS("MSI_L1B_DS"),
     L1C_DS("MSI_L1C_DS"),
     L1C_TL("MSI_L1C_TL"),
+    L1C_TC("MSI_L1C_TC"),
     L2A_DS("MSI_L2A_DS"),
     L2A_TL("MSI_L2A_TL"),
+    L2A_TC("MSI_L2A_TC"),
     HKTM("PRD_HKTM"),
     SAD("AUX_SADATA");
 

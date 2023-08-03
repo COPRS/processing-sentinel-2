@@ -5,7 +5,6 @@ import eu.csgroup.coprs.ps2.core.common.model.FileInfo;
 import eu.csgroup.coprs.ps2.core.common.model.l1.L1ExecutionInput;
 import eu.csgroup.coprs.ps2.core.common.model.processing.ProductFamily;
 import eu.csgroup.coprs.ps2.core.common.settings.FolderParameters;
-import eu.csgroup.coprs.ps2.core.common.settings.L12Parameters;
 import eu.csgroup.coprs.ps2.core.common.settings.S2FileParameters;
 import eu.csgroup.coprs.ps2.core.ew.service.EWUploadService;
 import eu.csgroup.coprs.ps2.core.obs.config.ObsBucketProperties;
@@ -42,12 +41,12 @@ public class L1cEWUploadService extends EWUploadService<L1ExecutionInput> {
         try {
 
             if (StringUtils.hasText(executionInput.getTile())) {
-                fileInfoByFamily.putAll(buildFolderInfoInFolder(rootPath.resolve(L12Parameters.L1C_TL_ROOT), S2FileParameters.L1C_TL_REGEX, ProductFamily.S2_L1C_TL,
+                fileInfoByFamily.putAll(buildFolderInfoInFolder(rootPath.resolve(FolderParameters.L1C_TL_ROOT), S2FileParameters.L1C_TL_REGEX, ProductFamily.S2_L1C_TL,
                         bucketProperties.getL1TLBucket()));
-                fileInfoByFamily.putAll(buildFileInfoInFolder(rootPath.resolve(L12Parameters.L1C_TL_ROOT), S2FileParameters.L1C_TC_REGEX, ProductFamily.S2_L1C_TC,
+                fileInfoByFamily.putAll(buildFileInfoInFolder(rootPath.resolve(FolderParameters.L1C_TL_ROOT), S2FileParameters.L1C_TC_REGEX, ProductFamily.S2_L1C_TC,
                         bucketProperties.getL1TCBucket()));
             } else {
-                fileInfoByFamily.putAll(buildFolderInfoInFolder(rootPath.resolve(L12Parameters.L1C_DS_ROOT), S2FileParameters.L1C_DS_REGEX, ProductFamily.S2_L1C_DS,
+                fileInfoByFamily.putAll(buildFolderInfoInFolder(rootPath.resolve(FolderParameters.L1C_DS_ROOT), S2FileParameters.L1C_DS_REGEX, ProductFamily.S2_L1C_DS,
                         bucketProperties.getL1DSBucket()));
             }
 

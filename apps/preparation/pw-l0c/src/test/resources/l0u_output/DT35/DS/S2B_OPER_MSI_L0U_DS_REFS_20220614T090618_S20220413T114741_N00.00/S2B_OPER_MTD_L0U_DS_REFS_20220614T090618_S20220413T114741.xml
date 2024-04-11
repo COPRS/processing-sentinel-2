@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ Copyright 2023 CS Group
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
 <DIMAP_Level-0-unconsolidated_DataStrip xmlns:base="http://gs2.esa.int/DICO/1.0/PDGS/base/" xmlns:center="http://gs2.esa.int/DICO/1.0/PDGS/center/" xmlns:date_time="http://gs2.esa.int/DICO/1.0/SY/date_time/" xmlns:dimapuncons="http://gs2.esa.int/DICO/1.0/PDGS/dimap/dimapuncons.xsd" xmlns:editor="http://ipu.this.fr/dic/ipu/core/XMLEditor" xmlns:geographical="http://gs2.esa.int/DICO/1.0/SY/geographical/" xmlns:gs2="http://gs2.esa.int/doc/1.0/" xmlns:image="http://gs2.esa.int/DICO/1.0/SY/image/" xmlns:item="http://gs2.esa.int/DICO/1.0/DataAccess/item/" xmlns:misc="http://gs2.esa.int/DICO/1.0/SY/misc/" xmlns:ns1="http://gs2.esa.int/DICO/DIMAP_S2_Level-0_DataStrip_unconconso.xsd" xmlns:orbital="http://gs2.esa.int/DICO/1.0/SY/orbital/" xmlns:platform="http://gs2.esa.int/DICO/1.0/SY/platform/" xmlns:representation="http://gs2.esa.int/DICO/1.0/SY/representation/" xmlns:spatio="http://gs2.esa.int/DICO/1.0/SY/spatio/" xmlns:tile="http://gs2.esa.int/DICO/1.0/SY/tile/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" datastripIdentifier="S2B_OPER_MSI_L0U_DS_REFS_20220614T090618_S20220413T114741_N00.00" xsi:noNamespaceSchemaLocation="DIMAP_S2_Level-0_DataStrip_unconsolidated.xsd">
 	<General_Info>
 		<Datatake_Info datatakeIdentifier="GS2B_20220413T114629_026647_N00.00">

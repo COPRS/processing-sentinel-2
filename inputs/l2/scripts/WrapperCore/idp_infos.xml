@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!--
+ Copyright 2023 CS Group
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
 <n:IDP_Infos xmlns:n="http://gs2.esa.int/DICO/1.0/IPF/ipf/File_Idp_Infos.xsd" xmlns:base="http://gs2.esa.int/DICO/1.0/IPF/S2/" xmlns:date_time="http://gs2.esa.int/DICO/1.0/SY/date_time/" xmlns:geographical="http://gs2.esa.int/DICO/1.0/SY/geographical/" xmlns:gs2="http://gs2.esa.int/doc/1.0/" xmlns:image="http://gs2.esa.int/DICO/1.0/SY/image/" xmlns:misc="http://gs2.esa.int/DICO/1.0/SY/misc/" xmlns:n1="http://gs2.esa.int/DICO/1.0/IPF/base/" xmlns:n2="http://gs2.esa.int/DICO/1.0/PDGS/base/" xmlns:ns1="http://gs2.esa.int/DICO/1.0/IPF/ipf/Tp_Filter.xsd" xmlns:orbital="http://gs2.esa.int/DICO/1.0/SY/orbital/" xmlns:pdgs_log_def="http://gs2.esa.int/DICO/1.0/PDGS/logical_definition/" xmlns:platform="http://gs2.esa.int/DICO/1.0/SY/platform/" xmlns:representation="http://gs2.esa.int/DICO/1.0/SY/representation/" xmlns:spatio="http://gs2.esa.int/DICO/1.0/SY/spatio/" xmlns:tile="http://gs2.esa.int/DICO/1.0/SY/tile/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://gs2.esa.int/DICO/1.0/IPF/ipf/File_Idp_Infos.xsd /data/schemas/PSD/DICO/1.0/IPF/ipf/File_Idp_Infos.xsd">
 </n:IDP_Infos>
